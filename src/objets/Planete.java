@@ -48,14 +48,14 @@ public class Planete implements Corps, Dessinable
 			vitesse = pVitesse;
 	}
 
-	public void setMasse(double pMasse)
-	{
-		masse = pMasse;
-	}
-
 	public double getMasse()
 	{
 		return masse;
+	}
+
+	public void setMasse(double pMasse)
+	{
+		masse = pMasse;
 	}
 
 	public double getPositionX()
@@ -66,6 +66,16 @@ public class Planete implements Corps, Dessinable
 	public double getPositionY()
 	{
 		return positionY.get();
+	}
+
+	public void setPositionX(double pPositionX)
+	{
+		positionX.set(pPositionX);		
+	}
+
+	public void setPositionY(double pPositionY)
+	{
+		positionY.set(pPositionY);		
 	}
 
 	public DoubleProperty getPositionXProperty()
@@ -96,29 +106,36 @@ public class Planete implements Corps, Dessinable
 		}
 	}
 
-	public void setStatique(boolean pStatique)
-	{
-		statique = pStatique;
-	}
-
 	public boolean isStatique()
 	{
 		return statique;
 	}
 
-	public void setVitesse(Vecteur pVitesse)
+	public void setStatique(boolean pStatique)
 	{
-		vitesse = pVitesse;
+		statique = pStatique;
 	}
 
+	
+	/**
+	 * Ne pas utiliser si la planète est statique
+	 */
 	public Vecteur getVitesse()
 	{
 		return vitesse;
 	}
 
+	/**
+	 * Ne pas utiliser si la planète est statique
+	 */
+	public void setVitesse(Vecteur pVitesse)
+	{
+		vitesse = pVitesse;
+	}
+
 	public Vecteur getForceExt()
 	{
-		// TODO
+		// TODO Gnewak ? 
 		return null;
 	}
 

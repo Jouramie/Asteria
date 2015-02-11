@@ -1,12 +1,17 @@
-package tests;
-import static org.junit.Assert.*;
-import utils.Vecteur;
-import org.junit.Before;
-import org.junit.Test;
 /**
  * Classe de tests pour Vecteur.
  * @author Simon-Pierre Deschênes
  */
+
+package tests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import utils.Vecteur;
+
 public class VecteurTest
 {
 	Vecteur v1, v2;

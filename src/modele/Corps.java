@@ -7,17 +7,20 @@ public interface Corps
 {	
 	double getMasse();
 	void setMasse(double pMasse);
-	Vecteur getForceExt();
 	
-	void setPosition(Vecteur pPosition);
-	Vecteur getPosition();
 	double getPositionX();
 	double getPositionY();
+	void setPositionX(double pPositionX);
+	void setPositionY(double pPositionX);
 	DoubleProperty getPositionXProperty();
 	DoubleProperty getPositionYProperty();
+	Vecteur getPosition();
+	void setPosition(Vecteur pPosition);
 	
 	boolean isStatique();
 	void setStatique(boolean pStatique);
 	Vecteur getVitesse();
 	void setVitesse(Vecteur pVitesse);
+	
+	Vecteur getForceExt();
 }
