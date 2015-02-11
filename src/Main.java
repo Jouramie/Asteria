@@ -30,7 +30,7 @@ public class Main extends Application implements Initializable
 	
 	public void initialize(URL url, ResourceBundle rb)
 	{
-		
+	System.out.println("test");	
 	}
 	
 	public static void main(String[] args)
