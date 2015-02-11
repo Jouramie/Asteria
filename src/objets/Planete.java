@@ -10,7 +10,6 @@ import vue.Dessinable;
 public class Planete implements Corps, Dessinable
 {
 	private double masse;
-	private Vecteur position;
 	private DoubleProperty positionX;
 	private DoubleProperty positionY;
 	private boolean statique;
@@ -21,9 +20,14 @@ public class Planete implements Corps, Dessinable
 	{
 		masse = pMasse;
 		if (pPosition == null)
-			position = new Vecteur();
-		else
-			position = pPosition;
+		{
+			positionX = new SimpleDoubleProperty();
+			positionY = new SimpleDoubleProperty();
+		} else
+		{
+			positionX = new SimpleDoubleProperty(pPosition.getX());
+			positionY = new SimpleDoubleProperty(pPosition.getY());
+		}
 		statique = pStatique;
 		if (pVitesse == null)
 			vitesse = new Vecteur();
@@ -49,6 +53,11 @@ public class Planete implements Corps, Dessinable
 		masse = pMasse;
 	}
 
+	public double getMasse()
+	{
+		return masse;
+	}
+
 	public double getPositionX()
 	{
 		return positionX.get();
@@ -69,9 +78,22 @@ public class Planete implements Corps, Dessinable
 		return positionY;
 	}
 
+	public Vecteur getPosition()
+	{
+		return new Vecteur(positionX.get(), positionY.get());
+	}
+
 	public void setPosition(Vecteur pPosition)
 	{
-		position = pPosition;
+		if (pPosition == null)
+		{
+			positionX = new SimpleDoubleProperty();
+			positionY = new SimpleDoubleProperty();
+		} else
+		{
+			positionX = new SimpleDoubleProperty(pPosition.getX());
+			positionY = new SimpleDoubleProperty(pPosition.getY());
+		}
 	}
 
 	public void setStatique(boolean pStatique)
@@ -79,23 +101,20 @@ public class Planete implements Corps, Dessinable
 		statique = pStatique;
 	}
 
+	public boolean isStatique()
+	{
+		return statique;
+	}
+
 	public void setVitesse(Vecteur pVitesse)
 	{
 		vitesse = pVitesse;
 	}
 
-	public Node getNoeud()
+	public Vecteur getVitesse()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return vitesse;
 	}
-
-
-	public double getMasse()
-	{
-		return masse;
-	}
-
 
 	public Vecteur getForceExt()
 	{
@@ -103,19 +122,9 @@ public class Planete implements Corps, Dessinable
 		return null;
 	}
 
-
-	public Vecteur getPosition()
+	public Node getNoeud()
 	{
-		return position;
-	}
-	
-	public boolean isStatique()
-	{
-		return statique;
-	}
-
-	public Vecteur getVitesse()
-	{
-		return vitesse;
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
