@@ -1,0 +1,26 @@
+.border-pane
+{
+	-fx-background-image: url("stars-background.jpg");
+}
+
+.button
+{
+	-fx-background-color: red;
+	-fx-background-radius: 10px;
+	
+	-fx-border-color: grey;
+	-fx-border-width: 3px;
+	-fx-border-radius: 8px;
+	
+	-fx-padding: 20px 30px 20px 30px;
+	
+	-fx-font-size: 40px;
+	-fx-font-family: "Western";
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+}
+
+.button:pressed
+{
+	-fx-background-color: firebrick;
+}

@@ -11,12 +11,12 @@ public class VueMenu implements Vue
 
 	public String getFXML()
 	{
-		return null;
+		return "/res/Test.fxml";
 	}
 
 	public String getCSS()
 	{
-		return null;
+		return "/res/test.css";
 	}
 
 	public void initialiser(BorderPane pane)
