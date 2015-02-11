@@ -3,7 +3,9 @@ package controleur;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
+import javafx.concurrent.Task;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -21,6 +23,8 @@ public class ContPrincipal
 	private Controleur cont;
 	private Vue vue;
 	private MoteurPhysique phys;
+	Thread th;
+	Temps clock;
 	
 	private List<Corps> corps;
 	
@@ -36,7 +40,10 @@ public class ContPrincipal
 	public void initialiser(Stage stage)
 	{
 		this.stage = stage;
-		
+		clock = new Temps();
+		th = new Thread(clock);
+        th.setDaemon(true);
+        th.start();
 		selectionnerControlleur(new ContMenu());
 	}
 	
@@ -76,6 +83,11 @@ public class ContPrincipal
 		}
 	}
 	
+	public void update(double time)
+	{
+		
+	}
+	
 	public void ajouterCorps(Corps c)
 	{
 		if(c != null)
@@ -97,5 +109,22 @@ public class ContPrincipal
 	public static ContPrincipal getInstance()
 	{	
 		return instance;
+	}
+	
+	private class Temps extends Task<Void>{
+		@Override protected Void call() throws Exception {
+			
+			double previousTime = 0;
+			double currentTime = System.currentTimeMillis();
+			
+			while(true)
+			{
+				previousTime = currentTime;
+				currentTime = System.currentTimeMillis();
+				update ((currentTime - previousTime) / 1000);
+				Thread.sleep(5);
+			}
+		}
+
 	}
 }
