@@ -7,8 +7,10 @@ import vue.Dessinable;
 
 public class Planete implements Corps, Dessinable
 {
-	double masse;
-	Vecteur position;
+	private double masse;
+	private Vecteur position;
+	private boolean tatique;
+	
 	
 	public Planete()
 	{
