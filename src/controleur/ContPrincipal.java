@@ -1,7 +1,9 @@
 package controleur;
 
 import java.util.List;
-
+import javafx.concurrent.Task;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import modele.Corps;
 import modele.MoteurPhysique;
@@ -15,6 +17,8 @@ public class ContPrincipal
 	private Controleur cont;
 	private Vue vue;
 	private MoteurPhysique phys;
+	Thread th;
+	Temps clock;
 	
 	private List<Corps> corps;
 	
@@ -25,7 +29,10 @@ public class ContPrincipal
 	
 	public void initialiser(Stage stage)
 	{
-		
+		clock = new Temps();
+		th = new Thread(clock);
+        th.setDaemon(true);
+        th.start();
 	}
 	
 	public void selectionnerControlleur(Controleur c)
@@ -34,6 +41,11 @@ public class ContPrincipal
 	}
 	
 	public void afficherVue(Vue v)
+	{
+		
+	}
+	
+	public void update(double time)
 	{
 		
 	}
@@ -61,5 +73,22 @@ public class ContPrincipal
 		}
 		
 		return instance;
+	}
+	
+	private class Temps extends Task<Void>{
+		@Override protected Void call() throws Exception {
+			
+			double previousTime = 0;
+			double currentTime = System.currentTimeMillis();
+			
+			while(true)
+			{
+				previousTime = currentTime;
+				currentTime = System.currentTimeMillis();
+				update ((currentTime - previousTime) / 1000);
+				Thread.sleep(5);
+			}
+		}
+
 	}
 }
