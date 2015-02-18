@@ -11,12 +11,30 @@ import modele.Corps;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 
+	public final static double DENSITE = 1/2;
+	
 	protected double masse;
 	protected DoubleProperty positionX;
 	protected DoubleProperty positionY;
 	protected boolean statique;
 	protected Vecteur vitesse;
-
+	
+	public ObjetSpatial(double pMasse, Vecteur pPosition, boolean pStatique, Vecteur pVitesse){
+		masse = pMasse;
+		positionX = new SimpleDoubleProperty(pPosition.getX());
+		positionY = new SimpleDoubleProperty(pPosition.getY());
+		statique = pStatique;
+		vitesse = pVitesse;		
+	}
+	
+	public ObjetSpatial(double pMasse, double pPositionX, double pPositionY, boolean pStatique, Vecteur pVitesse){
+		masse = pMasse;
+		positionX = new SimpleDoubleProperty(pPositionX);
+		positionY = new SimpleDoubleProperty(pPositionY);
+		statique = pStatique;
+		vitesse = pVitesse;		
+	}
+	
 	public double getMasse()
 	{
 		return masse;
@@ -66,12 +84,12 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		if (pPosition == null)
 		{
-			positionX = new SimpleDoubleProperty();
-			positionY = new SimpleDoubleProperty();
+			positionX.set(0);
+			positionY.set(0);
 		} else
 		{
-			positionX = new SimpleDoubleProperty(pPosition.getX());
-			positionY = new SimpleDoubleProperty(pPosition.getY());
+			positionX.set(pPosition.getX());
+			positionY.set(pPosition.getY());
 		}
 	}
 
@@ -109,7 +127,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public Node getNoeud()
 	{
 		return new Circle(positionX.get(), positionY.get(), Math.sqrt(masse
-				/ Math.PI));
+				/ Math.PI / DENSITE));
 	}
 
 }
