@@ -24,49 +24,24 @@ public class Vaisseau extends ObjetSpatial
 			double pMasse, double pCapaciteCarburant,
 			Vecteur pPosition, Vecteur pVitesse)
 	{
+		super(pMasse, pPosition, false, pVitesse);
 		puissanceMax = pPuissanceMax;
 		puissance = puissanceMax;
 		direction = pDirection;
-		masse = pMasse;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
-		statique = false;
-		if (pPosition == null)
-		{
-			new SimpleDoubleProperty();
-			new SimpleDoubleProperty();
-		} else
-		{
-			new SimpleDoubleProperty(pPosition.getX());
-			new SimpleDoubleProperty(pPosition.getY());
-		}
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-		{
-			vitesse = pVitesse;
-		}
 	}
 	
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection,
 			double pMasse, double pCapaciteCarburant,
 			double pPositionX, double pPositionY, Vecteur pVitesse)
 	{
+		super(pMasse, pPositionX, pPositionY, false, pVitesse);
 		puissanceMax = pPuissanceMax;
 		puissance = puissanceMax;
 		direction = pDirection;
-		masse = pMasse;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
-		statique = false;
-		positionX.set(pPositionX);
-		positionY.set(pPositionY);
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-		{
-			vitesse = pVitesse;
-		}
 	}
 
 	public void tournerGauche()
