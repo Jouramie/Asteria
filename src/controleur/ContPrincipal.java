@@ -3,6 +3,8 @@ package controleur;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -95,7 +97,10 @@ public class ContPrincipal
 				stage.setScene(scene);
 				stage.show();
 				
-				vue.initialiser(root);
+				Platform.runLater(()->
+				{
+					vue.initialiser(root);
+				});
 			}
 			catch (IOException e)
 			{

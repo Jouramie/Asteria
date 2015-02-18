@@ -1,5 +1,6 @@
 package vue;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -15,9 +16,10 @@ public class VueJeu implements Vue
 	private Pane pane;
 	
 	private List<Dessinable> liste;
+	
 	public VueJeu()
 	{
-		
+		liste = new LinkedList<Dessinable>();
 	}
 	
 	public String getFXML()
@@ -35,7 +37,6 @@ public class VueJeu implements Vue
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
-			System.out.println("Shit");
 			return;
 		}
 		
@@ -43,16 +44,20 @@ public class VueJeu implements Vue
 		{
 		    if(c instanceof Dessinable)
 		    {
-		    	liste.add((Dessinable)c);
+		    	liste.add((Dessinable) c);
 		    }
 		}
 		for (Dessinable c : liste)
 		{
 			Node n = c.getNoeud();
-			Corps corps = (Corps)c;
-			n.setTranslateX(corps.getPositionX());
-			n.setTranslateY(corps.getPositionY());
-		    pane.getChildren().add(n);
+			
+			if(n != null)
+			{
+				Corps corps = (Corps)c;
+				n.translateXProperty().bind(corps.getPositionXProperty());
+				n.translateYProperty().bind(corps.getPositionYProperty());
+			    pane.getChildren().add(n);
+			}
 		}
 	}
 
