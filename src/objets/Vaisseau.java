@@ -5,9 +5,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import modele.Corps;
 import utils.Vecteur;
-import vue.Dessinable;
 
 public class Vaisseau extends ObjetSpatial
 {
