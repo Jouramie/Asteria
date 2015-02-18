@@ -1,7 +1,7 @@
 package utils;
 /**
  * Classe utilitaire représentant un vecteur 2D.
- * @author Simon-Pierre Deschênes
+ * @author Équipe Bolduc
  * @version 1.0
  */
 public class Vecteur
