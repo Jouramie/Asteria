@@ -21,8 +21,8 @@ public class ContPrincipalTest
 	@Before
 	public void testContPrincipal()
 	{
-		p1 = new Planete(5000, new Vecteur(0, 0), true, new Vecteur(0, 0));
-		p2 = new Planete(10000, new Vecteur(10, 10), true, new Vecteur(0, 0));
+		p1 = new Planete(5000, new Vecteur(0, 0), new Vecteur(0, 0));
+		p2 = new Planete(10000, new Vecteur(10, 10), new Vecteur(0, 0));
 		
 		ContPrincipal.getInstance().viderCorps();
 	}
