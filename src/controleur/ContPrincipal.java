@@ -65,7 +65,7 @@ public class ContPrincipal
 				vue = v;
 				
 				root = (BorderPane)FXMLLoader.load(getClass().getResource(v.getFXML()));
-				Scene scene = new Scene(root, 600, 600);
+				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 				
 				if(v.getCSS() != null)
 				{

@@ -11,7 +11,7 @@ public class VueJeu implements Vue
 	
 	public String getFXML()
 	{
-		return null;
+		return "/res/Jeu.fxml";
 	}
 
 	public String getCSS()
