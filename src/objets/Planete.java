@@ -5,9 +5,8 @@ import utils.Vecteur;
 
 public class Planete extends ObjetSpatial
 {
-	
-	public Planete(double pMasse, Vecteur pPosition,
-			Vecteur pVitesse)
+
+	public Planete(double pMasse, Vecteur pPosition)
 	{
 		masse = pMasse;
 		if (pPosition == null)
@@ -20,22 +19,16 @@ public class Planete extends ObjetSpatial
 			positionY = new SimpleDoubleProperty(pPosition.getY());
 		}
 		statique = true;
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-			vitesse = pVitesse;
+		vitesse = new Vecteur();
 	}
 
-	public Planete(double pMasse, double pPositionX, double pPositionY, Vecteur pVitesse)
+	public Planete(double pMasse, double pPositionX, double pPositionY)
 	{
 		masse = pMasse;
 		positionX = new SimpleDoubleProperty(pPositionX);
 		positionY = new SimpleDoubleProperty(pPositionY);
 		statique = true;
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-			vitesse = pVitesse;
+		vitesse = new Vecteur();
 	}
 
 	public Vecteur getForceExt()

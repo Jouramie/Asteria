@@ -1,6 +1,6 @@
 /**
  * Classe de tests pour Vecteur.
- * @author Simon-Pierre Deschênes
+ * @author Équipe Bolduc
  */
 
 package tests;
