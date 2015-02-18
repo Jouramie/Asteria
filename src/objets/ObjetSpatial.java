@@ -182,7 +182,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public Node getNoeud()
 	{
-		return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
+		return new Circle(0, 0, 100);
+		//return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
 	}
 	
 }
