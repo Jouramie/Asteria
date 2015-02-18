@@ -9,27 +9,29 @@ import vue.Dessinable;
 
 public class Vaisseau implements Corps, Dessinable
 {
+
+	public final static double CONVERTION_CARBURANT = 1;
 	private double puissanceMax;
 	private double puissance;
 	private Vecteur direction;
-	private double masseVide;
+	private double masseVaisseau;
 	private double capaciteCarburant;
-	private DoubleProperty masseCarburant;
+	private DoubleProperty carburant;
 	private DoubleProperty positionX;
 	private DoubleProperty positionY;
 	private boolean statique;
 	private Vecteur vitesse;
 
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection,
-			double pMasseVide, double pCapaciteCarburant, Vecteur pPosition,
-			boolean pStatique, Vecteur pVitesse)
+			double pMasseVaisseau, double pCapaciteCarburant,
+			Vecteur pPosition, boolean pStatique, Vecteur pVitesse)
 	{
 		puissanceMax = pPuissanceMax;
 		puissance = puissanceMax;
-		direction = new Vecteur();
-		masseVide = pMasseVide;
+		direction = pDirection;
+		masseVaisseau = pMasseVaisseau;
 		capaciteCarburant = pCapaciteCarburant;
-		masseCarburant = new SimpleDoubleProperty(capaciteCarburant);
+		carburant = new SimpleDoubleProperty(capaciteCarburant);
 		if (pPosition == null)
 		{
 			positionX = new SimpleDoubleProperty();
@@ -48,117 +50,131 @@ public class Vaisseau implements Corps, Dessinable
 
 	public void tournerGauche()
 	{
-		// TODO
+		// TODO Story 12
 	}
 
 	public void tournerDroite()
 	{
-		// TODO
+		// TODO Story 12
 	}
 
-	public void setPuissance(double p)
+	public double getPuissanceMax()
 	{
-		// TODO
+		return puissanceMax;
 	}
 
+	public void setPuissanceMax(double pPuissanceMax)
+	{
+		puissanceMax = pPuissanceMax;
+	}
+
+	public double getPuissance()
+	{
+		return puissance;
+	}
+
+	public void setPuissance(double pPuissance)
+	{
+		puissance = pPuissance;
+	}
+
+	@Override
 	public double getMasse()
 	{
-		return masseVide;
+		return masseVaisseau + CONVERTION_CARBURANT * carburant.get();
 	}
 
-	public void setMasse(double pMasseVide)
+	public void setMasseVaisseau(double pMasseVaisseau)
 	{
-
+		masseVaisseau = pMasseVaisseau;
 	}
 
 	@Override
 	public double getPositionX()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return positionX.get();
 	}
 
 	@Override
 	public double getPositionY()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return positionY.get();
 	}
 
 	@Override
 	public void setPositionX(double pPositionX)
 	{
-		// TODO Auto-generated method stub
+		positionX.set(pPositionX);
 
 	}
 
 	@Override
-	public void setPositionY(double pPositionX)
+	public void setPositionY(double pPositionY)
 	{
-		// TODO Auto-generated method stub
+		positionY.set(pPositionY);
 
 	}
 
 	@Override
 	public DoubleProperty getPositionXProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return positionX;
 	}
 
 	@Override
 	public DoubleProperty getPositionYProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return positionY;
 	}
 
 	@Override
 	public Vecteur getPosition()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new Vecteur(positionX.get(), positionY.get());
 	}
 
 	@Override
 	public void setPosition(Vecteur pPosition)
 	{
-		// TODO Auto-generated method stub
+		positionX.set(pPosition.getX());
+		positionY.set(pPosition.getY());
 
 	}
 
 	@Override
 	public boolean isStatique()
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return statique;
 	}
 
 	@Override
+	/**
+	 * Ne pas mettre True sinon le vaisseau reste immobile
+	 */
 	public void setStatique(boolean pStatique)
 	{
-		// TODO Auto-generated method stub
-
+		statique = pStatique;
 	}
 
 	@Override
 	public Vecteur getVitesse()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		if (statique)
+			return new Vecteur();
+		return vitesse;
 	}
 
 	@Override
 	public void setVitesse(Vecteur pVitesse)
 	{
-		// TODO Auto-generated method stub
+		vitesse = pVitesse;
 
 	}
 
 	@Override
 	public Vecteur getForceExt()
 	{
-		// TODO Auto-generated method stub
+		// TODO Story canon
 		return null;
 	}
 

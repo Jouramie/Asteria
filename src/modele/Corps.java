@@ -6,7 +6,6 @@ import utils.Vecteur;
 public interface Corps
 {	
 	double getMasse();
-	void setMasse(double pMasse);
 	
 	double getPositionX();
 	double getPositionY();

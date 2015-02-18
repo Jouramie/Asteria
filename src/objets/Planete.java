@@ -15,7 +15,7 @@ public class Planete implements Corps, Dessinable
 	private boolean statique;
 	private Vecteur vitesse;
 
-	public Planete(double pMasse, Vecteur pPosition, boolean pStatique,
+	public Planete(double pMasse, Vecteur pPosition,
 			Vecteur pVitesse)
 	{
 		masse = pMasse;
@@ -28,20 +28,19 @@ public class Planete implements Corps, Dessinable
 			positionX = new SimpleDoubleProperty(pPosition.getX());
 			positionY = new SimpleDoubleProperty(pPosition.getY());
 		}
-		statique = pStatique;
+		statique = true;
 		if (pVitesse == null)
 			vitesse = new Vecteur();
 		else
 			vitesse = pVitesse;
 	}
 
-	public Planete(double pMasse, double pPositionX, double pPositionY,
-			boolean pStatique, Vecteur pVitesse)
+	public Planete(double pMasse, double pPositionX, double pPositionY, Vecteur pVitesse)
 	{
 		masse = pMasse;
 		positionX = new SimpleDoubleProperty(pPositionX);
 		positionY = new SimpleDoubleProperty(pPositionY);
-		statique = pStatique;
+		statique = true;
 		if (pVitesse == null)
 			vitesse = new Vecteur();
 		else
@@ -122,6 +121,8 @@ public class Planete implements Corps, Dessinable
 	 */
 	public Vecteur getVitesse()
 	{
+		if(statique)
+			return new Vecteur();
 		return vitesse;
 	}
 
@@ -135,7 +136,7 @@ public class Planete implements Corps, Dessinable
 
 	public Vecteur getForceExt()
 	{
-		// TODO Gnewak ? 
+		// TODO Story asteroïde
 		return null;
 	}
 
