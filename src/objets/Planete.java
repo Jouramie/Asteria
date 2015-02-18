@@ -1,41 +1,18 @@
 package objets;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import utils.Vecteur;
 
 public class Planete extends ObjetSpatial
 {
-	
-	public Planete(double pMasse, Vecteur pPosition,
-			Vecteur pVitesse)
+
+	public Planete(double pMasse, Vecteur pPosition)
 	{
-		masse = pMasse;
-		if (pPosition == null)
-		{
-			positionX = new SimpleDoubleProperty();
-			positionY = new SimpleDoubleProperty();
-		} else
-		{
-			positionX = new SimpleDoubleProperty(pPosition.getX());
-			positionY = new SimpleDoubleProperty(pPosition.getY());
-		}
-		statique = true;
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-			vitesse = pVitesse;
+		super(pMasse, pPosition, true, new Vecteur());
 	}
 
-	public Planete(double pMasse, double pPositionX, double pPositionY, Vecteur pVitesse)
+	public Planete(double pMasse, double pPositionX, double pPositionY)
 	{
-		masse = pMasse;
-		positionX = new SimpleDoubleProperty(pPositionX);
-		positionY = new SimpleDoubleProperty(pPositionY);
-		statique = true;
-		if (pVitesse == null)
-			vitesse = new Vecteur();
-		else
-			vitesse = pVitesse;
+		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 	}
 
 	public Vecteur getForceExt()

@@ -2,8 +2,6 @@ package controleur;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import vue.VueJeu;
 import vue.VueMenu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +43,6 @@ public class ContMenu implements Controleur, Initializable
 	@FXML
 	public void jouer()
 	{
-		ContPrincipal.getInstance().afficherVue(new VueJeu());
+		ContPrincipal.getInstance().selectionnerControleur(new ContJeu());
 	}
 }

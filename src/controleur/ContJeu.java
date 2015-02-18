@@ -1,6 +1,7 @@
 package controleur;
 
 import objets.Planete;
+import objets.Vaisseau;
 import utils.Vecteur;
 import vue.VueJeu;
 import javafx.fxml.FXML;
@@ -18,8 +19,11 @@ public class ContJeu implements Controleur
 	
 	public void initialiser()
 	{
-		Planete p1 = new Planete(5000, new Vecteur(0, 0), new Vecteur(0, 0));
+			Planete p1 = new Planete(100000, new Vecteur(400, 400));
 		ContPrincipal.getInstance().ajouterCorps(p1);
+		
+		Vaisseau v = new Vaisseau(100, new Vecteur(0, 0), 100, 100, new Vecteur(10, 10), new Vecteur(50, 0));
+		ContPrincipal.getInstance().ajouterCorps(v);
 		
 		ContPrincipal.getInstance().afficherVue(new VueJeu());
 	}
@@ -28,15 +32,4 @@ public class ContJeu implements Controleur
 	{
 
 	}
-
-	public void ajouterEcouteurs()
-	{
-
-	}
-
-	public void supprimerEcouteur()
-	{
-		
-	}
-
 }
