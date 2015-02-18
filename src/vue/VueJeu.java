@@ -54,6 +54,7 @@ public class VueJeu implements Vue
 			if(n != null)
 			{
 				Corps corps = (Corps)c;
+				System.out.println(corps.getPositionXProperty());
 				n.translateXProperty().bind(corps.getPositionXProperty());
 				n.translateYProperty().bind(corps.getPositionYProperty());
 			    pane.getChildren().add(n);
