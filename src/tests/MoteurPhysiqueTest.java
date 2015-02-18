@@ -28,9 +28,9 @@ public class MoteurPhysiqueTest
 	{
 		moteur = new MoteurPhysique();
 		corps = new ArrayList<>();
-		vaisseau = new Vaisseau(0, new Vecteur(1, 0), 70000, 0, new Vecteur(0, 100), false, new Vecteur(10, 0));
+		vaisseau = new Vaisseau(0, new Vecteur(1, 0), 70000, 0, new Vecteur(0, 120), new Vecteur(10, 0));
 		corps.add(vaisseau);
-		corps.add(new Planete(5.972E24, null, null));
+		corps.add(new Planete(15707.96327, null));
 	}
 	
 	@Test
