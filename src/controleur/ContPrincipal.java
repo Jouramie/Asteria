@@ -46,6 +46,7 @@ public class ContPrincipal
 		vue = null;
 		
 		corps = new LinkedList<Corps>();
+		phys = new MoteurPhysique();
 	}
 	
 	/**
@@ -111,7 +112,7 @@ public class ContPrincipal
 	 */
 	public void update(double time)
 	{
-		
+		phys.update(corps, time);
 	}
 	
 	/**
@@ -167,16 +168,21 @@ public class ContPrincipal
 	 * @author Jonathan Samson
 	 */
 	private class Temps extends Task<Void>{
+		private long previousTime;
+		private long currentTime;
+		
 		@Override protected Void call() throws Exception {
 			
-			double previousTime = 0;
-			double currentTime = System.currentTimeMillis();
+			previousTime = 0;
+			currentTime = System.currentTimeMillis();
 			
 			while(true)
 			{
 				previousTime = currentTime;
 				currentTime = System.currentTimeMillis();
-				update ((currentTime - previousTime) / 1000);
+				Platform.runLater(() -> {
+					update ((double)(currentTime - previousTime) / 1000);
+				});
 				Thread.sleep(5);
 			}
 		}

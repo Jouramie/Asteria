@@ -86,13 +86,6 @@ public class Vaisseau extends ObjetSpatial
 	{
 		statique = pStatique;
 	}
-
-	@Override
-	public Vecteur getForceExt()
-	{
-		// TODO Story canon
-		return null;
-	}
 	
 	@Override
 	public Node getNoeud(){

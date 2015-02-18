@@ -18,11 +18,14 @@ public class ContJeu implements Controleur
 	}
 	
 	public void initialiser()
-	{
-		Planete p1 = new Planete(100000, new Vecteur(400, 400));
+	{	
+		Planete p1 = new Planete(6e15, new Vecteur(400, 400));
 		ContPrincipal.getInstance().ajouterCorps(p1);
 		
-		Vaisseau v = new Vaisseau(100, new Vecteur(0, 0), 100, 100, new Vecteur(10, 10), new Vecteur(50, 0));
+		Planete p2 = new Planete(6e15, new Vecteur(600, 0));
+		ContPrincipal.getInstance().ajouterCorps(p2);
+		
+		Vaisseau v = new Vaisseau(7e4, new Vecteur(0, 0), 100, 100, new Vecteur(10, 10), new Vecteur(10, 10));
 		ContPrincipal.getInstance().ajouterCorps(v);
 		
 		ContPrincipal.getInstance().afficherVue(new VueJeu());
