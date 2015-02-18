@@ -3,7 +3,7 @@ package objets;
 import javafx.beans.property.SimpleDoubleProperty;
 import utils.Vecteur;
 
-public class Planete extends ObjetSpacial
+public class Planete extends ObjetSpatial
 {
 
 	public Planete(double pMasse, Vecteur pPosition)

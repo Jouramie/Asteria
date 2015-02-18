@@ -8,7 +8,7 @@ import utils.Vecteur;
 import vue.Dessinable;
 import modele.Corps;
 
-public abstract class ObjetSpacial implements Corps, Dessinable
+public abstract class ObjetSpatial implements Corps, Dessinable
 {
 
 	protected double masse;
