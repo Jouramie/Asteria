@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.concurrent.Task;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -14,6 +12,13 @@ import modele.Corps;
 import modele.MoteurPhysique;
 import vue.Vue;
 
+/**
+ * Contrôleur principal servant à charger les contrôleurs
+ * et les vues. Contient aussi le modèle.
+ * Implémentez comme un singleton.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class ContPrincipal
 {
 	private static final ContPrincipal instance = new ContPrincipal();
@@ -28,6 +33,10 @@ public class ContPrincipal
 	
 	private List<Corps> corps;
 	
+	/**
+	 * Constructeur de la classe.
+	 * Notez que cette méthode est privée pour éviter d'avoir plus d'une instance.
+	 */
 	private ContPrincipal()
 	{
 		root = null;
@@ -37,6 +46,11 @@ public class ContPrincipal
 		corps = new LinkedList<Corps>();
 	}
 	
+	/**
+	 * Initialise la vue avec le Stage de JavaFX.
+	 * Démarre l'horloge interne.
+	 * @param stage Stage JavaFX.
+	 */
 	public void initialiser(Stage stage)
 	{
 		this.stage = stage;
@@ -44,10 +58,14 @@ public class ContPrincipal
 		th = new Thread(clock);
         th.setDaemon(true);
         th.start();
-		selectionnerControlleur(new ContMenu());
+		selectionnerControleur(new ContMenu());
 	}
 	
-	public void selectionnerControlleur(Controleur c)
+	/**
+	 * Charge un contrôleur.
+	 * @param c Contrôleur à charger.
+	 */
+	public void selectionnerControleur(Controleur c)
 	{		
 		if(c != null)
 		{
@@ -56,6 +74,9 @@ public class ContPrincipal
 		}
 	}
 	
+	/**
+	 * Charge une vue FXML et affiche la fenêtre.
+	 */
 	public void afficherVue(Vue v)
 	{
 		if(v != null)
@@ -65,7 +86,7 @@ public class ContPrincipal
 				vue = v;
 				
 				root = (BorderPane)FXMLLoader.load(getClass().getResource(v.getFXML()));
-				Scene scene = new Scene(root, 600, 600);
+				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 				
 				if(v.getCSS() != null)
 				{
@@ -83,11 +104,19 @@ public class ContPrincipal
 		}
 	}
 	
+	/**
+	 * Méthode appelée à chaque frame par l'horloge interne.
+	 * @param time Temps écoulé depuis le dernier frame (secondes).
+	 */
 	public void update(double time)
 	{
 		
 	}
 	
+	/**
+	 * Ajoute un corps physique au modèle.
+	 * @param c Corps à ajouter.
+	 */
 	public void ajouterCorps(Corps c)
 	{
 		if(c != null)
@@ -96,21 +125,46 @@ public class ContPrincipal
 		}
 	}
 	
+	/**
+	 * Supprime un corps physique du modèle.
+	 * @param c Corps a supprimer.
+	 */
 	public void enleverCorps(Corps c)
 	{
 		corps.remove(c);
 	}
 	
+	/**
+	 * Supprime tous les corps du moteur physique.
+	 */
 	public void viderCorps()
 	{
 		corps.clear();
 	}
 	
+	/**
+	 * Retourne tous les corps du moteur physique.
+	 * @return Liste de corps gérés par le moteur physique.
+	 */
+	public List<Corps> getCorps()
+	{
+		return corps;
+	}
+	
+	/**
+	 * Méthode statique permettant d'accéder au contrôleur principal
+	 * depuis n'importe quelle classe.
+	 * @return Contrôleur principal.
+	 */
 	public static ContPrincipal getInstance()
 	{	
 		return instance;
 	}
 	
+	/**
+	 * Classe responsable de l'horloge interne.
+	 * @author Jonathan Samson
+	 */
 	private class Temps extends Task<Void>{
 		@Override protected Void call() throws Exception {
 			
