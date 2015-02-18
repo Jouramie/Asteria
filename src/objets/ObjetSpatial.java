@@ -11,7 +11,7 @@ import modele.Corps;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 
-	public final static double DENSITE = 1/2;
+	public final static double DENSITE = 1.0/2;
 	
 	protected double masse;
 	protected DoubleProperty positionX;
@@ -126,8 +126,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 
 	public Node getNoeud()
 	{
-		return new Circle(0, 0, Math.sqrt(masse
-				/ Math.PI / DENSITE));
+		return new Circle(0, 0, 100);
+		/*return new Circle(0, 0, Math.sqrt(masse
+				/ Math.PI / DENSITE));*/
 	}
 
 }

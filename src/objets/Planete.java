@@ -14,11 +14,4 @@ public class Planete extends ObjetSpatial
 	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 	}
-
-	public Vecteur getForceExt()
-	{
-		// TODO Story asteroïde
-		return null;
-	}
-
 }
