@@ -35,7 +35,6 @@ public class VueJeu implements Vue
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
-			System.out.println("Shit");
 			return;
 		}
 		

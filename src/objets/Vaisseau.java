@@ -175,7 +175,7 @@ public class Vaisseau implements Corps, Dessinable
 	public Vecteur getForceExt()
 	{
 		// TODO Story canon
-		return null;
+		return new Vecteur();
 	}
 
 	@Override
