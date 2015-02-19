@@ -90,12 +90,8 @@ public class ContPrincipal
 				
 				root = (BorderPane)FXMLLoader.load(getClass().getResource(v.getFXML()));
 				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
-				
-				if(v.getCSS() != null)
-				{
-					scene.getStylesheets().add(getClass().getResource(v.getCSS()).toExternalForm());
-				}
 				stage.setScene(scene);
+				stage.setResizable(false);
 				stage.show();
 				
 				Platform.runLater(()->
