@@ -1,4 +1,4 @@
-package objets;
+package tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,6 +7,9 @@ import java.awt.Color;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import objets.ObjetSpatial;
+import objets.Planete;
+import objets.Vaisseau;
 
 import org.junit.Before;
 import org.junit.Test;
