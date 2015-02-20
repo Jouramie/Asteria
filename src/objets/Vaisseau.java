@@ -18,6 +18,16 @@ public class Vaisseau extends ObjetSpatial
 	private double capaciteCarburant;
 	private DoubleProperty carburant;
 
+	/**
+	 * Constructeur de vaisseau, prend un vecteur pour la position
+	 * 
+	 * @param pPuissanceMax la puissance maximale du vaisseau
+	 * @param pDirection la direction du vaisseau
+	 * @param pMasse la masse du vaisseau
+	 * @param pCapaciteCarburant la capacité maximale de caburant du vaisseau
+	 * @param pPosition la position du vaisseau
+	 * @param pVitesse la vitesse du vaisseau
+	 */
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection,
 			double pMasse, double pCapaciteCarburant,
 			Vecteur pPosition, Vecteur pVitesse)
@@ -30,6 +40,17 @@ public class Vaisseau extends ObjetSpatial
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
 	}
 	
+	/**
+	 * Constructeur de vaisseau, prend des doubles pour la position
+	 * 
+	 * @param pPuissanceMax la puissance maximale du vaisseau
+	 * @param pDirection la direction du vaisseau
+	 * @param pMasse la masse du vaisseau
+	 * @param pCapaciteCarburant la capacité maximale de caburant du vaisseau
+	 * @param pPositionX la positionX de la planète
+	 * @param pPositionY la positionY de la planète 
+	 * @param pVitesse la vitesse du vaisseau
+	 */
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection,
 			double pMasse, double pCapaciteCarburant,
 			double pPositionX, double pPositionY, Vecteur pVitesse)
