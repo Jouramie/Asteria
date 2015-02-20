@@ -21,7 +21,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected Vecteur vitesse;
 	
 	/**
-	 * Constructeur d'objet spatial
+	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
 	 * @param pMasse
 	 *            la masse de l'objet (1 par défaut)
@@ -44,7 +44,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Constructeur d'objet spatial
+	 * Constructeur d'objet spatial, prend des doubles pour la position
 	 * 
 	 * @param pMasse
 	 *            la masse de l'objet (1 par défaut)
