@@ -11,8 +11,8 @@ import modele.Corps;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 	
-	public final static double DENSITE = 1.0 / 2;
-	public final static double MASSE_DEFAUT = 1;
+	public final static double DENSITE = 1.0 / 2.0;
+	public final static double MASSE_DEFAUT = 1.0;
 	
 	protected double masse;
 	protected DoubleProperty positionX;
@@ -73,7 +73,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Modifie la masse de l'objet, masse minimum : 1.
+	 * Modifie la masse de l'objet, masse minimum : 1.0 .
 	 */
 	public void setMasse(double pMasse)
 	{
@@ -182,6 +182,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public Node getNoeud()
 	{
+		// TODO trouver une meilleur formule
 		return new Circle(0, 0, 100);
 		//return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
 	}
