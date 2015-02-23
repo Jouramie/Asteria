@@ -39,8 +39,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		positionX = new SimpleDoubleProperty();
 		positionY = new SimpleDoubleProperty();
 		setPosition(pPosition);
-		statique = pStatique;
-		vitesse = pVitesse;
+		setStatique(pStatique);
+		setVitesse(pVitesse);
 	}
 	
 	/**
@@ -165,8 +165,10 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
-		if (vitesse == null)
-			vitesse = new Vecteur(0, 0);
+		if (pVitesse == null)
+		{
+			vitesse = new Vecteur();
+		}
 		else
 			vitesse = pVitesse;
 	}
@@ -178,13 +180,14 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Retourne un cercle ayant un air égal à la masse de l'objet divisé par la densité.
+	 * Retourne un cercle ayant un air égal à la masse de l'objet divisé par la
+	 * densité.
 	 */
 	public Node getNoeud()
 	{
 		// TODO trouver une meilleur formule
 		return new Circle(0, 0, 100);
-		//return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
+		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
 	}
 	
 }
