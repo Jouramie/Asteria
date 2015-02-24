@@ -7,9 +7,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import utils.Vecteur;
 
+/**
+ * Classe représentant un vaisseau spatial.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class Vaisseau extends ObjetSpatial
 {
-	
 	public final static double CONVERTION_CARBURANT = 1.0;
 	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
 	public final static double PUISSANCE_DEFAUT = 1.0;
@@ -141,7 +145,6 @@ public class Vaisseau extends ObjetSpatial
 //		return masse + CONVERTION_CARBURANT * carburant.get();
 //	}
 	
-	@Override
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
 	 */
@@ -150,7 +153,6 @@ public class Vaisseau extends ObjetSpatial
 		statique = pStatique;
 	}
 	
-	@Override
 	public Node getNoeud()
 	{
 		Polygon r = new Polygon(0, 0, 100, 0, 50, 150);

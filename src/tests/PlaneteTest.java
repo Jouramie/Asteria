@@ -2,12 +2,14 @@ package tests;
 
 import static org.junit.Assert.*;
 import objets.Planete;
-import objets.Vaisseau;
-
 import org.junit.Test;
-
 import utils.Vecteur;
 
+/**
+ * Classe de test pour Planete.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class PlaneteTest
 {
 	

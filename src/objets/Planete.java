@@ -2,6 +2,11 @@ package objets;
 
 import utils.Vecteur;
 
+/**
+ * Classe représentant une planète.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class Planete extends ObjetSpatial
 {
 

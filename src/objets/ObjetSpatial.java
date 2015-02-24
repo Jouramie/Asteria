@@ -8,10 +8,21 @@ import utils.Vecteur;
 import vue.Dessinable;
 import modele.Corps;
 
+/**
+ * Classe de base pour les objets spatiaux.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
-	
+	/**
+	 * Densité (en kg/m) des planètes.
+	 * TODO: Mofidier la valeur pour qu'elle soit cohérente.
+	 */
 	public final static double DENSITE = 1.0 / 2.0;
+	/**
+	 * Masse par défaut des corps.
+	 */
 	public final static double MASSE_DEFAUT = 1.0;
 	
 	protected double masse;

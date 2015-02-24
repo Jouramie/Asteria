@@ -7,39 +7,54 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class ContMenu implements Controleur, Initializable
+/**
+ * Contrôleur pour le menu principal
+ * @author EquBolduc
+ * @version 1.0
+ */
+public class ContMenu implements Controleur
 {
 	@FXML
 	private Button jouer;
 	@FXML
 	private Button quitter;
 	
+	/**
+	 * Constructeur du contrôleur.
+	 */
 	public ContMenu()
 	{
 		
 	}
 	
+	/**
+	 * Affiche la vue du menu.
+	 */
 	public void initialiser()
 	{
 		ContPrincipal.getInstance().afficherVue(new VueMenu());
 	}
 
+	/**
+	 * Inutile pour l'instant.
+	 */
 	public void update(double dt)
 	{
 		
 	}
 
-	public void initialize(URL arg0, ResourceBundle arg1)
-	{
-		
-	}
-
+	/**
+	 * Callback lorsque le joueur veut quitter.
+	 */
 	@FXML
 	public void quitter()
 	{
 		System.exit(0);
 	}
 	
+	/**
+	 * Callback lorsque le joueur veut jouer.
+	 */
 	@FXML
 	public void jouer()
 	{

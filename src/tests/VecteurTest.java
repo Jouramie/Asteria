@@ -1,8 +1,3 @@
-/**
- * Classe de tests pour Vecteur.
- * @author Équipe Bolduc
- */
-
 package tests;
 
 import static org.junit.Assert.*;
@@ -12,6 +7,10 @@ import org.junit.Test;
 
 import utils.Vecteur;
 
+/**
+ * Classe de tests pour Vecteur.
+ * @author EquBolduc
+ */
 public class VecteurTest
 {
 	Vecteur v1, v2;

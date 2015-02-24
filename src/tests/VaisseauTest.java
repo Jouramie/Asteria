@@ -1,17 +1,16 @@
 package tests;
 
 import static org.junit.Assert.*;
-import javafx.scene.shape.Circle;
-
-import javax.swing.plaf.PanelUI;
-
 import objets.Vaisseau;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import utils.Vecteur;
 
+/**
+ * Classe de test pour Vaisseau.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class VaisseauTest
 {
 	Vaisseau v1, v2, v3, v4, v5, v6;
