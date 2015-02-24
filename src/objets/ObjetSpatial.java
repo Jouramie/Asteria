@@ -8,11 +8,22 @@ import utils.Vecteur;
 import vue.Dessinable;
 import modele.Corps;
 
+/**
+ * Classe de base pour les objets spatiaux.
+ * @author EquBolduc
+ * @version 1.0
+ */
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
-	
-	public final static double DENSITE = 1.0 / 2;
-	public final static double MASSE_DEFAUT = 1;
+	/**
+	 * Densité (en kg/m) des planètes.
+	 * TODO: Mofidier la valeur pour qu'elle soit cohérente.
+	 */
+	public final static double DENSITE = 1.0 / 2.0;
+	/**
+	 * Masse par défaut des corps.
+	 */
+	public final static double MASSE_DEFAUT = 1.0;
 	
 	protected double masse;
 	protected DoubleProperty positionX;
@@ -21,7 +32,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected Vecteur vitesse;
 	
 	/**
-	 * Constructeur d'objet spatial
+	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
 	 * @param pMasse
 	 *            la masse de l'objet (1 par défaut)
@@ -39,12 +50,12 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		positionX = new SimpleDoubleProperty();
 		positionY = new SimpleDoubleProperty();
 		setPosition(pPosition);
-		statique = pStatique;
-		vitesse = pVitesse;
+		setStatique(pStatique);
+		setVitesse(pVitesse);
 	}
 	
 	/**
-	 * Constructeur d'objet spatial
+	 * Constructeur d'objet spatial, prend des doubles pour la position
 	 * 
 	 * @param pMasse
 	 *            la masse de l'objet (1 par défaut)
@@ -73,7 +84,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Modifie la masse de l'objet, masse minimum : 1.
+	 * Modifie la masse de l'objet, masse minimum : 1.0 .
 	 */
 	public void setMasse(double pMasse)
 	{
@@ -165,8 +176,10 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
-		if (vitesse == null)
-			vitesse = new Vecteur(0, 0);
+		if (pVitesse == null)
+		{
+			vitesse = new Vecteur();
+		}
 		else
 			vitesse = pVitesse;
 	}
@@ -178,12 +191,14 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Retourne un cercle ayant un air égal à la masse de l'objet divisé par la densité.
+	 * Retourne un cercle ayant un air égal à la masse de l'objet divisé par la
+	 * densité.
 	 */
 	public Node getNoeud()
 	{
+		// TODO trouver une meilleur formule
 		return new Circle(0, 0, 100);
-		//return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
+		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
 	}
 	
 }

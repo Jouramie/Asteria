@@ -2,8 +2,16 @@ import controleur.ContPrincipal;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Démarrage de l'application
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class Main extends Application
 {
+	/**
+	 * Démarre l'application.
+	 */
 	public void start(Stage primaryStage)
 	{
 		try
@@ -17,6 +25,9 @@ public class Main extends Application
 		}
 	}
 	
+	/** Méthode main
+	 * @param args Paramètres en ligne de commande.
+	 */
 	public static void main(String[] args)
 	{
 		launch(args);

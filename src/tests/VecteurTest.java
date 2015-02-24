@@ -7,7 +7,7 @@ import org.junit.Test;
 import utils.Vecteur;
 /**
  * Classe de tests pour Vecteur.
- * @author Équipe Bolduc
+ * @author EquBolduc
  */
 public class VecteurTest
 {
