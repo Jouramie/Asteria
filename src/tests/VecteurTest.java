@@ -1,12 +1,10 @@
 package tests;
-
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import utils.Vecteur;
-
 /**
  * Classe de tests pour Vecteur.
  * @author EquBolduc

@@ -21,7 +21,6 @@ public class Vaisseau extends ObjetSpatial
 	private double puissanceMax;
 	private double puissance;
 	private Vecteur direction;
-	private double masse;
 	private double capaciteCarburant;
 	private DoubleProperty carburant;
 	

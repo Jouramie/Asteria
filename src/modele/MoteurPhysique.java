@@ -1,6 +1,5 @@
 package modele;
 import java.util.List;
-
 import utils.Vecteur;
 /**
  * Classe servant à faire en sorte que les entités respectent les lois de la physique.
@@ -18,20 +17,14 @@ public class MoteurPhysique
 	 */
 	public void update(List<Corps> corps, double dt)
 	{
-		if(corps != null && corps.size() != 0 && dt > 0)
+		if(corps != null && dt > 0)
 		{
 			for(Corps c1 : corps)
 			{
 				if(c1 != null && !c1.isStatique())
 				{
 					c1.setPosition(c1.getPosition().additionner(c1.getVitesse().multiplication(dt)));
-				}
-			}
-			
-			for(Corps c1 : corps)
-			{
-				if(c1 != null && !c1.isStatique())
-				{
+					
 					Vecteur force = new Vecteur();
 					
 					for(Corps c2 : corps)
@@ -43,8 +36,8 @@ public class MoteurPhysique
 							force = force.additionner(direction.multiplication((GRAVITE * c1.getMasse() * c2.getMasse()) / Math.pow(distance, 2)));
 						}
 					}
-					force = force.additionner(c1.getForceExt());
 					
+					force = force.additionner(c1.getForceExt());
 					c1.setVitesse(c1.getVitesse().additionner(force.multiplication(1.0 / c1.getMasse()).multiplication(dt)));
 				}
 			}
