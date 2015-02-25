@@ -30,8 +30,9 @@ public class ContPrincipal
 	private Controleur cont;
 	private Vue vue;
 	private MoteurPhysique phys;
-	Thread th;
-	Temps clock;
+	private Thread th;
+	private Temps clock;
+	private static boolean onoff;
 	
 	private List<Corps> corps;
 	
@@ -50,7 +51,7 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Initialise la vue avec le Stage de JavaFX. Démarre l'horloge interne.
+	 * Initialise la vue avec le Stage de JavaFX.
 	 * 
 	 * @param stage
 	 *            Stage JavaFX.
@@ -59,14 +60,26 @@ public class ContPrincipal
 	{
 		this.stage = stage;
 		selectionnerControleur(new ContMenu());
+		onoff = true;
 	}
 	
+	/**
+	 * Démarre l'horloge interne.
+	 */
 	public void demarrerTemps()
 	{
+		onoff = true;
 		clock = new Temps();
 		th = new Thread(clock);
 		th.setDaemon(true);
 		th.start();
+	}
+	
+	/**
+	 * Arrête l'horloge interne.
+	 */
+	public void arreterTemps(){
+		onoff = false;
 	}
 	
 	/**
@@ -185,19 +198,19 @@ public class ContPrincipal
 	 * 
 	 * @author Jonathan Samson
 	 */
-	private class Temps extends Task<Void>
+	private class Temps extends Task<Object>
 	{
 		private long previousTime;
 		private long currentTime;
 		
 		@Override
-		protected Void call() throws Exception
+		protected Object call() throws Exception
 		{
 			
 			previousTime = 0;
 			currentTime = System.currentTimeMillis();
 			
-			while (true)
+			while (onoff)
 			{
 				previousTime = currentTime;
 				currentTime = System.currentTimeMillis();
@@ -206,6 +219,7 @@ public class ContPrincipal
 				});
 				Thread.sleep(5);
 			}
+			return new Object();
 		}
 		
 	}
