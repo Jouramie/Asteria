@@ -82,6 +82,10 @@ public class ContPrincipal
 		onoff = false;
 	}
 	
+	public boolean isOnOff(){
+		return onoff;
+	}
+	
 	public BorderPane getRoot(){
 		return root;
 	}
