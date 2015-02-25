@@ -86,9 +86,6 @@ public class ContPrincipal
 		return onoff;
 	}
 	
-	public BorderPane getRoot(){
-		return root;
-	}
 	
 	/**
 	 * Charge un contrôleur.
