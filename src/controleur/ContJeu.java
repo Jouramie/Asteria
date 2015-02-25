@@ -1,14 +1,12 @@
 package controleur;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import objets.Planete;
 import objets.Vaisseau;
 import utils.Vecteur;
 import vue.VueJeu;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 /**
  * Contrôleur utilisé lors d'une session de jeu.
@@ -18,11 +16,9 @@ import javafx.scene.input.KeyEvent;
  */
 public class ContJeu implements Controleur
 {
+
 	@FXML
-	private Button retour;
-	
-	@FXML
-	private Button pause;
+	private Pane menuPause;
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -66,16 +62,20 @@ public class ContJeu implements Controleur
 	
 	@FXML
 	public void pause(){
-		if(ContPrincipal.getInstance().isOnOff())
 		ContPrincipal.getInstance().arreterTemps();
-		else
-			ContPrincipal.getInstance().demarrerTemps();
+		menuPause.setVisible(true);
 	}
 	
 	@FXML
 	public void retour(){
 		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
+	}
+	
+	@FXML
+	public void retourjeu(){
+		ContPrincipal.getInstance().demarrerTemps();
+		menuPause.setVisible(false);
 	}
 	
 	/**
