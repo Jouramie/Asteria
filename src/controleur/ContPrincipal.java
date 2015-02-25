@@ -92,6 +92,7 @@ public class ContPrincipal
 				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 				stage.setScene(scene);
 				stage.setResizable(false);
+				stage.setTitle("Opération : Astéria");
 				stage.show();
 				
 				Platform.runLater(()->
