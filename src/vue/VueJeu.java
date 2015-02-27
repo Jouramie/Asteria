@@ -3,10 +3,14 @@ package vue;
 import java.util.LinkedList;
 import java.util.List;
 
+import utils.Vecteur;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import modele.Corps;
 import controleur.ContPrincipal;
 
@@ -19,7 +23,12 @@ public class VueJeu implements Vue
 {
 	@FXML
 	private Pane pane;
+	private Group noeud;
 	private List<Dessinable> liste;
+	private Camera camera;
+	private Scale scale;
+	private Translate trans;
+	private boolean vueChargee;
 	
 	/**
 	 * Constructeur de la vue du jeu.
@@ -27,6 +36,10 @@ public class VueJeu implements Vue
 	public VueJeu()
 	{
 		liste = new LinkedList<Dessinable>();
+		camera = new Camera();
+		vueChargee = false;
+		scale = new Scale(0, 0, 0, 0);
+		trans = new Translate(0, 0);
 	}
 	
 	/**
@@ -53,11 +66,15 @@ public class VueJeu implements Vue
 	 */
 	public void initialiser(BorderPane pane)
 	{
+		camera.setGrandeurs(pane.getWidth(), pane.getHeight());
+		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
 			return;
 		}
+		
+		noeud = new Group();
 		
 		for (Corps c : listTemp)
 		{
@@ -66,6 +83,7 @@ public class VueJeu implements Vue
 		    	liste.add((Dessinable) c);
 		    }
 		}
+		
 		for (Dessinable c : liste)
 		{
 			Node n = c.getNoeud();
@@ -75,16 +93,39 @@ public class VueJeu implements Vue
 				Corps corps = (Corps)c;
 				n.translateXProperty().bind(corps.getPositionXProperty());
 				n.translateYProperty().bind(corps.getPositionYProperty());
-			    pane.getChildren().add(n);
+			    noeud.getChildren().add(n);
 			}
 		}
+		
+		noeud.getTransforms().add(scale);
+		noeud.getTransforms().add(trans);
+		
+		pane.getChildren().add(noeud);
+		
+		vueChargee = true;
 	}
 
 	/**
-	 * Inutile pour l'instant.
+	 * Met à jour la caméra.
 	 */
 	public void dessiner(double dt)
 	{
-
+		if(vueChargee == true)
+		{
+			camera.update(dt);
+			
+			Vecteur translation = camera.getTranslation();
+			trans.setX(translation.getX());
+			trans.setY(translation.getY());
+			
+			double facteur = camera.getFacteur();
+			scale.setX(facteur);
+			scale.setY(facteur);
+		}
+	}
+	
+	public Camera getCamera()
+	{
+		return camera;
 	}
 }

@@ -83,7 +83,7 @@ public class ContPrincipal
 	public void afficherVue(Vue v)
 	{
 		if(v != null)
-		{
+		{		
 			try
 			{
 				vue = v;
@@ -114,6 +114,16 @@ public class ContPrincipal
 	public void update(double time)
 	{
 		phys.update(corps, time);
+		
+		if(cont != null)
+		{
+			cont.update(time);
+		}
+		
+		if(vue != null)
+		{
+			vue.dessiner(time);
+		}
 	}
 	
 	/**
