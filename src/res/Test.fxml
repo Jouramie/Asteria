@@ -38,6 +38,17 @@
                         <Image url="@Asteria.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="editor" layoutX="383.0" layoutY="194.0" mnemonicParsing="false" onAction="#niveau" prefHeight="9.0" prefWidth="104.0" text="Éditeur">
+                     <textFill>
+                        <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
+                           <stops>
+                              <Stop color="#24824e" />
+                              <Stop color="#ff9d5c" offset="0.4914089347079038" />
+                              <Stop color="#ddd15c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
                </children>
             </Pane>
          </children>

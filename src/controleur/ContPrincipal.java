@@ -15,9 +15,9 @@ import modele.MoteurPhysique;
 import vue.Vue;
 
 /**
- * Contrôleur principal servant à charger les contrôleurs
- * et les vues. Contient aussi le modèle.
- * Implémentez comme un singleton.
+ * Contrôleur principal servant à charger les contrôleurs et les vues. Contient
+ * aussi le modèle. Implémentez comme un singleton.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -30,14 +30,15 @@ public class ContPrincipal
 	private Controleur cont;
 	private Vue vue;
 	private MoteurPhysique phys;
-	Thread th;
-	Temps clock;
+	private Thread th;
+	private Temps clock;
+	private static boolean onoff;
 	
 	private List<Corps> corps;
 	
 	/**
-	 * Constructeur de la classe.
-	 * Notez que cette méthode est privée pour éviter d'avoir plus d'une instance.
+	 * Constructeur de la classe. Notez que cette méthode est privée pour éviter
+	 * d'avoir plus d'une instance.
 	 */
 	private ContPrincipal()
 	{
@@ -51,26 +52,50 @@ public class ContPrincipal
 	
 	/**
 	 * Initialise la vue avec le Stage de JavaFX.
-	 * Démarre l'horloge interne.
-	 * @param stage Stage JavaFX.
+	 * 
+	 * @param stage
+	 *            Stage JavaFX.
 	 */
 	public void initialiser(Stage stage)
 	{
 		this.stage = stage;
-		clock = new Temps();
-		th = new Thread(clock);
-        th.setDaemon(true);
-        th.start();
 		selectionnerControleur(new ContMenu());
+		onoff = true;
 	}
 	
 	/**
+	 * Démarre l'horloge interne.
+	 */
+	public void demarrerTemps()
+	{
+		onoff = true;
+		clock = new Temps();
+		th = new Thread(clock);
+		th.setDaemon(true);
+		th.start();
+	}
+	
+	/**
+	 * Arrête l'horloge interne.
+	 */
+	public void arreterTemps(){
+		onoff = false;
+	}
+	
+	public boolean isOnOff(){
+		return onoff;
+	}
+	
+	
+	/**
 	 * Charge un contrôleur.
-	 * @param c Contrôleur à charger.
+	 * 
+	 * @param c
+	 *            Contrôleur à charger.
 	 */
 	public void selectionnerControleur(Controleur c)
-	{		
-		if(c != null)
+	{
+		if (c != null)
 		{
 			cont = c;
 			cont.initialiser();
@@ -82,21 +107,22 @@ public class ContPrincipal
 	 */
 	public void afficherVue(Vue v)
 	{
-		if(v != null)
+		if (v != null)
 		{		
 			try
 			{
 				vue = v;
 				
-				root = (BorderPane)FXMLLoader.load(getClass().getResource(v.getFXML()));
-				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+				root = (BorderPane) FXMLLoader.load(getClass().getResource(
+						v.getFXML()));
+				Scene scene = new Scene(root, root.getPrefWidth(),
+						root.getPrefHeight());
 				stage.setScene(scene);
 				stage.setResizable(false);
 				stage.setTitle("Opération : Astéria");
 				stage.show();
 				
-				Platform.runLater(()->
-				{
+				Platform.runLater(() -> {
 					vue.initialiser(root);
 				});
 			}
@@ -109,7 +135,9 @@ public class ContPrincipal
 	
 	/**
 	 * Méthode appelée à chaque frame par l'horloge interne.
-	 * @param time Temps écoulé depuis le dernier frame (secondes).
+	 * 
+	 * @param time
+	 *            Temps écoulé depuis le dernier frame (secondes).
 	 */
 	public void update(double time)
 	{
@@ -128,11 +156,13 @@ public class ContPrincipal
 	
 	/**
 	 * Ajoute un corps physique au modèle.
-	 * @param c Corps à ajouter.
+	 * 
+	 * @param c
+	 *            Corps à ajouter.
 	 */
 	public void ajouterCorps(Corps c)
 	{
-		if(c != null)
+		if (c != null)
 		{
 			corps.add(c);
 		}
@@ -140,7 +170,9 @@ public class ContPrincipal
 	
 	/**
 	 * Supprime un corps physique du modèle.
-	 * @param c Corps a supprimer.
+	 * 
+	 * @param c
+	 *            Corps a supprimer.
 	 */
 	public void enleverCorps(Corps c)
 	{
@@ -157,6 +189,7 @@ public class ContPrincipal
 	
 	/**
 	 * Retourne tous les corps du moteur physique.
+	 * 
 	 * @return Liste de corps gérés par le moteur physique.
 	 */
 	public List<Corps> getCorps()
@@ -165,38 +198,44 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Méthode statique permettant d'accéder au contrôleur principal
-	 * depuis n'importe quelle classe.
+	 * Méthode statique permettant d'accéder au contrôleur principal depuis
+	 * n'importe quelle classe.
+	 * 
 	 * @return Contrôleur principal.
 	 */
 	public static ContPrincipal getInstance()
-	{	
+	{
 		return instance;
 	}
 	
 	/**
 	 * Classe responsable de l'horloge interne.
+	 * 
 	 * @author Jonathan Samson
 	 */
-	private class Temps extends Task<Void>{
+	private class Temps extends Task<Object>
+	{
 		private long previousTime;
 		private long currentTime;
 		
-		@Override protected Void call() throws Exception {
+		@Override
+		protected Object call() throws Exception
+		{
 			
 			previousTime = 0;
 			currentTime = System.currentTimeMillis();
 			
-			while(true)
+			while (onoff)
 			{
 				previousTime = currentTime;
 				currentTime = System.currentTimeMillis();
 				Platform.runLater(() -> {
-					update ((double)(currentTime - previousTime) / 1000);
+					update((double) (currentTime - previousTime) / 1000);
 				});
 				Thread.sleep(5);
 			}
+			return new Object();
 		}
-
+		
 	}
 }
