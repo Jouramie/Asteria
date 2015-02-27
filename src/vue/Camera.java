@@ -4,6 +4,8 @@ import utils.Vecteur;
 
 public class Camera
 {
+	public static final double VITESSE_ZOOM = 15.0;
+	
 	private double largeur;
 	private double hauteur;
 	private double x;
@@ -11,6 +13,7 @@ public class Camera
 	private double targetX;
 	private double targetY;
 	private double facteur;
+	private double targetFacteur;
 	
 	public Camera()
 	{
@@ -21,6 +24,7 @@ public class Camera
 		targetX = 0.0;
 		targetY = 0.0;
 		facteur = 1.0;
+		targetFacteur = 1.0;
 	}
 	
 	public Camera(double pLargeur, double pHauteur)
@@ -52,7 +56,7 @@ public class Camera
 	{
 		if(pFacteur > 0)
 		{
-			facteur = pFacteur;
+			targetFacteur = pFacteur;
 		}
 	}
 	
@@ -78,5 +82,25 @@ public class Camera
 	{
 		x = targetX;
 		y = targetY;
+		
+		facteur = bezier(dt, facteur, targetFacteur, VITESSE_ZOOM);
+	}
+	
+	private double bezier(double dt, double valeur, double cible, double vitesse)
+	{
+		double resultat = valeur;
+		
+		double diff = cible - valeur;
+		if(diff > 0)
+		{
+			resultat += Math.min(diff, vitesse * diff * dt);
+		}
+		
+		else if(diff < 0)
+		{
+			resultat -= Math.max(diff, vitesse * -diff * dt);
+		}
+		
+		return resultat;
 	}
 }

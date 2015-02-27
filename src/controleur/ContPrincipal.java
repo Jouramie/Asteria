@@ -113,10 +113,10 @@ public class ContPrincipal
 			{
 				vue = v;
 				
-				root = (BorderPane) FXMLLoader.load(getClass().getResource(
-						v.getFXML()));
-				Scene scene = new Scene(root, root.getPrefWidth(),
-						root.getPrefHeight());
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(v.getFXML()));
+				loader.setController(cont);
+				root = (BorderPane)loader.load();
+				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 				stage.setScene(scene);
 				stage.setResizable(false);
 				stage.setTitle("Opération : Astéria");

@@ -1,7 +1,7 @@
 package controleur;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import objets.Planete;
 import objets.Vaisseau;
@@ -17,6 +17,7 @@ import vue.VueJeu;
  */
 public class ContJeu implements Controleur
 {
+	public static final double VITESSE_ZOOM = 0.1;
 
 	@FXML
 	private Pane menuPause;
@@ -75,6 +76,22 @@ public class ContJeu implements Controleur
 	public void retourjeu(){
 		ContPrincipal.getInstance().demarrerTemps();
 		menuPause.setVisible(false);
+	}
+	
+	@FXML
+	public void zoom(ScrollEvent e)
+	{
+		Camera cam = vue.getCamera();
+		
+		if(e.getDeltaY() > 0)
+		{
+			cam.zoomer(cam.getFacteur() + VITESSE_ZOOM);
+		}
+		
+		else
+		{
+			cam.zoomer(cam.getFacteur() - VITESSE_ZOOM);
+		}
 	}
 	
 	/**

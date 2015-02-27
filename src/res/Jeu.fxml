@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-
-<BorderPane prefHeight="848.0" prefWidth="1284.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ContJeu">
-   <center>
-      <Pane prefHeight="108.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="848.0" prefWidth="1284.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d8ecff" height="848.0" stroke="BLACK" strokeType="INSIDE" width="1284.0" />
-                  <Button layoutX="1223.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
-               </children>
-            </Pane>
-            <Pane fx:id="menuPause" prefHeight="848.0" prefWidth="1284.0" visible="false">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000aa" height="848.0" stroke="BLACK" strokeType="INSIDE" width="1284.0" />
-                  <Button layoutX="558.0" layoutY="308.0" mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="169.0" text="Retour au jeu" />
-                  <Button layoutX="558.0" layoutY="424.0" mnemonicParsing="false" onAction="#retour" prefHeight="77.0" prefWidth="169.0" text="Menu" />
-               </children>
-            </Pane>
-         </children></Pane>
-   </center>
+<BorderPane prefHeight="848.0" prefWidth="1284.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <center>
+    <Pane prefHeight="108.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <children>
+        <Pane onScroll="#zoom" prefHeight="848.0" prefWidth="1284.0">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d8ecff" height="848.0" stroke="BLACK" strokeType="INSIDE" width="1284.0" />
+            <Button layoutX="1223.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
+          </children>
+        </Pane>
+        <Pane fx:id="menuPause" prefHeight="848.0" prefWidth="1284.0" visible="false">
+          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000aa" height="848.0" stroke="BLACK" strokeType="INSIDE" width="1284.0" />
+            <Button layoutX="558.0" layoutY="308.0" mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="169.0" text="Retour au jeu" />
+            <Button layoutX="558.0" layoutY="424.0" mnemonicParsing="false" onAction="#retour" prefHeight="77.0" prefWidth="169.0" text="Menu" />
+          </children>
+        </Pane>
+      </children>
+    </Pane>
+  </center>
 </BorderPane>
-
