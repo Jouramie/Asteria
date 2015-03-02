@@ -2,6 +2,7 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -154,8 +155,11 @@ public class Vaisseau extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
-		Polygon r = new Polygon(0, 0, 100, 0, 50, 150);
-		r.setFill(Color.ORANGE);
+		Group r = new Group();
+		
+		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2)));
+		fond.setFill(Color.ORANGE);
+		r.getChildren().addAll(fond);
 		return r;
 	}
 	
