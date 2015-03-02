@@ -122,6 +122,10 @@ public class VueJeu implements Vue
 			scale.setX(facteur);
 			scale.setY(facteur);
 		}
+		
+		for(Dessinable i : liste){
+			i.maj();
+		}
 	}
 	
 	public Camera getCamera()

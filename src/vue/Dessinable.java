@@ -14,4 +14,9 @@ public interface Dessinable
 	 * @return Noeud JavaFX représentant l'objet.
 	 */
 	Node getNoeud();
+	
+	/**
+	 * Met à jour le noeud représentant l'objet.
+	 */
+	void maj();
 }

@@ -2,14 +2,17 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.transform.Rotate;
 import utils.Vecteur;
 
 /**
  * Classe représentant un vaisseau spatial.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -118,32 +121,32 @@ public class Vaisseau extends ObjetSpatial
 			puissance = pPuissance;
 	}
 	
-//	public void setCarburantMax(double pCarburantMax)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void getCarburantMax(double pCarburantMax)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void setCarburant(double pCarburant)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void getCarburant(double pCarburant)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-// TODO story implementation du carburant
-//	@Override
-//	public double getMasse()
-//	{
-//		return masse + CONVERTION_CARBURANT * carburant.get();
-//	}
+	// public void setCarburantMax(double pCarburantMax)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void getCarburantMax(double pCarburantMax)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void setCarburant(double pCarburant)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void getCarburant(double pCarburant)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// TODO story implementation du carburant
+	// @Override
+	// public double getMasse()
+	// {
+	// return masse + CONVERTION_CARBURANT * carburant.get();
+	// }
 	
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
@@ -153,14 +156,43 @@ public class Vaisseau extends ObjetSpatial
 		statique = pStatique;
 	}
 	
+	/**
+	 * Si le vecteur est null, met la vitesse à 0.
+	 */
+	public void setVitesse(Vecteur pVitesse)
+	{
+		if (pVitesse == null)
+		{
+			vitesse = new Vecteur();
+		}
+		else
+		{
+			vitesse = pVitesse;
+			direction = vitesse.normaliser();
+		}
+	}
+	
 	public Node getNoeud()
 	{
-		Group r = new Group();
+		noeud = new Group();
 		
-		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2)));
+		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2)
+				- Math.pow(15, 2)));
 		fond.setFill(Color.ORANGE);
-		r.getChildren().addAll(fond);
-		return r;
+		Polygon vitre = new Polygon(3, Math.sqrt(3), 23, Math.sqrt(3), 13, Math.sqrt(Math.pow(20, 2)
+				- Math.pow(10, 2)));
+		vitre.setFill(Color.LIGHTBLUE);
+		((Group)noeud).getChildren().addAll(fond, vitre);
+		maj();
+		return noeud;
+	}
+	
+	/**
+	 * Met à jour le noeud représentant le vaisseau
+	 */
+	public void maj()
+	{
+		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 135);
 	}
 	
 }
