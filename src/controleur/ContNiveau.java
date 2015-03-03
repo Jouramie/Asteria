@@ -1,5 +1,6 @@
 package controleur;
 
+import vue.VueNiveau;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

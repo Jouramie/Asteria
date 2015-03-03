@@ -17,7 +17,7 @@ import vue.VueJeu;
  */
 public class ContJeu implements Controleur
 {
-	public static final double VITESSE_ZOOM = 0.1;
+	public static final double VITESSE_ZOOM = 0.005;
 
 	@FXML
 	private Pane menuPause;
@@ -39,7 +39,7 @@ public class ContJeu implements Controleur
 	 */
 	public void initialiser()
 	{
-		ContPrincipal.getInstance().demarrerTemps();
+		ContPrincipal.getInstance().demarrerHorloge();
 		
 		Planete p1 = new Planete(6e15, new Vecteur(400, 400));
 		ContPrincipal.getInstance().ajouterCorps(p1);
@@ -56,25 +56,29 @@ public class ContJeu implements Controleur
 		vaisseau = new Vaisseau(7e4, new Vecteur(0, 0), 100, 100, new Vecteur(10, 10), new Vecteur(10, 10));
 		ContPrincipal.getInstance().ajouterCorps(vaisseau);
 		
-		ContPrincipal.getInstance().afficherVue(vue);
+		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
 	
 	
 	@FXML
-	public void pause(){
-		ContPrincipal.getInstance().arreterTemps();
+	public void pause()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
 		menuPause.setVisible(true);
+		menuPause.toFront();
 	}
 	
 	@FXML
-	public void retour(){
+	public void retour()
+	{
 		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 	
 	@FXML
-	public void retourjeu(){
-		ContPrincipal.getInstance().demarrerTemps();
+	public void retourjeu()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
 		menuPause.setVisible(false);
 	}
 	
@@ -83,14 +87,16 @@ public class ContJeu implements Controleur
 	{
 		Camera cam = vue.getCamera();
 		
-		if(e.getDeltaY() > 0)
+		double delta = e.getDeltaY();
+		
+		if(delta > 0)
 		{
-			cam.zoomer(cam.getFacteur() + VITESSE_ZOOM);
+			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 		
 		else
 		{
-			cam.zoomer(cam.getFacteur() - VITESSE_ZOOM);
+			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 	}
 	
