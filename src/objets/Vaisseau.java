@@ -182,18 +182,6 @@ public class Vaisseau extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
-//		noeud = new Group();
-//		
-//		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2)
-//				- Math.pow(15, 2)));
-//		fond.setFill(Color.ORANGE);
-//		Polygon vitre = new Polygon(3, Math.sqrt(3), 23, Math.sqrt(3), 13, Math.sqrt(Math.pow(20, 2)
-//				- Math.pow(10, 2)));
-//		vitre.setFill(Color.LIGHTBLUE);
-//		((Group)noeud).getChildren().addAll(fond, vitre);
-//		maj();
-//		return noeud;
-		
 		noeud = new Group();
 		
 		Polygon fond = new Polygon(-15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 0, (Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2);
