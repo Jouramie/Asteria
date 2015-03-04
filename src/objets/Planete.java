@@ -2,6 +2,13 @@ package objets;
 
 import javafx.scene.Node;
 import javafx.scene.shape.Circle;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import utils.Vecteur;
 
 /**
@@ -11,6 +18,7 @@ import utils.Vecteur;
  */
 public class Planete extends ObjetSpatial
 {
+	private Image texture;
 
 	/**
 	 * Constructeur de planète, prend un vecteur pour la position
@@ -18,9 +26,10 @@ public class Planete extends ObjetSpatial
 	 * @param pMasse la masse de la planète
 	 * @param pPosition la position de la planète
 	 */
-	public Planete(double pMasse, Vecteur pPosition)
+	public Planete(double pMasse, Vecteur pPosition, String tex)
 	{
 		super(pMasse, pPosition, true, new Vecteur());
+		texture = new Image(tex);
 	}
 
 	/**
@@ -30,9 +39,10 @@ public class Planete extends ObjetSpatial
 	 * @param pPositionX la positionX de la planète
 	 * @param pPositionY la positionY de la planète
 	 */
-	public Planete(double pMasse, double pPositionX, double pPositionY)
+	public Planete(double pMasse, double pPositionX, double pPositionY, String tex)
 	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
+		texture = new Image(tex);
 	}
 
 	public int getRayonCollision()
@@ -42,9 +52,22 @@ public class Planete extends ObjetSpatial
 
 	public Node getNoeud()
 	{
-		// TODO trouver une meilleur formule
-		noeud = new Circle(0, 0, 100);
-		return noeud;
-		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
+		double rayon = getRayonCollision();
+		
+		Circle cercle = new Circle(rayon + 30);
+		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon + 32, false, CycleMethod.REPEAT, new Stop(0.7, Color.ORANGE), new Stop(1, Color.TRANSPARENT));
+		cercle.setFill(grad);
+		
+		ImageView image = new ImageView(texture);
+		image.setFitWidth(rayon * 2);
+		image.setFitHeight(rayon * 2);
+		image.setTranslateX(-rayon);
+		image.setTranslateY(-rayon);
+		
+		Group group = new Group();
+		group.getChildren().add(cercle);
+		group.getChildren().add(image);
+		
+		return group;
 	}
 }

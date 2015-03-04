@@ -1,9 +1,25 @@
 #pane
 {
-	-fx-background-color: #d8ecff;
+	-fx-background-image: url("space.png");
 }
 
 #menuPause
 {
-	-fx-background-color: #000000aa;	
+	-fx-background-color: #000000aa;
+}
+
+.button
+{
+	-fx-background-color: transparent;
+	-fx-background-radius: 1px;
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+	
+	-fx-border-color: white;
+}
+
+.button:hover
+{
+	-fx-background-color: gray;
 }

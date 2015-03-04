@@ -109,7 +109,7 @@ public class Vecteur
 		{
 			resultat += Math.PI;
 		}
-		else if (y < 0.0)
+		else if (y < 0.0 && x > 0.0)
 		{
 			resultat += Math.PI * 2;
 		}
@@ -117,7 +117,22 @@ public class Vecteur
 		{
 			resultat += Math.PI;
 		}
+		while (resultat > 2 * Math.PI)
+		{
+			resultat -= Math.PI;
+		}
+		
 		return resultat;
+	}
+	
+	/**
+	 * Change l'angle du vecteur
+	 */
+	public void setAngle(double a)
+	{
+		double norme = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		x = Math.cos(a) * norme;
+		y = Math.sin(a) * norme;
 	}
 	
 	/**

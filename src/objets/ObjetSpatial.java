@@ -33,7 +33,6 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected Vecteur vitesse;
 	protected Color couleur;
 	
-	
 	protected Node noeud;
 	
 	/**
@@ -57,6 +56,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPosition(pPosition);
 		setStatique(pStatique);
 		setVitesse(pVitesse);
+		getNoeud();
 	}
 	
 	/**
@@ -81,6 +81,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		positionY = new SimpleDoubleProperty(pPositionY);
 		setStatique(pStatique);
 		setVitesse(pVitesse);
+		getNoeud();
 	}
 	
 	public double getMasse()
