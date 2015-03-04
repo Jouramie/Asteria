@@ -54,6 +54,23 @@ public class VaisseauJoueur extends Vaisseau
 		moteur = !moteur;
 	}
 	
+	
+	/**
+	 * Si le vecteur est null, met la vitesse à 0.
+	 */
+	public void setVitesse(Vecteur pVitesse)
+	{
+		if (pVitesse == null)
+		{
+			vitesse = new Vecteur();
+		}
+		else
+		{
+			vitesse = pVitesse;
+		}
+	}
+	
+	
 	public Vecteur getForceExt()
 	{
 		Vecteur r = new Vecteur();
@@ -83,7 +100,7 @@ public class VaisseauJoueur extends Vaisseau
 						/ 360 * 2 * Math.PI);
 			}
 		}
-		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 135);
+		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
 	
 }

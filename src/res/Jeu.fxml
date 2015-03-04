@@ -9,7 +9,7 @@
 
 <BorderPane focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
-    <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0">
+    <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0">
       <children>
         <VBox fx:id="menuPause" alignment="CENTER" fillWidth="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
