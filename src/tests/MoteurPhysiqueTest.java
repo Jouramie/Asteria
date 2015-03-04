@@ -15,31 +15,54 @@ import utils.Vecteur;
  */
 public class MoteurPhysiqueTest
 {
-	private List<Corps> corps;
+	private List<Corps> corps1, corps2, corps3;
 	private MoteurPhysique moteur;
-	private Vaisseau vaisseau;
+	private Vaisseau vaisseau1, vaisseau2, vaisseau3;
 	
 	@Before
 	public void creerCorps()
 	{
 		moteur = new MoteurPhysique();
-		corps = new ArrayList<>();
-		vaisseau = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(0, 120), new Vecteur(10, 0));
-		corps.add(vaisseau);
-		corps.add(new Planete(15707.96327, new Vecteur()));
-		corps.add(null);
+		
+		corps1 = new ArrayList<>();
+		vaisseau1 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(0, 120), new Vecteur(10, 0));
+		corps1.add(vaisseau1);
+		corps1.add(new Planete(15707.96327, new Vecteur()));
+		corps1.add(null);
+		
+		corps2 = new ArrayList<>();
+		vaisseau2 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(10, 10), new Vecteur(10, 0));
+		corps2.add(vaisseau2);
+		corps2.add(new Planete(100, new Vecteur(210, 10)));
+		
+		corps3 = new ArrayList<>();
+		vaisseau3 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(10, 10), new Vecteur(10, 0));
+		corps3.add(new Planete(100, new Vecteur(210, 10)));
+		corps3.add(vaisseau3);
 	}
 	
 	@Test
 	public void testUpdate()
 	{
-		moteur.update(corps, 1);
-		assertEquals(vaisseau.getPositionX(), 10, 0.0001);
-		moteur.update(corps, 0);
-		assertEquals(vaisseau.getPositionX(), 10, 0.0001);
+		moteur.update(corps1, 1);
+		assertEquals(vaisseau1.getPositionX(), 14.504, 0.001);
+		moteur.update(corps1, 0);
+		assertEquals(vaisseau1.getPositionX(), 14.504, 0.001);
 		moteur.update(null, 1);
-		assertEquals(vaisseau.getPositionX(), 10, 0.0001);
+		assertEquals(vaisseau1.getPositionX(), 14.504, 0.001);
 		moteur.update(null, 0);
-		assertEquals(vaisseau.getPositionX(), 10, 0.0001);
+		assertEquals(vaisseau1.getPositionX(), 14.504, 0.001);
+		
+		assertEquals(vaisseau2.getVitesse().getX(), 10, 0.001);
+		moteur.update(corps2, 2);
+		assertEquals(vaisseau2.getVitesse().getX(), 10, 0.001);
+		moteur.update(corps2, 0.5);
+		assertEquals(vaisseau2.getVitesse().getX(), 0, 0.001);
+		
+		assertEquals(vaisseau3.getVitesse().getX(), 10, 0.001);
+		moteur.update(corps3, 2);
+		assertEquals(vaisseau3.getVitesse().getX(), 10, 0.001);
+		moteur.update(corps3, 0.5);
+		assertEquals(vaisseau3.getVitesse().getX(), 0, 0.001);
 	}
 }

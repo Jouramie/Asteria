@@ -154,9 +154,13 @@ public class Vaisseau extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
-		Polygon r = new Polygon(0, 0, 100, 0, 50, 150);
+		Polygon r = new Polygon(-50, -75, 50, -75, 0, 75);
 		r.setFill(Color.ORANGE);
 		return r;
 	}
 	
+	public int getRayonCollision()
+	{
+		return 75;
+	}
 }

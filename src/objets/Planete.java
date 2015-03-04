@@ -32,4 +32,9 @@ public class Planete extends ObjetSpatial
 	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 	}
+	
+	public int getRayonCollision()
+	{
+		return 100;
+	}
 }
