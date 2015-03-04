@@ -43,16 +43,16 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().demarrerHorloge();
 		
-		Planete p1 = new Planete(6e15, new Vecteur(400, 400));
+		Planete p1 = new Planete(6e15, new Vecteur(400, 400), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p1);
 		
-		Planete p2 = new Planete(6e15, new Vecteur(600, 0));
+		Planete p2 = new Planete(6e15, new Vecteur(600, 0), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p2);
 		
-		Planete p3 = new Planete(3e15, new Vecteur(600, 600));
+		Planete p3 = new Planete(3e15, new Vecteur(600, 600), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p3);
 		
-		Planete p4 = new Planete(3e15, new Vecteur(0, 600));
+		Planete p4 = new Planete(3e15, new Vecteur(0, 600), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p4);
 		
 		vaisseauJoueur = new VaisseauJoueur(7e4, new Vecteur(0, 0), 100, 100, new Vecteur(

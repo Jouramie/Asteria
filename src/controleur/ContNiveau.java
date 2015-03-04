@@ -116,7 +116,7 @@ public class ContNiveau implements Controleur
 		}
 		else if (choice.getValue() == "Planète")
 		{
-			u = new Planete(6e15, pos.getX(), pos.getY());
+			u = new Planete(6e15, pos.getX(), pos.getY(), "/res/planete1.png");
 			vue.initialiserCorps();
 		}
 		
