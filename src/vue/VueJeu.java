@@ -60,6 +60,9 @@ public class VueJeu implements Vue
 	
 	public void initialiserCorps()
 	{
+		Pane p = (Pane)borderPane.lookup("#pane");
+		p.getChildren().remove(noeud);
+		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
@@ -92,8 +95,6 @@ public class VueJeu implements Vue
 		
 		noeud.getTransforms().add(scale);
 		noeud.getTransforms().add(trans);
-		Pane p = (Pane)borderPane.lookup("#pane");
-		p.getChildren().clear();
 		p.getChildren().add(noeud);
 	}
 
