@@ -38,7 +38,7 @@ public class ContPrincipal
 	private boolean horlogeDemarree;
 	private Horloge horloge;
 	
-	private List<Corps> corps;
+	private static List<Corps> corps;
 	
 	/**
 	 * Constructeur de la classe. Notez que cette méthode est privée pour éviter
@@ -244,6 +244,7 @@ public class ContPrincipal
 	 */
 	public static ContPrincipal getInstance()
 	{
+		System.out.println("nb de corps +" + corps.size());
 		return instance;
 	}
 	
