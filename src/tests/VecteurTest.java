@@ -64,7 +64,7 @@ public class VecteurTest
 		assertEquals(Math.PI/2, haut.getAngle(), 0.0001);
 		
 		Vecteur bas = new Vecteur(0, -5);
-		assertEquals(3 * Math.PI/2, bas.getAngle(), 0.0001);
+		assertEquals(7 * Math.PI/2, bas.getAngle(), 0.0001);
 	}
 
 	@Test
@@ -118,5 +118,17 @@ public class VecteurTest
 		resultat = v2.normaliser();
 		assertEquals(0.70711, resultat.getX(), 0.0001);
 		assertEquals(0.70711, resultat.getY(), 0.0001);
+	}
+	
+	@Test
+	public void testsetAngle()
+	{
+		v1.setAngle(Math.PI/2);
+		assertEquals(0, v1.getX(), 0.0001);
+		assertEquals(0, v1.getY(), 0.0001);
+		
+		v2.setAngle(3 * Math.PI/4);
+		assertEquals(-5, v2.getX(), 0.0001);
+		assertEquals(5, v2.getY(), 0.0001);
 	}
 }

@@ -121,6 +121,16 @@ public class Vecteur
 	}
 	
 	/**
+	 * Change l'angle du vecteur
+	 */
+	public void setAngle(double a)
+	{
+		double norme = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		x = Math.cos(a) * norme;
+		y = Math.sin(a) * norme;
+	}
+	
+	/**
 	 * Retourne la norme (la grandeur) du vecteur.
 	 * 
 	 * @return Norme du vecteur.
