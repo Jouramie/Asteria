@@ -109,7 +109,7 @@ public class Vecteur
 		{
 			resultat += Math.PI;
 		}
-		else if (y < 0.0)
+		else if (y < 0.0 && x > 0.0)
 		{
 			resultat += Math.PI * 2;
 		}

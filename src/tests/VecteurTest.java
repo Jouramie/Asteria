@@ -60,11 +60,23 @@ public class VecteurTest
 		assertEquals(0, v1.getAngle(), 0.0001);
 		assertEquals(Math.PI/4, v2.getAngle(), 0.0001);
 		
-		Vecteur haut = new Vecteur(0, 5);
-		assertEquals(Math.PI/2, haut.getAngle(), 0.0001);
+		Vecteur aPI2 = new Vecteur(0, 1);
+		assertEquals(Math.PI/2, aPI2.getAngle(), 0.0001);
 		
-		Vecteur bas = new Vecteur(0, -5);
-		assertEquals(7 * Math.PI/2, bas.getAngle(), 0.0001);
+		Vecteur a3PI2 = new Vecteur(0, -1);
+		assertEquals(3 * Math.PI/2, a3PI2.getAngle(), 0.0001);
+		
+		Vecteur aPI4 = new Vecteur(1, 1);
+		assertEquals(Math.PI/4, aPI4.getAngle(), 0.0001);
+		
+		Vecteur a3PI4 = new Vecteur(-1, 1);
+		assertEquals(3 * Math.PI/4, a3PI4.getAngle(), 0.0001);
+		
+		Vecteur a5PI4 = new Vecteur(-1, -1);
+		assertEquals(5 * Math.PI/4, a5PI4.getAngle(), 0.0001);
+		
+		Vecteur a7PI4 = new Vecteur(1, -1);
+		assertEquals(7 * Math.PI/4, a7PI4.getAngle(), 0.0001);
 	}
 
 	@Test
