@@ -62,9 +62,6 @@ public class VecteurTest
 		
 		Vecteur haut = new Vecteur(0, 5);
 		assertEquals(Math.PI/2, haut.getAngle(), 0.0001);
-		
-		Vecteur bas = new Vecteur(0, -5);
-		assertEquals(3 * Math.PI/2, bas.getAngle(), 0.0001);
 	}
 
 	@Test

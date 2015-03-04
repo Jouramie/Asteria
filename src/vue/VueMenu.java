@@ -19,11 +19,6 @@ public class VueMenu implements Vue
 		return "/res/Test.fxml";
 	}
 
-	public String getCSS()
-	{
-		return "/res/test.css";
-	}
-
 	public void initialiser(BorderPane pane)
 	{
 

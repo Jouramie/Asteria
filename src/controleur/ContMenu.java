@@ -60,4 +60,10 @@ public class ContMenu implements Controleur
 	{
 		ContPrincipal.getInstance().selectionnerControleur(new ContJeu());
 	}
+	
+	@FXML
+	public void niveau()
+	{
+		ContPrincipal.getInstance().selectionnerControleur(new ContNiveau());
+	}
 }

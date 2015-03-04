@@ -2,6 +2,7 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -9,6 +10,7 @@ import utils.Vecteur;
 
 /**
  * Classe représentant un vaisseau spatial.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -49,6 +51,11 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		
+		if(direction == null)
+		{
+			direction = new Vecteur();
+		}
 	}
 	
 	/**
@@ -79,6 +86,11 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		
+		if(direction == null)
+		{
+			direction = new Vecteur();
+		}
 	}
 	
 	public void tournerGauche()
@@ -117,32 +129,32 @@ public class Vaisseau extends ObjetSpatial
 			puissance = pPuissance;
 	}
 	
-//	public void setCarburantMax(double pCarburantMax)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void getCarburantMax(double pCarburantMax)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void setCarburant(double pCarburant)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-//	public void getCarburant(double pCarburant)
-//	{
-//		// TODO story implementation du carburant
-//	}
-//	
-// TODO story implementation du carburant
-//	@Override
-//	public double getMasse()
-//	{
-//		return masse + CONVERTION_CARBURANT * carburant.get();
-//	}
+	// public void setCarburantMax(double pCarburantMax)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void getCarburantMax(double pCarburantMax)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void setCarburant(double pCarburant)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// public void getCarburant(double pCarburant)
+	// {
+	// // TODO story implementation du carburant
+	// }
+	//
+	// TODO story implementation du carburant
+	// @Override
+	// public double getMasse()
+	// {
+	// return masse + CONVERTION_CARBURANT * carburant.get();
+	// }
 	
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
@@ -152,15 +164,57 @@ public class Vaisseau extends ObjetSpatial
 		statique = pStatique;
 	}
 	
+	/**
+	 * Si le vecteur est null, met la vitesse à 0.
+	 */
+	public void setVitesse(Vecteur pVitesse)
+	{
+		if (pVitesse == null)
+		{
+			vitesse = new Vecteur();
+		}
+		else
+		{
+			vitesse = pVitesse;
+			direction = vitesse.normaliser();
+		}
+	}
+	
 	public Node getNoeud()
 	{
-		Polygon r = new Polygon(-50, -75, 50, -75, 0, 75);
-		r.setFill(Color.ORANGE);
-		return r;
+//		noeud = new Group();
+//		
+//		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2)
+//				- Math.pow(15, 2)));
+//		fond.setFill(Color.ORANGE);
+//		Polygon vitre = new Polygon(3, Math.sqrt(3), 23, Math.sqrt(3), 13, Math.sqrt(Math.pow(20, 2)
+//				- Math.pow(10, 2)));
+//		vitre.setFill(Color.LIGHTBLUE);
+//		((Group)noeud).getChildren().addAll(fond, vitre);
+//		maj();
+//		return noeud;
+		
+		noeud = new Group();
+		
+		Polygon fond = new Polygon(-15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 0, (Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2);
+		fond.setFill(Color.ORANGE);
+		Polygon vitre = new Polygon(-12, (-(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2) + Math.sqrt(3), 8, (-(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2) + Math.sqrt(3), -2, (Math.sqrt(Math.pow(20, 2)) / 2) - Math.sqrt(3) );
+		vitre.setFill(Color.LIGHTBLUE);
+		((Group)noeud).getChildren().addAll(fond, vitre);
+		maj();
+		return noeud;
+	}
+	
+	/**
+	 * Met à jour le noeud représentant le vaisseau
+	 */
+	public void maj()
+	{
+		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 135);
 	}
 	
 	public int getRayonCollision()
 	{
-		return 75;
+		return 20;
 	}
 }

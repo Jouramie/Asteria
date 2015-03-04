@@ -2,11 +2,13 @@ package vue;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import javafx.fxml.FXML;
+import utils.Vecteur;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import modele.Corps;
 import controleur.ContPrincipal;
 
@@ -17,9 +19,12 @@ import controleur.ContPrincipal;
  */
 public class VueJeu implements Vue
 {
-	@FXML
-	private Pane pane;
+	private BorderPane borderPane;
+	private Group noeud;
 	private List<Dessinable> liste;
+	private Camera camera;
+	private Scale scale;
+	private Translate trans;
 	
 	/**
 	 * Constructeur de la vue du jeu.
@@ -27,6 +32,9 @@ public class VueJeu implements Vue
 	public VueJeu()
 	{
 		liste = new LinkedList<Dessinable>();
+		camera = new Camera();
+		scale = new Scale(0, 0, 0, 0);
+		trans = new Translate(0, 0);
 	}
 	
 	/**
@@ -39,25 +47,26 @@ public class VueJeu implements Vue
 	}
 
 	/**
-	 * Retourne le chemin vers le fichier CSS de la vue.
-	 * Null pour l'instant.
-	 * @return Chemin vers CSS.
-	 */
-	public String getCSS()
-	{
-		return null;
-	}
-
-	/**
 	 * Ajoute tous les corps dessinables dans la vue.
 	 */
 	public void initialiser(BorderPane pane)
+	{
+		borderPane = pane;
+		
+		camera.setGrandeurs(pane.getWidth(), pane.getHeight());
+		
+		initialiserCorps();
+	}
+	
+	public void initialiserCorps()
 	{
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
 			return;
 		}
+		
+		noeud = new Group();
 		
 		for (Corps c : listTemp)
 		{
@@ -66,6 +75,7 @@ public class VueJeu implements Vue
 		    	liste.add((Dessinable) c);
 		    }
 		}
+		
 		for (Dessinable c : liste)
 		{
 			Node n = c.getNoeud();
@@ -75,16 +85,39 @@ public class VueJeu implements Vue
 				Corps corps = (Corps)c;
 				n.translateXProperty().bind(corps.getPositionXProperty());
 				n.translateYProperty().bind(corps.getPositionYProperty());
-			    pane.getChildren().add(n);
+			    noeud.getChildren().add(n);
 			}
 		}
+		
+		noeud.getTransforms().add(scale);
+		noeud.getTransforms().add(trans);
+		
+		((Pane)borderPane.lookup("#pane")).getChildren().add(noeud);
 	}
 
 	/**
-	 * Inutile pour l'instant.
+	 * Met à jour la caméra.
 	 */
 	public void dessiner(double dt)
 	{
-
+		camera.update(dt);
+		
+		Vecteur translation = camera.getTranslation();
+		trans.setX(translation.getX());
+		trans.setY(translation.getY());
+		
+		double facteur = camera.getFacteur();
+		scale.setX(facteur);
+		scale.setY(facteur);
+		
+		for(Dessinable d : liste){
+			d.maj();
+		}
+		
+	}
+	
+	public Camera getCamera()
+	{
+		return camera;
 	}
 }

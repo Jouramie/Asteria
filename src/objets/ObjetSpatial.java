@@ -31,6 +31,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected boolean statique;
 	protected Vecteur vitesse;
 	
+	protected Node noeud;
+	
 	/**
 	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
@@ -197,8 +199,16 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public Node getNoeud()
 	{
 		// TODO trouver une meilleur formule
-		return new Circle(0, 0, 100);
+		noeud = new Circle(0, 0, 100);
+		return noeud;
 		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
+	}
+	
+	/**
+	 * Met à jour le noeud
+	 */
+	public void maj(){
+		
 	}
 	
 }
