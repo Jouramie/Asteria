@@ -29,6 +29,7 @@ public class ContJeu implements Controleur
 	private VaisseauJoueur vaisseauJoueur;
 	private boolean aPressed;
 	private boolean dPressed;
+	private boolean wPressed;
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -46,22 +47,22 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().demarrerHorloge();
 		
-		Planete p1 = new Planete(6e15, new Vecteur(400, 400),
+		Planete p1 = new Planete(5e15, new Vecteur(400, 400),
 				"/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p1);
 		
-		Planete p2 = new Planete(6e15, new Vecteur(600, 0), "/res/planete1.png");
+		Planete p2 = new Planete(5e15, new Vecteur(600, 0), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p2);
 		
-		Planete p3 = new Planete(3e15, new Vecteur(600, 600),
+		Planete p3 = new Planete(1e15, new Vecteur(600, 600),
 				"/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p3);
 		
-		Planete p4 = new Planete(3e15, new Vecteur(0, 600), "/res/planete1.png");
+		Planete p4 = new Planete(1e15, new Vecteur(0, 600), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p4);
 		
-		vaisseauJoueur = new VaisseauJoueur(7e4, new Vecteur(0, 0), 100, 100,
-				new Vecteur(10, 10), new Vecteur(10, 10));
+		vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3,
+				100, new Vecteur(10, 10), new Vecteur(10, 10));
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
@@ -144,6 +145,14 @@ public class ContJeu implements Controleur
 				dPressed = true;
 			}
 			break;
+		case UP:
+		case W:
+			if (!wPressed)
+			{
+				vaisseauJoueur.avancer();
+				wPressed = true;
+			}
+			break;
 		default:
 			break;
 		}
@@ -156,13 +165,27 @@ public class ContJeu implements Controleur
 		{
 		case LEFT:
 		case A:
-			vaisseauJoueur.tournerGauche();
-			aPressed = false;
+			if (aPressed)
+			{
+				vaisseauJoueur.tournerGauche();
+				aPressed = false;
+			}
 			break;
 		case RIGHT:
 		case D:
-			vaisseauJoueur.tournerDroite();
-			dPressed = false;
+			if (dPressed)
+			{
+				vaisseauJoueur.tournerDroite();
+				dPressed = false;
+			}
+			break;
+		case UP:
+		case W:
+			if (wPressed)
+			{
+				vaisseauJoueur.avancer();
+				wPressed = false;
+			}
 			break;
 		default:
 			break;

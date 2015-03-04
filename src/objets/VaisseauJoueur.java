@@ -54,7 +54,6 @@ public class VaisseauJoueur extends Vaisseau
 		moteur = !moteur;
 	}
 	
-	
 	/**
 	 * Si le vecteur est null, met la vitesse à 0.
 	 */
@@ -70,14 +69,14 @@ public class VaisseauJoueur extends Vaisseau
 		}
 	}
 	
-	
 	public Vecteur getForceExt()
 	{
 		Vecteur r = new Vecteur();
 		if (moteur)
 		{
-			r = r.additionner(direction).multiplication(puissance);
+			r = direction.multiplication(puissance);
 		}
+		System.out.println(r.getNorme());
 		return r;
 	}
 	
