@@ -17,13 +17,6 @@ public interface Vue
 	public String getFXML();
 	
 	/**
-	 * Retourne le chemin vers le fichier CSS de la vue.
-	 * Optionnel. 
-	 * @return Chemin vers CSS.
-	 */
-	public String getCSS();
-	
-	/**
 	 * Initialise la vue.
 	 * Cette méthode est appelée une seule fois.
 	 * @param pane BorderPane de la vue.

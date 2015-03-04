@@ -7,8 +7,11 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modele.Corps;
 import modele.MoteurPhysique;
@@ -28,11 +31,12 @@ public class ContPrincipal
 	private Stage stage;
 	private BorderPane root;
 	private Controleur cont;
+	private boolean contCharge;
 	private Vue vue;
+	private boolean vueChargee;
 	private MoteurPhysique phys;
-	private Thread th;
-	private Temps clock;
-	private static boolean onoff;
+	private boolean horlogeDemarree;
+	private Horloge horloge;
 	
 	private List<Corps> corps;
 	
@@ -44,7 +48,9 @@ public class ContPrincipal
 	{
 		root = null;
 		cont = null;
+		contCharge = false;
 		vue = null;
+		vueChargee = false;
 		
 		corps = new LinkedList<Corps>();
 		phys = new MoteurPhysique();
@@ -60,32 +66,34 @@ public class ContPrincipal
 	{
 		this.stage = stage;
 		selectionnerControleur(new ContMenu());
-		onoff = true;
-	}
-	
-	/**
-	 * Démarre l'horloge interne.
-	 */
-	public void demarrerTemps()
-	{
-		onoff = true;
-		clock = new Temps();
-		th = new Thread(clock);
+		
+		horlogeDemarree = true;
+		horloge = new Horloge();
+		Thread th = new Thread(horloge);
 		th.setDaemon(true);
 		th.start();
 	}
 	
 	/**
+	 * Démarre l'horloge interne.
+	 */
+	public void demarrerHorloge()
+	{
+		horlogeDemarree = true;
+	}
+	
+	/**
 	 * Arrête l'horloge interne.
 	 */
-	public void arreterTemps(){
-		onoff = false;
+	public void arreterHorloge()
+	{
+		horlogeDemarree = false;
 	}
 	
-	public boolean isOnOff(){
-		return onoff;
+	public boolean isHorlogeDemarree()
+	{
+		return horlogeDemarree;
 	}
-	
 	
 	/**
 	 * Charge un contrôleur.
@@ -99,31 +107,59 @@ public class ContPrincipal
 		{
 			cont = c;
 			cont.initialiser();
+			contCharge = true;
 		}
 	}
 	
 	/**
-	 * Charge une vue FXML et affiche la fenêtre.
+	 * Charge une vue FXML en mode fenêtré.
+	 * @param v Vue à charger.
 	 */
 	public void afficherVue(Vue v)
+	{
+		afficherVue(v, false);
+	}
+	
+	/**
+	 * Charge une vue FXML et affiche la fenêtre.
+	 * @param v Vue à charger.
+	 * @param fullscreen Détermine si la vue doit être plein écran.
+	 */
+	public void afficherVue(Vue v, boolean fullscreen)
 	{
 		if (v != null)
 		{		
 			try
 			{
+				vueChargee = false;
 				vue = v;
 				
 				FXMLLoader loader = new FXMLLoader(getClass().getResource(v.getFXML()));
 				loader.setController(cont);
 				root = (BorderPane)loader.load();
-				Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+				
+				Scene scene = null;
+				if(fullscreen)
+				{
+					Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+					scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+				}
+				else
+				{
+					scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+				}
+				
 				stage.setScene(scene);
 				stage.setResizable(false);
 				stage.setTitle("Opération : Astéria");
+				stage.setFullScreen(fullscreen);
+				stage.setFullScreenExitHint("");
+				stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 				stage.show();
 				
 				Platform.runLater(() -> {
 					vue.initialiser(root);
+					vueChargee = true;
 				});
 			}
 			catch (IOException e)
@@ -141,16 +177,19 @@ public class ContPrincipal
 	 */
 	public void update(double time)
 	{
-		phys.update(corps, time);
-		
-		if(cont != null)
+		if(horlogeDemarree)
 		{
-			cont.update(time);
-		}
-		
-		if(vue != null)
-		{
-			vue.dessiner(time);
+			phys.update(corps, time);
+			
+			if(cont != null && contCharge)
+			{
+				cont.update(time);
+			}
+			
+			if(vue != null && vueChargee)
+			{
+				vue.dessiner(time);
+			}
 		}
 	}
 	
@@ -213,19 +252,19 @@ public class ContPrincipal
 	 * 
 	 * @author Jonathan Samson
 	 */
-	private class Temps extends Task<Object>
+	private class Horloge extends Task<Void>
 	{
 		private long previousTime;
 		private long currentTime;
 		
 		@Override
-		protected Object call() throws Exception
+		protected Void call() throws Exception
 		{
 			
 			previousTime = 0;
 			currentTime = System.currentTimeMillis();
 			
-			while (onoff)
+			while (true)
 			{
 				previousTime = currentTime;
 				currentTime = System.currentTimeMillis();
@@ -234,7 +273,6 @@ public class ContPrincipal
 				});
 				Thread.sleep(5);
 			}
-			return new Object();
 		}
 		
 	}

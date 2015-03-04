@@ -2,9 +2,7 @@ package vue;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import utils.Vecteur;
-import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -21,14 +19,11 @@ import controleur.ContPrincipal;
  */
 public class VueJeu implements Vue
 {
-	@FXML
-	private Pane pane;
 	private Group noeud;
 	private List<Dessinable> liste;
 	private Camera camera;
 	private Scale scale;
 	private Translate trans;
-	private boolean vueChargee;
 	
 	/**
 	 * Constructeur de la vue du jeu.
@@ -37,7 +32,6 @@ public class VueJeu implements Vue
 	{
 		liste = new LinkedList<Dessinable>();
 		camera = new Camera();
-		vueChargee = false;
 		scale = new Scale(0, 0, 0, 0);
 		trans = new Translate(0, 0);
 	}
@@ -49,16 +43,6 @@ public class VueJeu implements Vue
 	public String getFXML()
 	{
 		return "/res/Jeu.fxml";
-	}
-
-	/**
-	 * Retourne le chemin vers le fichier CSS de la vue.
-	 * Null pour l'instant.
-	 * @return Chemin vers CSS.
-	 */
-	public String getCSS()
-	{
-		return null;
 	}
 
 	/**
@@ -100,9 +84,7 @@ public class VueJeu implements Vue
 		noeud.getTransforms().add(scale);
 		noeud.getTransforms().add(trans);
 		
-		pane.getChildren().add(noeud);
-		
-		vueChargee = true;
+		((Pane)pane.lookup("#pane")).getChildren().add(noeud);
 	}
 
 	/**
@@ -110,22 +92,20 @@ public class VueJeu implements Vue
 	 */
 	public void dessiner(double dt)
 	{
-		if(vueChargee == true)
-		{
-			camera.update(dt);
-			
-			Vecteur translation = camera.getTranslation();
-			trans.setX(translation.getX());
-			trans.setY(translation.getY());
-			
-			double facteur = camera.getFacteur();
-			scale.setX(facteur);
-			scale.setY(facteur);
+		camera.update(dt);
+		
+		Vecteur translation = camera.getTranslation();
+		trans.setX(translation.getX());
+		trans.setY(translation.getY());
+		
+		double facteur = camera.getFacteur();
+		scale.setX(facteur);
+		scale.setY(facteur);
+		
+		for(Dessinable d : liste){
+			d.maj();
 		}
 		
-		for(Dessinable i : liste){
-			i.maj();
-		}
 	}
 	
 	public Camera getCamera()
