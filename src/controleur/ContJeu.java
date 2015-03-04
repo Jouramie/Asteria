@@ -6,6 +6,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import objets.Planete;
 import objets.Vaisseau;
+import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueJeu;
@@ -19,12 +20,12 @@ import vue.VueJeu;
 public class ContJeu implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
-
+	
 	@FXML
 	private Pane menuPause;
 	
 	private VueJeu vue;
-	private Vaisseau vaisseau;
+	private VaisseauJoueur vaisseauJoueur;
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -54,8 +55,9 @@ public class ContJeu implements Controleur
 		Planete p4 = new Planete(3e15, new Vecteur(0, 600), "/res/planete1.png");
 		ContPrincipal.getInstance().ajouterCorps(p4);
 		
-		vaisseau = new Vaisseau(7e4, new Vecteur(0, 0), 100, 100, new Vecteur(10, 10), new Vecteur(10, 10));
-		ContPrincipal.getInstance().ajouterCorps(vaisseau);
+		vaisseauJoueur = new VaisseauJoueur(7e4, new Vecteur(0, 0), 100, 100, new Vecteur(
+				10, 10), new Vecteur(10, 10));
+		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
@@ -93,7 +95,7 @@ public class ContJeu implements Controleur
 		
 		double delta = e.getDeltaY();
 		
-		if(delta > 0)
+		if (delta > 0)
 		{
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
@@ -133,6 +135,6 @@ public class ContJeu implements Controleur
 	public void update(double dt)
 	{
 		Camera camera = vue.getCamera();
-		camera.deplacer(vaisseau.getPositionX(), vaisseau.getPositionY());
+		camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 	}
 }

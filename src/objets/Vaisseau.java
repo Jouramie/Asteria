@@ -18,14 +18,12 @@ public class Vaisseau extends ObjetSpatial
 {
 	public final static double CONVERTION_CARBURANT = 1.0;
 	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
-	public final static double PUISSANCE_DEFAUT = 1.0;
 	
-	private double puissanceMax;
-	private double puissance;
-	private Vecteur direction;
-	private double capaciteCarburant;
-	private DoubleProperty carburant;
-	private Group group;
+	protected double puissanceMax;
+	protected double puissance;
+	protected Vecteur direction;
+	protected double capaciteCarburant;
+	protected DoubleProperty carburant;
 	
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
@@ -49,14 +47,14 @@ public class Vaisseau extends ObjetSpatial
 		super(pMasse, pPosition, false, pVitesse);
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
+		if(pDirection == null)
+		{
+			direction = new Vecteur();
+		}else
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
-		
-		if(direction == null)
-		{
-			direction = new Vecteur();
-		}
+		creeNoeud();
 	}
 	
 	/**
@@ -84,26 +82,15 @@ public class Vaisseau extends ObjetSpatial
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
-		direction = pDirection;
-		capaciteCarburant = pCapaciteCarburant;
-		carburant = new SimpleDoubleProperty(capaciteCarburant);
-		
-		if(direction == null)
+		if(pDirection == null)
 		{
 			direction = new Vecteur();
-		}
+		}else
+		capaciteCarburant = pCapaciteCarburant;
+		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		creeNoeud();
 	}
-	
-	public void tournerGauche()
-	{
-		// TODO Story 12
-	}
-	
-	public void tournerDroite()
-	{
-		// TODO Story 12
-	}
-	
+
 	public double getPuissanceMax()
 	{
 		return puissanceMax;
@@ -125,7 +112,7 @@ public class Vaisseau extends ObjetSpatial
 	public void setPuissance(double pPuissance)
 	{
 		if (pPuissance <= 0)
-			puissance = PUISSANCE_DEFAUT;
+			puissance = PUISSANCE_MAX_DEFAUT;
 		else
 			puissance = pPuissance;
 	}
@@ -181,8 +168,17 @@ public class Vaisseau extends ObjetSpatial
 		}
 	}
 	
-	public Node getNoeud()
+	public Vecteur getForceExt()
 	{
+		return new Vecteur();
+	}
+	
+	public Vecteur getDirection()
+	{
+		return direction;
+	}
+	
+	private void creeNoeud(){
 		Image texture = new Image("/res/spaceship.png");
 		ImageView image = new ImageView(texture);
 		image.setFitWidth(40);
@@ -190,12 +186,16 @@ public class Vaisseau extends ObjetSpatial
 		image.setTranslateX(-20);
 		image.setTranslateY(-20);
 		
-		group = new Group();
+		
+		Group group = new Group();
 		group.getChildren().add(image);
-		
-		maj();
-		
-		return group;
+		group.setRotate(135);
+		noeud = group;
+	}
+	
+	public Node getNoeud()
+	{
+		return noeud;
 	}
 	
 	/**
@@ -203,7 +203,7 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public void maj()
 	{
-		group.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
 	
 	public int getRayonCollision()
