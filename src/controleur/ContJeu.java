@@ -2,6 +2,7 @@ package controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import objets.Planete;

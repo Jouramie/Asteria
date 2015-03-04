@@ -60,6 +60,19 @@ public class Camera
 		}
 	}
 	
+	public Vecteur localToGlobal(Vecteur vec)
+	{
+		Vecteur resultat = new Vecteur();
+		
+		double posX = (vec.getX() / facteur) + x - (largeur / (2 * facteur));
+		double posY = (vec.getY() / facteur) + y - (hauteur / (2 * facteur));
+		
+		resultat.setX(posX);
+		resultat.setY(posY);
+		
+		return resultat;
+	}
+	
 	public Vecteur getTranslation()
 	{
 		Vecteur resultat = new Vecteur();

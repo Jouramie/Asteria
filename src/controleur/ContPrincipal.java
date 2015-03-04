@@ -185,11 +185,11 @@ public class ContPrincipal
 			{
 				cont.update(time);
 			}
-			
-			if(vue != null && vueChargee)
-			{
-				vue.dessiner(time);
-			}
+		}
+		
+		if(vue != null && vueChargee)
+		{
+			vue.dessiner(time);
 		}
 	}
 	

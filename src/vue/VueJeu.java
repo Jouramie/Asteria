@@ -19,6 +19,7 @@ import controleur.ContPrincipal;
  */
 public class VueJeu implements Vue
 {
+	private BorderPane borderPane;
 	private Group noeud;
 	private List<Dessinable> liste;
 	private Camera camera;
@@ -50,8 +51,15 @@ public class VueJeu implements Vue
 	 */
 	public void initialiser(BorderPane pane)
 	{
+		borderPane = pane;
+		
 		camera.setGrandeurs(pane.getWidth(), pane.getHeight());
 		
+		initialiserCorps();
+	}
+	
+	public void initialiserCorps()
+	{
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if(listTemp.size() == 0)
 		{
@@ -84,7 +92,7 @@ public class VueJeu implements Vue
 		noeud.getTransforms().add(scale);
 		noeud.getTransforms().add(trans);
 		
-		((Pane)pane.lookup("#pane")).getChildren().add(noeud);
+		((Pane)borderPane.lookup("#pane")).getChildren().add(noeud);
 	}
 
 	/**
