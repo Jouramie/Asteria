@@ -96,4 +96,10 @@ public interface Corps
 	 * @return Vecteur représentant la force (en Newton)
 	 */
 	Vecteur getForceExt();
+	
+	/**
+	 * Retourne le rayon de la taille d'un objet autour de son point central.
+	 * @return Rayon de la taille d'un objet autour de son point central.
+	 */
+	int getRayonCollision();
 }

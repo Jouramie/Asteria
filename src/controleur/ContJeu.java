@@ -1,6 +1,7 @@
 package controleur;
 
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import objets.Planete;
@@ -61,12 +62,17 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
 	
-	@FXML
-	public void pause()
+	public void afficherMenuPause()
 	{
 		ContPrincipal.getInstance().arreterHorloge();
 		menuPause.setVisible(true);
 		menuPause.toFront();
+	}
+	
+	public void cacherMenuPause()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuPause.setVisible(false);
 	}
 	
 	@FXML
@@ -79,8 +85,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void retourjeu()
 	{
-		ContPrincipal.getInstance().demarrerHorloge();
-		menuPause.setVisible(false);
+		cacherMenuPause();
 	}
 	
 	@FXML
@@ -101,12 +106,35 @@ public class ContJeu implements Controleur
 		}
 	}
 	
+	@FXML
+	public void keyPressed(KeyEvent e)
+	{
+		switch(e.getCode())
+		{
+			case ESCAPE:
+			{
+				if(!menuPause.isVisible())
+				{
+					afficherMenuPause();
+				}
+				else
+				{
+					cacherMenuPause();
+				}
+				break;
+			}
+			
+			default:
+				break;
+		}
+	}
+	
 	/**
 	 * Met à jour le vaisseau.
 	 */
 	public void update(double dt)
 	{
 		Camera camera = vue.getCamera();
-		camera.déplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+		camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 	}
 }

@@ -9,36 +9,30 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane fx:id="pane" focusTraversable="true" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0" />
+      
+   </center>
+   <top>
+      <ImageView fitHeight="61.0" fitWidth="1294.0" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@titleeditor.png" />
+         </image>
+      </ImageView>
+   </top>
    <bottom>
-      <Pane focusTraversable="true" prefHeight="999.0" prefWidth="1531.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" stylesheets="@test.css" BorderPane.alignment="CENTER">
          <children>
-            <ToolBar layoutX="14.0" layoutY="922.0" prefHeight="70.0" prefWidth="470.0" stylesheets="@test.css">
-              <items>
-                  <Button fx:id="retour" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Retour" />
-                  <Button fx:id="save" mnemonicParsing="false" prefHeight="50.0" prefWidth="148.0" text="Sauvegarder" />
-                  <Button fx:id="erase" mnemonicParsing="false" prefHeight="50.0" prefWidth="101.0" text="Effacer" />
-                  <ChoiceBox prefHeight="51.0" prefWidth="96.0" />
-              </items>
-            </ToolBar>
-            <ImageView fitHeight="61.0" fitWidth="1294.0" layoutX="110.0" layoutY="26.0">
-               <image>
-                  <Image url="@titleeditor.png" />
-               </image>
-            </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="822.0" layoutX="10.0" layoutY="87.0" stroke="#000980df" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" width="1505.0" />
-            <ToolBar layoutX="1067.0" layoutY="924.0" prefHeight="67.0" prefWidth="449.0">
-               <items>
-                  <ChoiceBox prefHeight="52.0" prefWidth="115.0" />
-                  <ColorPicker prefHeight="52.0" prefWidth="104.0" />
-                  <Slider prefHeight="14.0" prefWidth="166.0" />
-                  <Label text="Masse" />
-               </items>
-            </ToolBar>
-            <ImageView fitHeight="75.0" fitWidth="374.0" layoutX="579.0" layoutY="920.0">
-               <image>
-                  <Image url="@giphy.gif" />
-               </image>
-            </ImageView>
-         </children></Pane>
+            <Button fx:id="retour" mnemonicParsing="false" onAction="#retour" text="Retour" />
+            <Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
+            <Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" />
+            <ChoiceBox fx:id="choice" prefHeight="40.0" prefWidth="150.0" />
+            <Separator prefWidth="200.0" />
+            <ColorPicker fx:id="color" prefHeight="41.0" prefWidth="81.0" />
+            <Separator prefHeight="1.0" prefWidth="61.0" />
+            <Slider fx:id="masse" />
+            <Label text="Masse" />
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>
