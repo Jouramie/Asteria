@@ -244,7 +244,6 @@ public class ContPrincipal
 	 */
 	public static ContPrincipal getInstance()
 	{
-		System.out.println("nb de corps +" + corps.size());
 		return instance;
 	}
 	

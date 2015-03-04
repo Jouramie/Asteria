@@ -1,12 +1,11 @@
 package controleur;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import objets.Planete;
-import objets.Vaisseau;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
@@ -23,7 +22,7 @@ public class ContJeu implements Controleur
 	public static final double VITESSE_ZOOM = 0.005;
 	
 	@FXML
-	private Pane menuPause;
+	private VBox menuPause;
 	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;

@@ -1,14 +1,14 @@
 package objets;
 
-import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.shape.Circle;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
 import utils.Vecteur;
 
 /**
@@ -29,7 +29,6 @@ public class Planete extends ObjetSpatial
 	public Planete(double pMasse, Vecteur pPosition, String tex)
 	{
 		super(pMasse, pPosition, true, new Vecteur());
-		
 		texture = new Image(tex);
 	}
 
@@ -45,12 +44,12 @@ public class Planete extends ObjetSpatial
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 		texture = new Image(tex);
 	}
-	
+
 	public int getRayonCollision()
 	{
 		return 100;
 	}
-	
+
 	public Node getNoeud()
 	{
 		double rayon = getRayonCollision();
