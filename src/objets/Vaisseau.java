@@ -2,12 +2,10 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.transform.Rotate;
 import utils.Vecteur;
 
 /**
@@ -53,6 +51,11 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		
+		if(direction == null)
+		{
+			direction = new Vecteur();
+		}
 	}
 	
 	/**
@@ -83,6 +86,11 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		
+		if(direction == null)
+		{
+			direction = new Vecteur();
+		}
 	}
 	
 	public void tournerGauche()

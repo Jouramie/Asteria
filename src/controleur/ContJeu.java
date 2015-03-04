@@ -2,7 +2,6 @@ package controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import objets.Planete;
@@ -134,6 +133,6 @@ public class ContJeu implements Controleur
 	public void update(double dt)
 	{
 		Camera camera = vue.getCamera();
-		camera.déplacer(vaisseau.getPositionX(), vaisseau.getPositionY());
+		camera.deplacer(vaisseau.getPositionX(), vaisseau.getPositionY());
 	}
 }
