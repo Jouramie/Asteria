@@ -4,8 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import utils.Vecteur;
 
 /**
@@ -25,6 +25,7 @@ public class Vaisseau extends ObjetSpatial
 	private Vecteur direction;
 	private double capaciteCarburant;
 	private DoubleProperty carburant;
+	private Group group;
 	
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
@@ -182,15 +183,19 @@ public class Vaisseau extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
-		noeud = new Group();
+		Image texture = new Image("/res/spaceship.png");
+		ImageView image = new ImageView(texture);
+		image.setFitWidth(40);
+		image.setFitHeight(40);
+		image.setTranslateX(-20);
+		image.setTranslateY(-20);
 		
-		Polygon fond = new Polygon(-15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 15, -(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2, 0, (Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2);
-		fond.setFill(Color.ORANGE);
-		Polygon vitre = new Polygon(-12, (-(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2) + Math.sqrt(3), 8, (-(Math.sqrt(Math.pow(30, 2) - Math.pow(15, 2))) / 2) + Math.sqrt(3), -2, (Math.sqrt(Math.pow(20, 2)) / 2) - Math.sqrt(3) );
-		vitre.setFill(Color.LIGHTBLUE);
-		((Group)noeud).getChildren().addAll(fond, vitre);
+		group = new Group();
+		group.getChildren().add(image);
+		
 		maj();
-		return noeud;
+		
+		return group;
 	}
 	
 	/**
@@ -198,7 +203,7 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public void maj()
 	{
-		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 135);
+		group.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
 	
 	public int getRayonCollision()

@@ -1,6 +1,6 @@
 #pane
 {
-	-fx-background-color: #d8ecff;
+	-fx-background-image: url("space.png");
 }
 
 #menuPause
