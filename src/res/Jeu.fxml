@@ -4,6 +4,7 @@
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
 <BorderPane focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
@@ -12,8 +13,12 @@
       <children>
         <VBox fx:id="menuPause" alignment="CENTER" fillWidth="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
-            <Button mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="169.0" text="Retour au jeu" />
-            <Button mnemonicParsing="false" onAction="#retour" prefHeight="77.0" prefWidth="169.0" text="Menu" />
+            <Button mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="169.0" text="Retour au jeu">
+              <textFill>
+                <LinearGradient fx:value="linear-gradient(from 18.571428571428573% 34.76190476190476% to 50.0% 100.0%, 0x24824eff 0.0%, 0xff9d5cff 49.14089347079038%, 0xddd15cff 100.0%)" fx:id="x1" />
+              </textFill>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#retour" prefHeight="77.0" prefWidth="169.0" text="Menu" textFill="$x1" />
           </children>
         </VBox>
       </children>
