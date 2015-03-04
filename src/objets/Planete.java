@@ -1,5 +1,7 @@
 package objets;
 
+import javafx.scene.Node;
+import javafx.scene.shape.Circle;
 import utils.Vecteur;
 
 /**
@@ -32,9 +34,17 @@ public class Planete extends ObjetSpatial
 	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 	}
-	
+
 	public int getRayonCollision()
 	{
 		return 100;
+	}
+
+	public Node getNoeud()
+	{
+		// TODO trouver une meilleur formule
+		noeud = new Circle(0, 0, 100);
+		return noeud;
+		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
 	}
 }

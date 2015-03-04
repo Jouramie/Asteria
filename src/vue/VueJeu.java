@@ -67,6 +67,7 @@ public class VueJeu implements Vue
 		}
 		
 		noeud = new Group();
+		liste.clear();
 		
 		for (Corps c : listTemp)
 		{
@@ -91,8 +92,9 @@ public class VueJeu implements Vue
 		
 		noeud.getTransforms().add(scale);
 		noeud.getTransforms().add(trans);
-		
-		((Pane)borderPane.lookup("#pane")).getChildren().add(noeud);
+		Pane p = (Pane)borderPane.lookup("#pane");
+		p.getChildren().clear();
+		p.getChildren().add(noeud);
 	}
 
 	/**

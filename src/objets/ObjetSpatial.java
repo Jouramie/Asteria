@@ -3,6 +3,7 @@ package objets;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import utils.Vecteur;
 import vue.Dessinable;
@@ -30,6 +31,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected DoubleProperty positionY;
 	protected boolean statique;
 	protected Vecteur vitesse;
+	protected Color couleur;
+	
 	
 	protected Node noeud;
 	
@@ -193,22 +196,14 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Retourne un cercle ayant un air égal à la masse de l'objet divisé par la
-	 * densité.
-	 */
-	public Node getNoeud()
-	{
-		// TODO trouver une meilleur formule
-		noeud = new Circle(0, 0, 100);
-		return noeud;
-		// return new Circle(0, 0, Math.sqrt(masse / Math.PI / DENSITE));
-	}
-	
-	/**
 	 * Met à jour le noeud
 	 */
 	public void maj(){
 		
 	}
 	
+	/**
+	 * Retourne la forme représentant le corps.
+	 */
+	public abstract Node getNoeud();
 }

@@ -2,6 +2,7 @@ package controleur;
 
 import java.awt.event.ActionListener;
 
+import modele.Corps;
 import objets.ObjetSpatial;
 import objets.Planete;
 import objets.Vaisseau;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
@@ -28,7 +30,7 @@ import javafx.scene.shape.Rectangle;
 public class ContNiveau implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
-	
+
 	@FXML
 	private Pane pane;
 	@FXML
@@ -45,7 +47,7 @@ public class ContNiveau implements Controleur
 	private Slider masse;
 
 	private VueNiveau vue;
-	
+
 	/**
 	 * Constructeur du contrôleur.
 	 */
@@ -53,7 +55,7 @@ public class ContNiveau implements Controleur
 	{
 		vue = new VueNiveau();
 	}
-	
+
 	/**
 	 * Affiche la vue du constructeur.
 	 */
@@ -68,9 +70,9 @@ public class ContNiveau implements Controleur
 	 */
 	public void update(double dt)
 	{
-		
+
 	}
-	
+
 	/**
 	 * Méthode pour le bouton retour
 	 */
@@ -95,35 +97,45 @@ public class ContNiveau implements Controleur
 	{
 		System.out.println("EFFACER");
 	}
+	
 	/**
 	 * méthode qui gère l'ajout d'objets dans la construction.
 	 */
 	@FXML
 	public void mouseClicked(MouseEvent e)
 	{
-		ObjetSpatial u = null;
-		double posX = e.getSceneX();
-		double posY = e.getSceneY();
-		
-		Camera cam = vue.getCamera();
+		ContPrincipal.getInstance().arreterHorloge();
 		Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
+		ObjetSpatial u = null;
+		Camera cam = vue.getCamera();
 		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
 		
-		if (choice.getValue() == "Vaisseau")
+		if (e.getButton() == MouseButton.PRIMARY)
 		{
-			u = new Vaisseau(0, null, 0, 0, pos.getX(), pos.getY(), null);
+			if (choice.getValue() == "Vaisseau")
+			{
+				u = new Vaisseau(0, null, 0, 0, pos.getX(), pos.getY(), null);
+			}
+			else if (choice.getValue() == "Planète")
+			{
+				u = new Planete(6e15, pos.getX(), pos.getY());
+			}
+			ContPrincipal.getInstance().ajouterCorps(u);
 			vue.initialiserCorps();
 		}
-		else if (choice.getValue() == "Planète")
+		else if(e.getButton() == MouseButton.SECONDARY)
 		{
-			u = new Planete(6e15, pos.getX(), pos.getY());
-			vue.initialiserCorps();
+			for(Corps c : ContPrincipal.getInstance().getCorps())
+			{
+				if(Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayonCollision() && Math.abs(c.getPosition().getY() - pos.getY()) < c.getRayonCollision())
+				{
+					
+				}
+			}
 		}
-		
-		ContPrincipal.getInstance().ajouterCorps(u);
-		vue.initialiserCorps();
-		System.out.println("AJOUTER OBJET SÉLECTIONNÉ à L'ENDROIT " + "("+posX+" , "+posY+")");
 	}
+	
+
 	/**
 	 * Méthode pour le zoom.
 	 */
@@ -131,14 +143,14 @@ public class ContNiveau implements Controleur
 	public void zoom(ScrollEvent e)
 	{
 		Camera cam = vue.getCamera();
-		
+
 		double delta = e.getDeltaY();
-		
+
 		if(delta > 0)
 		{
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
-		
+
 		else
 		{
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
