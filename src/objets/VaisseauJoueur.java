@@ -76,7 +76,6 @@ public class VaisseauJoueur extends Vaisseau
 		{
 			r = direction.multiplication(puissance);
 		}
-		System.out.println(r.getNorme());
 		return r;
 	}
 	
