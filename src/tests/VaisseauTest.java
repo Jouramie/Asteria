@@ -118,9 +118,9 @@ public class VaisseauTest
 		v1.setPuissance(50);
 		assertTrue(v1.getPuissance() == 50);
 		v2.setPuissance(-1000);
-		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
+		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_MAX_DEFAUT);
 		v3.setPuissance(0);
-		assertTrue(v3.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
+		assertTrue(v3.getPuissance() == Vaisseau.PUISSANCE_MAX_DEFAUT);
 	}
 	
 }

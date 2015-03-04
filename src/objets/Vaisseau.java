@@ -2,12 +2,10 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.transform.Rotate;
 import utils.Vecteur;
 
 /**
@@ -20,13 +18,13 @@ public class Vaisseau extends ObjetSpatial
 {
 	public final static double CONVERTION_CARBURANT = 1.0;
 	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
-	public final static double PUISSANCE_DEFAUT = 1.0;
 	
-	private double puissanceMax;
-	private double puissance;
-	private Vecteur direction;
-	private double capaciteCarburant;
-	private DoubleProperty carburant;
+	protected double puissanceMax;
+	protected double puissance;
+	protected Vecteur direction;
+	protected double capaciteCarburant;
+	protected DoubleProperty carburant;
+
 	
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
@@ -53,6 +51,7 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		creeNoeud();
 	}
 	
 	/**
@@ -83,18 +82,9 @@ public class Vaisseau extends ObjetSpatial
 		direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		creeNoeud();
 	}
-	
-	public void tournerGauche()
-	{
-		// TODO Story 12
-	}
-	
-	public void tournerDroite()
-	{
-		// TODO Story 12
-	}
-	
+
 	public double getPuissanceMax()
 	{
 		return puissanceMax;
@@ -116,7 +106,7 @@ public class Vaisseau extends ObjetSpatial
 	public void setPuissance(double pPuissance)
 	{
 		if (pPuissance <= 0)
-			puissance = PUISSANCE_DEFAUT;
+			puissance = PUISSANCE_MAX_DEFAUT;
 		else
 			puissance = pPuissance;
 	}
@@ -172,18 +162,31 @@ public class Vaisseau extends ObjetSpatial
 		}
 	}
 	
-	public Node getNoeud()
+	public Vecteur getForceExt()
 	{
+		return new Vecteur();
+	}
+	
+	public Vecteur getDirection()
+	{
+		return direction;
+	}
+	
+	private void creeNoeud(){
 		noeud = new Group();
 		
 		Polygon fond = new Polygon(0, 0, 30, 0, 15, Math.sqrt(Math.pow(30, 2)
 				- Math.pow(15, 2)));
 		fond.setFill(Color.ORANGE);
-		Polygon vitre = new Polygon(3, Math.sqrt(3), 23, Math.sqrt(3), 13, Math.sqrt(Math.pow(20, 2)
-				- Math.pow(10, 2)));
+		Polygon vitre = new Polygon(3, Math.sqrt(3), 23, Math.sqrt(3), 13,
+				Math.sqrt(Math.pow(20, 2) - Math.pow(10, 2)));
 		vitre.setFill(Color.LIGHTBLUE);
-		((Group)noeud).getChildren().addAll(fond, vitre);
-		maj();
+		((Group) noeud).getChildren().addAll(fond, vitre);
+		noeud.setRotate(135);
+	}
+	
+	public Node getNoeud()
+	{
 		return noeud;
 	}
 	

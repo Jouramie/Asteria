@@ -117,6 +117,11 @@ public class Vecteur
 		{
 			resultat += Math.PI;
 		}
+		while (resultat > 2 * Math.PI)
+		{
+			resultat -= Math.PI;
+		}
+		
 		return resultat;
 	}
 	
