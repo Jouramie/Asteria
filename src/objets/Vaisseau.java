@@ -189,7 +189,7 @@ public class Vaisseau extends ObjetSpatial
 		
 		Group group = new Group();
 		group.getChildren().add(image);
-		group.setRotate(135);
+		group.setRotate(90);
 		noeud = group;
 	}
 	
