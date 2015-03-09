@@ -19,6 +19,11 @@ import utils.Vecteur;
  */
 public class Planete extends ObjetSpatial {
 
+	public static final Texture TEXTURE_DEFAUT = Texture.RAYEE_ROUGE;
+	public static final double RAYON_DEFAUT = 100;
+	public static final boolean STATIC_DEFAUT = true;
+	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
+
 	public enum Texture {
 		RAYEE_ROUGE("/res/planete1.png");
 
@@ -33,7 +38,8 @@ public class Planete extends ObjetSpatial {
 		}
 	}
 
-	private Image texture;
+	private Texture texture;
+	private double rayon;
 
 	/**
 	 * Constructeur de planète, prend un vecteur pour la position
@@ -43,9 +49,9 @@ public class Planete extends ObjetSpatial {
 	 * @param pPosition
 	 *            la position de la planète
 	 */
-	public Planete(double pMasse, Vecteur pPosition, Texture pTexture) {
+	public Planete(double pMasse, Vecteur pPosition, double pRayon) {
 		super(pMasse, pPosition, true, new Vecteur());
-		texture = new Image(pTexture.getTexture());
+		init(pRayon);
 	}
 
 	/**
@@ -58,19 +64,47 @@ public class Planete extends ObjetSpatial {
 	 * @param pPositionY
 	 *            la positionY de la planète
 	 */
-	public Planete(double pMasse, double pPositionX, double pPositionY,
-			Texture pTexture) {
+	public Planete(double pMasse, double pPositionX,
+			double pPositionY,  double pRayon) {
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
-		texture = new Image(pTexture.getTexture());
+		init(pRayon);
 	}
 
+	private void init(double pRayon) {
+		setRayon(pRayon);
+	}
+
+	public void setTexture(Texture pTexture) {
+		if (pTexture == null)
+			texture = TEXTURE_DEFAUT;
+		else
+			texture = pTexture;
+	}
+
+	public Texture getTexture() {
+		return texture;
+	}
+
+	public void setRayon(double pRayon) {
+		if (pRayon < 0) {
+			rayon = RAYON_DEFAUT;
+		} else {
+			rayon = pRayon;
+		}
+	}
+
+	public double getRayon() {
+		return rayon;
+	}
+
+	@Deprecated
 	public int getRayonCollision() {
 		return 100;
 	}
 
 	public Node getNoeud() {
-		double rayon = getRayonCollision();
-
+		setTexture(texture);
+		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + 30);
 		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon + 32, false,
 				CycleMethod.REPEAT, new Stop(0.7, Color.ORANGE), new Stop(1,

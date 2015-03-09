@@ -25,11 +25,11 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Contrôleur pour le createur de niveaux
+ * 
  * @author Jonathan Samson
  * @version 1.0
  */
-public class ContNiveau implements Controleur
-{
+public class ContNiveau implements Controleur {
 	public static final double VITESSE_ZOOM = 0.005;
 
 	@FXML
@@ -52,16 +52,14 @@ public class ContNiveau implements Controleur
 	/**
 	 * Constructeur du contrôleur.
 	 */
-	public ContNiveau()
-	{
+	public ContNiveau() {
 		vue = new VueNiveau();
 	}
 
 	/**
 	 * Affiche la vue du constructeur.
 	 */
-	public void initialiser()
-	{
+	public void initialiser() {
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		choice.getItems().addAll("Vaisseau", "Planète", "Drapeau");
 	}
@@ -69,8 +67,7 @@ public class ContNiveau implements Controleur
 	/**
 	 * Inutile pour l'instant.
 	 */
-	public void update(double dt)
-	{
+	public void update(double dt) {
 
 	}
 
@@ -78,82 +75,73 @@ public class ContNiveau implements Controleur
 	 * Méthode pour le bouton retour
 	 */
 	@FXML
-	public void retour()
-	{
+	public void retour() {
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
+
 	/**
 	 * Méthode pour le bouton sauvegarder
 	 */
 	@FXML
-	public void sauve()
-	{
+	public void sauve() {
 		System.out.println("SAUVEGARDER");
 	}
+
 	/**
 	 * Méthode pour le bouton effacer
 	 */
 	@FXML
-	public void erase()
-	{
+	public void erase() {
 		System.out.println("EFFACER");
 	}
-	
+
 	/**
 	 * méthode qui gère l'ajout d'objets dans la construction.
 	 */
 	@FXML
-	public void mouseClicked(MouseEvent e)
-	{
+	public void mouseClicked(MouseEvent e) {
 		ContPrincipal.getInstance().arreterHorloge();
 		Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
 		ObjetSpatial u = null;
 		Camera cam = vue.getCamera();
-		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
-		
-		if (e.getButton() == MouseButton.PRIMARY)
-		{
-			if (choice.getValue() == "Vaisseau")
-			{
+		Vecteur pos = cam
+				.localToGlobal(new Vecteur(point.getX(), point.getY()));
+
+		if (e.getButton() == MouseButton.PRIMARY) {
+			if (choice.getValue() == "Vaisseau") {
 				u = new Vaisseau(0, null, 0, 0, pos.getX(), pos.getY(), null);
-			}
-			else if (choice.getValue() == "Planète")
-			{
-				u = new Planete(6e15, pos.getX(), pos.getY(), Texture.RAYEE_ROUGE);
+			} else if (choice.getValue() == "Planète") {
+				u = new Planete(6e15, pos.getX(), pos.getY(), 100);
+				((Planete)u).setTexture(Texture.RAYEE_ROUGE);
 			}
 			ContPrincipal.getInstance().ajouterCorps(u);
 			vue.initialiserCorps();
-		}
-		else if(e.getButton() == MouseButton.SECONDARY)
-		{
-			for(Corps c : ContPrincipal.getInstance().getCorps())
-			{
-				if(Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayonCollision() && Math.abs(c.getPosition().getY() - pos.getY()) < c.getRayonCollision())
-				{
-					
+		} else if (e.getButton() == MouseButton.SECONDARY) {
+			for (Corps c : ContPrincipal.getInstance().getCorps()) {
+				if (Math.abs(c.getPosition().getX() - pos.getX()) < c
+						.getRayonCollision()
+						&& Math.abs(c.getPosition().getY() - pos.getY()) < c
+								.getRayonCollision()) {
+
 				}
 			}
 		}
 	}
-	
 
 	/**
 	 * Méthode pour le zoom.
 	 */
 	@FXML
-	public void zoom(ScrollEvent e)
-	{
+	public void zoom(ScrollEvent e) {
 		Camera cam = vue.getCamera();
 
 		double delta = e.getDeltaY();
 
-		if(delta > 0)
-		{
+		if (delta > 0) {
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 
-		else
-		{
+		else {
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 	}
