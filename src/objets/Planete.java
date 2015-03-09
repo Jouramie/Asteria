@@ -59,9 +59,9 @@ public class Planete extends ObjetSpatial {
 	 *            la positionY de la planète
 	 */
 	public Planete(double pMasse, double pPositionX, double pPositionY,
-			String tex) {
+			Texture pTexture) {
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
-		texture = new Image(tex);
+		texture = new Image(pTexture.getTexture());
 	}
 
 	public int getRayonCollision() {

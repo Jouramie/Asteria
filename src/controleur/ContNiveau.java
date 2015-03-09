@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import modele.Corps;
 import objets.ObjetSpatial;
 import objets.Planete;
+import objets.Planete.Texture;
 import objets.Vaisseau;
 import utils.Vecteur;
 import vue.Camera;
@@ -118,7 +119,7 @@ public class ContNiveau implements Controleur
 			}
 			else if (choice.getValue() == "Planète")
 			{
-				u = new Planete(6e15, pos.getX(), pos.getY(), "/res/planete1.png");
+				u = new Planete(6e15, pos.getX(), pos.getY(), Texture.RAYEE_ROUGE);
 			}
 			ContPrincipal.getInstance().ajouterCorps(u);
 			vue.initialiserCorps();
