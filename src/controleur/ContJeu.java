@@ -3,9 +3,9 @@ package controleur;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import objets.Planete;
+import objets.Planete.Texture;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
@@ -17,137 +17,118 @@ import vue.VueJeu;
  * @author EquBolduc
  * @version 1.0
  */
-public class ContJeu implements Controleur
-{
+public class ContJeu implements Controleur {
 	public static final double VITESSE_ZOOM = 0.005;
-	
+
 	@FXML
 	private VBox menuPause;
-	
+
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
-	
+
 	/**
 	 * Constructeur du contrôleur.
 	 */
-	public ContJeu()
-	{
+	public ContJeu() {
 		vue = new VueJeu();
 	}
-	
+
 	/**
 	 * Initialise les éléments du jeu et affiche la vue. Démarre l'horloge du
 	 * contrôleur principal.
 	 */
-	public void initialiser()
-	{
+	public void initialiser() {
 		ContPrincipal.getInstance().demarrerHorloge();
-		
+
 		Planete p1 = new Planete(5e15, new Vecteur(400, 400),
-				"/res/planete1.png");
+				Texture.RAYEE_ROUGE);
 		ContPrincipal.getInstance().ajouterCorps(p1);
-		
-		Planete p2 = new Planete(5e15, new Vecteur(600, 0), "/res/planete1.png");
+
+		Planete p2 = new Planete(5e15, new Vecteur(600, 0), Texture.RAYEE_ROUGE);
 		ContPrincipal.getInstance().ajouterCorps(p2);
-		
+
 		Planete p3 = new Planete(1e15, new Vecteur(600, 600),
-				"/res/planete1.png");
+				Texture.RAYEE_ROUGE);
 		ContPrincipal.getInstance().ajouterCorps(p3);
-		
-		Planete p4 = new Planete(1e15, new Vecteur(0, 600), "/res/planete1.png");
+
+		Planete p4 = new Planete(1e15, new Vecteur(0, 600), Texture.RAYEE_ROUGE);
 		ContPrincipal.getInstance().ajouterCorps(p4);
-		
+
 		vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3,
 				100, new Vecteur(10, 10), new Vecteur(10, 10));
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-		
+
 		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
-	
-	public void afficherMenuPause()
-	{
+
+	public void afficherMenuPause() {
 		ContPrincipal.getInstance().arreterHorloge();
 		menuPause.setVisible(true);
 		menuPause.toFront();
 	}
-	
-	public void cacherMenuPause()
-	{
+
+	public void cacherMenuPause() {
 		ContPrincipal.getInstance().demarrerHorloge();
 		menuPause.setVisible(false);
 	}
-	
+
 	@FXML
-	public void retour()
-	{
+	public void retour() {
 		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
-	
+
 	@FXML
-	public void retourjeu()
-	{
+	public void retourjeu() {
 		cacherMenuPause();
 	}
-	
+
 	@FXML
-	public void zoom(ScrollEvent e)
-	{
+	public void zoom(ScrollEvent e) {
 		Camera cam = vue.getCamera();
-		
+
 		double delta = e.getDeltaY();
-		
-		if (delta > 0)
-		{
+
+		if (delta > 0) {
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
-		
-		else
-		{
+
+		else {
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 	}
-	
+
 	@FXML
-	public void keyPressed(KeyEvent e)
-	{
-		switch (e.getCode())
-		{
-		case ESCAPE:
-		{
-			if (!menuPause.isVisible())
-			{
+	public void keyPressed(KeyEvent e) {
+		switch (e.getCode()) {
+		case ESCAPE: {
+			if (!menuPause.isVisible()) {
 				afficherMenuPause();
-			}
-			else
-			{
+			} else {
 				cacherMenuPause();
 			}
 			break;
 		}
 		case LEFT:
 		case A:
-			if (!aPressed)
-			{
+			if (!aPressed) {
 				vaisseauJoueur.tournerGauche();
 				aPressed = true;
 			}
 			break;
 		case RIGHT:
 		case D:
-			if (!dPressed)
-			{
+			if (!dPressed) {
 				vaisseauJoueur.tournerDroite();
 				dPressed = true;
 			}
 			break;
 		case UP:
 		case W:
-			if (!wPressed)
-			{
+			if (!wPressed) {
 				vaisseauJoueur.avancer();
 				wPressed = true;
 			}
@@ -156,32 +137,27 @@ public class ContJeu implements Controleur
 			break;
 		}
 	}
-	
+
 	@FXML
-	public void keyReleased(KeyEvent e)
-	{
-		switch (e.getCode())
-		{
+	public void keyReleased(KeyEvent e) {
+		switch (e.getCode()) {
 		case LEFT:
 		case A:
-			if (aPressed)
-			{
+			if (aPressed) {
 				vaisseauJoueur.tournerGauche();
 				aPressed = false;
 			}
 			break;
 		case RIGHT:
 		case D:
-			if (dPressed)
-			{
+			if (dPressed) {
 				vaisseauJoueur.tournerDroite();
 				dPressed = false;
 			}
 			break;
 		case UP:
 		case W:
-			if (wPressed)
-			{
+			if (wPressed) {
 				vaisseauJoueur.avancer();
 				wPressed = false;
 			}
@@ -190,12 +166,11 @@ public class ContJeu implements Controleur
 			break;
 		}
 	}
-	
+
 	/**
 	 * Met à jour le vaisseau.
 	 */
-	public void update(double dt)
-	{
+	public void update(double dt) {
 		Camera camera = vue.getCamera();
 		camera.deplacer(vaisseauJoueur.getPositionX(),
 				vaisseauJoueur.getPositionY());
