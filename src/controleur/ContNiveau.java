@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import modele.Corps;
 import objets.ObjetSpatial;
@@ -92,7 +93,9 @@ public class ContNiveau implements Controleur {
 	 */
 	@FXML
 	public void erase() {
-		System.out.println("EFFACER");
+		List<Corps> c = ContPrincipal.getInstance().getCorps();
+		c.clear();
+		vue.initialiserCorps();
 	}
 
 	/**
