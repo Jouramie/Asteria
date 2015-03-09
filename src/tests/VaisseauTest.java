@@ -68,7 +68,7 @@ public class VaisseauTest
 		assertTrue(v1.isStatique());
 	}
 	
-	@Test
+/*	@Test
 	public void testGetNoeud()
 	{
 		assertTrue(v1.getNoeud() != null);
@@ -77,7 +77,7 @@ public class VaisseauTest
 		assertTrue(v4.getNoeud() != null);
 		assertTrue(v5.getNoeud() != null);
 		assertTrue(v6.getNoeud() != null);
-	}
+	}*/
 	
 	@Test
 	public void testGetPuissanceMax()
