@@ -91,6 +91,15 @@ public class Camera
 	}
 	
 	/**
+	 * Retourne le vecteur représentant la position actuelle de la caméra.
+	 * @return Vecteur de la position de la caméra.
+	 */
+	public Vecteur getDeplacement()
+	{
+		return new Vecteur(targetX, targetY);
+	}
+	
+	/**
 	 * Zoom la caméra selon la facteur choisi. 1.0 signifie 1px vaut 1m. 2.0
 	 * signifie 1px vaut 2m. 0.5 signifie 1px vaut 0.5m.
 	 * 
