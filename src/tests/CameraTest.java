@@ -33,11 +33,22 @@ public class CameraTest
 	}
 	
 	@Test
-	public void testDéplacer()
+	public void testDeplacer()
 	{
 		c2.deplacer(50, 50);
 		assertEquals(50, c2.getTranslation().getX(), 0.00001);
 		assertEquals(50, c2.getTranslation().getY(), 0.00001);
+	}
+	
+	@Test
+	public void testGetDeplacement()
+	{
+		c2.deplacer(50, 50);
+		assertEquals(50, c2.getDeplacement().getX(), 0.00001);
+		assertEquals(50, c2.getDeplacement().getY(), 0.00001);
+		
+		assertEquals(0, c1.getDeplacement().getX(), 0.00001);
+		assertEquals(0, c1.getDeplacement().getY(), 0.00001);
 	}
 	
 	@Test
