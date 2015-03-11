@@ -138,15 +138,15 @@ public class Planete extends ObjetSpatial
 		
 		return group;
 	}
-
+	
 	public Vecteur getForceExt()
 	{
 		return new Vecteur();
 	}
-
+	
 	@Override
 	public void maj()
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 }

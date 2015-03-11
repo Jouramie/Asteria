@@ -1,11 +1,18 @@
 package controleur;
 
 import modele.Corps;
+import java.util.ArrayList;
+
+import modele.Niveau;
+import modele.Objectif;
+import modele.ObjectifRayon;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
+import objets.Planete;
 import objets.VaisseauJoueur;
+import objets.Planete.Texture;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueJeu;
@@ -23,8 +30,13 @@ public class ContJeu implements Controleur
 	@FXML
 	private VBox menuPause;
 	
+	@FXML
+	private VBox menuVictoire;
+	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
+	private Niveau niveau;
+	private boolean objectifAtteint;
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
@@ -50,6 +62,15 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
+		
+		ArrayList<Corps> corps = new ArrayList<Corps>();
+		Planete p = new Planete(6e2, 100, 100, 10);
+		p.setTexture(Texture.RAYEE_ROUGE);
+		corps.add(p);
+		
+		Objectif obj = new ObjectifRayon(vaisseauJoueur, new Vecteur(100, 0), 20);
+		Niveau niv = new Niveau(corps, obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
+		chargerNiveau(niv);
 	}
 	
 	@FXML
@@ -154,6 +175,37 @@ public class ContJeu implements Controleur
 		menuPause.setVisible(false);
 	}
 	
+	/**
+	 * Charge un niveau de jeu.
+	 * @param niv Niveau à charger.
+	 */
+	public void chargerNiveau(Niveau niv)
+	{
+		niveau = niv;
+		objectifAtteint = false;
+		
+		ContPrincipal.getInstance().viderCorps();
+		
+		for(Corps c : niveau.getCorps())
+		{
+			ContPrincipal.getInstance().ajouterCorps(c);
+		}
+		
+		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+		vaisseauJoueur.setPosition(niveau.getPointDepart());
+		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
+	}
+
+	/**
+	 * Affiche l'écran de victoire.
+	 */
+	public void afficherMenuVictoire()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuVictoire.setVisible(true);
+		menuVictoire.toFront();
+	}
+
 	@FXML
 	public void recommencer()
 	{
@@ -199,7 +251,23 @@ public class ContJeu implements Controleur
 	public void update(double dt)
 	{
 		Camera camera = vue.getCamera();
-		camera.deplacer(vaisseauJoueur.getPositionX(),
-				vaisseauJoueur.getPositionY());
+		camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+		
+		verifierObjectif();
+	}
+	
+	/**
+	 * Vérifie si l'objectif actuel est atteint.
+	 */
+	private void verifierObjectif()
+	{
+		if(niveau != null && !objectifAtteint)
+		{
+			if(niveau.getObjectif().verifierObjectif())
+			{
+				objectifAtteint = true;
+				afficherMenuVictoire();
+			}
+		}
 	}
 }
