@@ -27,7 +27,14 @@ public class Planete extends ObjetSpatial
 	
 	public enum Texture
 	{
-		RAYEE_ROUGE("/res/planeteRayeeRouge.png");
+		RAYEE_BLEUE("/res/planeteRayeeBleue.png"),
+		RAYEE_JAUNE("/res/planeteRayeeJaune.png"),
+		RAYEE_MAGENTA("/res/planeteRayeeMagenta.png"),
+		RAYEE_MARIN("/res/planeteRayeeMarin.png"),
+		RAYEE_ORANGE("/res/planeteRayeeOrange.png"),
+		RAYEE_ROUGE("/res/planeteRayeeRouge.png"),
+		RAYEE_VERTE("/res/planeteRayeeVerte.png"),
+		RAYEE_VIOLETTE("/res/planeteRayeeViolette.png");
 		
 		private final String texture;
 		
