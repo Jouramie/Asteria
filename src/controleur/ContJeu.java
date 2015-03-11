@@ -119,7 +119,6 @@ public class ContJeu implements Controleur
 		case R:
 			if (!menuPause.isVisible())
 			{
-				System.out.println("Recommencer");
 				reset();
 			}
 			break;
@@ -164,9 +163,12 @@ public class ContJeu implements Controleur
 
 	public void afficherMenuPause()
 	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuPause.setVisible(true);
-		menuPause.toFront();
+		if(!objectifAtteint)
+		{
+			ContPrincipal.getInstance().arreterHorloge();
+			menuPause.setVisible(true);
+			menuPause.toFront();
+		}
 	}
 	
 	public void cacherMenuPause()
