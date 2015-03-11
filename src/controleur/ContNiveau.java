@@ -1,17 +1,7 @@
 package controleur;
 
-import java.awt.event.ActionListener;
 import java.util.List;
 
-import modele.Corps;
-import objets.ObjetSpatial;
-import objets.Planete;
-import objets.Planete.Texture;
-import objets.Vaisseau;
-import utils.Vecteur;
-import vue.Camera;
-import vue.VueNiveau;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
@@ -22,7 +12,14 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
+import modele.Corps;
+import objets.ObjetSpatial;
+import objets.Planete;
+import objets.Planete.Texture;
+import objets.Vaisseau;
+import utils.Vecteur;
+import vue.Camera;
+import vue.VueNiveau;
 
 /**
  * Contrôleur pour le createur de niveaux

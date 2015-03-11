@@ -1,7 +1,6 @@
 package modele;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.scene.Node;
 import utils.Vecteur;
 
 /**

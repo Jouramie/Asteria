@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
-import objets.Planete;
-import objets.Planete.Texture;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
@@ -57,7 +55,7 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().arreterHorloge();
 		menuPause.setVisible(true);
-		//menuPause.toFront();
+		menuPause.toFront();
 	}
 	
 	public void cacherMenuPause()

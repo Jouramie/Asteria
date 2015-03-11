@@ -1,11 +1,8 @@
 package controleur;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import vue.VueMenu;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import vue.VueMenu;
 
 /**
  * Contrôleur pour le menu principal

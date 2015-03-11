@@ -4,10 +4,9 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import modele.Corps;
 import utils.Vecteur;
 import vue.Dessinable;
-import modele.Corps;
 
 /**
  * Classe de base pour les objets spatiaux.
