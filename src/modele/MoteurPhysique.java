@@ -34,8 +34,8 @@ public class MoteurPhysique
 			d = 0.00001;
 		}
 		
-		Vecteur transMin = deltaS.multiplication((corps1.getRayonCollision()
-				+ corps2.getRayonCollision() - d)
+		Vecteur transMin = deltaS.multiplication((corps1.getRayon()
+				+ corps2.getRayon() - d)
 				/ d);
 		
 		double im1 = 1.0 / corps1.getMasse();
@@ -112,8 +112,8 @@ public class MoteurPhysique
 									.soustraire(corps.get(j).getPosition());
 							double distance = diff.getNorme();
 							double sommeRayons = corps.get(i)
-									.getRayonCollision()
-									+ corps.get(j).getRayonCollision();
+									.getRayon()
+									+ corps.get(j).getRayon();
 							
 							if (distance < sommeRayons)
 							{

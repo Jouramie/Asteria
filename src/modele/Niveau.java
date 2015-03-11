@@ -12,7 +12,7 @@ public class Niveau
 {
 	private List<Corps> corps;
 	
-	private List<String> objectifs;
+	private Objectif objectif;
 	
 	private Vecteur pointDepart;
 	
@@ -23,12 +23,12 @@ public class Niveau
 	/**
 	 * Constructeur servant à initialiser le niveau.
 	 * @param nouveauxCorps Les corps à mettre dans le niveau,
-	 * @param nouveauxObjectifs Les objectifs à mettre dans le niveau.
+	 * @param nouvelObjectif L'objectif à mettre dans le niveau.
 	 * @param nouveauPointDepart Le point de départ du vaisseau.
 	 * @param nouveauTitreNiveau Le titre du niveau.
 	 * @param nouvelleVitesseDepart La vitesse du vaisseau au point de départ.
 	 */
-	public Niveau(List<Corps> nouveauxCorps, List<String> nouveauxObjectifs, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
+	public Niveau(List<Corps> nouveauxCorps, Objectif objectif, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
 	{
 		corps = new ArrayList<>();
 		
@@ -40,15 +40,7 @@ public class Niveau
 			}
 		}
 		
-		objectifs = new ArrayList<>();
-		
-		if(nouveauxObjectifs != null)
-		{
-			for(String s : nouveauxObjectifs)
-			{
-				ajouterObjectif(s);
-			}
-		}
+		setObjectif(objectif);
 		
 		setPointDepart(nouveauPointDepart);
 		
@@ -70,18 +62,6 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à ajouter un objectif dans le niveau.
-	 * @param nouvelObjectif Un nouvel objectif.
-	 */
-	public void ajouterObjectif(String nouvelObjectif)
-	{
-		if(nouvelObjectif != null)
-		{
-			objectifs.add(nouvelObjectif);
-		}
-	}
-	
-	/**
 	 * Retourne la liste de corps.
 	 * @return La liste de corps.
 	 */
@@ -91,12 +71,12 @@ public class Niveau
 	}
 	
 	/**
-	 * Retourne la liste d'objectifs.
-	 * @return La liste d'objectifs.
+	 * Retourne l'objectif.
+	 * @return L'objectif.
 	 */
-	public List<String> getObjectifs()
+	public Objectif getObjectif()
 	{
-		return objectifs;
+		return objectif;
 	}
 	
 	/**
@@ -124,6 +104,18 @@ public class Niveau
 	public Vecteur getVitesseDepart()
 	{
 		return vitesseDepart;
+	}
+	
+	/**
+	 * Sert à modifier l'objectif.
+	 * @param nouvelObjectif Le nouvel objectif.
+	 */
+	public void setObjectif(Objectif nouvelObjectif)
+	{
+		if(nouvelObjectif != null)
+		{
+			objectif = nouvelObjectif;
+		}
 	}
 	
 	/**

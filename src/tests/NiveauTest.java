@@ -1,12 +1,19 @@
 package tests;
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import modele.Corps;
 import modele.Niveau;
+import modele.Objectif;
+import modele.ObjectifRayon;
 import objets.Planete;
+import objets.Vaisseau;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import utils.Vecteur;
 /**
  * Classe de tests pour Niveau.
@@ -19,7 +26,7 @@ public class NiveauTest
 	
 	private Niveau niveau;
 	
-	private List<String> objectifs;
+	private Objectif objectif;
 	
 	private Vecteur pointDepart;
 	
@@ -33,14 +40,12 @@ public class NiveauTest
 		corps = new ArrayList<>();
 		corps.add(new Planete(1000, 100, 100, 15));
 		
-		objectifs = new ArrayList<>();
-		objectifs.add("Objectif 1");
-		
+		objectif = new ObjectifRayon(new Vaisseau(0, 100, 0, new Vecteur(50, 50), new Vecteur(10, 0)), new Vecteur(1000, 1000), 20);
 		pointDepart = new Vecteur(10, 10);
 		titreNiveau = "Niveau 1";
 		vitesseDepart = new Vecteur(10, 0);
 		
-		niveau = new Niveau(corps, objectifs, pointDepart, titreNiveau, vitesseDepart);
+		niveau = new Niveau(corps, objectif, pointDepart, titreNiveau, vitesseDepart);
 	}
 
 	@Test
@@ -54,25 +59,15 @@ public class NiveauTest
 	}
 
 	@Test
-	public void testAjouterObjectif()
-	{
-		assertEquals(niveau.getObjectifs().size(), 1);
-		niveau.ajouterObjectif("Objectif 2");
-		assertEquals(niveau.getObjectifs().size(), 2);
-		niveau.ajouterObjectif(null);
-		assertEquals(niveau.getObjectifs().size(), 2);
-	}
-
-	@Test
 	public void testGetCorps()
 	{
 		assertEquals(niveau.getCorps(), corps);
 	}
 
 	@Test
-	public void testGetObjectifs()
+	public void testGetObjectif()
 	{
-		assertEquals(niveau.getObjectifs(), objectifs);
+		assertEquals(niveau.getObjectif(), objectif);
 	}
 
 	@Test
@@ -91,6 +86,16 @@ public class NiveauTest
 	public void testGetVitesseDepart()
 	{
 		assertEquals(niveau.getVitesseDepart(), vitesseDepart);
+	}
+	
+	@Test
+	public void testSetObjectif()
+	{
+		assertEquals(niveau.getObjectif(), objectif);
+		niveau.setObjectif(new ObjectifRayon(new Vaisseau(0, 100, 0, new Vecteur(50, 50), new Vecteur(10, 0)), new Vecteur(1500, 1500), 20));
+		assertNotEquals(niveau.getObjectif(), objectif);
+		niveau.setObjectif(null);
+		assertNotEquals(niveau.getObjectif(), null);
 	}
 
 	@Test

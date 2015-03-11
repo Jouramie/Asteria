@@ -120,5 +120,10 @@ public interface Corps
 	 * 
 	 * @return Rayon de la taille d'un objet autour de son point central.
 	 */
-	int getRayonCollision();
+	double getRayon();
+	
+	/**
+	 * Remet les corps à leur position et leur vitesse de départ.
+	 */
+	void reset();
 }
