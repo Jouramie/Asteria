@@ -13,7 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ ContPrincipalTest.class, PlaneteTest.class, VecteurTest.class,
 		ObjetSpatialTest.class, VaisseauTest.class, CameraTest.class,
-		MoteurPhysiqueTest.class, VaisseauJoueurTest.class })
+		MoteurPhysiqueTest.class, VaisseauJoueurTest.class, NiveauTest.class })
 public class AllTests
 {
 	
