@@ -27,6 +27,8 @@ public class Vaisseau extends ObjetSpatial
 	private boolean premierGetNoeud;
 	protected Node noeud;
 	
+	protected double carburantDepart;
+	
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
 	 * 
@@ -43,21 +45,11 @@ public class Vaisseau extends ObjetSpatial
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
-	public Vaisseau(double pPuissanceMax, Vecteur pDirection, double pMasse,
+	public Vaisseau(double pPuissanceMax, double pMasse,
 			double pCapaciteCarburant, Vecteur pPosition, Vecteur pVitesse)
 	{
 		super(pMasse, pPosition, false, pVitesse);
-		setPuissanceMax(pPuissanceMax);
-		setPuissance(pPuissanceMax);
-		if (pDirection == null)
-		{
-			direction = new Vecteur();
-		}
-		else
-			direction = pDirection;
-		capaciteCarburant = pCapaciteCarburant;
-		carburant = new SimpleDoubleProperty(capaciteCarburant);
-		premierGetNoeud = true;
+		init(pPuissanceMax,pCapaciteCarburant);
 	}
 	
 	/**
@@ -78,19 +70,19 @@ public class Vaisseau extends ObjetSpatial
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
-	public Vaisseau(double pPuissanceMax, Vecteur pDirection, double pMasse,
+	public Vaisseau(double pPuissanceMax, double pMasse,
 			double pCapaciteCarburant, double pPositionX, double pPositionY,
 			Vecteur pVitesse)
 	{
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
+		init(pPuissanceMax, pCapaciteCarburant);
+	}
+	
+	private void init(double pPuissanceMax, double pCapaciteCarburant){
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
-		if (pDirection == null)
-		{
-			direction = new Vecteur();
-		}
-		else
-			capaciteCarburant = pCapaciteCarburant;
+		direction = new Vecteur();
+		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
 		premierGetNoeud = true;
 	}

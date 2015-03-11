@@ -98,10 +98,7 @@ public class ContJeu implements Controleur
 		case R:
 			if (!menuPause.isVisible())
 			{
-				recommencer();
-			}
-			else
-			{
+				System.out.println("Recommencer");
 				recommencer();
 			}
 			break;
@@ -168,6 +165,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void retour()
 	{
+		ContPrincipal.getInstance().enleverCorps(vaisseauJoueur);
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 	

@@ -52,7 +52,16 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public ObjetSpatial(double pMasse, Vecteur pPosition, boolean pStatique,
 			Vecteur pVitesse)
 	{
-		init(pMasse, pPosition.getX(), pPosition.getY(), pStatique, pVitesse);
+		if (pPosition == null)
+		{
+			init(pMasse, 0, 0, pStatique,
+					pVitesse);
+		}
+		else
+		{
+			init(pMasse, pPosition.getX(), pPosition.getY(), pStatique,
+					pVitesse);
+		}
 	}
 	
 	/**
@@ -87,8 +96,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		positionY = new SimpleDoubleProperty(pPositionY);
 		positionYDepart = pPositionY;
 		setStatique(pStatique);
-		setVitesse(pVitesse);
-		vitesseDepart = pVitesse.clone();
+		setVitesse(pVitesse, true);
 	}
 	
 	public double getMasse()
@@ -251,7 +259,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 				vitesseDepart = new Vecteur();
 			}
 			else
-				vitesseDepart = pVitesse;
+				vitesseDepart = pVitesse.clone();
 		setVitesse(pVitesse);
 	}
 	
@@ -272,6 +280,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void reset()
 	{
-		
+		setPositionX(positionXDepart);
+		setPositionY(positionYDepart);
+		setVitesse(vitesseDepart);
 	}
 }

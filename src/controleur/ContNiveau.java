@@ -170,7 +170,7 @@ public class ContNiveau implements Controleur
 		{
 			if (choice.getValue() == "Vaisseau")
 			{
-				u = new Vaisseau(0, null, 0, 0, pos.getX(), pos.getY(), null);
+				u = new Vaisseau(0, 0, 0, pos.getX(), pos.getY(), null);
 			}
 			else if (choice.getValue() == "Planète")
 			{

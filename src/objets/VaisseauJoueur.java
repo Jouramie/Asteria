@@ -16,7 +16,7 @@ public class VaisseauJoueur extends Vaisseau
 			double pMasse, double pCapaciteCarburant, Vecteur pPosition,
 			Vecteur pVitesse)
 	{
-		super(pPuissanceMax, pDirection, pMasse, pCapaciteCarburant, pPosition,
+		super(pPuissanceMax, pMasse, pCapaciteCarburant, pPosition,
 				pVitesse);
 		initDefaut();
 	}
@@ -25,7 +25,7 @@ public class VaisseauJoueur extends Vaisseau
 			double pMasse, double pCapaciteCarburant, double pPositionX,
 			double pPositionY, Vecteur pVitesse)
 	{
-		super(pPuissanceMax, pDirection, pMasse, pCapaciteCarburant,
+		super(pPuissanceMax, pMasse, pCapaciteCarburant,
 				pPositionX, pPositionY, pVitesse);
 		initDefaut();
 	}
