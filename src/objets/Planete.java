@@ -114,11 +114,11 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Utilisez plutôt getRayon()
 	 */
-	@Deprecated
+	/*@Deprecated
 	public int getRayonCollision()
 	{
 		return 100;
-	}
+	}*/
 	
 	public Node getNoeud()
 	{

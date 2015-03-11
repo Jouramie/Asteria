@@ -7,7 +7,7 @@ public class Niveau
 {
 	private List<Corps> corps;
 	
-	private List<String> objectifs;
+	private Objectif objectif;
 	
 	private Vecteur pointDepart;
 	
@@ -15,8 +15,10 @@ public class Niveau
 	
 	private Vecteur vitesseDepart;
 	
-	public Niveau(List<Corps> nouveauxCorps, List<String> nouveauxObjectifs, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
+	public Niveau(List<Corps> nouveauxCorps, Objectif objectif, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
 	{
+		corps = new ArrayList<>();
+		
 		if(nouveauxCorps != null)
 		{
 			for(Corps c : nouveauxCorps)
@@ -24,22 +26,8 @@ public class Niveau
 				ajouterCorps(c);
 			}
 		}
-		else
-		{
-			corps = new ArrayList<>();
-		}
 		
-		if(nouveauxObjectifs != null)
-		{
-			for(String s : nouveauxObjectifs)
-			{
-				ajouterObjectif(s);
-			}
-		}
-		else
-		{
-			objectifs = new ArrayList<>();
-		}
+		setObjectif(objectif);
 		
 		setPointDepart(nouveauPointDepart);
 		
@@ -56,11 +44,11 @@ public class Niveau
 		}
 	}
 	
-	public void ajouterObjectif(String nouvelObjectif)
+	public void setObjectif(Objectif nouvelObjectif)
 	{
 		if(nouvelObjectif != null)
 		{
-			objectifs.add(nouvelObjectif);
+			objectif = nouvelObjectif;
 		}
 	}
 	
@@ -69,9 +57,9 @@ public class Niveau
 		return corps;
 	}
 	
-	public List<String> getObjectifs()
+	public Objectif getObjectif()
 	{
-		return objectifs;
+		return objectif;
 	}
 	
 	public Vecteur getPointDepart()

@@ -186,9 +186,9 @@ public class ContNiveau implements Controleur
 			for (Corps c : ContPrincipal.getInstance().getCorps())
 			{
 				if (Math.abs(c.getPosition().getX() - pos.getX()) < c
-						.getRayonCollision()
+						.getRayon()
 						&& Math.abs(c.getPosition().getY() - pos.getY()) < c
-								.getRayonCollision())
+								.getRayon())
 				{
 					
 				}

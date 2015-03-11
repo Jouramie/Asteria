@@ -120,5 +120,5 @@ public interface Corps
 	 * 
 	 * @return Rayon de la taille d'un objet autour de son point central.
 	 */
-	int getRayonCollision();
+	double getRayon();
 }

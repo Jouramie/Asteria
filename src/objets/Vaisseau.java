@@ -215,8 +215,8 @@ public class Vaisseau extends ObjetSpatial
 		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
 	
-	public int getRayonCollision()
+	public double getRayon()
 	{
-		return 20;
+		return 20.0;
 	}
 }
