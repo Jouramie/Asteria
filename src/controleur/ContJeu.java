@@ -120,7 +120,7 @@ public class ContJeu implements Controleur
 			if (!menuPause.isVisible())
 			{
 				System.out.println("Recommencer");
-				recommencer();
+				reset();
 			}
 			break;
 		default:
@@ -206,12 +206,17 @@ public class ContJeu implements Controleur
 		menuVictoire.toFront();
 	}
 
-	@FXML
-	public void recommencer()
-	{
+	public void reset(){
 		for(Corps c : ContPrincipal.getInstance().getCorps()){
 			c.reset();
 		}
+	}
+	
+	@FXML
+	public void recommencer()
+	{
+		reset();
+		retourjeu();
 	}
 	
 	@FXML
