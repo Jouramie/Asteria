@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="893.0" prefWidth="1277.0" styleClass="borderpane" stylesheets="@Screen.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <Button fx:id="play" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="71.0" prefWidth="157.0" text="Jouer">
+         <textFill>
+            <LinearGradient endX="0.638095238095238" endY="1.0" startY="0.4095238095238095">
+               <stops>
+                  <Stop color="#008011" />
+                  <Stop color="#ff9900" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="2">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="3">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="4">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="5">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="6">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="7">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="8">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="9">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="10">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
