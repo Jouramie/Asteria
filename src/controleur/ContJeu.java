@@ -64,9 +64,17 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		
 		ArrayList<Corps> corps = new ArrayList<Corps>();
-		Planete p = new Planete(6e2, 100, 100, 10);
+		Planete p = new Planete(6e11, 400, 400, 100);
 		p.setTexture(Texture.RAYEE_ROUGE);
 		corps.add(p);
+		Planete p2 = new Planete(6e15, 0, 600, 100);
+		p2.setTexture(Texture.RAYEE_ROUGE);
+		corps.add(p);
+		Planete p3 = new Planete(6e15, 1000, 400, 100);
+		p3.setTexture(Texture.RAYEE_ROUGE);
+		corps.add(p);
+		corps.add(p2);
+		corps.add(p3);
 		
 		Objectif obj = new ObjectifRayon(vaisseauJoueur, new Vecteur(100, 0), 20);
 		Niveau niv = new Niveau(corps, obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
@@ -119,7 +127,6 @@ public class ContJeu implements Controleur
 		case R:
 			if (!menuPause.isVisible())
 			{
-				System.out.println("Recommencer");
 				reset();
 			}
 			break;
@@ -164,9 +171,12 @@ public class ContJeu implements Controleur
 
 	public void afficherMenuPause()
 	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuPause.setVisible(true);
-		menuPause.toFront();
+		if(!objectifAtteint)
+		{
+			ContPrincipal.getInstance().arreterHorloge();
+			menuPause.setVisible(true);
+			menuPause.toFront();
+		}
 	}
 	
 	public void cacherMenuPause()
