@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 
 /**
  * Contrôleur pour le menu principal
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -34,7 +35,7 @@ public class ContMenu implements Controleur
 	{
 		ContPrincipal.getInstance().afficherVue(new VueMenu());
 	}
-
+	
 	/**
 	 * Inutile pour l'instant.
 	 */
@@ -42,7 +43,7 @@ public class ContMenu implements Controleur
 	{
 		
 	}
-
+	
 	/**
 	 * Callback lorsque le joueur veut quitter.
 	 */

@@ -12,6 +12,7 @@ import utils.Vecteur;
 public class VaisseauJoueurTest
 {
 	VaisseauJoueur v1, v2, v4;
+	
 	@Before
 	public void testVaisseauJoueur()
 	{
@@ -20,7 +21,8 @@ public class VaisseauJoueurTest
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
 		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
-		v2 = new VaisseauJoueur(-10, new Vecteur(), -1, -1, new Vecteur(), new Vecteur(10, 0));
+		v2 = new VaisseauJoueur(-10, new Vecteur(), -1, -1, new Vecteur(),
+				new Vecteur(10, 0));
 		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
@@ -32,7 +34,7 @@ public class VaisseauJoueurTest
 		assertTrue(v4.getPositionX() == 0 && v4.getPositionY() == 0);
 		assertTrue(v4.getVitesse().getX() == 0 && v4.getVitesse().getY() == 0);
 	}
-
+	
 	@Test
 	public void testGetForceExt()
 	{
@@ -46,23 +48,14 @@ public class VaisseauJoueurTest
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 	}
 	
-/*	@Test
-	public void testMaj()
-	{
-		assertEquals(135, v2.getNoeud().getRotate(), 0.0001);
-		v2.maj();
-		assertEquals(135, v2.getNoeud().getRotate(), 0.0001);
-		v2.tournerGauche();
-		v2.maj();
-		assertEquals(494, v2.getNoeud().getRotate(), 0.0001);
-		v2.tournerDroite();
-		v2.maj();
-		assertEquals(494, v2.getNoeud().getRotate(), 0.0001);
-		v2.tournerGauche();
-		v2.maj();
-		assertEquals(495, v2.getNoeud().getRotate(), 0.0001);
-		v2.tournerDroite();
-		v2.maj();
-		assertEquals(495, v2.getNoeud().getRotate(), 0.0001);
-	}*/
+	/*
+	 * @Test public void testMaj() { assertEquals(135,
+	 * v2.getNoeud().getRotate(), 0.0001); v2.maj(); assertEquals(135,
+	 * v2.getNoeud().getRotate(), 0.0001); v2.tournerGauche(); v2.maj();
+	 * assertEquals(494, v2.getNoeud().getRotate(), 0.0001); v2.tournerDroite();
+	 * v2.maj(); assertEquals(494, v2.getNoeud().getRotate(), 0.0001);
+	 * v2.tournerGauche(); v2.maj(); assertEquals(495,
+	 * v2.getNoeud().getRotate(), 0.0001); v2.tournerDroite(); v2.maj();
+	 * assertEquals(495, v2.getNoeud().getRotate(), 0.0001); }
+	 */
 }

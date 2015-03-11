@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,10 @@ import objets.Vaisseau;
 import org.junit.Before;
 import org.junit.Test;
 import utils.Vecteur;
+
 /**
  * Classe de tests pour MoteurPhysique.
+ * 
  * @author Équipe Bolduc
  */
 public class MoteurPhysiqueTest
@@ -25,18 +28,21 @@ public class MoteurPhysiqueTest
 		moteur = new MoteurPhysique();
 		
 		corps1 = new ArrayList<>();
-		vaisseau1 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(0, 130), new Vecteur(10, 0));
+		vaisseau1 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(0,
+				130), new Vecteur(10, 0));
 		corps1.add(vaisseau1);
 		corps1.add(new Planete(15707.96327, new Vecteur(0, 0), 100));
 		corps1.add(null);
 		
 		corps2 = new ArrayList<>();
-		vaisseau2 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(65, 10), new Vecteur(10, 0));
+		vaisseau2 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(65,
+				10), new Vecteur(10, 0));
 		corps2.add(vaisseau2);
 		corps2.add(new Planete(100, new Vecteur(210, 10), 100));
 		
 		corps3 = new ArrayList<>();
-		vaisseau3 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(65, 10), new Vecteur(10, 0));
+		vaisseau3 = new Vaisseau(0, new Vecteur(1, 0), 100, 0, new Vecteur(65,
+				10), new Vecteur(10, 0));
 		corps3.add(new Planete(100, new Vecteur(210, 10), 100));
 		corps3.add(vaisseau3);
 	}

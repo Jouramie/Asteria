@@ -1,17 +1,17 @@
 package controleur;
-		
-		import java.io.IOException;
-		import java.util.LinkedList;
-		import java.util.List;
-		
-		import javafx.application.Platform;
-		import javafx.concurrent.Task;
-		import javafx.fxml.FXMLLoader;
-		import javafx.geometry.Rectangle2D;
-		import javafx.scene.Scene;
-		import javafx.scene.input.KeyCombination;
-		import javafx.scene.layout.BorderPane;
-		import javafx.stage.Screen;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modele.Corps;
 import modele.MoteurPhysique;
@@ -113,7 +113,9 @@ public class ContPrincipal
 	
 	/**
 	 * Charge une vue FXML en mode fenêtré.
-	 * @param v Vue à charger.
+	 * 
+	 * @param v
+	 *            Vue à charger.
 	 */
 	public void afficherVue(Vue v)
 	{
@@ -122,31 +124,38 @@ public class ContPrincipal
 	
 	/**
 	 * Charge une vue FXML et affiche la fenêtre.
-	 * @param v Vue à charger.
-	 * @param fullscreen Détermine si la vue doit être plein écran.
+	 * 
+	 * @param v
+	 *            Vue à charger.
+	 * @param fullscreen
+	 *            Détermine si la vue doit être plein écran.
 	 */
 	public void afficherVue(Vue v, boolean fullscreen)
 	{
 		if (v != null)
-		{		
+		{
 			try
 			{
 				vueChargee = false;
 				vue = v;
 				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource(v.getFXML()));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(
+						v.getFXML()));
 				loader.setController(cont);
-				root = (BorderPane)loader.load();
+				root = (BorderPane) loader.load();
 				
 				Scene scene = null;
-				if(fullscreen)
+				if (fullscreen)
 				{
-					Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-					scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+					Rectangle2D screenBounds = Screen.getPrimary()
+							.getVisualBounds();
+					scene = new Scene(root, screenBounds.getWidth(),
+							screenBounds.getHeight());
 				}
 				else
 				{
-					scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+					scene = new Scene(root, root.getPrefWidth(),
+							root.getPrefHeight());
 				}
 				
 				stage.setScene(scene);
@@ -177,17 +186,17 @@ public class ContPrincipal
 	 */
 	public void update(double time)
 	{
-		if(horlogeDemarree)
+		if (horlogeDemarree)
 		{
 			phys.update(corps, time);
 			
-			if(cont != null && contCharge)
+			if (cont != null && contCharge)
 			{
 				cont.update(time);
 			}
 		}
 		
-		if(vue != null && vueChargee)
+		if (vue != null && vueChargee)
 		{
 			vue.dessiner(time);
 		}

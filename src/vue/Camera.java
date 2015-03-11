@@ -4,6 +4,7 @@ import utils.Vecteur;
 
 /**
  * Classe responsable de la caméra.
+ * 
  * @author EquBoldus
  * @version 1.0
  */
@@ -24,9 +25,9 @@ public class Camera
 	private double targetFacteur;
 	
 	/**
-	 * Constructeur de la caméra.
-	 * La largeur et la hauteur de la fenêtre sont de 0 par défaut.
-	 * Elles devraient être modifié afin de faire fonctionner la caméra.
+	 * Constructeur de la caméra. La largeur et la hauteur de la fenêtre sont de
+	 * 0 par défaut. Elles devraient être modifié afin de faire fonctionner la
+	 * caméra.
 	 */
 	public Camera()
 	{
@@ -41,9 +42,12 @@ public class Camera
 	}
 	
 	/**
-	 * Constructeur prenant 
-	 * @param pLargeur Largeur de la fenêtre.
-	 * @param pHauteur Hauteur de la fenêtre.
+	 * Constructeur prenant
+	 * 
+	 * @param pLargeur
+	 *            Largeur de la fenêtre.
+	 * @param pHauteur
+	 *            Hauteur de la fenêtre.
 	 */
 	public Camera(double pLargeur, double pHauteur)
 	{
@@ -53,17 +57,20 @@ public class Camera
 	
 	/**
 	 * Ajuste la grandeur de la fenêtre.
-	 * @param pLargeur Largeur de la fenêtre.
-	 * @param pHauteur Hauteur de la fenêtre.
+	 * 
+	 * @param pLargeur
+	 *            Largeur de la fenêtre.
+	 * @param pHauteur
+	 *            Hauteur de la fenêtre.
 	 */
 	public void setGrandeurs(double pLargeur, double pHauteur)
 	{
-		if(pLargeur > 0)
+		if (pLargeur > 0)
 		{
 			largeur = pLargeur;
 		}
 		
-		if(pHauteur > 0)
+		if (pHauteur > 0)
 		{
 			hauteur = pHauteur;
 		}
@@ -71,8 +78,11 @@ public class Camera
 	
 	/**
 	 * Déplace la caméra à l'endroit spécifier.
-	 * @param pX Position X.
-	 * @param pY Position Y.
+	 * 
+	 * @param pX
+	 *            Position X.
+	 * @param pY
+	 *            Position Y.
 	 */
 	public void deplacer(double pX, double pY)
 	{
@@ -81,15 +91,15 @@ public class Camera
 	}
 	
 	/**
-	 * Zoom la caméra selon la facteur choisi.
-	 * 1.0 signifie 1px vaut 1m.
-	 * 2.0 signifie 1px vaut 2m.
-	 * 0.5 signifie 1px vaut 0.5m.
-	 * @param pFacteur Facteur de zoom.
+	 * Zoom la caméra selon la facteur choisi. 1.0 signifie 1px vaut 1m. 2.0
+	 * signifie 1px vaut 2m. 0.5 signifie 1px vaut 0.5m.
+	 * 
+	 * @param pFacteur
+	 *            Facteur de zoom.
 	 */
 	public void zoomer(double pFacteur)
 	{
-		if(pFacteur > 0)
+		if (pFacteur > 0)
 		{
 			targetFacteur = pFacteur;
 		}
@@ -97,8 +107,11 @@ public class Camera
 	
 	/**
 	 * Transforme un point de la fenêtre dans le système de référence des corps.
-	 * @param vec Point dans l'espace de la fenêtre.
-	 * @return Vecteur représentant le point de le système de référence des corps.
+	 * 
+	 * @param vec
+	 *            Point dans l'espace de la fenêtre.
+	 * @return Vecteur représentant le point de le système de référence des
+	 *         corps.
 	 */
 	public Vecteur localToGlobal(Vecteur vec)
 	{
@@ -115,6 +128,7 @@ public class Camera
 	
 	/**
 	 * Retourne la translation qui doit être appliquée sur les corps.
+	 * 
 	 * @return Vecteur de transformation.
 	 */
 	public Vecteur getTranslation()
@@ -132,6 +146,7 @@ public class Camera
 	
 	/**
 	 * Retourne le facteur de zoom.
+	 * 
 	 * @return Facteur de zoom.
 	 */
 	public double getFacteur()
@@ -141,7 +156,9 @@ public class Camera
 	
 	/**
 	 * Met à jour la caméra. Sert à créer des transitions fluides.
-	 * @param dt Temps écoulé depuis le dernier frame.
+	 * 
+	 * @param dt
+	 *            Temps écoulé depuis le dernier frame.
 	 */
 	public void update(double dt)
 	{
@@ -153,10 +170,15 @@ public class Camera
 	
 	/**
 	 * Crée une courbe pseudo-bézier pour les transitions.
-	 * @param dt Temps écoulé depuis le dernier frame.
-	 * @param valeur Valeur actuelle.
-	 * @param cible Valeur cible.
-	 * @param vitesse Vitesse à laquelle il faut atteindre la valeur.
+	 * 
+	 * @param dt
+	 *            Temps écoulé depuis le dernier frame.
+	 * @param valeur
+	 *            Valeur actuelle.
+	 * @param cible
+	 *            Valeur cible.
+	 * @param vitesse
+	 *            Vitesse à laquelle il faut atteindre la valeur.
 	 * @return Nouvelle valeur actuelle.
 	 */
 	private double bezier(double dt, double valeur, double cible, double vitesse)
@@ -164,12 +186,12 @@ public class Camera
 		double resultat = valeur;
 		
 		double diff = cible - valeur;
-		if(diff > 0)
+		if (diff > 0)
 		{
 			resultat += Math.min(diff, vitesse * diff * dt);
 		}
 		
-		else if(diff < 0)
+		else if (diff < 0)
 		{
 			resultat -= Math.max(diff, vitesse * -diff * dt);
 		}

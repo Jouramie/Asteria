@@ -14,6 +14,7 @@ import controleur.ContPrincipal;
 
 /**
  * Vue principale du jeu.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -39,13 +40,14 @@ public class VueJeu implements Vue
 	
 	/**
 	 * Retourne le chemin vers le fichier FXML de la vue.
+	 * 
 	 * @return Chemin vers FXML.
 	 */
 	public String getFXML()
 	{
 		return "/res/Jeu.fxml";
 	}
-
+	
 	/**
 	 * Ajoute tous les corps dessinables dans la vue.
 	 */
@@ -60,11 +62,11 @@ public class VueJeu implements Vue
 	
 	public void initialiserCorps()
 	{
-		Pane p = (Pane)borderPane.lookup("#pane");
+		Pane p = (Pane) borderPane.lookup("#pane");
 		p.getChildren().remove(noeud);
 		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
-		if(listTemp.size() == 0)
+		if (listTemp.size() == 0)
 		{
 			return;
 		}
@@ -74,22 +76,22 @@ public class VueJeu implements Vue
 		
 		for (Corps c : listTemp)
 		{
-		    if(c instanceof Dessinable)
-		    {
-		    	liste.add((Dessinable) c);
-		    }
+			if (c instanceof Dessinable)
+			{
+				liste.add((Dessinable) c);
+			}
 		}
 		
 		for (Dessinable c : liste)
 		{
 			Node n = c.getNoeud();
 			
-			if(n != null)
+			if (n != null)
 			{
-				Corps corps = (Corps)c;
+				Corps corps = (Corps) c;
 				n.translateXProperty().bind(corps.getPositionXProperty());
 				n.translateYProperty().bind(corps.getPositionYProperty());
-			    noeud.getChildren().add(n);
+				noeud.getChildren().add(n);
 			}
 		}
 		
@@ -97,7 +99,7 @@ public class VueJeu implements Vue
 		noeud.getTransforms().add(trans);
 		p.getChildren().add(noeud);
 	}
-
+	
 	/**
 	 * Met à jour la caméra.
 	 */
@@ -113,7 +115,8 @@ public class VueJeu implements Vue
 		scale.setX(facteur);
 		scale.setY(facteur);
 		
-		for(Dessinable d : liste){
+		for (Dessinable d : liste)
+		{
 			d.maj();
 		}
 		

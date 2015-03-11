@@ -15,13 +15,15 @@ import utils.Vecteur;
  * @author EquBolduc
  * @version 1.0
  */
-public class PlaneteTest {
+public class PlaneteTest
+{
 	double d = 0.001;
-
+	
 	Planete p1, p2, p3, p4, p5, p6;
-
+	
 	@Before
-	public void beforePlaneteDoubleVecteur() {
+	public void beforePlaneteDoubleVecteur()
+	{
 		p1 = new Planete(0, null, 0);
 		assertEquals(Planete.MASSE_DEFAUT, p1.getMasse(), d);
 		assertEquals(0, p1.getPositionX(), d);
@@ -35,9 +37,10 @@ public class PlaneteTest {
 		assertEquals(50, p4.getPositionX(), d);
 		assertEquals(40, p4.getPositionY(), d);
 	}
-
+	
 	@Before
-	public void beforePlaneteDoubleDoubleDouble() {
+	public void beforePlaneteDoubleDoubleDouble()
+	{
 		p3 = new Planete(60, 50, 40, 30);
 		assertEquals(60, p3.getMasse(), d);
 		assertEquals(50, p3.getPositionX(), d);
@@ -51,9 +54,10 @@ public class PlaneteTest {
 		assertEquals(300, p6.getPositionX(), d);
 		assertEquals(300, p6.getPositionY(), d);
 	}
-
+	
 	@Test
-	public void testSetRayon() {
+	public void testSetRayon()
+	{
 		p1.setRayon(10);
 		assertEquals(10, p1.getRayon(), d);
 		p2.setRayon(100);
@@ -67,9 +71,10 @@ public class PlaneteTest {
 		p6.setRayon(0);
 		assertEquals(0, p6.getRayon(), d);
 	}
-
+	
 	@Test
-	public void testGetRayon() {
+	public void testGetRayon()
+	{
 		assertEquals(0, p1.getRayon(), d);
 		assertEquals(Planete.RAYON_DEFAUT, p2.getRayon(), d);
 		assertEquals(100, p4.getRayon(), d);
@@ -79,7 +84,8 @@ public class PlaneteTest {
 	}
 	
 	@Test
-	public void testSetTexture(){
+	public void testSetTexture()
+	{
 		p1.setTexture(Texture.RAYEE_ROUGE);
 		assertEquals(p1.getTexture().name(), Texture.RAYEE_ROUGE.name());
 		p2.setTexture(null);
@@ -87,11 +93,12 @@ public class PlaneteTest {
 	}
 	
 	@Test
-	public void testGetTexture(){
+	public void testGetTexture()
+	{
 		p3.setTexture(Texture.RAYEE_ROUGE);
 		assertEquals(p3.getTexture().name(), Texture.RAYEE_ROUGE.name());
 		p4.setTexture(null);
 		assertEquals(p4.getTexture().name(), Planete.TEXTURE_DEFAUT.name());
 	}
-
+	
 }

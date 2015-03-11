@@ -8,6 +8,7 @@ import utils.Vecteur;
 
 /**
  * Classe de test pour Vaisseau.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -23,18 +24,20 @@ public class VaisseauTest
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
 		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
-		v2 = new Vaisseau(-10, new Vecteur(), -1, -1, new Vecteur(), new Vecteur());
+		v2 = new Vaisseau(-10, new Vecteur(), -1, -1, new Vecteur(),
+				new Vecteur());
 		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
 		assertTrue(v2.getVitesse().getX() == 0 && v2.getVitesse().getY() == 0);
-		v3 = new Vaisseau(100, new Vecteur(1, 0), 100, 100, new Vecteur(150, 125), new Vecteur(10, 10));
+		v3 = new Vaisseau(100, new Vecteur(1, 0), 100, 100, new Vecteur(150,
+				125), new Vecteur(10, 10));
 		assertTrue(v3.getPuissanceMax() == 100);
 		assertTrue(v3.getMasse() == 100);
 		assertTrue(v3.getPositionX() == 150 && v3.getPositionY() == 125);
 		assertTrue(v3.getVitesse().getX() == 10 && v3.getVitesse().getY() == 10);
 	}
-
+	
 	@Before
 	public void testVaisseauDoubleVecteurDoubleDoubleDoubleDoubleVecteur()
 	{
@@ -46,9 +49,10 @@ public class VaisseauTest
 		v5 = new Vaisseau(-10, new Vecteur(), -1, -1, -1, -1, new Vecteur());
 		assertTrue(v5.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
 		assertTrue(v5.getMasse() == Vaisseau.MASSE_DEFAUT);
-		assertTrue(v5.getPositionX() == -1 && v5.getPositionY() == -1 );
+		assertTrue(v5.getPositionX() == -1 && v5.getPositionY() == -1);
 		assertTrue(v5.getVitesse().getX() == 0 && v5.getVitesse().getY() == 0);
-		v6 = new Vaisseau(100, new Vecteur(1, 0), 100, 100, 150, 125, new Vecteur(10, 10));
+		v6 = new Vaisseau(100, new Vecteur(1, 0), 100, 100, 150, 125,
+				new Vecteur(10, 10));
 		assertTrue(v6.getPuissanceMax() == 100);
 		assertTrue(v6.getMasse() == 100);
 		assertTrue(v6.getPositionX() == 150 && v6.getPositionY() == 125);
@@ -68,16 +72,12 @@ public class VaisseauTest
 		assertTrue(v1.isStatique());
 	}
 	
-/*	@Test
-	public void testGetNoeud()
-	{
-		assertTrue(v1.getNoeud() != null);
-		assertTrue(v2.getNoeud() != null);
-		assertTrue(v3.getNoeud() != null);
-		assertTrue(v4.getNoeud() != null);
-		assertTrue(v5.getNoeud() != null);
-		assertTrue(v6.getNoeud() != null);
-	}*/
+	/*
+	 * @Test public void testGetNoeud() { assertTrue(v1.getNoeud() != null);
+	 * assertTrue(v2.getNoeud() != null); assertTrue(v3.getNoeud() != null);
+	 * assertTrue(v4.getNoeud() != null); assertTrue(v5.getNoeud() != null);
+	 * assertTrue(v6.getNoeud() != null); }
+	 */
 	
 	@Test
 	public void testGetPuissanceMax()

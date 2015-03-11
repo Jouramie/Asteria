@@ -14,10 +14,11 @@ import utils.Vecteur;
  * @author EquBolduc
  * @version 1.0
  */
-public class Vaisseau extends ObjetSpatial {
+public class Vaisseau extends ObjetSpatial
+{
 	public final static double CONVERTION_CARBURANT = 1.0;
 	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
-
+	
 	protected double puissanceMax;
 	protected double puissance;
 	protected Vecteur direction;
@@ -25,7 +26,7 @@ public class Vaisseau extends ObjetSpatial {
 	protected DoubleProperty carburant;
 	private boolean premierGetNoeud;
 	protected Node noeud;
-
+	
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
 	 * 
@@ -43,19 +44,22 @@ public class Vaisseau extends ObjetSpatial {
 	 *            la vitesse du vaisseau
 	 */
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection, double pMasse,
-			double pCapaciteCarburant, Vecteur pPosition, Vecteur pVitesse) {
+			double pCapaciteCarburant, Vecteur pPosition, Vecteur pVitesse)
+	{
 		super(pMasse, pPosition, false, pVitesse);
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
-		if (pDirection == null) {
+		if (pDirection == null)
+		{
 			direction = new Vecteur();
-		} else
+		}
+		else
 			direction = pDirection;
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
 		premierGetNoeud = true;
 	}
-
+	
 	/**
 	 * Constructeur de vaisseau, prend des doubles pour la position
 	 * 
@@ -76,40 +80,47 @@ public class Vaisseau extends ObjetSpatial {
 	 */
 	public Vaisseau(double pPuissanceMax, Vecteur pDirection, double pMasse,
 			double pCapaciteCarburant, double pPositionX, double pPositionY,
-			Vecteur pVitesse) {
+			Vecteur pVitesse)
+	{
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
-		if (pDirection == null) {
+		if (pDirection == null)
+		{
 			direction = new Vecteur();
-		} else
+		}
+		else
 			capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
 		premierGetNoeud = true;
 	}
-
-	public double getPuissanceMax() {
+	
+	public double getPuissanceMax()
+	{
 		return puissanceMax;
 	}
-
-	public void setPuissanceMax(double pPuissanceMax) {
+	
+	public void setPuissanceMax(double pPuissanceMax)
+	{
 		if (pPuissanceMax <= 0)
 			puissanceMax = PUISSANCE_MAX_DEFAUT;
 		else
 			puissanceMax = pPuissanceMax;
 	}
-
-	public double getPuissance() {
+	
+	public double getPuissance()
+	{
 		return puissance;
 	}
-
-	public void setPuissance(double pPuissance) {
+	
+	public void setPuissance(double pPuissance)
+	{
 		if (pPuissance <= 0)
 			puissance = PUISSANCE_MAX_DEFAUT;
 		else
 			puissance = pPuissance;
 	}
-
+	
 	// public void setCarburantMax(double pCarburantMax)
 	// {
 	// // TODO story implementation du carburant
@@ -136,64 +147,76 @@ public class Vaisseau extends ObjetSpatial {
 	// {
 	// return masse + CONVERTION_CARBURANT * carburant.get();
 	// }
-
+	
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
 	 */
-	public void setStatique(boolean pStatique) {
+	public void setStatique(boolean pStatique)
+	{
 		statique = pStatique;
 	}
-
+	
 	/**
 	 * Si le vecteur est null, met la vitesse à 0.
 	 */
-	public void setVitesse(Vecteur pVitesse) {
-		if (pVitesse == null) {
+	public void setVitesse(Vecteur pVitesse)
+	{
+		if (pVitesse == null)
+		{
 			vitesse = new Vecteur();
-		} else {
+		}
+		else
+		{
 			vitesse = pVitesse;
 			direction = vitesse.normaliser();
 		}
 	}
-
-	public Vecteur getForceExt() {
+	
+	public Vecteur getForceExt()
+	{
 		return new Vecteur();
 	}
-
-	public Vecteur getDirection() {
+	
+	public Vecteur getDirection()
+	{
 		return direction;
 	}
-
-	private void creeNoeud() {
+	
+	private void creeNoeud()
+	{
 		Image texture = new Image("/res/spaceship.png");
 		ImageView image = new ImageView(texture);
 		image.setFitWidth(40);
 		image.setFitHeight(40);
 		image.setTranslateX(-20);
 		image.setTranslateY(-20);
-
+		
 		Group group = new Group();
 		group.getChildren().add(image);
 		group.setRotate(90);
 		noeud = group;
 	}
-
-	public Node getNoeud() {
-		if (premierGetNoeud) {
+	
+	public Node getNoeud()
+	{
+		if (premierGetNoeud)
+		{
 			creeNoeud();
 			premierGetNoeud = false;
 		}
 		return noeud;
 	}
-
+	
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj() {
+	public void maj()
+	{
 		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
-
-	public int getRayonCollision() {
+	
+	public int getRayonCollision()
+	{
 		return 20;
 	}
 }

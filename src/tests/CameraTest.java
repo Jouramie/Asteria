@@ -10,6 +10,7 @@ import vue.Camera;
 
 /**
  * Classe de test pour la caméra.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -23,14 +24,14 @@ public class CameraTest
 		c1 = new Camera();
 		c2 = new Camera(100, 100);
 	}
-
+	
 	@Test
 	public void testSetGrandeurs()
 	{
 		c1.setGrandeurs(76, 76);
 		c2.setGrandeurs(150, 150);
 	}
-
+	
 	@Test
 	public void testDéplacer()
 	{
@@ -38,7 +39,7 @@ public class CameraTest
 		assertEquals(50, c2.getTranslation().getX(), 0.00001);
 		assertEquals(50, c2.getTranslation().getY(), 0.00001);
 	}
-
+	
 	@Test
 	public void testZoomer()
 	{
@@ -50,7 +51,7 @@ public class CameraTest
 		c1.update(10.0);
 		assertEquals(2.0, c1.getFacteur(), 0.0001);
 	}
-
+	
 	@Test
 	public void testLocalToGlobal()
 	{
@@ -64,7 +65,7 @@ public class CameraTest
 		assertEquals(0.0, v.getX(), 0.00001);
 		assertEquals(0.0, v.getY(), 0.00001);
 	}
-
+	
 	@Test
 	public void testGetTranslation()
 	{
@@ -73,7 +74,7 @@ public class CameraTest
 		assertEquals(50.0, v.getX(), 0.00001);
 		assertEquals(50.0, v.getY(), 0.00001);
 	}
-
+	
 	@Test
 	public void testGetFacteur()
 	{
@@ -83,7 +84,7 @@ public class CameraTest
 		c2.update(10.0);
 		assertEquals(2.0, c2.getFacteur(), 0.0001);
 	}
-
+	
 	@Test
 	public void testUpdate()
 	{

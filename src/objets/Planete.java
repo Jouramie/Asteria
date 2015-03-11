@@ -17,30 +17,34 @@ import utils.Vecteur;
  * @author EquBolduc
  * @version 1.0
  */
-public class Planete extends ObjetSpatial {
-
+public class Planete extends ObjetSpatial
+{
+	
 	public static final Texture TEXTURE_DEFAUT = Texture.RAYEE_ROUGE;
 	public static final double RAYON_DEFAUT = 100;
 	public static final boolean STATIC_DEFAUT = true;
 	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
-
-	public enum Texture {
+	
+	public enum Texture
+	{
 		RAYEE_ROUGE("/res/planete1.png");
-
+		
 		private final String texture;
-
-		Texture(String pTexture) {
+		
+		Texture(String pTexture)
+		{
 			texture = pTexture;
 		}
-
-		public String getTexture() {
+		
+		public String getTexture()
+		{
 			return texture;
 		}
 	}
-
+	
 	private Texture texture;
 	private double rayon;
-
+	
 	/**
 	 * Constructeur de planète, prend un vecteur pour la position
 	 * 
@@ -49,11 +53,12 @@ public class Planete extends ObjetSpatial {
 	 * @param pPosition
 	 *            la position de la planète
 	 */
-	public Planete(double pMasse, Vecteur pPosition, double pRayon) {
+	public Planete(double pMasse, Vecteur pPosition, double pRayon)
+	{
 		super(pMasse, pPosition, true, new Vecteur());
 		init(pRayon);
 	}
-
+	
 	/**
 	 * Constructeur de planète, prend des doubles pour la position
 	 * 
@@ -64,48 +69,59 @@ public class Planete extends ObjetSpatial {
 	 * @param pPositionY
 	 *            la positionY de la planète
 	 */
-	public Planete(double pMasse, double pPositionX,
-			double pPositionY,  double pRayon) {
+	public Planete(double pMasse, double pPositionX, double pPositionY,
+			double pRayon)
+	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
 		init(pRayon);
 	}
-
-	private void init(double pRayon) {
+	
+	private void init(double pRayon)
+	{
 		setRayon(pRayon);
 	}
-
-	public void setTexture(Texture pTexture) {
+	
+	public void setTexture(Texture pTexture)
+	{
 		if (pTexture == null)
 			texture = TEXTURE_DEFAUT;
 		else
 			texture = pTexture;
 	}
-
-	public Texture getTexture() {
+	
+	public Texture getTexture()
+	{
 		return texture;
 	}
-
-	public void setRayon(double pRayon) {
-		if (pRayon < 0) {
+	
+	public void setRayon(double pRayon)
+	{
+		if (pRayon < 0)
+		{
 			rayon = RAYON_DEFAUT;
-		} else {
+		}
+		else
+		{
 			rayon = pRayon;
 		}
 	}
-
-	public double getRayon() {
+	
+	public double getRayon()
+	{
 		return rayon;
 	}
-
+	
 	/**
 	 * Utilisez plutôt getRayon()
 	 */
 	@Deprecated
-	public int getRayonCollision() {
+	public int getRayonCollision()
+	{
 		return 100;
 	}
-
-	public Node getNoeud() {
+	
+	public Node getNoeud()
+	{
 		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + 30);
@@ -113,17 +129,17 @@ public class Planete extends ObjetSpatial {
 				CycleMethod.REPEAT, new Stop(0.7, Color.ORANGE), new Stop(1,
 						Color.TRANSPARENT));
 		cercle.setFill(grad);
-
+		
 		ImageView image = new ImageView(texture);
 		image.setFitWidth(rayon * 2);
 		image.setFitHeight(rayon * 2);
 		image.setTranslateX(-rayon);
 		image.setTranslateY(-rayon);
-
+		
 		Group group = new Group();
 		group.getChildren().add(cercle);
 		group.getChildren().add(image);
-
+		
 		return group;
 	}
 }

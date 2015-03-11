@@ -11,6 +11,7 @@ import utils.Vecteur;
 
 /**
  * Classe de test pour le contrôleur principal.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -26,7 +27,7 @@ public class ContPrincipalTest
 		
 		ContPrincipal.getInstance().viderCorps();
 	}
-
+	
 	@Test
 	public void testAjouterCorps()
 	{
@@ -38,7 +39,7 @@ public class ContPrincipalTest
 		ContPrincipal.getInstance().ajouterCorps(null);
 		assertEquals(2, liste.size());
 	}
-
+	
 	@Test
 	public void testEnleverCorps()
 	{
@@ -51,7 +52,7 @@ public class ContPrincipalTest
 		ContPrincipal.getInstance().enleverCorps(null);
 		assertEquals(1, liste.size());
 	}
-
+	
 	@Test
 	public void testViderCorps()
 	{
@@ -61,7 +62,7 @@ public class ContPrincipalTest
 		List<Corps> liste = ContPrincipal.getInstance().getCorps();
 		assertEquals(0, liste.size());
 	}
-
+	
 	@Test
 	public void testGetInstance()
 	{
@@ -72,29 +73,16 @@ public class ContPrincipalTest
 	}
 	
 	// Les méthodes suivantes ne sont pas testées, car elles dépendent
-		// de FXML.
-		/*@Test
-		public void testInitialiser()
-		{
-			fail("Not yet implemented");
-		}
-
-		@Test
-		public void testSelectionnerControleur()
-		{
-			
-			ContPrincipal.getInstance().selectionnerControleur(c1);
-		}
-
-		@Test
-		public void testAfficherVue()
-		{
-			fail("Not yet implemented");
-		}
-
-		@Test
-		public void testUpdate()
-		{
-			fail("Not yet implemented");
-		}*/
+	// de FXML.
+	/*
+	 * @Test public void testInitialiser() { fail("Not yet implemented"); }
+	 * 
+	 * @Test public void testSelectionnerControleur() {
+	 * 
+	 * ContPrincipal.getInstance().selectionnerControleur(c1); }
+	 * 
+	 * @Test public void testAfficherVue() { fail("Not yet implemented"); }
+	 * 
+	 * @Test public void testUpdate() { fail("Not yet implemented"); }
+	 */
 }

@@ -11,14 +11,15 @@ import modele.Corps;
 
 /**
  * Classe de base pour les objets spatiaux.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 	/**
-	 * Densité (en kg/m) des planètes.
-	 * TODO: Mofidier la valeur pour qu'elle soit cohérente.
+	 * Densité (en kg/m) des planètes. TODO: Mofidier la valeur pour qu'elle
+	 * soit cohérente.
 	 */
 	public final static double DENSITE = 1.0 / 2.0;
 	/**
@@ -195,7 +196,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Met à jour le noeud
 	 */
-	public void maj(){
+	public void maj()
+	{
 		
 	}
 	
