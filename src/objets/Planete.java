@@ -27,7 +27,7 @@ public class Planete extends ObjetSpatial
 	
 	public enum Texture
 	{
-		RAYEE_ROUGE("/res/planete1.png");
+		RAYEE_ROUGE("/res/planeteRayeeRouge.png");
 		
 		private final String texture;
 		
