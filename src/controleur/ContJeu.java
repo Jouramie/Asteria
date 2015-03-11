@@ -63,6 +63,7 @@ public class ContJeu implements Controleur {
 
 	@FXML
 	public void retour() {
+		ContPrincipal.getInstance().getCorps().remove(vaisseauJoueur);
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 
