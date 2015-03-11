@@ -33,6 +33,10 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	protected Vecteur vitesse;
 	protected Color couleur;
 	
+	protected double positionXDepart;
+	protected double positionYDepart;
+	protected Vecteur vitesseDepart;
+	
 	/**
 	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
@@ -204,4 +208,11 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 * Retourne la forme représentant le corps.
 	 */
 	public abstract Node getNoeud();
+	
+	/**
+	 * Remet les corps à leur position et leur vitesse de départ.
+	 */
+	public void reset(){
+		
+	}
 }

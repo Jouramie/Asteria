@@ -51,55 +51,12 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
 	
-	public void afficherMenuPause()
-	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuPause.setVisible(true);
-		menuPause.toFront();
-	}
-	
-	public void cacherMenuPause()
-	{
-		ContPrincipal.getInstance().demarrerHorloge();
-		menuPause.setVisible(false);
-	}
-	
-	@FXML
-	public void retour()
-	{
-		ContPrincipal.getInstance().getCorps().remove(vaisseauJoueur);
-		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
-	}
-	
-	@FXML
-	public void retourjeu()
-	{
-		cacherMenuPause();
-	}
-	
-	@FXML
-	public void zoom(ScrollEvent e)
-	{
-		Camera cam = vue.getCamera();
-		
-		double delta = e.getDeltaY();
-		
-		if (delta > 0)
-		{
-			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
-		}
-		
-		else
-		{
-			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
-		}
-	}
-	
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
 		switch (e.getCode())
 		{
+		case P:
 		case ESCAPE:
 		{
 			if (!menuPause.isVisible())
@@ -136,11 +93,22 @@ public class ContJeu implements Controleur
 				wPressed = true;
 			}
 			break;
+	
+		case R:
+			if (!menuPause.isVisible())
+			{
+				recommencer();
+			}
+			else
+			{
+				recommencer();
+			}
+			break;
 		default:
 			break;
 		}
 	}
-	
+
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
@@ -172,6 +140,55 @@ public class ContJeu implements Controleur
 			break;
 		default:
 			break;
+		}
+	}
+
+	public void afficherMenuPause()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuPause.setVisible(true);
+		menuPause.toFront();
+	}
+	
+	public void cacherMenuPause()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuPause.setVisible(false);
+	}
+	
+	@FXML
+	public void recommencer()
+	{
+		
+	}
+	
+	@FXML
+	public void retour()
+	{
+		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
+	}
+	
+	@FXML
+	public void retourjeu()
+	{
+		cacherMenuPause();
+	}
+	
+	@FXML
+	public void zoom(ScrollEvent e)
+	{
+		Camera cam = vue.getCamera();
+		
+		double delta = e.getDeltaY();
+		
+		if (delta > 0)
+		{
+			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
+		}
+		
+		else
+		{
+			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}
 	}
 	
