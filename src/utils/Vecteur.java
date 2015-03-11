@@ -6,7 +6,7 @@ package utils;
  * @author Équipe Bolduc
  * @version 1.0
  */
-public class Vecteur
+public class Vecteur implements Cloneable
 {
 	private double x;
 	private double y;
@@ -227,5 +227,10 @@ public class Vecteur
 		}
 		
 		return resultat;
+	}
+	
+	public Vecteur clone(){
+		return new Vecteur(x, y);
+		
 	}
 }

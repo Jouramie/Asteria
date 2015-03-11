@@ -111,13 +111,9 @@ public class Planete extends ObjetSpatial
 		return rayon;
 	}
 	
-	/**
-	 * Utilisez plutôt getRayon()
-	 */
-	@Deprecated
 	public int getRayonCollision()
 	{
-		return 100;
+		return (int) rayon;
 	}
 	
 	public Node getNoeud()
@@ -141,5 +137,16 @@ public class Planete extends ObjetSpatial
 		group.getChildren().add(image);
 		
 		return group;
+	}
+
+	public Vecteur getForceExt()
+	{
+		return new Vecteur();
+	}
+
+	@Override
+	public void maj()
+	{
+		// TODO Auto-generated method stub	
 	}
 }

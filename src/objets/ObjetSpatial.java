@@ -52,12 +52,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public ObjetSpatial(double pMasse, Vecteur pPosition, boolean pStatique,
 			Vecteur pVitesse)
 	{
-		setMasse(pMasse);
-		positionX = new SimpleDoubleProperty();
-		positionY = new SimpleDoubleProperty();
-		setPosition(pPosition);
-		setStatique(pStatique);
-		setVitesse(pVitesse);
+		init(pMasse, pPosition.getX(), pPosition.getY(), pStatique, pVitesse);
 	}
 	
 	/**
@@ -77,11 +72,23 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public ObjetSpatial(double pMasse, double pPositionX, double pPositionY,
 			boolean pStatique, Vecteur pVitesse)
 	{
+		init(pMasse, pPositionX, pPositionY, pStatique, pVitesse);
+	}
+	
+	/**
+	 * Initialise les attibuts de la classe.
+	 */
+	private void init(double pMasse, double pPositionX, double pPositionY,
+			boolean pStatique, Vecteur pVitesse)
+	{
 		setMasse(pMasse);
 		positionX = new SimpleDoubleProperty(pPositionX);
+		positionXDepart = pPositionX;
 		positionY = new SimpleDoubleProperty(pPositionY);
+		positionYDepart = pPositionY;
 		setStatique(pStatique);
 		setVitesse(pVitesse);
+		vitesseDepart = pVitesse.clone();
 	}
 	
 	public double getMasse()
@@ -120,9 +127,33 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		positionX.set(pPositionX);
 	}
 	
+	/**
+	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 */
+	public void setPositionX(double pPositionX, boolean pDepart)
+	{
+		if (pDepart)
+		{
+			positionXDepart = pPositionX;
+		}
+		setPositionX(pPositionX);
+	}
+	
 	public void setPositionY(double pPositionY)
 	{
 		positionY.set(pPositionY);
+	}
+	
+	/**
+	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 */
+	public void setPositionY(double pPositionY, boolean pDepart)
+	{
+		if (pDepart)
+		{
+			positionYDepart = pPositionY;
+		}
+		setPositionY(pPositionY);
 	}
 	
 	public DoubleProperty getPositionXProperty()
@@ -155,6 +186,25 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 			positionX.set(pPosition.getX());
 			positionY.set(pPosition.getY());
 		}
+	}
+	
+	/**
+	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 */
+	public void setPosition(Vecteur pPosition, boolean pDepart)
+	{
+		if (pDepart)
+			if (pPosition == null)
+			{
+				positionXDepart = 0;
+				positionYDepart = 0;
+			}
+			else
+			{
+				positionXDepart = pPosition.getX();
+				positionYDepart = pPosition.getY();
+			}
+		setPosition(pPosition);
 	}
 	
 	public boolean isStatique()
@@ -190,19 +240,27 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 			vitesse = pVitesse;
 	}
 	
-	public Vecteur getForceExt()
+	/**
+	 * Si pDepart est vrai, modifie la vitesse de départ.
+	 */
+	public void setVitesse(Vecteur pVitesse, boolean pDepart)
 	{
-		// TODO
-		return new Vecteur();
+		if (pDepart)
+			if (pVitesse == null)
+			{
+				vitesseDepart = new Vecteur();
+			}
+			else
+				vitesseDepart = pVitesse;
+		setVitesse(pVitesse);
 	}
+	
+	public abstract Vecteur getForceExt();
 	
 	/**
 	 * Met à jour le noeud
 	 */
-	public void maj()
-	{
-		
-	}
+	public abstract void maj();
 	
 	/**
 	 * Retourne la forme représentant le corps.
@@ -212,7 +270,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Remet les corps à leur position et leur vitesse de départ.
 	 */
-	public void reset(){
+	public void reset()
+	{
 		
 	}
 }
