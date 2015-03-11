@@ -42,23 +42,7 @@ public class ContJeu implements Controleur {
 	 */
 	public void initialiser() {
 		ContPrincipal.getInstance().demarrerHorloge();
-
-		Planete p1 = new Planete(5e15, new Vecteur(400, 400), 100);
-		p1.setTexture(Texture.RAYEE_ROUGE);
-		ContPrincipal.getInstance().ajouterCorps(p1);
-
-		Planete p2 = new Planete(5e15, new Vecteur(600, 0), 100);
-		p1.setTexture(Texture.RAYEE_ROUGE);
-		ContPrincipal.getInstance().ajouterCorps(p2);
-
-		Planete p3 = new Planete(1e15, new Vecteur(600, 600), 100);
-		p1.setTexture(Texture.RAYEE_ROUGE);
-		ContPrincipal.getInstance().ajouterCorps(p3);
-
-		Planete p4 = new Planete(1e15, new Vecteur(0, 600), 100);
-		p1.setTexture(Texture.RAYEE_ROUGE);
-		ContPrincipal.getInstance().ajouterCorps(p4);
-
+		
 		vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3,
 				100, new Vecteur(10, 10), new Vecteur(10, 10));
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
@@ -79,7 +63,6 @@ public class ContJeu implements Controleur {
 
 	@FXML
 	public void retour() {
-		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 
