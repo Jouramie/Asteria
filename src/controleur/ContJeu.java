@@ -57,7 +57,7 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().arreterHorloge();
 		menuPause.setVisible(true);
-		menuPause.toFront();
+		//menuPause.toFront();
 	}
 	
 	public void cacherMenuPause()
