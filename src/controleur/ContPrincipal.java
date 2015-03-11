@@ -189,11 +189,11 @@ public class ContPrincipal
 		if (horlogeDemarree)
 		{
 			phys.update(corps, time);
-			
-			if (cont != null && contCharge)
-			{
-				cont.update(time);
-			}
+		}
+		
+		if (cont != null && contCharge)
+		{
+			cont.update(time);
 		}
 		
 		if (vue != null && vueChargee)

@@ -10,7 +10,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane fx:id="pane" focusTraversable="true" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0" />
       
    </center>
    <top>

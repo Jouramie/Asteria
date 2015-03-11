@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -31,6 +32,8 @@ public class ContNiveau implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
 	
+	public static final double VITESSE_CAM = 1000;
+	
 	@FXML
 	private Pane pane;
 	@FXML
@@ -48,12 +51,21 @@ public class ContNiveau implements Controleur
 	
 	private VueNiveau vue;
 	
+	private boolean leftPressed;
+	private boolean rightPressed;
+	private boolean upPressed;
+	private boolean downPressed;
+	
 	/**
 	 * Constructeur du contrôleur.
 	 */
 	public ContNiveau()
 	{
 		vue = new VueNiveau();
+		leftPressed = false;
+		rightPressed = false;
+		upPressed = false;
+		downPressed = false;
 	}
 	
 	/**
@@ -70,7 +82,46 @@ public class ContNiveau implements Controleur
 	 */
 	public void update(double dt)
 	{
+		Camera cam = vue.getCamera();
+		if(leftPressed)
+		{
+			double x = cam.getDeplacement().getX();
+			double y = cam.getDeplacement().getY();
+			
+			x -= VITESSE_CAM * dt;
+			
+			cam.deplacer(x, y);
+		}
 		
+		else if(rightPressed)
+		{
+			double x = cam.getDeplacement().getX();
+			double y = cam.getDeplacement().getY();
+			
+			x += VITESSE_CAM * dt;
+			
+			cam.deplacer(x, y);
+		}
+		
+		if(upPressed)
+		{
+			double x = cam.getDeplacement().getX();
+			double y = cam.getDeplacement().getY();
+			
+			y -= VITESSE_CAM * dt;
+			
+			cam.deplacer(x, y);
+		}
+		
+		else if(downPressed)
+		{
+			double x = cam.getDeplacement().getX();
+			double y = cam.getDeplacement().getY();
+			
+			y += VITESSE_CAM * dt;
+			
+			cam.deplacer(x, y);
+		}
 	}
 	
 	/**
@@ -119,7 +170,7 @@ public class ContNiveau implements Controleur
 		{
 			if (choice.getValue() == "Vaisseau")
 			{
-				u = new Vaisseau(0, null, 0, 0, pos.getX(), pos.getY(), null);
+				u = new Vaisseau(0, 0, 0, pos.getX(), pos.getY(), null);
 			}
 			else if (choice.getValue() == "Planète")
 			{
@@ -128,19 +179,82 @@ public class ContNiveau implements Controleur
 			}
 			ContPrincipal.getInstance().ajouterCorps(u);
 			vue.initialiserCorps();
+			pane.requestFocus();
 		}
 		else if (e.getButton() == MouseButton.SECONDARY)
 		{
 			for (Corps c : ContPrincipal.getInstance().getCorps())
 			{
 				if (Math.abs(c.getPosition().getX() - pos.getX()) < c
-						.getRayonCollision()
+						.getRayon()
 						&& Math.abs(c.getPosition().getY() - pos.getY()) < c
-								.getRayonCollision())
+								.getRayon())
 				{
 					System.out.println(c.getMasse());
 				}
 			}
+		}
+	}
+	
+	@FXML
+	public void keyPressed(KeyEvent e)
+	{
+		switch (e.getCode())
+		{
+			case A:
+			{
+				leftPressed = true;
+				break;
+			}
+			case D:
+			{
+				rightPressed = true;
+				break;
+			}
+			case W:
+			{
+				upPressed = true;
+				break;
+			}
+			case S:
+			{
+				downPressed = true;
+				break;
+			}
+			
+			default:
+				break;
+		}
+	}
+	
+	@FXML
+	public void keyReleased(KeyEvent e)
+	{
+		switch (e.getCode())
+		{
+			case A:
+			{
+				leftPressed = false;
+				break;
+			}
+			case D:
+			{
+				rightPressed = false;
+				break;
+			}
+			case W:
+			{
+				upPressed = false;
+				break;
+			}
+			case S:
+			{
+				downPressed = false;
+				break;
+			}
+			
+			default:
+				break;
 		}
 	}
 	
