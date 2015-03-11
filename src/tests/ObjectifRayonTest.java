@@ -1,6 +1,7 @@
-package modele;
+package tests;
 
 import static org.junit.Assert.*;
+import modele.ObjectifRayon;
 import objets.Vaisseau;
 
 import org.junit.Before;
