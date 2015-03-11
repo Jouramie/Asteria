@@ -138,7 +138,7 @@ public class ContNiveau implements Controleur
 						&& Math.abs(c.getPosition().getY() - pos.getY()) < c
 								.getRayonCollision())
 				{
-					
+					System.out.println(c.getMasse());
 				}
 			}
 		}
