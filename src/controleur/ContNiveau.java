@@ -154,6 +154,11 @@ public class ContNiveau implements Controleur
 		{
 			File file = (new FileChooser()).showSaveDialog(null);
 			
+			if(!file.exists())
+			{
+				file.createNewFile();
+			}
+			
 			while(!file.canWrite())
 			{
 				JOptionPane.showMessageDialog(null, "L'emplacement choisi ne peut pas être modifié!", "Erreur", JOptionPane.ERROR_MESSAGE);
