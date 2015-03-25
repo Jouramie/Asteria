@@ -152,7 +152,7 @@ public class Planete extends ObjetSpatial
 	}
 	
 	@Override
-	public void maj()
+	public void maj(double dt)
 	{
 		// TODO Auto-generated method stub
 	}

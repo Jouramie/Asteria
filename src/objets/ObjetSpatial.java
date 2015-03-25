@@ -267,8 +267,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	
 	/**
 	 * Met à jour le noeud
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
 	 */
-	public abstract void maj();
+	public abstract void maj(double dt);
 	
 	/**
 	 * Retourne la forme représentant le corps.
