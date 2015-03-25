@@ -1,15 +1,9 @@
 package controleur;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.List;
-import java.util.StringTokenizer;
-
 import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +13,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderStroke;
@@ -31,7 +24,6 @@ import modele.Niveau;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
-import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueNiveau;
@@ -83,6 +75,8 @@ public class ContNiveau implements Controleur
 	private boolean downPressed;
 	private Corps corpsSelect;
 	
+	private Niveau niveau;
+	
 	/**
 	 * Constructeur du contrôleur.
 	 */
@@ -100,6 +94,8 @@ public class ContNiveau implements Controleur
 	 */
 	public void initialiser()
 	{
+		niveau = new Niveau();
+		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
 		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète", "Drapeau");
@@ -234,6 +230,11 @@ public class ContNiveau implements Controleur
 		{
 			File file = (new FileChooser()).showSaveDialog(null);
 			
+			if(!file.exists())
+			{
+				file.createNewFile();
+			}
+			
 			while (!file.canWrite())
 			{
 				JOptionPane.showMessageDialog(null,
@@ -242,7 +243,7 @@ public class ContNiveau implements Controleur
 				file = (new FileChooser()).showSaveDialog(null);
 			}
 			
-			// appeler la méthode pour sauvegarder le niveau dans Niveau.
+						niveau.sauvegarderNiveau(file);
 		}
 		catch (Exception e)
 		{
@@ -267,9 +268,8 @@ public class ContNiveau implements Controleur
 				file = (new FileChooser()).showOpenDialog(null);
 			}
 			
-			Niveau.chargerNiveau(file);// cela devra être passé en paramètre à
-										// la méthode charger niveau de
-										// ContNiveau
+			niveau = Niveau.chargerNiveau(file);
+			chargerNiveau();
 		}
 		catch (Exception e)
 		{
@@ -340,8 +340,8 @@ public class ContNiveau implements Controleur
 						null);
 				break;
 			}
-			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
-			vue.initialiserCorps();
+			niveau.ajouterCorps(corpsSelect);
+			chargerNiveau();
 			pane.requestFocus();
 			
 		}
@@ -369,6 +369,18 @@ public class ContNiveau implements Controleur
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
 		// TODO ???
+	}
+	
+	private void chargerNiveau()
+	{
+		ContPrincipal.getInstance().viderCorps();
+		
+		for(Corps c : niveau.getCorps())
+		{
+			ContPrincipal.getInstance().ajouterCorps(c);
+		}
+		
+		vue.initialiserCorps();
 	}
 	
 	@FXML
