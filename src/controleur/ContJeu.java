@@ -1,18 +1,15 @@
 package controleur;
 
 import modele.Corps;
-import java.util.ArrayList;
 
+import java.io.File;
 import modele.Niveau;
-import modele.Objectif;
-import modele.ObjectifRayon;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
-import objets.Planete;
+import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
-import objets.Planete.Texture;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueJeu;
@@ -67,7 +64,7 @@ public class ContJeu implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		
-		ArrayList<Corps> corps = new ArrayList<Corps>();
+		/*ArrayList<Corps> corps = new ArrayList<Corps>();
 		Planete p = new Planete(6e11, 400, 400, 100);
 		p.setTexture(Texture.RAYEE_ROUGE);
 		Planete p2 = new Planete(6e15, 0, 600, 100);
@@ -80,6 +77,9 @@ public class ContJeu implements Controleur
 		
 		Objectif obj = new ObjectifRayon(vaisseauJoueur, new Vecteur(100, 0), 20);
 		Niveau niv = new Niveau(corps, obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
+		chargerNiveau(niv);*/
+		File f = (new FileChooser()).showOpenDialog(null);
+		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
 	}
 	
@@ -236,6 +236,8 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		vaisseauJoueur.setPosition(niveau.getPointDepart());
 		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
+		
+		vue.initialiserCorps();
 	}
 
 	public void reset(){
@@ -305,7 +307,7 @@ public class ContJeu implements Controleur
 	{
 		if(niveau != null && !objectifAtteint)
 		{
-			if(niveau.getObjectif().verifierObjectif())
+			if(niveau.getObjectif() != null && niveau.getObjectif().verifierObjectif())
 			{
 				objectifAtteint = true;
 				afficherMenuVictoire();

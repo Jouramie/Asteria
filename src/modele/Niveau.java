@@ -31,6 +31,11 @@ public class Niveau
 	
 	private Vecteur vitesseDepart;
 	
+	public Niveau()
+	{
+		this(null, null, new Vecteur(), "", new Vecteur());
+	}
+	
 	/**
 	 * Constructeur servant à initialiser le niveau.
 	 * @param nouveauxCorps Les corps à mettre dans le niveau,

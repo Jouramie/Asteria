@@ -33,7 +33,7 @@
                   <Insets />
                </HBox.margin></Button>
             <Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
-            <Button fx:id="buttonCharger" mnemonicParsing="false" text="Charger" />
+            <Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
             <Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />
             <ChoiceBox fx:id="choiceBoxCorps" prefHeight="40.0" prefWidth="150.0" styleClass="selector" />
          </children>
