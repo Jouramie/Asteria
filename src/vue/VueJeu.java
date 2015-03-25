@@ -117,7 +117,7 @@ public class VueJeu implements Vue
 		
 		for (Dessinable d : liste)
 		{
-			d.maj();
+			d.maj(dt);
 		}
 		
 	}

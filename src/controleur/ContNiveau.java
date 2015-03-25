@@ -1,6 +1,13 @@
 package controleur;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
+import java.util.StringTokenizer;
+
+import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,10 +23,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import modele.Corps;
+import modele.Niveau;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
+import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueNiveau;
@@ -110,6 +120,7 @@ public class ContNiveau implements Controleur
 			}
 			
 		});
+		ContPrincipal.getInstance().arreterHorloge();
 	}
 	
 	/**
@@ -174,7 +185,46 @@ public class ContNiveau implements Controleur
 	@FXML
 	public void sauve()
 	{
-		System.out.println("SAUVEGARDER");
+		try
+		{
+			File file = (new FileChooser()).showSaveDialog(null);
+			
+			while(!file.canWrite())
+			{
+				JOptionPane.showMessageDialog(null, "L'emplacement choisi ne peut pas être modifié!", "Erreur", JOptionPane.ERROR_MESSAGE);
+				file = (new FileChooser()).showSaveDialog(null);
+			}
+			
+			//appeler la méthode pour sauvegarder le niveau dans Niveau.
+		}
+		catch(Exception e)
+		{
+		}
+	}
+	
+	/**
+	 * Méthode pour le bouton charger.
+	 */
+	@FXML
+	public void charge()
+	{
+		try
+		{
+			File file = (new FileChooser()).showOpenDialog(null);
+			
+			while(!file.canRead())
+			{
+				JOptionPane.showMessageDialog(null, "L'emplacement choisi ne peut pas être lu!", "Erreur", JOptionPane.ERROR_MESSAGE);
+				file = (new FileChooser()).showOpenDialog(null);
+			}
+			
+			Niveau.chargerNiveau(file);//cela devra être passé en paramètre à la méthode charger niveau de ContNiveau
+		}
+		catch(Exception e)
+		{
+		}
+		
+		vue.initialiserCorps();
 	}
 	
 	/**
@@ -194,7 +244,6 @@ public class ContNiveau implements Controleur
 	@FXML
 	public void mouseClicked(MouseEvent event)
 	{
-		ContPrincipal.getInstance().arreterHorloge();
 		Point2D point = pane.sceneToLocal(event.getSceneX(), event.getSceneY());
 		Camera cam = vue.getCamera();
 		Vecteur pos = cam

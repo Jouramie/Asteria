@@ -9,6 +9,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
@@ -139,23 +140,19 @@ public class ContPrincipal
 				vueChargee = false;
 				vue = v;
 				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource(
-						v.getFXML()));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(v.getFXML()));
 				loader.setController(cont);
 				root = (BorderPane) loader.load();
 				
 				Scene scene = null;
 				if (fullscreen)
 				{
-					Rectangle2D screenBounds = Screen.getPrimary()
-							.getVisualBounds();
-					scene = new Scene(root, screenBounds.getWidth(),
-							screenBounds.getHeight());
+					Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+					scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
 				}
 				else
 				{
-					scene = new Scene(root, root.getPrefWidth(),
-							root.getPrefHeight());
+					scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
 				}
 				
 				stage.setScene(scene);

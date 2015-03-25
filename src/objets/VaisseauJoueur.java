@@ -1,5 +1,6 @@
 package objets;
 
+import modele.Corps;
 import utils.Vecteur;
 
 public class VaisseauJoueur extends Vaisseau
@@ -16,8 +17,7 @@ public class VaisseauJoueur extends Vaisseau
 			double pMasse, double pCapaciteCarburant, Vecteur pPosition,
 			Vecteur pVitesse)
 	{
-		super(pPuissanceMax, pMasse, pCapaciteCarburant, pPosition,
-				pVitesse);
+		super(pPuissanceMax, pMasse, pCapaciteCarburant, pPosition, pVitesse);
 		initDefaut();
 	}
 	
@@ -25,8 +25,7 @@ public class VaisseauJoueur extends Vaisseau
 			double pMasse, double pCapaciteCarburant, double pPositionX,
 			double pPositionY, Vecteur pVitesse)
 	{
-		super(pPuissanceMax, pMasse, pCapaciteCarburant,
-				pPositionX, pPositionY, pVitesse);
+		super(pPuissanceMax, pMasse, pCapaciteCarburant, pPositionX, pPositionY, pVitesse);
 		initDefaut();
 	}
 	
@@ -82,7 +81,7 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj()
+	public void maj(double dt)
 	{
 		
 		if ((gauche || droite) && !(gauche && droite))
@@ -98,7 +97,12 @@ public class VaisseauJoueur extends Vaisseau
 						/ 360 * 2 * Math.PI);
 			}
 		}
-		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		
+		super.maj(dt);
 	}
 	
+	public void onCollision(Corps c)
+	{
+		setSante(0.0);
+	}
 }

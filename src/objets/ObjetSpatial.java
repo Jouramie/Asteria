@@ -267,8 +267,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	
 	/**
 	 * Met à jour le noeud
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
 	 */
-	public abstract void maj();
+	public abstract void maj(double dt);
 	
 	/**
 	 * Retourne la forme représentant le corps.
@@ -283,5 +284,14 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPositionX(positionXDepart);
 		setPositionY(positionYDepart);
 		setVitesse(vitesseDepart);
+	}
+	
+	/**
+	 * Callback lors d'une collision.
+	 * @param c Corps avec lequel on est en collision.
+	 */
+	public void onCollision(Corps c)
+	{
+		
 	}
 }

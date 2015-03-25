@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
 import utils.Vecteur;
 
 /**
@@ -19,13 +20,21 @@ public class Vaisseau extends ObjetSpatial
 	public final static double CONVERTION_CARBURANT = 1.0;
 	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
 	
+	public final static double VITESSE_ANIM_FLAMME = 6;
+	
 	protected double puissanceMax;
 	protected double puissance;
 	protected Vecteur direction;
 	protected double capaciteCarburant;
 	protected DoubleProperty carburant;
 	private boolean premierGetNoeud;
+	
 	protected Node noeud;
+	protected Rotate noeudRotate;
+	protected ImageView imageFlamme;
+	protected double currentFlamme;
+	
+	protected double sante;
 	
 	protected double carburantDepart;
 	
@@ -85,6 +94,9 @@ public class Vaisseau extends ObjetSpatial
 		capaciteCarburant = pCapaciteCarburant;
 		carburant = new SimpleDoubleProperty(capaciteCarburant);
 		premierGetNoeud = true;
+		
+		currentFlamme = 0.0;
+		sante = 1.0;
 	}
 	
 	public double getPuissanceMax()
@@ -111,6 +123,28 @@ public class Vaisseau extends ObjetSpatial
 			puissance = PUISSANCE_MAX_DEFAUT;
 		else
 			puissance = pPuissance;
+	}
+	
+	/**
+	 * Retourne la santé actuelle du vaisseau.
+	 * @return Santé actuelle (entre 0.0 et 1.0).
+	 */
+	public double getSante()
+	{
+		return sante;
+	}
+	
+	/**
+	 * Modifie la santé du vaisseau.
+	 * Doit être située entre 0.0 et 1.0 inclusivement.
+	 * @param sante Nouvelle santé.
+	 */
+	public void setSante(double sante)
+	{
+		if(sante <= 1.0 && sante >= 0.0)
+		{
+			this.sante = sante;
+		}
 	}
 	
 	// public void setCarburantMax(double pCarburantMax)
@@ -176,16 +210,27 @@ public class Vaisseau extends ObjetSpatial
 	
 	private void creeNoeud()
 	{
+		Group group = new Group();
+		
 		Image texture = new Image("/res/spaceship.png");
 		ImageView image = new ImageView(texture);
 		image.setFitWidth(40);
 		image.setFitHeight(40);
 		image.setTranslateX(-20);
 		image.setTranslateY(-20);
-		
-		Group group = new Group();
 		group.getChildren().add(image);
-		group.setRotate(90);
+		
+		Image textureFlamme = new Image("/res/flame.png");
+		imageFlamme = new ImageView(textureFlamme);
+		imageFlamme.setFitWidth(15);
+		imageFlamme.setFitHeight(40);
+		imageFlamme.setTranslateX(-7);
+		imageFlamme.setTranslateY(22);
+		group.getChildren().add(imageFlamme);
+		
+		noeudRotate = new Rotate(0, 0, 0);
+		group.getTransforms().add(noeudRotate);
+		
 		noeud = group;
 	}
 	
@@ -202,9 +247,21 @@ public class Vaisseau extends ObjetSpatial
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj()
+	public void maj(double dt)
 	{
-		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		if(getForceExt().getNorme() > 0)
+		{
+			currentFlamme += VITESSE_ANIM_FLAMME * dt;
+			currentFlamme = Math.min(1.0, currentFlamme);
+		}
+		else
+		{
+			currentFlamme -= VITESSE_ANIM_FLAMME * dt;
+			currentFlamme = Math.max(0.0, currentFlamme);
+		}
+		imageFlamme.setOpacity(currentFlamme);
+		
+		noeudRotate.setAngle(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
 	
 	public double getRayon()
