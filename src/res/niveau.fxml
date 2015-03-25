@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane styleClass="borderPaneEditeur" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="746.0" prefWidth="937.0" styleClass="jeu">
+      <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="746.0" prefWidth="937.0">
          <children>
             <VBox prefHeight="62.0" prefWidth="1167.0">
                <children>
@@ -22,11 +22,15 @@
                   </ImageView>
                </children>
             </VBox>
-         </children></AnchorPane>
+         </children>
+         <styleClass>
+            <String fx:value="editeur-jeu" />
+            <String fx:value="jeu-root" />
+         </styleClass></AnchorPane>
       
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="112.0" prefWidth="1294.0" styleClass="menuHbox" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="112.0" prefWidth="1294.0" styleClass="editeur-menu-bas" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="retour" mnemonicParsing="false" onAction="#retour" text="Retour">
                <HBox.margin>
@@ -35,38 +39,38 @@
             <Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
             <Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
             <Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />
-            <ChoiceBox fx:id="choiceBoxCorps" prefHeight="40.0" prefWidth="150.0" styleClass="selector" />
+            <ChoiceBox fx:id="choiceBoxCorps" prefHeight="40.0" prefWidth="150.0" />
          </children>
       </HBox>
    </bottom>
    <right>
-      <VBox fx:id="vBoxMenu" alignment="TOP_CENTER" prefHeight="746.0" prefWidth="200.0" styleClass="menuVbox" visible="false">
+      <VBox fx:id="vBoxMenu" alignment="TOP_CENTER" prefHeight="746.0" prefWidth="200.0" styleClass="editeur-menu-droite">
          <children>
-            <Label styleClass="labelTitre" text="Texture">
+            <Label styleClass="editeur-label" text="Texture">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <ChoiceBox fx:id="choiceBoxTexture" prefHeight="40.0" prefWidth="150.0" styleClass="selector" />
-            <Label styleClass="labelTitre" text="Masse" />
-            <TextField fx:id="textFieldMasse" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
-            <Label styleClass="labelTitre" text="Position X">
+            <ChoiceBox fx:id="choiceBoxTexture" prefHeight="40.0" prefWidth="150.0" />
+            <Label styleClass="editeur-label" text="Masse" />
+            <TextField fx:id="textFieldMasse" prefHeight="25.0" prefWidth="119.0" />
+            <Label styleClass="editeur-label" text="Position X">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextField fx:id="textFieldPositionX" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
-            <Label styleClass="labelTitre" text="Position Y" />
-            <TextField fx:id="textFieldPositionY" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
+            <TextField fx:id="textFieldPositionX" prefHeight="25.0" prefWidth="119.0" />
+            <Label styleClass="editeur-label" text="Position Y" />
+            <TextField fx:id="textFieldPositionY" prefHeight="25.0" prefWidth="119.0" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="vBoxMenuPlanete" prefHeight="200.0" prefWidth="200.0" styleClass="menuVbox" visible="false">
+                  <VBox fx:id="vBoxMenuPlanete" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite">
                      <children>
-                        <Label styleClass="labelTitre" text="Rayon" />
-                        <TextField fx:id="textFieldRayon" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
+                        <Label styleClass="editeur-label" text="Rayon" />
+                        <TextField fx:id="textFieldRayon" prefHeight="25.0" prefWidth="119.0" />
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="menuVbox" visible="false" />
+                  <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false" />
                </children>
             </Pane>
          </children>
