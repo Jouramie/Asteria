@@ -13,7 +13,7 @@
          <children>
             <Pane prefHeight="246.0" prefWidth="507.0">
                <children>
-                  <Button fx:id="quitter" layoutX="387.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitter" text="Quitter">
+                  <Button fx:id="quitter" layoutX="388.0" layoutY="187.0" mnemonicParsing="false" onAction="#quitter" text="Quitter">
                      <textFill>
                         <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
                            <stops>
@@ -38,7 +38,7 @@
                         <Image url="@Asteria.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="editor" layoutX="387.0" layoutY="194.0" mnemonicParsing="false" onAction="#niveau" prefHeight="46.0" prefWidth="98.0" text="Éditeur">
+                  <Button fx:id="editor" layoutX="387.0" layoutY="109.0" mnemonicParsing="false" onAction="#niveau" prefHeight="46.0" prefWidth="98.0" text="Éditeur">
                      <textFill>
                         <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
                            <stops>
