@@ -26,7 +26,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public final static double MASSE_DEFAUT = 1.0;
 	
-	protected double masse;
+	double masse;
 	protected DoubleProperty positionX;
 	protected DoubleProperty positionY;
 	protected boolean statique;
@@ -90,7 +90,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	private void init(double pMasse, double pPositionX, double pPositionY,
 			boolean pStatique, Vecteur pVitesse)
 	{
-		setMasse(pMasse);
+		masse = pMasse;
 		positionX = new SimpleDoubleProperty(pPositionX);
 		positionXDepart = pPositionX;
 		positionY = new SimpleDoubleProperty(pPositionY);

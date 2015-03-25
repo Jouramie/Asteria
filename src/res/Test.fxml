@@ -13,16 +13,6 @@
          <children>
             <Pane prefHeight="246.0" prefWidth="507.0">
                <children>
-                  <Button fx:id="quitter" layoutX="387.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitter" text="Quitter">
-                     <textFill>
-                        <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
-                           <stops>
-                              <Stop color="#24824e" />
-                              <Stop color="#ff9d5c" offset="0.4914089347079038" />
-                              <Stop color="#ddd15c" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </textFill></Button>
                   <Button fx:id="jouer" layoutX="27.0" layoutY="110.0" mnemonicParsing="false" onAction="#jouer" prefHeight="24.0" prefWidth="93.0" text="Jouer">
                      <textFill>
                         <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
@@ -50,6 +40,17 @@
                      </textFill>
                   </Button>
                   <Button fx:id="score" layoutX="28.0" layoutY="187.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="92.0" text="Score">
+                     <textFill>
+                        <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
+                           <stops>
+                              <Stop color="#24824e" />
+                              <Stop color="#ff9d5c" offset="0.4914089347079038" />
+                              <Stop color="#ddd15c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="quitter" layoutX="386.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitter" prefHeight="46.0" prefWidth="98.0" text="Quitter">
                      <textFill>
                         <LinearGradient endX="0.5" endY="1.0" startX="0.18571428571428572" startY="0.3476190476190476">
                            <stops>
