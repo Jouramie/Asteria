@@ -132,4 +132,6 @@ public interface Corps
 	 * @param c Autre corps en collision.
 	 */
 	void onCollision(Corps c);
+
+	void setMasse(double pMasse);
 }

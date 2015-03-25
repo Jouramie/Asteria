@@ -262,10 +262,11 @@ public class Vaisseau extends ObjetSpatial
 		imageFlamme.setOpacity(currentFlamme);
 		
 		noeudRotate.setAngle(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		System.out.println("maj vaisseau");
 	}
 	
 	public double getRayon()
 	{
 		return 20.0;
-	}
+	}	
 }

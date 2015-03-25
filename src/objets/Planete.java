@@ -24,6 +24,8 @@ public class Planete extends ObjetSpatial
 	public static final double RAYON_DEFAUT = 100;
 	public static final boolean STATIC_DEFAUT = true;
 	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
+	public static final double RAYON_ATMOSPHERE_DEFAUT = 30;
+	public static final Color COULEUR_ATMOSHPERE_DEFAUT = Color.ORANGE;
 	
 	public enum Texture
 	{
@@ -49,6 +51,10 @@ public class Planete extends ObjetSpatial
 	
 	private Texture texture;
 	private double rayon;
+	private double rayonAtmosphere;
+	
+	protected Group group;
+	protected Color couleurAtmosphere;
 	
 	/**
 	 * Constructeur de planète, prend un vecteur pour la position
@@ -84,6 +90,8 @@ public class Planete extends ObjetSpatial
 	private void init(double pRayon)
 	{
 		setRayon(pRayon);
+		setRayonAtmosphere(RAYON_ATMOSPHERE_DEFAUT);
+		group = new Group();
 	}
 	
 	public void setTexture(Texture pTexture)
@@ -116,6 +124,23 @@ public class Planete extends ObjetSpatial
 		return rayon;
 	}
 	
+	public void setRayonAtmosphere(double pRayonAtmosphere)
+	{
+		if (pRayonAtmosphere < 0)
+		{
+			rayonAtmosphere = RAYON_ATMOSPHERE_DEFAUT;
+		}
+		else
+		{
+			rayonAtmosphere = pRayonAtmosphere;
+		}
+	}
+	
+	public double getRayonAtmosphere()
+	{
+		return rayonAtmosphere;
+	}
+	
 	public int getRayonCollision()
 	{
 		return (int) rayon;
@@ -125,8 +150,8 @@ public class Planete extends ObjetSpatial
 	{
 		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
-		Circle cercle = new Circle(rayon + 30);
-		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon + 32, false,
+		Circle cercle = new Circle(rayon + rayonAtmosphere);
+		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon + rayonAtmosphere + 2, false,
 				CycleMethod.REPEAT, new Stop(0.7, Color.ORANGE), new Stop(1,
 						Color.TRANSPARENT));
 		cercle.setFill(grad);
@@ -137,10 +162,8 @@ public class Planete extends ObjetSpatial
 		image.setTranslateX(-rayon);
 		image.setTranslateY(-rayon);
 		
-		Group group = new Group();
 		group.getChildren().add(cercle);
 		group.getChildren().add(image);
-		
 		return group;
 	}
 	
@@ -149,9 +172,14 @@ public class Planete extends ObjetSpatial
 		return new Vecteur();
 	}
 	
+	public void maj(){
+		group.getChildren().clear();
+		getNoeud();
+	}
+	
 	@Override
 	public void maj(double dt)
 	{
-		// TODO Auto-generated method stub
+		
 	}
 }

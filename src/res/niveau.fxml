@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane styleClass="borderPaneEditeur" stylesheets="@Editeur.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane styleClass="borderPaneEditeur" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="746.0" prefWidth="937.0" styleClass="jeu">
          <children>
@@ -66,12 +66,7 @@
                         <TextField fx:id="textFieldRayon" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="menuVbox" visible="false">
-                     <children>
-                        <Label styleClass="labelTitre" text="Vitesse de départ" />
-                        <TextField fx:id="textFieldVitesseDepart" prefHeight="25.0" prefWidth="119.0" styleClass="textfield" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="menuVbox" visible="false" />
                </children>
             </Pane>
          </children>
