@@ -65,9 +65,9 @@ public class ContJeu implements Controleur
 		
 		ArrayList<Corps> corps = new ArrayList<Corps>();
 		Planete p = new Planete(6e11, 400, 400, 100);
-		p.setTexture(Texture.RAYEE_MAGENTA);
+		p.setTexture(Texture.RAYEE_ROUGE);
 		Planete p2 = new Planete(6e15, 0, 600, 100);
-		p2.setTexture(Texture.RAYEE_BLEUE);
+		p2.setTexture(Texture.RAYEE_JAUNE);
 		Planete p3 = new Planete(6e15, 1000, 400, 100);
 		p3.setTexture(Texture.RAYEE_VERTE);
 		corps.add(p);

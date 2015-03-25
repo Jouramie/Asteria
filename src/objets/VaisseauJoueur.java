@@ -82,7 +82,7 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj()
+	public void maj(double dt)
 	{
 		
 		if ((gauche || droite) && !(gauche && droite))
@@ -98,7 +98,8 @@ public class VaisseauJoueur extends Vaisseau
 						/ 360 * 2 * Math.PI);
 			}
 		}
-		noeud.setRotate(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		
+		super.maj(dt);
 	}
 	
 }
