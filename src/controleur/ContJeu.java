@@ -33,10 +33,14 @@ public class ContJeu implements Controleur
 	@FXML
 	private VBox menuVictoire;
 	
+	@FXML
+	private VBox menuMort;
+	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
 	private Niveau niveau;
 	private boolean objectifAtteint;
+	private boolean mort;
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
@@ -169,7 +173,7 @@ public class ContJeu implements Controleur
 
 	public void afficherMenuPause()
 	{
-		if(!objectifAtteint)
+		if(!objectifAtteint && !mort)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
@@ -183,6 +187,35 @@ public class ContJeu implements Controleur
 		menuPause.setVisible(false);
 	}
 	
+	public void afficherMenuMort()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuMort.setVisible(true);
+		menuMort.toFront();
+	}
+	
+	public void cacherMenuMort()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuMort.setVisible(false);
+	}
+	
+	/**
+	 * Affiche l'écran de victoire.
+	 */
+	public void afficherMenuVictoire()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuVictoire.setVisible(true);
+		menuVictoire.toFront();
+	}
+	
+	public void cacherMenuVictoire()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuVictoire.setVisible(false);
+	}
+	
 	/**
 	 * Charge un niveau de jeu.
 	 * @param niv Niveau à charger.
@@ -191,6 +224,7 @@ public class ContJeu implements Controleur
 	{
 		niveau = niv;
 		objectifAtteint = false;
+		mort = false;
 		
 		ContPrincipal.getInstance().viderCorps();
 		
@@ -202,16 +236,6 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		vaisseauJoueur.setPosition(niveau.getPointDepart());
 		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
-	}
-
-	/**
-	 * Affiche l'écran de victoire.
-	 */
-	public void afficherMenuVictoire()
-	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuVictoire.setVisible(true);
-		menuVictoire.toFront();
 	}
 
 	public void reset(){
@@ -238,6 +262,11 @@ public class ContJeu implements Controleur
 	public void retourjeu()
 	{
 		cacherMenuPause();
+		cacherMenuVictoire();
+		cacherMenuMort();
+		vaisseauJoueur.setSante(1.0);
+		objectifAtteint = false;
+		mort = false;
 	}
 	
 	@FXML
@@ -280,6 +309,12 @@ public class ContJeu implements Controleur
 			{
 				objectifAtteint = true;
 				afficherMenuVictoire();
+			}
+			
+			if(vaisseauJoueur.getSante() == 0.0)
+			{
+				mort = true;
+				afficherMenuMort();
 			}
 		}
 	}

@@ -34,6 +34,8 @@ public class Vaisseau extends ObjetSpatial
 	protected ImageView imageFlamme;
 	protected double currentFlamme;
 	
+	protected double sante;
+	
 	protected double carburantDepart;
 	
 	/**
@@ -94,6 +96,7 @@ public class Vaisseau extends ObjetSpatial
 		premierGetNoeud = true;
 		
 		currentFlamme = 0.0;
+		sante = 1.0;
 	}
 	
 	public double getPuissanceMax()
@@ -120,6 +123,28 @@ public class Vaisseau extends ObjetSpatial
 			puissance = PUISSANCE_MAX_DEFAUT;
 		else
 			puissance = pPuissance;
+	}
+	
+	/**
+	 * Retourne la santé actuelle du vaisseau.
+	 * @return Santé actuelle (entre 0.0 et 1.0).
+	 */
+	public double getSante()
+	{
+		return sante;
+	}
+	
+	/**
+	 * Modifie la santé du vaisseau.
+	 * Doit être située entre 0.0 et 1.0 inclusivement.
+	 * @param sante Nouvelle santé.
+	 */
+	public void setSante(double sante)
+	{
+		if(sante <= 1.0 && sante >= 0.0)
+		{
+			this.sante = sante;
+		}
 	}
 	
 	// public void setCarburantMax(double pCarburantMax)

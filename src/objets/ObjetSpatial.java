@@ -285,4 +285,13 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPositionY(positionYDepart);
 		setVitesse(vitesseDepart);
 	}
+	
+	/**
+	 * Callback lors d'une collision.
+	 * @param c Corps avec lequel on est en collision.
+	 */
+	public void onCollision(Corps c)
+	{
+		
+	}
 }
