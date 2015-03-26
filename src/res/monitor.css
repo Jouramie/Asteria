@@ -1,4 +1,5 @@
 .borderpane
 {
 	-fx-background-image: url("Capture.PNG");
+	-fx-background-size: stretch;
 }
