@@ -126,4 +126,12 @@ public interface Corps
 	 * Remet les corps à leur position et leur vitesse de départ.
 	 */
 	void reset();
+	
+	/**
+	 * Callback lorsqu'une collision a lieu.
+	 * @param c Autre corps en collision.
+	 */
+	void onCollision(Corps c);
+
+	void setMasse(double pMasse);
 }

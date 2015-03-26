@@ -108,15 +108,14 @@ public class MoteurPhysique
 					{
 						if (corps.get(j) != null)
 						{
-							Vecteur diff = corps.get(i).getPosition()
-									.soustraire(corps.get(j).getPosition());
+							Vecteur diff = corps.get(i).getPosition().soustraire(corps.get(j).getPosition());
 							double distance = diff.getNorme();
-							double sommeRayons = corps.get(i)
-									.getRayon()
-									+ corps.get(j).getRayon();
+							double sommeRayons = corps.get(i).getRayon() + corps.get(j).getRayon();
 							
 							if (distance < sommeRayons)
 							{
+								corps.get(i).onCollision(corps.get(j));
+								corps.get(j).onCollision(corps.get(i));
 								calculerCollision(corps.get(i), corps.get(j));
 							}
 						}

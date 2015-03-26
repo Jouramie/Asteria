@@ -1,18 +1,15 @@
 package controleur;
 
 import modele.Corps;
-import java.util.ArrayList;
 
+import java.io.File;
 import modele.Niveau;
-import modele.Objectif;
-import modele.ObjectifRayon;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
-import objets.Planete;
+import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
-import objets.Planete.Texture;
 import utils.Vecteur;
 import vue.Camera;
 import vue.VueJeu;
@@ -33,10 +30,14 @@ public class ContJeu implements Controleur
 	@FXML
 	private VBox menuVictoire;
 	
+	@FXML
+	private VBox menuMort;
+	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
 	private Niveau niveau;
 	private boolean objectifAtteint;
+	private boolean mort;
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
@@ -63,7 +64,7 @@ public class ContJeu implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		
-		ArrayList<Corps> corps = new ArrayList<Corps>();
+		/*ArrayList<Corps> corps = new ArrayList<Corps>();
 		Planete p = new Planete(6e11, 400, 400, 100);
 		p.setTexture(Texture.RAYEE_ROUGE);
 		Planete p2 = new Planete(6e15, 0, 600, 100);
@@ -76,6 +77,9 @@ public class ContJeu implements Controleur
 		
 		Objectif obj = new ObjectifRayon(vaisseauJoueur, new Vecteur(100, 0), 20);
 		Niveau niv = new Niveau(corps, "Test", obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
+		chargerNiveau(niv);*/
+		File f = (new FileChooser()).showOpenDialog(null);
+		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
 	}
 	
@@ -169,7 +173,7 @@ public class ContJeu implements Controleur
 
 	public void afficherMenuPause()
 	{
-		if(!objectifAtteint)
+		if(!objectifAtteint && !mort)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
@@ -183,6 +187,35 @@ public class ContJeu implements Controleur
 		menuPause.setVisible(false);
 	}
 	
+	public void afficherMenuMort()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuMort.setVisible(true);
+		menuMort.toFront();
+	}
+	
+	public void cacherMenuMort()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuMort.setVisible(false);
+	}
+	
+	/**
+	 * Affiche l'écran de victoire.
+	 */
+	public void afficherMenuVictoire()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		menuVictoire.setVisible(true);
+		menuVictoire.toFront();
+	}
+	
+	public void cacherMenuVictoire()
+	{
+		ContPrincipal.getInstance().demarrerHorloge();
+		menuVictoire.setVisible(false);
+	}
+	
 	/**
 	 * Charge un niveau de jeu.
 	 * @param niv Niveau à charger.
@@ -191,6 +224,7 @@ public class ContJeu implements Controleur
 	{
 		niveau = niv;
 		objectifAtteint = false;
+		mort = false;
 		
 		ContPrincipal.getInstance().viderCorps();
 		
@@ -202,16 +236,8 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		vaisseauJoueur.setPosition(niveau.getPointDepart());
 		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
-	}
-
-	/**
-	 * Affiche l'écran de victoire.
-	 */
-	public void afficherMenuVictoire()
-	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuVictoire.setVisible(true);
-		menuVictoire.toFront();
+		
+		vue.initialiserCorps();
 	}
 
 	public void reset(){
@@ -238,6 +264,11 @@ public class ContJeu implements Controleur
 	public void retourjeu()
 	{
 		cacherMenuPause();
+		cacherMenuVictoire();
+		cacherMenuMort();
+		vaisseauJoueur.setSante(1.0);
+		objectifAtteint = false;
+		mort = false;
 	}
 	
 	@FXML
@@ -276,10 +307,16 @@ public class ContJeu implements Controleur
 	{
 		if(niveau != null && !objectifAtteint)
 		{
-			if(niveau.getObjectif().verifierObjectif())
+			if(niveau.getObjectif() != null && niveau.getObjectif().verifierObjectif())
 			{
 				objectifAtteint = true;
 				afficherMenuVictoire();
+			}
+			
+			if(vaisseauJoueur.getSante() == 0.0)
+			{
+				mort = true;
+				afficherMenuMort();
 			}
 		}
 	}

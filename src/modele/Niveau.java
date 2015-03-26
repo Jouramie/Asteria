@@ -31,6 +31,11 @@ public class Niveau
 	
 	private Vecteur vitesseDepart;
 	
+	public Niveau()
+	{
+		this(new ArrayList<Corps>(), "", new ObjectifRayon(new Vaisseau(0, 0, 0, 0, 0, new Vecteur()), new Vecteur(), 0), new Vecteur(), "", new Vecteur());
+	}
+	
 	/**
 	 * Constructeur servant à initialiser le niveau.
 	 * @param nouveauxCorps Les corps à mettre dans le niveau.

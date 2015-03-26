@@ -1,0 +1,105 @@
+.button
+{
+	-fx-background-color: transparent;
+	-fx-background-radius: 1.0px;
+	-fx-font-size: 20.0px;
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+	-fx-border-color: white;
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+	
+}
+
+.button:hover
+{
+	-fx-background-color: gray;
+}
+
+.choice-box
+{
+	-fx-font-size: 10.0px;
+	-fx-font-weight: bold;
+}
+
+.text-field
+{
+	-fx-font-size: 20.0px;
+	-fx-font-weight: bold;
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+	-fx-border-color: white;
+	-fx-border-radius: 0.0;
+	-fx-background-color: #010010FF;
+}
+
+.root
+{
+	-fx-background-color: #010010FF;
+}
+
+.editeur-menu-droite
+{
+	-fx-spacing: 10.0;
+	-fx-alignment: top-center;
+}
+
+.editeur-menu-bas
+{
+	-fx-spacing: 10.0;
+	-fx-alignment: center;
+}
+
+.editeur-jeu
+{
+	-fx-border-color: white;
+	-fx-border-radius: 0.0;
+}
+
+.editeur-label
+{
+	-fx-font-size: 20.0px;
+	-fx-font-weight: bold;
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+}
+
+.niveau-label-description
+{
+	-fx-background-image: url("Capture.PNG");
+	-fx-background-size: stretch;
+	-fx-font-family: "OCR A Extended";
+	-fx-font-size: 24.0px;
+}
+
+.niveau-vbox
+{
+	-fx-spacing: 10.0;
+	-fx-alignment: center;
+}
+
+.niveau-hbox
+{
+	-fx-spacing: 35.0;
+	-fx-alignment: center;
+}
+
+.niveau-button-niveau
+{
+	-fx-pref-width: 55.0;
+}
+
+.niveau-root
+{
+	-fx-background-image: url("back_02.jpg");
+}
+
+.menu-root
+{
+	-fx-background-image: url("planet.gif");
+}
+
+.jeu-root{
+	-fx-background-image: url("space.png");
+}
+
+.jeu-pause{
+	-fx-background-color: #000000aa;
+}

@@ -26,7 +26,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public final static double MASSE_DEFAUT = 1.0;
 	
-	protected double masse;
+	double masse;
 	protected DoubleProperty positionX;
 	protected DoubleProperty positionY;
 	protected boolean statique;
@@ -90,7 +90,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	private void init(double pMasse, double pPositionX, double pPositionY,
 			boolean pStatique, Vecteur pVitesse)
 	{
-		setMasse(pMasse);
+		masse = pMasse;
 		positionX = new SimpleDoubleProperty(pPositionX);
 		positionXDepart = pPositionX;
 		positionY = new SimpleDoubleProperty(pPositionY);
@@ -103,7 +103,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		return masse;
 	}
-	
+		
 	/**
 	 * Modifie la masse de l'objet, masse minimum : 1.0 .
 	 */
@@ -284,5 +284,14 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPositionX(positionXDepart);
 		setPositionY(positionYDepart);
 		setVitesse(vitesseDepart);
+	}
+	
+	/**
+	 * Callback lors d'une collision.
+	 * @param c Corps avec lequel on est en collision.
+	 */
+	public void onCollision(Corps c)
+	{
+		
 	}
 }
