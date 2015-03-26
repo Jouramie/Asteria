@@ -1,5 +1,6 @@
 package controleur;
 
+
 import java.io.File;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -59,8 +61,6 @@ public class ContNiveau implements Controleur
 	@FXML
 	private TextField textFieldRayon;
 	@FXML
-	private TextField textFieldVitesseDepart;
-	@FXML
 	private VBox vBoxMenuPlanete;
 	@FXML
 	private VBox vBoxMenuVaisseau;
@@ -97,6 +97,7 @@ public class ContNiveau implements Controleur
 		niveau = new Niveau();
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
+		ContPrincipal.getInstance().arreterHorloge();
 		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète", "Drapeau");
 		textFieldRayon.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -106,16 +107,60 @@ public class ContNiveau implements Controleur
 				{
 					((Planete) corpsSelect).setRayon((Double
 							.valueOf(textFieldRayon.getText())));
-					System.out.println(corpsSelect.getRayon());
+					((Planete) corpsSelect).maj();
 				}
-				catch (Exception ex)
+				catch (NumberFormatException ex)
 				{
-					ex.printStackTrace();
+					textFieldRayon.setText("" + corpsSelect.getRayon());
 				}
-				
-			}
-			
+			}			
 		});
+		textFieldMasse.setOnAction(new EventHandler<ActionEvent>()
+				{
+					public void handle(ActionEvent e)
+					{
+						try
+						{
+							corpsSelect.setMasse((Double
+									.valueOf(textFieldMasse.getText())));
+	
+						}
+						catch (NumberFormatException ex)
+						{
+							textFieldMasse.setText("" + corpsSelect.getMasse());
+						}
+					}			
+				});
+		textFieldPositionX.setOnAction(new EventHandler<ActionEvent>()
+				{
+					public void handle(ActionEvent e)
+					{
+						try
+						{
+							corpsSelect.setPositionX((Double
+									.valueOf(textFieldPositionX.getText())));
+						}
+						catch (NumberFormatException ex)
+						{
+							textFieldPositionX.setText("" + corpsSelect.getPositionX());
+						}
+					}			
+				});
+		textFieldPositionY.setOnAction(new EventHandler<ActionEvent>()
+				{
+					public void handle(ActionEvent e)
+					{
+						try
+						{
+							corpsSelect.setPositionY((Double
+									.valueOf(textFieldPositionY.getText())));
+						}
+						catch (NumberFormatException ex)
+						{
+							textFieldPositionY.setText("" + corpsSelect.getRayon());
+						}
+					}			
+				});
 		ContPrincipal.getInstance().arreterHorloge();
 	}
 	
@@ -190,15 +235,17 @@ public class ContNiveau implements Controleur
 				file.createNewFile();
 			}
 			
-			while(!file.canWrite())
+			while (!file.canWrite())
 			{
-				JOptionPane.showMessageDialog(null, "L'emplacement choisi ne peut pas être modifié!", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						"L'emplacement choisi ne peut pas être modifié!",
+						"Erreur", JOptionPane.ERROR_MESSAGE);
 				file = (new FileChooser()).showSaveDialog(null);
 			}
 			
-			niveau.sauvegarderNiveau(file);
+						niveau.sauvegarderNiveau(file);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 		}
 	}
@@ -213,16 +260,18 @@ public class ContNiveau implements Controleur
 		{
 			File file = (new FileChooser()).showOpenDialog(null);
 			
-			while(!file.canRead())
+			while (!file.canRead())
 			{
-				JOptionPane.showMessageDialog(null, "L'emplacement choisi ne peut pas être lu!", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						"L'emplacement choisi ne peut pas être lu!", "Erreur",
+						JOptionPane.ERROR_MESSAGE);
 				file = (new FileChooser()).showOpenDialog(null);
 			}
 			
 			niveau = Niveau.chargerNiveau(file);
 			chargerNiveau();
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 		}
 		

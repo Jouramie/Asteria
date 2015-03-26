@@ -103,7 +103,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		return masse;
 	}
-	
+		
 	/**
 	 * Modifie la masse de l'objet, masse minimum : 1.0 .
 	 */
