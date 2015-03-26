@@ -75,7 +75,7 @@ public class ContJeu implements Controleur
 		corps.add(p3);
 		
 		Objectif obj = new ObjectifRayon(vaisseauJoueur, new Vecteur(100, 0), 20);
-		Niveau niv = new Niveau(corps, obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
+		Niveau niv = new Niveau(corps, "Test", obj, new Vecteur(0, 0), "Test", new Vecteur(10, 10));
 		chargerNiveau(niv);
 	}
 	

@@ -7,11 +7,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import objets.Planete;
 import objets.Vaisseau;
 import objets.VaisseauJoueur;
-import controleur.ContPrincipal;
 import utils.Vecteur;
 /**
  * Classe servant à contenir les éléments constituant un niveau.
@@ -23,6 +21,8 @@ public class Niveau
 {
 	private List<Corps> corps;
 	
+	private String descriptionNiveau;
+	
 	private Objectif objectif;
 	
 	private Vecteur pointDepart;
@@ -33,13 +33,14 @@ public class Niveau
 	
 	/**
 	 * Constructeur servant à initialiser le niveau.
-	 * @param nouveauxCorps Les corps à mettre dans le niveau,
+	 * @param nouveauxCorps Les corps à mettre dans le niveau.
+	 * @param nouvelleDescriptionNiveau La description du niveau. 
 	 * @param nouvelObjectif L'objectif à mettre dans le niveau.
 	 * @param nouveauPointDepart Le point de départ du vaisseau.
 	 * @param nouveauTitreNiveau Le titre du niveau.
 	 * @param nouvelleVitesseDepart La vitesse du vaisseau au point de départ.
 	 */
-	public Niveau(List<Corps> nouveauxCorps, Objectif objectif, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
+	public Niveau(List<Corps> nouveauxCorps, String nouvelleDescriptionNiveau, Objectif nouvelObjectif, Vecteur nouveauPointDepart, String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
 	{
 		corps = new ArrayList<>();
 		
@@ -51,7 +52,9 @@ public class Niveau
 			}
 		}
 		
-		setObjectif(objectif);
+		setDescriptionNiveau(nouvelleDescriptionNiveau);
+		
+		setObjectif(nouvelObjectif);
 		
 		setPointDepart(nouveauPointDepart);
 		
@@ -80,12 +83,11 @@ public class Niveau
 	public static Niveau chargerNiveau(File fichier)
 	{
 		ArrayList<Corps> corps = new ArrayList<>();
+		String descriptionNiveau = null;
 		Objectif objectif = null;
-		double pointDepartX = 0;
-		double pointDepartY = 0;
+		Vecteur pointDepart = null;
 		String titreNiveau = null;
-		double vitesseDepartX = 0;
-		double vitesseDepartY = 0;
+		Vecteur vitesseDepart = null;
 		
 		if(fichier != null)
 		{
@@ -95,8 +97,6 @@ public class Niveau
 				BufferedReader bw = new BufferedReader(fw);
 				String ligne;
 				StringTokenizer st;
-				
-				ContPrincipal.getInstance().viderCorps();
 				
 				while((ligne = bw.readLine()) != null)
 				{
@@ -147,6 +147,43 @@ public class Niveau
 						corps.add(new VaisseauJoueur(puissance, direction, masse, capaciteCarburant, position, vitesse));
 						break;
 					}
+					case "descriptionniveau" :
+					{
+						descriptionNiveau = st.nextToken().trim();
+						break;
+					}
+					case "objectifrayon" :
+					{
+						Vaisseau vaisseau = (Vaisseau)corps.get(Integer.parseInt(st.nextToken().trim()));
+						double posRayonX = Double.parseDouble(st.nextToken().trim());
+						double posRayonY = Double.parseDouble(st.nextToken().trim());
+						double rayon = Double.parseDouble(st.nextToken().trim());
+						Vecteur posRayon = new Vecteur(posRayonX, posRayonY);
+						
+						objectif = new ObjectifRayon(vaisseau, posRayon, rayon);
+						break;
+					}
+					case "pointdepart" :
+					{
+						double pointDepartX = Double.parseDouble(st.nextToken().trim());
+						double pointDepartY = Double.parseDouble(st.nextToken().trim());
+						
+						pointDepart = new Vecteur(pointDepartX, pointDepartY);
+						break;
+					}
+					case "titreniveau" :
+					{
+						titreNiveau = st.nextToken().trim();
+						break;
+					}
+					case "vitesseDepart" :
+					{
+						double vitesseDepartX = Double.parseDouble(st.nextToken().trim());
+						double vitesseDepartY = Double.parseDouble(st.nextToken().trim());
+						
+						vitesseDepart = new Vecteur(vitesseDepartX, vitesseDepartY);
+						break;
+					}
 					}
 				}
 				bw.close();
@@ -156,7 +193,7 @@ public class Niveau
 			{
 			}
 		}
-		return new Niveau(corps, objectif, new Vecteur(pointDepartX, pointDepartY), titreNiveau, new Vecteur(vitesseDepartX, vitesseDepartY));
+		return new Niveau(corps, descriptionNiveau, objectif, pointDepart, titreNiveau, vitesseDepart);
 	}
 	
 	/**
@@ -166,6 +203,15 @@ public class Niveau
 	public List<Corps> getCorps()
 	{
 		return corps;
+	}
+	
+	/**
+	 * Retourne la description du niveau.
+	 * @return La description du niveau.
+	 */
+	public String getDescriptionNiveau()
+	{
+		return descriptionNiveau;
 	}
 	
 	/**
@@ -214,7 +260,8 @@ public class Niveau
 		{
 			FileWriter fw = new FileWriter(fichier);
 			BufferedWriter bw = new BufferedWriter(fw);
-			for(Corps c : ContPrincipal.getInstance().getCorps())
+			
+			for(Corps c : corps)
 			{
 				switch(c.getClass().getName().toLowerCase())
 				{
@@ -239,11 +286,43 @@ public class Niveau
 				}
 				bw.newLine();
 			}
+			
+			bw.write("DescriptionNiveau ; " + descriptionNiveau);
+			bw.newLine();
+			
+			switch(objectif.getClass().getName().toLowerCase())
+			{
+			case "modele.objectifrayon" :
+			{
+				ObjectifRayon or = (ObjectifRayon)objectif;
+				bw.write("ObjectifRayon ; " + corps.indexOf(or.getVaisseau()) + " ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon() + " ; " + pointDepart.getX() + " ; " + pointDepart.getY() + " ; " + titreNiveau + " ; " + vitesseDepart.getX() + " ; " + vitesseDepart.getY());
+				break;
+			}
+			}
+			bw.newLine();
+			
+			bw.write("PointDepart ; " + pointDepart.getX() + " ; " + pointDepart.getY());
+			bw.newLine();
+			
+			bw.write("TitreNiveau ; " + titreNiveau);
+			bw.newLine();
+			
+			bw.write("VitesseDepart ; " + vitesseDepart.getX() + " ; " + vitesseDepart.getY());
+			bw.newLine();
+			
 			bw.close();
 			fw.close();
 		}
 		catch(Exception e)
 		{
+		}
+	}
+	
+	public void setDescriptionNiveau(String nouvelleDescriptionNiveau)
+	{
+		if(nouvelleDescriptionNiveau != null)
+		{
+			descriptionNiveau = nouvelleDescriptionNiveau;
 		}
 	}
 	

@@ -34,6 +34,30 @@ public class ObjectifRayon implements Objectif
 	{
 		return "Atteignez l'objectif indiqué.";
 	}
+	
+	/**
+	 * Retourne la position du rayon de l'objectif.
+	 */
+	public Vecteur getPosRayon()
+	{
+		return posRayon;
+	}
+	
+	/**
+	 * Retourne le rayon de l'objectif.
+	 */
+	public double getRayon()
+	{
+		return rayon;
+	}
+	
+	/**
+	 * Retourne le vaisseau sur lequel l'objectif est vérifié.
+	 */
+	public Vaisseau getVaisseau()
+	{
+		return vaisseau;
+	}
 
 	/**
 	 * Vérifie si le vaisseau se retrouve dans le cercle prescrit.
