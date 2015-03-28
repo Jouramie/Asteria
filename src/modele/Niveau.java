@@ -300,7 +300,7 @@ public class Niveau
 			case "modele.objectifrayon" :
 			{
 				ObjectifRayon or = (ObjectifRayon)objectif;
-				bw.write("ObjectifRayon ; " + corps.indexOf(or.getVaisseau()) + " ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon() + " ; " + pointDepart.getX() + " ; " + pointDepart.getY() + " ; " + titreNiveau + " ; " + vitesseDepart.getX() + " ; " + vitesseDepart.getY());
+				bw.write("ObjectifRayon ; " + corps.indexOf(or.getVaisseau()) + " ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon());
 				break;
 			}
 			}
