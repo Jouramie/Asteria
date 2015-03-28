@@ -52,6 +52,42 @@ public class ObjectifRayon implements Objectif
 	}
 	
 	/**
+	 * Modifie le vaisseau sur lequel l'objectif est vérifié.
+	 * @param vaisseau Le nouveau vaisseau sur lequel l'objectif est vérifié.
+	 */
+	public void setVaisseau(Vaisseau vaisseau)
+	{
+		if(vaisseau != null)
+		{
+			this.vaisseau = vaisseau;
+		}
+	}
+	
+	/**
+	 * Modifie la position du rayon de l'objectif.
+	 * @param posRayon La nouvelle position du rayon de l'objectif.
+	 */
+	public void setPosRayon(Vecteur posRayon)
+	{
+		if(posRayon != null)
+		{
+			this.posRayon = posRayon;
+		}
+	}
+	
+	/**
+	 * Modifie le rayon de l'objectif.
+	 * @param rayon Le nouveau rayon de l'objectif.
+	 */
+	public void setRayon(double rayon)
+	{
+		if(rayon > 0)
+		{
+			this.rayon = rayon;
+		}
+	}
+	
+	/**
 	 * Retourne le vaisseau sur lequel l'objectif est vérifié.
 	 */
 	public Vaisseau getVaisseau()

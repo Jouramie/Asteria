@@ -1,19 +1,17 @@
 package tests;
 import static org.junit.Assert.*;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
 import modele.ObjectifRayon;
 import objets.Planete;
 import objets.Vaisseau;
-
+import objets.VaisseauJoueur;
 import org.junit.Before;
 import org.junit.Test;
-
 import utils.Vecteur;
 /**
  * Classe de tests pour Niveau.
@@ -24,6 +22,8 @@ public class NiveauTest
 {
 	private List<Corps> corps;
 	
+	private String descriptionNiveau;
+	
 	private Niveau niveau;
 	
 	private Objectif objectif;
@@ -32,36 +32,60 @@ public class NiveauTest
 	
 	private String titreNiveau;
 	
+	private VaisseauJoueur vaisseau;
+	
 	private Vecteur vitesseDepart;
 	
 	@Before
 	public void testNiveau()
 	{
-		corps = new ArrayList<>();
-		corps.add(new Planete(1000, 100, 100, 15));
+		vaisseau = new VaisseauJoueur(0, new Vecteur(0, 0), 100, 0, new Vecteur(50, 50), new Vecteur(10, 0));
 		
-		objectif = new ObjectifRayon(new Vaisseau(0, 100, 0, new Vecteur(50, 50), new Vecteur(10, 0)), new Vecteur(1000, 1000), 20);
+		corps = new ArrayList<>();
+		corps.add(vaisseau);
+		corps.add(new Planete(1000, 100, 100, 15));
+		corps.add(new Vaisseau(0, 100, 0, new Vecteur(250, 250), new Vecteur(10, 0)));
+		
+		descriptionNiveau = "Niveau très difficile";
+		objectif = new ObjectifRayon(vaisseau, new Vecteur(1000, 1000), 20);
 		pointDepart = new Vecteur(10, 10);
 		titreNiveau = "Niveau 1";
 		vitesseDepart = new Vecteur(10, 0);
 		
-		niveau = new Niveau(corps, objectif, pointDepart, titreNiveau, vitesseDepart);
+		niveau = new Niveau(corps, descriptionNiveau, objectif, pointDepart, titreNiveau, vitesseDepart);
 	}
 
 	@Test
 	public void testAjouterCorps()
 	{
-		assertEquals(niveau.getCorps().size(), 1);
+		assertEquals(niveau.getCorps().size(), 3);
 		niveau.ajouterCorps(new Planete(0, 0, 0, 0));
-		assertEquals(niveau.getCorps().size(), 2);
+		assertEquals(niveau.getCorps().size(), 4);
 		niveau.ajouterCorps(null);
-		assertEquals(niveau.getCorps().size(), 2);
+		assertEquals(niveau.getCorps().size(), 4);
+	}
+	
+	@Test
+	public void testChargerNiveau()
+	{
+		File f = new File("/IOTest.txt");
+		niveau.sauvegarderNiveau(f);
+		niveau.ajouterCorps(new Planete(10, 10, 10, 10));
+		assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size() + 1, true);
+		niveau.sauvegarderNiveau(f);
+		assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(null).getCorps().size(), false);
 	}
 
 	@Test
 	public void testGetCorps()
 	{
 		assertEquals(niveau.getCorps(), corps);
+	}
+	
+	@Test
+	public void testGetDescriptionNiveauNiveau()
+	{
+		assertEquals(niveau.getDescriptionNiveau(), descriptionNiveau);
 	}
 
 	@Test
@@ -86,6 +110,28 @@ public class NiveauTest
 	public void testGetVitesseDepart()
 	{
 		assertEquals(niveau.getVitesseDepart(), vitesseDepart);
+	}
+	
+	@Test
+	public void testSauvegarderNiveau()
+	{
+		File f = new File("/IOTest.txt");
+		niveau.sauvegarderNiveau(f);
+		niveau.ajouterCorps(new Planete(10, 10, 10, 10));
+		assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size() + 1, true);
+		niveau.sauvegarderNiveau(null);
+		niveau.ajouterCorps(new Planete(10, 450, 450, 10));
+		assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size() + 1, false);
+	}
+	
+	@Test
+	public void testSetDescriptionNiveau()
+	{
+		assertEquals(niveau.getDescriptionNiveau(), descriptionNiveau);
+		niveau.setDescriptionNiveau("");
+		assertNotEquals(niveau.getDescriptionNiveau(), descriptionNiveau);
+		niveau.setDescriptionNiveau(null);
+		assertNotEquals(niveau.getDescriptionNiveau(), null);
 	}
 	
 	@Test

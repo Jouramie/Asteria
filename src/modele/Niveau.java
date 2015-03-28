@@ -181,7 +181,7 @@ public class Niveau
 						titreNiveau = st.nextToken().trim();
 						break;
 					}
-					case "vitesseDepart" :
+					case "vitessedepart" :
 					{
 						double vitesseDepartX = Double.parseDouble(st.nextToken().trim());
 						double vitesseDepartY = Double.parseDouble(st.nextToken().trim());

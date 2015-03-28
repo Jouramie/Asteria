@@ -266,6 +266,7 @@ public class ContNiveau implements Controleur
 			}
 			
 			niveau = Niveau.chargerNiveau(file);
+			
 			chargerNiveau();
 		}
 		catch (Exception e)
