@@ -49,95 +49,6 @@
 	<right>
 		<VBox fx:id="vBoxMenu" alignment="TOP_CENTER" prefHeight="746.0" prefWidth="200.0" styleClass="editeur-menu-droite">
 			<children>
-				<Label styleClass="editeur-label" text="Texture">
-					<VBox.margin>
-						<Insets top="20.0" />
-					</VBox.margin>
-				</Label>
-				<ComboBox fx:id="comboBoxTexture" prefHeight="25.0" prefWidth="200.0">
-					<items>
-						<FXCollections fx:factory="observableArrayList">
-							<Label text="Bleue">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteBleue.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-							<Label text="Rouge">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteRouge.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-							<Label text="Jaune">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteJaune.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-							<Label text="Magenta">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteMagenta.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-							<Label text="Verte">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteVerte.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-							<Label text="Orange">
-								<graphic>
-									<StackPane prefWidth="50">
-										<children>
-											<ImageView fitHeight="32" preserveRatio="true">
-												<image>
-													<Image preserveRatio="false" smooth="false" url="@planeteOrange.png" />
-												</image>
-											</ImageView>
-										</children>
-									</StackPane>
-								</graphic>
-							</Label>
-						</FXCollections>
-					</items>
-				</ComboBox>
 				<Label styleClass="editeur-label" text="Masse" />
 				<TextField fx:id="textFieldMasse" prefHeight="25.0" prefWidth="200.0" />
 				<Label styleClass="editeur-label" text="Position X">
@@ -152,6 +63,95 @@
 					<children>
 						<VBox fx:id="vBoxMenuPlanete" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite">
 							<children>
+            				<Label styleClass="editeur-label" text="Texture">
+            					<VBox.margin>
+            						<Insets top="20.0" />
+            					</VBox.margin>
+            				</Label>
+            				<ComboBox fx:id="comboBoxTexture" prefHeight="25.0" prefWidth="200.0">
+            					<items>
+            						<FXCollections fx:factory="observableArrayList">
+            							<Label text="Bleue">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteBleue.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            							<Label text="Rouge">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteRouge.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            							<Label text="Jaune">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteJaune.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            							<Label text="Magenta">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteMagenta.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            							<Label text="Verte">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteVerte.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            							<Label text="Orange">
+            								<graphic>
+            									<StackPane prefWidth="50">
+            										<children>
+            											<ImageView fitHeight="32" preserveRatio="true">
+            												<image>
+            													<Image preserveRatio="false" smooth="false" url="@planeteOrange.png" />
+            												</image>
+            											</ImageView>
+            										</children>
+            									</StackPane>
+            								</graphic>
+            							</Label>
+            						</FXCollections>
+            					</items>
+            				</ComboBox>
 								<Label styleClass="editeur-label" text="Rayon" />
 								<TextField fx:id="textFieldRayon" prefHeight="25.0" prefWidth="119.0" />
 							</children>

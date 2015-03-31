@@ -100,7 +100,7 @@ public class ContNiveau implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
-		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète", "Drapeau");
+		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète");
 		textFieldRayon.setOnAction(new EventHandler<ActionEvent>()
 		{
 			public void handle(ActionEvent e)
@@ -379,6 +379,8 @@ public class ContNiveau implements Controleur
 		}
 		selectionnerCorps();
 	}
+	
+	
 	
 	private void creePlanete(Vecteur pos)
 	{
