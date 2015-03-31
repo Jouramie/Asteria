@@ -86,8 +86,8 @@ public class PlaneteTest
 	@Test
 	public void testSetTexture()
 	{
-		p1.setTexture(Texture.RAYEE_ROUGE);
-		assertEquals(p1.getTexture().name(), Texture.RAYEE_ROUGE.name());
+		p1.setTexture(Texture.ROUGE);
+		assertEquals(p1.getTexture().name(), Texture.ROUGE.name());
 		p2.setTexture(null);
 		assertEquals(p2.getTexture().name(), Planete.TEXTURE_DEFAUT.name());
 	}
@@ -95,8 +95,8 @@ public class PlaneteTest
 	@Test
 	public void testGetTexture()
 	{
-		p3.setTexture(Texture.RAYEE_ROUGE);
-		assertEquals(p3.getTexture().name(), Texture.RAYEE_ROUGE.name());
+		p3.setTexture(Texture.ROUGE);
+		assertEquals(p3.getTexture().name(), Texture.ROUGE.name());
 		p4.setTexture(null);
 		assertEquals(p4.getTexture().name(), Planete.TEXTURE_DEFAUT.name());
 	}

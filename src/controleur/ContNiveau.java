@@ -3,10 +3,6 @@ package controleur;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,13 +12,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+
+import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Niveau;
 import objets.Planete;
@@ -80,7 +78,6 @@ public class ContNiveau implements Controleur
 	private Corps corpsSelect;
 	
 	private Niveau niveau;
-	
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -293,6 +290,7 @@ public class ContNiveau implements Controleur
 		List<Corps> c = ContPrincipal.getInstance().getCorps();
 		c.clear();
 		vue.initialiserCorps();
+		niveau.getCorps().clear();
 	}
 	
 	/**
@@ -338,8 +336,7 @@ public class ContNiveau implements Controleur
 			switch (choiceBoxCorps.getValue())
 			{
 			case "Planète":
-				corpsSelect = new Planete(6e15, pos.getX(), pos.getY(), 100);
-				((Planete) corpsSelect).setTexture(Texture.ROUGE);
+				creePlanete(pos);
 				break;
 			case "Vaisseau":
 				corpsSelect = new Vaisseau(0, 1000, 0, pos.getX(), pos.getY(),
@@ -352,7 +349,58 @@ public class ContNiveau implements Controleur
 			
 		}
 		selectionnerCorps();
+	}
+	
+	private void creePlanete(Vecteur pos)
+	{
+		double masse;
+		double rayon;
+		try
+		{
+			masse = Double.valueOf(textFieldMasse.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			masse = Planete.MASSE_DEFAUT;
+		}
+		try
+		{
+			rayon = Double.valueOf(textFieldRayon.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			rayon = Planete.RAYON_DEFAUT;
+		}
 		
+		corpsSelect = new Planete(masse, pos, rayon);
+		try
+		{
+			switch (comboBoxTexture.getValue().getText())
+			{
+			case "Rouge":
+				((Planete) corpsSelect).setTexture(Texture.ROUGE);
+				break;
+			case "Bleue":
+				((Planete) corpsSelect).setTexture(Texture.BLEUE);
+				break;
+			case "Jaune":
+				((Planete) corpsSelect).setTexture(Texture.JAUNE);
+				break;
+			case "Orange":
+				((Planete) corpsSelect).setTexture(Texture.ORANGE);
+				break;
+			case "Verte":
+				((Planete) corpsSelect).setTexture(Texture.VERTE);
+				break;
+			case "Magenta":
+				((Planete) corpsSelect).setTexture(Texture.MAGENTA);
+				break;
+			}
+		}
+		catch (NullPointerException e)
+		{
+			((Planete) corpsSelect).setTexture(Planete.TEXTURE_DEFAUT);
+		}
 	}
 	
 	private void selectionnerCorps()
@@ -363,7 +411,53 @@ public class ContNiveau implements Controleur
 			vBoxMenuPlanete.setVisible(true);
 			vBoxMenuVaisseau.setVisible(false);
 			textFieldRayon.setText("" + corpsSelect.getRayon());
-			
+			textFieldMasse.setText("" + corpsSelect.getMasse());
+			textFieldPositionX.setText("" + corpsSelect.getPositionX());
+			textFieldPositionY.setText("" + corpsSelect.getPositionY());
+			switch(((Planete)corpsSelect).getTexture()){
+			case ROUGE:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Rouge")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			case BLEUE:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Bleue")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			case JAUNE:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Jaune")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			case MAGENTA:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Rouge")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			case ORANGE:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Orange")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			case VERTE:
+				for(Label l : comboBoxTexture.getItems()){
+					if(l.getText().equals("Verte")){
+						comboBoxTexture.setValue(l);
+					}
+				}
+				break;
+			}			
 		}
 		else if (corpsSelect.getClass().equals(Vaisseau.class))
 		{

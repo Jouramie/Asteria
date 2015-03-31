@@ -26,6 +26,7 @@ public class Planete extends ObjetSpatial
 	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
 	public static final double RAYON_ATMOSPHERE_DEFAUT = 30;
 	public static final Color COULEUR_ATMOSHPERE_DEFAUT = Color.ORANGE;
+	public static final double MASSE_DEFAUT = 6e15;
 	
 	public enum Texture
 	{
@@ -148,6 +149,7 @@ public class Planete extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
+		group.getChildren().clear();
 		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + rayonAtmosphere);
