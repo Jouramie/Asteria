@@ -163,6 +163,35 @@ public class ContNiveau implements Controleur
 				}
 			}
 		});
+		comboBoxTexture.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				switch (comboBoxTexture.getValue().getText())
+				{
+				case "Rouge":
+					((Planete) corpsSelect).setTexture(Texture.ROUGE);
+					break;
+				case "Bleue":
+					((Planete) corpsSelect).setTexture(Texture.BLEUE);
+					break;
+				case "Jaune":
+					((Planete) corpsSelect).setTexture(Texture.JAUNE);
+					break;
+				case "Orange":
+					((Planete) corpsSelect).setTexture(Texture.ORANGE);
+					break;
+				case "Verte":
+					((Planete) corpsSelect).setTexture(Texture.VERTE);
+					break;
+				case "Magenta":
+					((Planete) corpsSelect).setTexture(Texture.MAGENTA);
+					break;
+				}
+				chargerNiveau();
+			}
+		});
+		
 		ContPrincipal.getInstance().arreterHorloge();
 	}
 	
@@ -414,50 +443,63 @@ public class ContNiveau implements Controleur
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			switch(((Planete)corpsSelect).getTexture()){
+			switch (((Planete) corpsSelect).getTexture())
+			{
 			case ROUGE:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Rouge")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Rouge"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
 			case BLEUE:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Bleue")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Bleue"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
 			case JAUNE:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Jaune")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Jaune"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
 			case MAGENTA:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Rouge")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Rouge"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
 			case ORANGE:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Orange")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Orange"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
 			case VERTE:
-				for(Label l : comboBoxTexture.getItems()){
-					if(l.getText().equals("Verte")){
+				for (Label l : comboBoxTexture.getItems())
+				{
+					if (l.getText().equals("Verte"))
+					{
 						comboBoxTexture.setValue(l);
 					}
 				}
 				break;
-			}			
+			}
 		}
 		else if (corpsSelect.getClass().equals(Vaisseau.class))
 		{
