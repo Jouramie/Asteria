@@ -26,7 +26,7 @@ public class Planete extends ObjetSpatial
 	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
 	public static final double RAYON_ATMOSPHERE_DEFAUT = 30;
 	public static final Color COULEUR_ATMOSHPERE_DEFAUT = Color.ORANGE;
-	public static final double MASSE_DEFAUT = 6e15;
+	public static final double PLANETE_MASSE_DEFAUT = 6e15;
 	
 	public enum Texture
 	{

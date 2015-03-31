@@ -392,7 +392,7 @@ public class ContNiveau implements Controleur
 		}
 		catch (NumberFormatException e)
 		{
-			masse = Planete.MASSE_DEFAUT;
+			masse = Planete.PLANETE_MASSE_DEFAUT;
 		}
 		try
 		{

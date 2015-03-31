@@ -90,7 +90,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	private void init(double pMasse, double pPositionX, double pPositionY,
 			boolean pStatique, Vecteur pVitesse)
 	{
-		masse = pMasse;
+		setMasse(pMasse);
 		positionX = new SimpleDoubleProperty(pPositionX);
 		positionXDepart = pPositionX;
 		positionY = new SimpleDoubleProperty(pPositionY);

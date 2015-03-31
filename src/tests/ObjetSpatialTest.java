@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import objets.ObjetSpatial;
 import objets.Planete;
 
@@ -19,6 +20,7 @@ import utils.Vecteur;
 public class ObjetSpatialTest
 {
 	
+	private static final double d = 0.001;
 	ObjetSpatial oS1, oS2, oS3, oS4, oS5, oS6, oS7, oS8;
 	
 	@Before
@@ -39,6 +41,7 @@ public class ObjetSpatialTest
 	@Test
 	public void testGetMasse()
 	{
+		assertEquals(ObjetSpatial.MASSE_DEFAUT, oS1.getMasse(), d);
 		assertTrue(oS1.getMasse() == ObjetSpatial.MASSE_DEFAUT);
 		assertTrue(oS2.getMasse() == ObjetSpatial.MASSE_DEFAUT);
 		assertTrue(oS3.getMasse() == 60);
