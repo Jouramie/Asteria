@@ -148,6 +148,7 @@ public class Planete extends ObjetSpatial
 	
 	public Node getNoeud()
 	{
+		group.getChildren().clear();
 		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + rayonAtmosphere);

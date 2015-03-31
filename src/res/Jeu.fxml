@@ -8,11 +8,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@style.css" styleClass="jeu-root" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" styleClass="jeu-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <center>
     <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onScroll="#zoom" prefHeight="200.0" prefWidth="200.0">
       <children>
-        <VBox fx:id="menuPause" styleClass="jeu-pause" alignment="CENTER" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="menuPause" alignment="CENTER" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" styleClass="jeu-pause" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
             <Button mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="169.0" text="Retour au jeu">
               <textFill>
@@ -54,7 +54,7 @@
                   </Button>
           </children>
         </VBox>
-        <VBox id="menuPause" fx:id="menuVictoire" alignment="CENTER" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="10.0">
+        <VBox fx:id="menuVictoire" alignment="CENTER" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" styleClass="jeu-pause" visible="false" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="10.0">
           <children>
             <Label text="Bravo ! Vous avez réussi le tableau !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true">
               <font>
@@ -73,7 +73,7 @@
             </Button>
           </children>
         </VBox>
-            <VBox id="menuPause" fx:id="menuMort" alignment="CENTER" focusTraversable="true" layoutX="20.0" layoutY="20.0" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox fx:id="menuMort" alignment="CENTER" focusTraversable="true" layoutX="20.0" layoutY="20.0" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" styleClass="jeu-pause" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label text="Un terrible accident est survenu !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true" wrapText="true">
                      <font>
