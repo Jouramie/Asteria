@@ -1,13 +1,20 @@
 package controleur;
+
 import java.io.File;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -48,7 +55,7 @@ public class ContNiveau implements Controleur
 	@FXML
 	private ChoiceBox<String> choiceBoxCorps;
 	@FXML
-	private ChoiceBox<Image> choiceBoxTexture;
+	private ComboBox<Label> comboBoxTexture;
 	@FXML
 	private TextField textFieldMasse;
 	@FXML
@@ -73,6 +80,7 @@ public class ContNiveau implements Controleur
 	private Corps corpsSelect;
 	
 	private Niveau niveau;
+	
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -110,54 +118,54 @@ public class ContNiveau implements Controleur
 				{
 					textFieldRayon.setText("" + corpsSelect.getRayon());
 				}
-			}			
+			}
 		});
 		textFieldMasse.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent e)
+			{
+				try
 				{
-					public void handle(ActionEvent e)
-					{
-						try
-						{
-							corpsSelect.setMasse((Double
-									.valueOf(textFieldMasse.getText())));
-	
-						}
-						catch (NumberFormatException ex)
-						{
-							textFieldMasse.setText("" + corpsSelect.getMasse());
-						}
-					}			
-				});
+					corpsSelect.setMasse((Double.valueOf(textFieldMasse
+							.getText())));
+					
+				}
+				catch (NumberFormatException ex)
+				{
+					textFieldMasse.setText("" + corpsSelect.getMasse());
+				}
+			}
+		});
 		textFieldPositionX.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent e)
+			{
+				try
 				{
-					public void handle(ActionEvent e)
-					{
-						try
-						{
-							corpsSelect.setPositionX((Double
-									.valueOf(textFieldPositionX.getText())));
-						}
-						catch (NumberFormatException ex)
-						{
-							textFieldPositionX.setText("" + corpsSelect.getPositionX());
-						}
-					}			
-				});
+					corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
+							.getText())));
+				}
+				catch (NumberFormatException ex)
+				{
+					textFieldPositionX.setText("" + corpsSelect.getPositionX());
+				}
+			}
+		});
 		textFieldPositionY.setOnAction(new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent e)
+			{
+				try
 				{
-					public void handle(ActionEvent e)
-					{
-						try
-						{
-							corpsSelect.setPositionY((Double
-									.valueOf(textFieldPositionY.getText())));
-						}
-						catch (NumberFormatException ex)
-						{
-							textFieldPositionY.setText("" + corpsSelect.getRayon());
-						}
-					}			
-				});
+					corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
+							.getText())));
+				}
+				catch (NumberFormatException ex)
+				{
+					textFieldPositionY.setText("" + corpsSelect.getRayon());
+				}
+			}
+		});
 		ContPrincipal.getInstance().arreterHorloge();
 	}
 	
@@ -227,7 +235,7 @@ public class ContNiveau implements Controleur
 		{
 			File file = (new FileChooser()).showSaveDialog(null);
 			
-			if(!file.exists())
+			if (!file.exists())
 			{
 				file.createNewFile();
 			}
@@ -240,7 +248,7 @@ public class ContNiveau implements Controleur
 				file = (new FileChooser()).showSaveDialog(null);
 			}
 			
-						niveau.sauvegarderNiveau(file);
+			niveau.sauvegarderNiveau(file);
 		}
 		catch (Exception e)
 		{
@@ -331,7 +339,7 @@ public class ContNiveau implements Controleur
 			{
 			case "Planète":
 				corpsSelect = new Planete(6e15, pos.getX(), pos.getY(), 100);
-				((Planete) corpsSelect).setTexture(Texture.RAYEE_ROUGE);
+				((Planete) corpsSelect).setTexture(Texture.ROUGE);
 				break;
 			case "Vaisseau":
 				corpsSelect = new Vaisseau(0, 1000, 0, pos.getX(), pos.getY(),
@@ -373,7 +381,7 @@ public class ContNiveau implements Controleur
 	{
 		ContPrincipal.getInstance().viderCorps();
 		
-		for(Corps c : niveau.getCorps())
+		for (Corps c : niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
 		}

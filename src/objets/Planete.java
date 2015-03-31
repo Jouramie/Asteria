@@ -20,7 +20,7 @@ import utils.Vecteur;
 public class Planete extends ObjetSpatial
 {
 	
-	public static final Texture TEXTURE_DEFAUT = Texture.RAYEE_ROUGE;
+	public static final Texture TEXTURE_DEFAUT = Texture.ROUGE;
 	public static final double RAYON_DEFAUT = 100;
 	public static final boolean STATIC_DEFAUT = true;
 	public static final Vecteur VITESSE_DEFAUT = new Vecteur();
@@ -29,12 +29,12 @@ public class Planete extends ObjetSpatial
 	
 	public enum Texture
 	{
-		RAYEE_BLEUE("/res/planeteRayeeBleue.png"),
-		RAYEE_JAUNE("/res/planeteRayeeJaune.png"),
-		RAYEE_MAGENTA("/res/planeteRayeeMagenta.png"),
-		RAYEE_ORANGE("/res/planeteRayeeOrange.png"),
-		RAYEE_ROUGE("/res/planeteRayeeRouge.png"),
-		RAYEE_VERTE("/res/planeteRayeeVerte.png");
+		BLEUE("/res/planeteBleue.png"),
+		JAUNE("/res/planeteJaune.png"),
+		MAGENTA("/res/planeteMagenta.png"),
+		ORANGE("/res/planeteOrange.png"),
+		ROUGE("/res/planeteRouge.png"),
+		VERTE("/res/planeteVerte.png");
 		
 		private final String texture;
 		
