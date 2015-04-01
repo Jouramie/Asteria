@@ -345,6 +345,9 @@ public class ContNiveau implements Controleur
 		}
 	}
 	
+	/**
+	 * méthode qui gère l'ajout d'objets dans la construction.
+	 */
 	private void mouseClickedPrimary(MouseEvent event, Vecteur pos)
 	{
 		boolean toucheCorps = false;
@@ -381,7 +384,9 @@ public class ContNiveau implements Controleur
 	}
 	
 	
-	
+	/**
+	 * méthode qui gère la création de planètes dans l'éditeur de niveaux.
+	 */
 	private void creePlanete(Vecteur pos)
 	{
 		double masse;
@@ -434,6 +439,9 @@ public class ContNiveau implements Controleur
 		}
 	}
 	
+	/**
+	 * méthode qui gère la sélection d'un objet de l'éditeur dans le but de la modifier.
+	 */
 	private void selectionnerCorps()
 	{
 		vBoxMenu.setVisible(true);
@@ -515,6 +523,9 @@ public class ContNiveau implements Controleur
 		// TODO ???
 	}
 	
+	/**
+	 * Ajoute tous les corps d'un niveau donné dans la vue.
+	 */
 	private void chargerNiveau()
 	{
 		ContPrincipal.getInstance().viderCorps();
@@ -527,6 +538,7 @@ public class ContNiveau implements Controleur
 		vue.initialiserCorps();
 	}
 	
+	// Cette méthode ne sert pas encore.
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
@@ -563,6 +575,7 @@ public class ContNiveau implements Controleur
 		}
 	}
 	
+	// Cette méthode ne sert pas encore.
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{

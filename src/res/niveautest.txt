@@ -1,0 +1,10 @@
+Planete ; 6.0E15 ; -397.0 ; -238.0 ; 100.0
+Planete ; 6.0E15 ; 148.0 ; 145.0 ; 90.0
+Planete ; 6.0E15 ; 357.0 ; -267.0 ; 90.0
+Planete ; 6.0E15 ; -295.0 ; 154.0 ; 70.0
+Vaisseau ; 1.0 ; 1000.0 ; 100 ; 36.0 ; -34.0 ; 0.0 ; 0.0
+DescriptionNiveau Ceci est le niveau de test. ; 
+ObjectifRayon ; -1 ; 0.0 ; 0.0 ; 0.0
+PointDepart ; 0.0 ; 0.0
+TitreNiveau Niveau test; 
+VitesseDepart ; 0.0 ; 0.0

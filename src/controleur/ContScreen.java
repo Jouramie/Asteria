@@ -1,5 +1,11 @@
 package controleur;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import modele.Niveau;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -67,6 +73,10 @@ public class ContScreen implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
 
+	/**
+	 * Retourne au controleur principal, et à sa vue.
+	 * 
+	 */
 	@FXML
 	public void retour()
 	{
@@ -77,7 +87,7 @@ public class ContScreen implements Controleur
 	 * Gère les différentes descriptions de niveaux.
 	 */
 	@FXML
-	public void levels(ActionEvent event)
+	public void levels(ActionEvent event) throws URISyntaxException
 	{
 		if (event.getSource() == b1)
 		{
@@ -86,59 +96,49 @@ public class ContScreen implements Controleur
 		
 		else if (event.getSource() == b2)
 		{
-			label.setText("Niveau 2");
+			label.setText("Niveau 2, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b3)
 		{
-			label.setText("Niveau 3");
+			label.setText("Niveau 3, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b4)
 		{
-			label.setText("Niveau 4");
+			label.setText("Niveau 4, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b5)
 		{
-			label.setText("Niveau 5");
+			label.setText("Niveau 5, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b6)
 		{
-			label.setText("Niveau 6");
+			label.setText("Niveau 6, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b7)
 		{
-			label.setText("Niveau 7");
+			label.setText("Niveau 7, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b8)
 		{
-			label.setText("Niveau 8");
+			label.setText("Niveau 8, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b9)
 		{
-			label.setText("Niveau 9");
+			label.setText("Niveau 9, Description à venir :)");
 		}
 		
 		else if (event.getSource() == b10)
 		{
-			label.setText("Niveau 10");
+			label.setText("Niveau 10, Description à venir :)");
 		}
     }
-	
-	
-	/**
-	 * méthode qui gère l'ajout d'objets dans la construction.
-	 */
-	@FXML
-	public void mouseClicked(MouseEvent e)
-	{
-		
-	}
 
 	@Override
 	public void update(double dt) {
