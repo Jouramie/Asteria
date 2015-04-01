@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.StringTokenizer;
 
 import modele.Niveau;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import vue.VueScreen;
 
 /**
@@ -89,54 +91,65 @@ public class ContScreen implements Controleur
 	@FXML
 	public void levels(ActionEvent event) throws URISyntaxException
 	{
+		File file = new File(System.getProperty("java.class.path"));
+		Niveau n = null;
+		StringTokenizer st = new StringTokenizer(file.getAbsolutePath(),";");
+		String chemin = st.nextToken();
+		chemin.replace("\\", "\\\\");
+		
 		if (event.getSource() == b1)
 		{
-			label.setText("Le niveau 1 \n Sur les planètes lointaines de la galaxie WALID-Z-09 se situent les habitants \n des planètes Emilios, Simonus, Jouramiax et Jonathex. \n Retrouvez votre chemin jusqu'à  votre destination. Attention, assurez-vous de ne pas manquer \n de carburant ! Bonne chance !");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_01.txt"));
+			
 		}
-		
 		else if (event.getSource() == b2)
 		{
-			label.setText("Niveau 2, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_02.txt"));
 		}
 		
 		else if (event.getSource() == b3)
 		{
-			label.setText("Niveau 3, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_03.txt"));
 		}
 		
 		else if (event.getSource() == b4)
 		{
-			label.setText("Niveau 4, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_04.txt"));
 		}
 		
 		else if (event.getSource() == b5)
 		{
-			label.setText("Niveau 5, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_05.txt"));
 		}
 		
 		else if (event.getSource() == b6)
 		{
-			label.setText("Niveau 6, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_06.txt"));
 		}
 		
 		else if (event.getSource() == b7)
 		{
-			label.setText("Niveau 7, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_07.txt"));
 		}
 		
 		else if (event.getSource() == b8)
 		{
-			label.setText("Niveau 8, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_08.txt"));
 		}
 		
 		else if (event.getSource() == b9)
 		{
-			label.setText("Niveau 9, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_09.txt"));
 		}
 		
 		else if (event.getSource() == b10)
 		{
-			label.setText("Niveau 10, Description à venir :)");
+			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_10.txt"));
+		}
+		
+		if (n != null)
+		{
+			label.setText(n.getDescriptionNiveau());	
 		}
     }
 
