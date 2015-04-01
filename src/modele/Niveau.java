@@ -7,7 +7,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
 import objets.Planete;
+import objets.Planete.Texture;
 import objets.Vaisseau;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
@@ -115,8 +117,11 @@ public class Niveau
 						double positionX = Double.parseDouble(st.nextToken().trim());
 						double positionY = Double.parseDouble(st.nextToken().trim());
 						double rayon = Double.parseDouble(st.nextToken().trim());
+						String texture = st.nextToken().trim();
 						
-						corps.add(new Planete(masse, positionX, positionY, rayon));
+						Planete p = new Planete(masse, positionX, positionY, rayon);
+						p.setTexture(Texture.getTexture(texture));
+						corps.add(p);
 						break;
 					}
 					case "vaisseau":
@@ -273,7 +278,7 @@ public class Niveau
 				case "objets.planete":
 				{
 					Planete p = (Planete)c;
-					bw.write("Planete ; " + p.getMasse() + " ; " + p.getPositionX() + " ; " + p.getPositionY() + " ; " + p.getRayon());
+					bw.write("Planete ; " + p.getMasse() + " ; " + p.getPositionX() + " ; " + p.getPositionY() + " ; " + p.getRayon() + " ; " + p.getTexture().toString());
 					break;
 				}
 				case "objets.vaisseau":

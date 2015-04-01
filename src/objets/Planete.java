@@ -44,6 +44,33 @@ public class Planete extends ObjetSpatial
 			texture = pTexture;
 		}
 		
+		public static Texture getTexture(String tex)
+		{
+			switch(tex.toLowerCase())
+			{
+			case "bleue":
+				return Texture.BLEUE;
+				
+			case "jaune":
+				return Texture.JAUNE;
+				
+			case "magenta":
+				return Texture.MAGENTA;
+				
+			case "orange":
+				return Texture.ORANGE;
+				
+			case "rouge":
+				return Texture.ROUGE;
+				
+			case "verte":
+				return Texture.VERTE;
+				
+			default:
+				return TEXTURE_DEFAUT;
+			}
+		}
+		
 		public String getTexture()
 		{
 			return texture;
