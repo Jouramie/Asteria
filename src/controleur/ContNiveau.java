@@ -105,6 +105,7 @@ public class ContNiveau implements Controleur
 		
 		initialiserComboBox();
 		
+		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().arreterHorloge();
 	}
 	

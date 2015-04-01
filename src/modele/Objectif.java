@@ -1,5 +1,7 @@
 package modele;
 
+import objets.Vaisseau;
+
 /**
  * Interface définissant un objectif d'un niveau.
  * @author EqBolduc
@@ -18,4 +20,10 @@ public interface Objectif
 	 * @return Vrai si l'objectif est atteint, faux sinon.
 	 */
 	boolean verifierObjectif();
+	
+	/**
+	 * Assigne un vaisseau à l'objectif.
+	 * @param v Vaisseau.
+	 */
+	public void setVaisseau(Vaisseau v);
 }

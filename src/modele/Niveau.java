@@ -35,7 +35,7 @@ public class Niveau
 	
 	public Niveau()
 	{
-		this(new ArrayList<Corps>(), "", new ObjectifRayon(new Vaisseau(0, 0, 0, 0, 0, new Vecteur()), new Vecteur(), 0), new Vecteur(), "", new Vecteur());
+		this(new ArrayList<Corps>(), "", new ObjectifRayon(new Vecteur(), 0), new Vecteur(), "", new Vecteur());
 	}
 	
 	/**
@@ -164,13 +164,12 @@ public class Niveau
 					}
 					case "objectifrayon" :
 					{
-						Vaisseau vaisseau = (Vaisseau)corps.get(Integer.parseInt(st.nextToken().trim()));
 						double posRayonX = Double.parseDouble(st.nextToken().trim());
 						double posRayonY = Double.parseDouble(st.nextToken().trim());
 						double rayon = Double.parseDouble(st.nextToken().trim());
 						Vecteur posRayon = new Vecteur(posRayonX, posRayonY);
 						
-						objectif = new ObjectifRayon(vaisseau, posRayon, rayon);
+						objectif = new ObjectifRayon(posRayon, rayon);
 						break;
 					}
 					case "pointdepart" :
@@ -305,7 +304,7 @@ public class Niveau
 			case "modele.objectifrayon" :
 			{
 				ObjectifRayon or = (ObjectifRayon)objectif;
-				bw.write("ObjectifRayon ; " + corps.indexOf(or.getVaisseau()) + " ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon());
+				bw.write("ObjectifRayon ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon());
 				break;
 			}
 			}
