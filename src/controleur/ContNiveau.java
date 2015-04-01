@@ -2,6 +2,7 @@ package controleur;
 
 import java.io.File;
 import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -21,14 +22,18 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+
 import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Niveau;
+import modele.ObjectifRayon;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
 import utils.Vecteur;
 import vue.Camera;
+import vue.Dessinable;
 import vue.VueNiveau;
 
 /**
@@ -101,7 +106,7 @@ public class ContNiveau implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
-		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète");
+		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail");
 		
 		initialiserComboBox();
 		
@@ -167,8 +172,11 @@ public class ContNiveau implements Controleur
 	@FXML
 	public void onTexture(ActionEvent e)
 	{
-		((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
-		chargerNiveau();
+		if(corpsSelect != null)
+		{
+			((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
+			chargerNiveau();
+		}
 	}
 	
 	/**
@@ -389,13 +397,17 @@ public class ContNiveau implements Controleur
 			{
 			case "Planète":
 				creePlanete(pos);
+				niveau.ajouterCorps(corpsSelect);
 				break;
 			case "Vaisseau":
-				corpsSelect = new Vaisseau(0, 1000, 0, pos.getX(), pos.getY(),
-						null);
+				corpsSelect = new Vaisseau(0, 1000, 0, pos.getX(), pos.getY(), null);
+				niveau.ajouterCorps(corpsSelect);
+				break;
+			case "Portail":
+				niveau.setObjectif(new ObjectifRayon(pos, 50.0));
 				break;
 			}
-			niveau.ajouterCorps(corpsSelect);
+			
 			chargerNiveau();
 			pane.requestFocus();
 			
@@ -480,6 +492,11 @@ public class ContNiveau implements Controleur
 		}
 		
 		vue.initialiserCorps();
+		
+		if(niveau.getObjectif() != null && niveau.getObjectif() instanceof Dessinable)
+		{
+			vue.ajouterDessinable((Dessinable)niveau.getObjectif());
+		}
 	}
 	
 	// Cette méthode ne sert pas encore.

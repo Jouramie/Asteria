@@ -1,8 +1,10 @@
 package controleur;
 
 import modele.Corps;
+import modele.Objectif;
 
 import java.io.File;
+
 import modele.Niveau;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -12,6 +14,7 @@ import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
+import vue.Dessinable;
 import vue.VueJeu;
 
 /**
@@ -223,9 +226,18 @@ public class ContJeu implements Controleur
 		vaisseauJoueur.setPosition(niveau.getPointDepart());
 		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
 		
-		niveau.getObjectif().setVaisseau(vaisseauJoueur);
-		
 		vue.initialiserCorps();
+		
+		Objectif objectif = niveau.getObjectif();
+		
+		if(objectif != null)
+		{
+			objectif.setVaisseau(vaisseauJoueur);
+			if(objectif instanceof Dessinable)
+			{
+				vue.ajouterDessinable((Dessinable)objectif);
+			}
+		}
 	}
 
 	public void reset()

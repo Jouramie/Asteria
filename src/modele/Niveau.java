@@ -35,7 +35,7 @@ public class Niveau
 	
 	public Niveau()
 	{
-		this(new ArrayList<Corps>(), "", new ObjectifRayon(new Vecteur(), 0), new Vecteur(), "", new Vecteur());
+		this(new ArrayList<Corps>(), "", null, new Vecteur(), "", new Vecteur());
 	}
 	
 	/**
@@ -299,16 +299,19 @@ public class Niveau
 			bw.write("DescriptionNiveau ; " + descriptionNiveau);
 			bw.newLine();
 			
-			switch(objectif.getClass().getName().toLowerCase())
+			if(objectif != null)
 			{
-			case "modele.objectifrayon" :
-			{
-				ObjectifRayon or = (ObjectifRayon)objectif;
-				bw.write("ObjectifRayon ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon());
-				break;
+				switch(objectif.getClass().getName().toLowerCase())
+				{
+				case "modele.objectifrayon" :
+				{
+					ObjectifRayon or = (ObjectifRayon)objectif;
+					bw.write("ObjectifRayon ; " + or.getPosRayon().getX() + " ; " + or.getPosRayon().getY() + " ; " + or.getRayon());
+					break;
+				}
+				}
+				bw.newLine();
 			}
-			}
-			bw.newLine();
 			
 			bw.write("PointDepart ; " + pointDepart.getX() + " ; " + pointDepart.getY());
 			bw.newLine();
