@@ -50,15 +50,15 @@
 		<VBox fx:id="vBoxMenu" alignment="TOP_CENTER" prefHeight="746.0" prefWidth="200.0" styleClass="editeur-menu-droite">
 			<children>
 				<Label styleClass="editeur-label" text="Masse" />
-				<TextField fx:id="textFieldMasse" prefHeight="25.0" prefWidth="200.0" />
+				<TextField fx:id="textFieldMasse" onAction="#onMasse" prefHeight="25.0" prefWidth="200.0" />
 				<Label styleClass="editeur-label" text="Position X">
 					<VBox.margin>
 						<Insets />
 					</VBox.margin>
 				</Label>
-				<TextField fx:id="textFieldPositionX" prefHeight="25.0" prefWidth="119.0" />
+				<TextField fx:id="textFieldPositionX" onAction="#onPositionX" prefHeight="25.0" prefWidth="119.0" />
 				<Label styleClass="editeur-label" text="Position Y" />
-				<TextField fx:id="textFieldPositionY" prefHeight="25.0" prefWidth="119.0" />
+				<TextField fx:id="textFieldPositionY" onAction="#onPositionY" prefHeight="25.0" prefWidth="119.0" />
 				<Pane prefHeight="200.0" prefWidth="200.0">
 					<children>
 						<VBox fx:id="vBoxMenuPlanete" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite">
@@ -68,7 +68,7 @@
             						<Insets top="20.0" />
             					</VBox.margin>
             				</Label>
-            				<ComboBox fx:id="comboBoxTexture" prefHeight="25.0" prefWidth="200.0">
+            				<ComboBox fx:id="comboBoxTexture" onAction="#onTexture" prefHeight="25.0" prefWidth="200.0">
             					<items>
             						<FXCollections fx:factory="observableArrayList">
             							<Label text="Bleue">
@@ -153,7 +153,7 @@
             					</items>
             				</ComboBox>
 								<Label styleClass="editeur-label" text="Rayon" />
-								<TextField fx:id="textFieldRayon" prefHeight="25.0" prefWidth="119.0" />
+								<TextField fx:id="textFieldRayon" onAction="#onRayon" prefHeight="25.0" prefWidth="119.0" />
 							</children>
 						</VBox>
 						<VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false" />

@@ -12,6 +12,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -101,98 +103,95 @@ public class ContNiveau implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
 		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète");
-		textFieldRayon.setOnAction(new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent e)
-			{
-				try
-				{
-					((Planete) corpsSelect).setRayon((Double
-							.valueOf(textFieldRayon.getText())));
-					((Planete) corpsSelect).maj();
-				}
-				catch (NumberFormatException ex)
-				{
-					textFieldRayon.setText("" + corpsSelect.getRayon());
-				}
-			}
-		});
-		textFieldMasse.setOnAction(new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent e)
-			{
-				try
-				{
-					corpsSelect.setMasse((Double.valueOf(textFieldMasse
-							.getText())));
-					
-				}
-				catch (NumberFormatException ex)
-				{
-					textFieldMasse.setText("" + corpsSelect.getMasse());
-				}
-			}
-		});
-		textFieldPositionX.setOnAction(new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent e)
-			{
-				try
-				{
-					corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
-							.getText())));
-				}
-				catch (NumberFormatException ex)
-				{
-					textFieldPositionX.setText("" + corpsSelect.getPositionX());
-				}
-			}
-		});
-		textFieldPositionY.setOnAction(new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent e)
-			{
-				try
-				{
-					corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
-							.getText())));
-				}
-				catch (NumberFormatException ex)
-				{
-					textFieldPositionY.setText("" + corpsSelect.getRayon());
-				}
-			}
-		});
-		comboBoxTexture.setOnAction(new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent event)
-			{
-				switch (comboBoxTexture.getValue().getText())
-				{
-				case "Rouge":
-					((Planete) corpsSelect).setTexture(Texture.ROUGE);
-					break;
-				case "Bleue":
-					((Planete) corpsSelect).setTexture(Texture.BLEUE);
-					break;
-				case "Jaune":
-					((Planete) corpsSelect).setTexture(Texture.JAUNE);
-					break;
-				case "Orange":
-					((Planete) corpsSelect).setTexture(Texture.ORANGE);
-					break;
-				case "Verte":
-					((Planete) corpsSelect).setTexture(Texture.VERTE);
-					break;
-				case "Magenta":
-					((Planete) corpsSelect).setTexture(Texture.MAGENTA);
-					break;
-				}
-				chargerNiveau();
-			}
-		});
+		
+		/*comboBoxTexture.getItems().clear();
+		Label temp = new Label("Magenta");
+		temp.setGraphic(new ImageView("/res/planeteMagenta.png"));
+		comboBoxTexture.getItems().add(temp);*/
 		
 		ContPrincipal.getInstance().arreterHorloge();
+	}
+	
+	@FXML
+	public void onRayon(ActionEvent e)
+	{
+		try
+		{
+			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
+			((Planete) corpsSelect).maj();
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldRayon.setText("" + corpsSelect.getRayon());
+		}
+	}
+	
+	@FXML
+	public void onMasse(ActionEvent e)
+	{
+		try
+		{
+			corpsSelect.setMasse((Double.valueOf(textFieldMasse.getText())));
+			
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldMasse.setText("" + corpsSelect.getMasse());
+		}
+	}
+	
+	@FXML
+	public void onPositionX(ActionEvent e)
+	{
+		try
+		{
+			corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
+					.getText())));
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldPositionX.setText("" + corpsSelect.getPositionX());
+		}
+	}
+	
+	@FXML
+	public void onPositionY(ActionEvent e)
+	{
+		try
+		{
+			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldPositionY.setText("" + corpsSelect.getPositionY());
+		}
+	}
+	
+	@FXML
+	public void onTexture(ActionEvent e)
+	{
+		switch (comboBoxTexture.getValue().getText())
+		{
+		case "Rouge":
+			((Planete) corpsSelect).setTexture(Texture.ROUGE);
+			break;
+		case "Bleue":
+			((Planete) corpsSelect).setTexture(Texture.BLEUE);
+			break;
+		case "Jaune":
+			((Planete) corpsSelect).setTexture(Texture.JAUNE);
+			break;
+		case "Orange":
+			((Planete) corpsSelect).setTexture(Texture.ORANGE);
+			break;
+		case "Verte":
+			((Planete) corpsSelect).setTexture(Texture.VERTE);
+			break;
+		case "Magenta":
+			((Planete) corpsSelect).setTexture(Texture.MAGENTA);
+			break;
+		}
+		chargerNiveau();
 	}
 	
 	/**
@@ -444,6 +443,11 @@ public class ContNiveau implements Controleur
 	 */
 	private void selectionnerCorps()
 	{
+		if(corpsSelect == null)
+		{
+			return;
+		}
+		
 		vBoxMenu.setVisible(true);
 		if (corpsSelect.getClass().equals(Planete.class))
 		{
