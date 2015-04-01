@@ -27,7 +27,7 @@ public class ObjectifRayonTest
 		posRayon = new Vecteur(100, 100);
 		rayon = 10;
 		vaisseau = new Vaisseau(100, 6e10, 1000, 0, 0, new Vecteur(0, 0));
-		obj = new ObjectifRayon(vaisseau, posRayon, rayon);
+		obj = new ObjectifRayon(posRayon, rayon);
 	}
 
 	@Test

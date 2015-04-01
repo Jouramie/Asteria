@@ -20,9 +20,9 @@ public class ObjectifRayon implements Objectif
 	 * @param posRayon Position du cercle.
 	 * @param rayon Rayon du cercle.
 	 */
-	public ObjectifRayon(Vaisseau vaisseau, Vecteur posRayon, double rayon)
+	public ObjectifRayon(Vecteur posRayon, double rayon)
 	{
-		this.vaisseau = vaisseau;
+		this.vaisseau = null;
 		this.posRayon = posRayon;
 		this.rayon = rayon;
 	}
@@ -102,7 +102,7 @@ public class ObjectifRayon implements Objectif
 	{
 		boolean resultat = false;
 		
-		if(vaisseau.getPosition().soustraire(posRayon).getNorme() < rayon)
+		if(vaisseau != null && vaisseau.getPosition().soustraire(posRayon).getNorme() < rayon)
 		{
 			resultat = true;
 		}

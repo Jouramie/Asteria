@@ -47,7 +47,7 @@ public class NiveauTest
 		corps.add(new Vaisseau(0, 100, 0, new Vecteur(250, 250), new Vecteur(10, 0)));
 		
 		descriptionNiveau = "Niveau très difficile";
-		objectif = new ObjectifRayon(vaisseau, new Vecteur(1000, 1000), 20);
+		objectif = new ObjectifRayon(new Vecteur(1000, 1000), 20);
 		pointDepart = new Vecteur(10, 10);
 		titreNiveau = "Niveau 1";
 		vitesseDepart = new Vecteur(10, 0);
@@ -138,7 +138,7 @@ public class NiveauTest
 	public void testSetObjectif()
 	{
 		assertEquals(niveau.getObjectif(), objectif);
-		niveau.setObjectif(new ObjectifRayon(new Vaisseau(0, 100, 0, new Vecteur(50, 50), new Vecteur(10, 0)), new Vecteur(1500, 1500), 20));
+		niveau.setObjectif(new ObjectifRayon(new Vecteur(1500, 1500), 20));
 		assertNotEquals(niveau.getObjectif(), objectif);
 		niveau.setObjectif(null);
 		assertNotEquals(niveau.getObjectif(), null);
