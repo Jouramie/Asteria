@@ -95,6 +95,7 @@ public class Niveau
 		Vecteur pointDepart = null;
 		String titreNiveau = null;
 		Vecteur vitesseDepart = null;
+		Niveau niveau = null;
 		
 		if(fichier != null)
 		{
@@ -197,12 +198,14 @@ public class Niveau
 				}
 				bw.close();
 				fw.close();
+				
+				niveau = new Niveau(corps, descriptionNiveau, objectif, pointDepart, titreNiveau, vitesseDepart);
 			}
 			catch(Exception e)
 			{
 			}
 		}
-		return new Niveau(corps, descriptionNiveau, objectif, pointDepart, titreNiveau, vitesseDepart);
+		return niveau;
 	}
 	
 	/**
