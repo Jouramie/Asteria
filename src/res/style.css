@@ -96,10 +96,44 @@
 	-fx-background-image: url("planet.gif");
 }
 
-.jeu-root{
+.jeu-root
+{
 	-fx-background-image: url("space.png");
 }
 
-.jeu-pause{
+.jeu-pause
+{
 	-fx-background-color: #000000aa;
+}
+
+.jeu-progress
+{
+	-fx-spacing: 5.0;
+	-fx-background-color: #010010FF;
+	-fx-border-color: white;
+}
+
+.jeu-progress-carburant .bar
+{
+	-fx-background-color: #FFFF00FF;
+}
+
+.jeu-progress-solidite .bar
+{
+	-fx-background-color: #FF0000FF;
+}
+
+.progress-bar .bar
+{
+	-fx-background-inserts: 0;
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+}
+
+.progress-bar .track 
+{
+	visibility: hidden;
+	-fx-background-color: #00000000;
+	-fx-text-box-border: #00000000;
+    -fx-control-inner-background: #00000000;
 }
