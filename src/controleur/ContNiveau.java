@@ -2,15 +2,15 @@ package controleur;
 
 import java.io.File;
 import java.util.List;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,9 +20,8 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Niveau;
 import objets.Planete;
@@ -55,7 +54,7 @@ public class ContNiveau implements Controleur
 	@FXML
 	private ChoiceBox<String> choiceBoxCorps;
 	@FXML
-	private ComboBox<Label> comboBoxTexture;
+	private ComboBox<Texture> comboBoxTexture;
 	@FXML
 	private TextField textFieldMasse;
 	@FXML
@@ -104,10 +103,7 @@ public class ContNiveau implements Controleur
 		ContPrincipal.getInstance().arreterHorloge();
 		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète");
 		
-		/*comboBoxTexture.getItems().clear();
-		Label temp = new Label("Magenta");
-		temp.setGraphic(new ImageView("/res/planeteMagenta.png"));
-		comboBoxTexture.getItems().add(temp);*/
+		initialiserComboBox();
 		
 		ContPrincipal.getInstance().arreterHorloge();
 	}
@@ -170,7 +166,7 @@ public class ContNiveau implements Controleur
 	@FXML
 	public void onTexture(ActionEvent e)
 	{
-		switch (comboBoxTexture.getValue().getText())
+		/*switch (comboBoxTexture.getValue().getText())
 		{
 		case "Rouge":
 			((Planete) corpsSelect).setTexture(Texture.ROUGE);
@@ -190,7 +186,8 @@ public class ContNiveau implements Controleur
 		case "Magenta":
 			((Planete) corpsSelect).setTexture(Texture.MAGENTA);
 			break;
-		}
+		}*/
+		((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
 		chargerNiveau();
 	}
 	
@@ -321,6 +318,50 @@ public class ContNiveau implements Controleur
 		niveau.getCorps().clear();
 	}
 	
+	private void initialiserComboBox()
+	{
+		comboBoxTexture.getItems().addAll(
+			     Texture.BLEUE,
+			     Texture.JAUNE,
+			     Texture.MAGENTA,
+			     Texture.ORANGE,
+			     Texture.ROUGE,
+			     Texture.VERTE);
+
+		comboBoxTexture.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
+				{
+			     @Override public ListCell<Texture> call(ListView<Texture> p)
+			     {
+			         return new ListCell<Texture>()
+			         {
+			             private final ImageView imageView;
+			             {
+			                 setContentDisplay(ContentDisplay.LEFT); 
+			                 imageView = new ImageView();
+			                 imageView.setPreserveRatio(true);
+			                 imageView.setFitWidth(32);
+			             }
+			             
+			             @Override protected void updateItem(Texture item, boolean empty)
+			             {
+			                 super.updateItem(item, empty);
+			                 
+			                 if (item == null || empty)
+			                 {
+			                     setGraphic(null);
+			                 }
+			                 else
+			                 {
+			                     imageView.setImage(new Image(item.getTexture()));
+			                     setGraphic(imageView);
+			                     setText(item.toString());
+			                 }
+			            }
+			       };
+			   }
+			});
+	}
+	
 	/**
 	 * méthode qui gère l'ajout d'objets dans la construction.
 	 */
@@ -407,35 +448,10 @@ public class ContNiveau implements Controleur
 			rayon = Planete.RAYON_DEFAUT;
 		}
 		
-		corpsSelect = new Planete(masse, pos, rayon);
-		try
-		{
-			switch (comboBoxTexture.getValue().getText())
-			{
-			case "Rouge":
-				((Planete) corpsSelect).setTexture(Texture.ROUGE);
-				break;
-			case "Bleue":
-				((Planete) corpsSelect).setTexture(Texture.BLEUE);
-				break;
-			case "Jaune":
-				((Planete) corpsSelect).setTexture(Texture.JAUNE);
-				break;
-			case "Orange":
-				((Planete) corpsSelect).setTexture(Texture.ORANGE);
-				break;
-			case "Verte":
-				((Planete) corpsSelect).setTexture(Texture.VERTE);
-				break;
-			case "Magenta":
-				((Planete) corpsSelect).setTexture(Texture.MAGENTA);
-				break;
-			}
-		}
-		catch (NullPointerException e)
-		{
-			((Planete) corpsSelect).setTexture(Planete.TEXTURE_DEFAUT);
-		}
+		Planete p = new Planete(masse, pos, rayon);
+		p.setTexture(comboBoxTexture.getValue());
+		
+		corpsSelect = p;
 	}
 	
 	/**
@@ -457,7 +473,8 @@ public class ContNiveau implements Controleur
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			switch (((Planete) corpsSelect).getTexture())
+			comboBoxTexture.getSelectionModel().select(((Planete) corpsSelect).getTexture());
+			/*switch (((Planete) corpsSelect).getTexture())
 			{
 			case ROUGE:
 				for (Label l : comboBoxTexture.getItems())
@@ -513,7 +530,7 @@ public class ContNiveau implements Controleur
 					}
 				}
 				break;
-			}
+			}*/
 		}
 		else if (corpsSelect.getClass().equals(Vaisseau.class))
 		{
