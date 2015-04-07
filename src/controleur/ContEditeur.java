@@ -40,6 +40,7 @@ import vue.VueEditeur;
  * Contrôleur pour le createur de niveaux
  * 
  * @author Jonathan Samson
+ * @author Jérémie Bolduc
  * @version 1.0
  */
 public class ContEditeur implements Controleur
@@ -57,7 +58,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	private Button erase;
 	@FXML
-	private ChoiceBox<String> choiceBoxCorps;
+	private ComboBox<String> comboBoxCorps;
 	@FXML
 	private ComboBox<Texture> comboBoxTexture;
 	@FXML
@@ -68,6 +69,10 @@ public class ContEditeur implements Controleur
 	private TextField textFieldPositionY;
 	@FXML
 	private TextField textFieldRayon;
+	@FXML
+	private TextField textFieldCarburantMax;
+	@FXML
+	private TextField textFieldCarburantDepart;
 	@FXML
 	private VBox vBoxMenuPlanete;
 	@FXML
@@ -106,12 +111,11 @@ public class ContEditeur implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
-		choiceBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail");
+		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail");
 		
-		initialiserComboBox();
-		
+		initialiserComboBoxTexture();
+		vBoxMenu.setVisible(false);
 		ContPrincipal.getInstance().viderCorps();
-		ContPrincipal.getInstance().arreterHorloge();
 	}
 	
 	@FXML
@@ -119,7 +123,8 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
+			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
+					.getText())));
 			((Planete) corpsSelect).maj();
 		}
 		catch (NumberFormatException ex)
@@ -161,7 +166,8 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
+			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
+					.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
@@ -172,10 +178,46 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onTexture(ActionEvent e)
 	{
-		if(corpsSelect != null)
+		if (corpsSelect != null)
 		{
 			((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
 			chargerNiveau();
+		}
+	}
+	
+	@FXML
+	public void onCarburantMax(ActionEvent e)
+	{
+		try
+		{
+			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			corpsSelect.setCarburantMax((Double
+					.valueOf(textFieldCarburantMax.getText())));
+			textFieldCarburantDepart.setText(""
+					+ corpsSelect.getCarburantDepart());
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldCarburantMax.setText(""
+					+ ((Vaisseau) corpsSelect).getCarburantMax());
+		}
+	}
+	
+	@FXML
+	public void onCarburantDepart(ActionEvent e)
+	{
+		try
+		{
+			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			corpsSelect.setCarburantDepart((Double
+					.valueOf(textFieldCarburantDepart.getText())));
+			textFieldCarburantMax.setText(""
+					+ corpsSelect.getCarburantMax());
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldCarburantDepart.setText(""
+					+ ((Vaisseau) corpsSelect).getCarburantDepart());
 		}
 	}
 	
@@ -306,48 +348,48 @@ public class ContEditeur implements Controleur
 		niveau.getCorps().clear();
 	}
 	
-	private void initialiserComboBox()
+	private void initialiserComboBoxTexture()
 	{
-		comboBoxTexture.getItems().addAll(
-			     Texture.BLEUE,
-			     Texture.JAUNE,
-			     Texture.MAGENTA,
-			     Texture.ORANGE,
-			     Texture.ROUGE,
-			     Texture.VERTE);
-
-		comboBoxTexture.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
+		comboBoxTexture.getItems().addAll(Texture.BLEUE, Texture.JAUNE,
+				Texture.MAGENTA, Texture.ORANGE, Texture.ROUGE, Texture.VERTE);
+		
+		comboBoxTexture
+				.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
 				{
-			     @Override public ListCell<Texture> call(ListView<Texture> p)
-			     {
-			         return new ListCell<Texture>()
-			         {
-			             private final ImageView imageView;
-			             {
-			                 setContentDisplay(ContentDisplay.LEFT); 
-			                 imageView = new ImageView();
-			                 imageView.setPreserveRatio(true);
-			                 imageView.setFitWidth(32);
-			             }
-			             
-			             @Override protected void updateItem(Texture item, boolean empty)
-			             {
-			                 super.updateItem(item, empty);
-			                 
-			                 if (item == null || empty)
-			                 {
-			                     setGraphic(null);
-			                 }
-			                 else
-			                 {
-			                     imageView.setImage(new Image(item.getTexture()));
-			                     setGraphic(imageView);
-			                     setText(item.toString());
-			                 }
-			            }
-			       };
-			   }
-			});
+					@Override
+					public ListCell<Texture> call(ListView<Texture> p)
+					{
+						return new ListCell<Texture>()
+						{
+							private final ImageView imageView;
+							{
+								setContentDisplay(ContentDisplay.LEFT);
+								imageView = new ImageView();
+								imageView.setPreserveRatio(true);
+								imageView.setFitWidth(32);
+							}
+							
+							@Override
+							protected void updateItem(Texture item,
+									boolean empty)
+							{
+								super.updateItem(item, empty);
+								
+								if (item == null || empty)
+								{
+									setGraphic(null);
+								}
+								else
+								{
+									imageView.setImage(new Image(item
+											.getTexture()));
+									setGraphic(imageView);
+									setText(item.toString());
+								}
+							}
+						};
+					}
+				});
 	}
 	
 	/**
@@ -391,16 +433,16 @@ public class ContEditeur implements Controleur
 				break;
 			}
 		}
-		if (!toucheCorps && choiceBoxCorps.getValue() != null)
+		if (!toucheCorps && comboBoxCorps.getValue() != null)
 		{
-			switch (choiceBoxCorps.getValue())
+			switch (comboBoxCorps.getValue())
 			{
 			case "Planète":
 				creePlanete(pos);
 				niveau.ajouterCorps(corpsSelect);
 				break;
 			case "Vaisseau":
-				corpsSelect = new Vaisseau(0, 1000, 0, pos.getX(), pos.getY(), null);
+				creeVaisseau(pos);
 				niveau.ajouterCorps(corpsSelect);
 				break;
 			case "Portail":
@@ -414,7 +456,6 @@ public class ContEditeur implements Controleur
 		}
 		selectionnerCorps();
 	}
-	
 	
 	/**
 	 * méthode qui gère la création de planètes dans l'éditeur de niveaux.
@@ -447,11 +488,53 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère la sélection d'un objet de l'éditeur dans le but de la modifier.
+	 * méthode qui gère la création de vaisseau dans l'éditeur de niveaux.
+	 */
+	private void creeVaisseau(Vecteur pos)
+	{
+		double masse;
+		double carburantDepart;
+		double carburantMax;
+		
+		try
+		{
+			masse = Double.valueOf(textFieldMasse.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			masse = Planete.PLANETE_MASSE_DEFAUT;
+		}
+		
+		try
+		{
+			carburantDepart = Double.valueOf(textFieldCarburantDepart.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			carburantDepart = Vaisseau.CARBURANT_DEFAUT;
+		}
+		
+		try
+		{
+			carburantMax = Double.valueOf(textFieldCarburantMax.getText());
+		}catch(NumberFormatException e)
+		{
+			carburantMax = Vaisseau.CARBURANT_DEFAUT;
+		}
+		//TODO ajouter la puissance et la vitesse de départ dans l'éditeur
+		Vaisseau v = new Vaisseau(1, masse, carburantMax, pos, new Vecteur());
+		v.setCarburantDepart(carburantDepart);
+		
+		corpsSelect = v;
+	}
+	
+	/**
+	 * méthode qui gère la sélection d'un objet de l'éditeur dans le but de la
+	 * modifier.
 	 */
 	private void selectionnerCorps()
 	{
-		if(corpsSelect == null)
+		if (corpsSelect == null)
 		{
 			return;
 		}
@@ -459,24 +542,34 @@ public class ContEditeur implements Controleur
 		vBoxMenu.setVisible(true);
 		if (corpsSelect.getClass().equals(Planete.class))
 		{
+			vBoxMenu.setVisible(true);
 			vBoxMenuPlanete.setVisible(true);
 			vBoxMenuVaisseau.setVisible(false);
 			textFieldRayon.setText("" + corpsSelect.getRayon());
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			comboBoxTexture.getSelectionModel().select(((Planete) corpsSelect).getTexture());
+			comboBoxTexture.getSelectionModel().select(
+					((Planete) corpsSelect).getTexture());
 		}
 		else if (corpsSelect.getClass().equals(Vaisseau.class))
 		{
+			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			vBoxMenu.setVisible(true);
 			vBoxMenuPlanete.setVisible(false);
 			vBoxMenuVaisseau.setVisible(true);
+			textFieldMasse.setText("" + corpsSelect.getMasse());
+			textFieldPositionX.setText("" + corpsSelect.getPositionX());
+			textFieldPositionY.setText("" + corpsSelect.getPositionY());
+			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
+			textFieldCarburantDepart.setText(""
+					+ corpsSelect.getCarburantDepart());
 		}
 	}
 	
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
-		// TODO ???
+		// TODO Faire bouger la caméra
 	}
 	
 	/**
@@ -493,9 +586,10 @@ public class ContEditeur implements Controleur
 		
 		vue.initialiserCorps();
 		
-		if(niveau.getObjectif() != null && niveau.getObjectif() instanceof Dessinable)
+		if (niveau.getObjectif() != null
+				&& niveau.getObjectif() instanceof Dessinable)
 		{
-			vue.ajouterDessinable((Dessinable)niveau.getObjectif());
+			vue.ajouterDessinable((Dessinable) niveau.getObjectif());
 		}
 	}
 	
