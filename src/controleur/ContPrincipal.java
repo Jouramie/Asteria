@@ -67,7 +67,7 @@ public class ContPrincipal
 		this.stage = stage;
 		selectionnerControleur(new ContMenu());
 		
-		horlogeDemarree = true;
+		horlogeDemarree = false;
 		horloge = new Horloge();
 		Thread th = new Thread(horloge);
 		th.setDaemon(true);
