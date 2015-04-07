@@ -7,6 +7,7 @@ import java.io.File;
 
 import modele.Niveau;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
@@ -29,12 +30,14 @@ public class ContJeu implements Controleur
 	
 	@FXML
 	private VBox menuPause;
-	
 	@FXML
 	private VBox menuVictoire;
-	
 	@FXML
 	private VBox menuMort;
+	@FXML
+	private ProgressBar progressBarCarburant;
+	@FXML
+	private ProgressBar progressBarSante;
 	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
@@ -110,18 +113,22 @@ public class ContJeu implements Controleur
 				wPressed = true;
 			}
 			break;
-	
+		
 		case R:
 			if (!menuPause.isVisible())
 			{
 				reset();
 			}
 			break;
+		case H:
+			vaisseauJoueur
+					.setCarburantRestant(vaisseauJoueur.getCarburantMax());
+			vaisseauJoueur.setSante(1);
 		default:
 			break;
 		}
 	}
-
+	
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
@@ -155,10 +162,10 @@ public class ContJeu implements Controleur
 			break;
 		}
 	}
-
+	
 	public void afficherMenuPause()
 	{
-		if(!objectifAtteint && !mort)
+		if (!objectifAtteint && !mort)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
@@ -203,11 +210,13 @@ public class ContJeu implements Controleur
 	
 	/**
 	 * Charge un niveau de jeu.
-	 * @param niv Niveau à charger.
+	 * 
+	 * @param niv
+	 *            Niveau à charger.
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
-		if(niv != null)
+		if (niv != null)
 		{
 			niveau = niv;
 			objectifAtteint = false;
@@ -215,12 +224,13 @@ public class ContJeu implements Controleur
 			
 			ContPrincipal.getInstance().viderCorps();
 			
-			for(Corps c : niveau.getCorps())
+			for (Corps c : niveau.getCorps())
 			{
 				ContPrincipal.getInstance().ajouterCorps(c);
 			}
 			
-			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
+			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
+					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
 			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
 			vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
@@ -228,27 +238,29 @@ public class ContJeu implements Controleur
 			vue.initialiserCorps();
 			
 			Objectif objectif = niveau.getObjectif();
-		
-		if(objectif != null)
-		{
-			objectif.setVaisseau(vaisseauJoueur);
-			if(objectif instanceof Dessinable)
+			
+			if (objectif != null)
 			{
-				vue.ajouterDessinable((Dessinable)objectif);
+				objectif.setVaisseau(vaisseauJoueur);
+				if (objectif instanceof Dessinable)
+				{
+					vue.ajouterDessinable((Dessinable) objectif);
+				}
 			}
 		}
-		}
-		else if(niveau == null)
+		else if (niveau == null)
 		{
-			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
-			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-			vue.initialiserCorps();
+			ContPrincipal.getInstance().selectionnerControleur(new ContScreen());
+//			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
+//					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
+//			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+//			vue.initialiserCorps();
 		}
 	}
-
+	
 	public void reset()
 	{
-		for(Corps c : ContPrincipal.getInstance().getCorps())
+		for (Corps c : ContPrincipal.getInstance().getCorps())
 		{
 			c.reset();
 		}
@@ -303,10 +315,11 @@ public class ContJeu implements Controleur
 	 */
 	public void update(double dt)
 	{
-		if(vaisseauJoueur != null)
+		if (vaisseauJoueur != null)
 		{
 			Camera camera = vue.getCamera();
-			camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			camera.deplacer(vaisseauJoueur.getPositionX(),
+					vaisseauJoueur.getPositionY());
 			
 			verifierObjectif();
 		}
@@ -317,15 +330,16 @@ public class ContJeu implements Controleur
 	 */
 	private void verifierObjectif()
 	{
-		if(niveau != null && !objectifAtteint)
+		if (niveau != null && !objectifAtteint)
 		{
-			if(niveau.getObjectif() != null && niveau.getObjectif().verifierObjectif())
+			if (niveau.getObjectif() != null
+					&& niveau.getObjectif().verifierObjectif())
 			{
 				objectifAtteint = true;
 				afficherMenuVictoire();
 			}
 			
-			if(vaisseauJoueur.getSante() == 0.0)
+			if (vaisseauJoueur.getSante() == 0.0)
 			{
 				mort = true;
 				afficherMenuMort();
