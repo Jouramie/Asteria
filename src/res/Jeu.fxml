@@ -113,8 +113,8 @@
    <bottom>
       <VBox prefHeight="31.0" prefWidth="1284.0" styleClass="jeu-progress" BorderPane.alignment="CENTER">
          <children>
-            <ProgressBar prefHeight="18.0" prefWidth="1296.0" progress="0.32" styleClass="jeu-progress-carburant" />
-            <ProgressBar prefHeight="18.0" prefWidth="1448.0" progress="0.21" styleClass="jeu-progress-solidite" />
+            <ProgressBar fx:id="progressBarCarburant" prefHeight="18.0" prefWidth="1296.0" progress="0.32" styleClass="jeu-progress-carburant" />
+            <ProgressBar fx:id="progressBarSante" prefHeight="18.0" prefWidth="1448.0" progress="0.21" styleClass="jeu-progress-solidite" />
          </children>
       </VBox>
    </bottom>
