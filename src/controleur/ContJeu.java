@@ -67,7 +67,7 @@ public class ContJeu implements Controleur
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
-		
+		progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
 		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	

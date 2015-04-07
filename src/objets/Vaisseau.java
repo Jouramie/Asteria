@@ -289,4 +289,17 @@ public class Vaisseau extends ObjetSpatial
 	{
 		return 20.0;
 	}
+	
+	/**
+	 * Remet les corps à leur position et leur vitesse de départ.
+	 */
+	public void reset()
+	{
+		setCarburantRestant(carburantDepart);
+		setSante(1);
+		setPositionX(positionXDepart);
+		setPositionY(positionYDepart);
+		setVitesse(vitesseDepart);
+	}
+	
 }
