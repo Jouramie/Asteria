@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import vue.VueScreen;
+import vue.VueSelectionNiveau;
 
 /**
  * Contrôleur pour le choix des niveaux.
@@ -22,7 +22,7 @@ import vue.VueScreen;
  * @author Jonathan Samson
  * @version 1.0
  */
-public class ContScreen implements Controleur
+public class ContSelectionNiveau implements Controleur
 {
 	@FXML
 	Label label;
@@ -49,14 +49,14 @@ public class ContScreen implements Controleur
 	@FXML
 	Button b10;
 	
-	private VueScreen vue;
+	private VueSelectionNiveau vue;
 	
 	/**
 	 * Constructeur du contrôleur.
 	 */
-	public ContScreen()
+	public ContSelectionNiveau()
 	{
-		vue = new VueScreen();
+		vue = new VueSelectionNiveau();
 	}
 	
 	/**

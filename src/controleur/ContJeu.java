@@ -250,7 +250,7 @@ public class ContJeu implements Controleur
 		}
 		else if (niveau == null)
 		{
-			ContPrincipal.getInstance().selectionnerControleur(new ContScreen());
+			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
 //			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
 //					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
 //			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
