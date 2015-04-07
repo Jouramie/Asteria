@@ -62,6 +62,6 @@ public class ContMenu implements Controleur
 	@FXML
 	public void niveau()
 	{
-		ContPrincipal.getInstance().selectionnerControleur(new ContNiveau());
+		ContPrincipal.getInstance().selectionnerControleur(new ContEditeur());
 	}
 }

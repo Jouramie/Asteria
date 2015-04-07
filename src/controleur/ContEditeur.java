@@ -34,7 +34,7 @@ import objets.Vaisseau;
 import utils.Vecteur;
 import vue.Camera;
 import vue.Dessinable;
-import vue.VueNiveau;
+import vue.VueEditeur;
 
 /**
  * Contrôleur pour le createur de niveaux
@@ -42,7 +42,7 @@ import vue.VueNiveau;
  * @author Jonathan Samson
  * @version 1.0
  */
-public class ContNiveau implements Controleur
+public class ContEditeur implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
 	
@@ -75,7 +75,7 @@ public class ContNiveau implements Controleur
 	@FXML
 	private VBox vBoxMenu;
 	
-	private VueNiveau vue;
+	private VueEditeur vue;
 	
 	private boolean leftPressed;
 	private boolean rightPressed;
@@ -88,9 +88,9 @@ public class ContNiveau implements Controleur
 	/**
 	 * Constructeur du contrôleur.
 	 */
-	public ContNiveau()
+	public ContEditeur()
 	{
-		vue = new VueNiveau();
+		vue = new VueEditeur();
 		leftPressed = false;
 		rightPressed = false;
 		upPressed = false;
