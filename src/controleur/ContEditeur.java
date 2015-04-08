@@ -123,8 +123,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
-					.getText())));
+			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
 			((Planete) corpsSelect).maj();
 		}
 		catch (NumberFormatException ex)
