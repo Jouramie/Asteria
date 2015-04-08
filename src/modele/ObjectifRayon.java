@@ -1,18 +1,28 @@
 package modele;
 
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
 import objets.Vaisseau;
 import utils.Vecteur;
+import vue.Dessinable;
 
 /**
  * Classe représentant un objectif qui est de placer le vaisseau dans un certain cercle.
  * @author EquBolduc
  * @version 1.0
  */
-public class ObjectifRayon implements Objectif
+public class ObjectifRayon implements Objectif, Dessinable
 {
+	public static final double VITESSE_ROTATION = 50;
+	
 	private Vaisseau vaisseau;
 	private Vecteur posRayon;
 	private double rayon;
+	private Group portal;
+	private Rotate noeudRotate;
 	
 	/**
 	 * Constructeur de l'objectif.
@@ -25,6 +35,7 @@ public class ObjectifRayon implements Objectif
 		this.vaisseau = null;
 		this.posRayon = posRayon;
 		this.rayon = rayon;
+		this.portal = new Group();
 	}
 
 	/**
@@ -108,5 +119,27 @@ public class ObjectifRayon implements Objectif
 		}
 		
 		return resultat;
+	}
+
+	public Node getNoeud()
+	{
+		portal.getChildren().clear();
+		
+		ImageView image = new ImageView(new Image("/res/portal.png"));
+		image.setFitWidth(rayon * 2);
+		image.setFitHeight(rayon * 2);
+		image.setTranslateX(posRayon.getX() - rayon);
+		image.setTranslateY(posRayon.getY() - rayon);
+		portal.getChildren().add(image);
+		
+		noeudRotate = new Rotate(0, rayon, rayon);
+		image.getTransforms().add(noeudRotate);
+		
+		return portal;
+	}
+
+	public void maj(double dt)
+	{
+		noeudRotate.setAngle(noeudRotate.getAngle() + VITESSE_ROTATION * dt);
 	}
 }

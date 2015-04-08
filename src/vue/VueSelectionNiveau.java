@@ -4,7 +4,7 @@ import javafx.scene.layout.BorderPane;
 import vue.VueJeu;
 
 
-public class VueScreen extends VueJeu
+public class VueSelectionNiveau extends VueJeu
 {
 	
 	/**
