@@ -33,11 +33,11 @@ public class Niveau
 	
 	private String titreNiveau;
 	
-	private Vecteur vitesseDepart;
+	private double vitesseDepart;
 	
 	public Niveau()
 	{
-		this(new ArrayList<Corps>(), "", null, new Vecteur(), "", new Vecteur());
+		this(new ArrayList<Corps>(), "", null, new Vecteur(), "", 0);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class Niveau
 	 */
 	public Niveau(List<Corps> nouveauxCorps, String nouvelleDescriptionNiveau,
 			Objectif nouvelObjectif, Vecteur nouveauPointDepart,
-			String nouveauTitreNiveau, Vecteur nouvelleVitesseDepart)
+			String nouveauTitreNiveau, double nouvelleVitesseDepart)
 	{
 		corps = new ArrayList<>();
 		
@@ -121,7 +121,7 @@ public class Niveau
 		Objectif objectif = null;
 		Vecteur pointDepart = null;
 		String titreNiveau = null;
-		Vecteur vitesseDepart = null;
+		double vitesseDepart = 0;
 		Niveau niveau = null;
 		
 		if (fichier != null)
@@ -243,13 +243,8 @@ public class Niveau
 					}
 					case "vitessedepart":
 					{
-						double vitesseDepartX = Double.parseDouble(st
+						vitesseDepart = Double.parseDouble(st
 								.nextToken().trim());
-						double vitesseDepartY = Double.parseDouble(st
-								.nextToken().trim());
-						
-						vitesseDepart = new Vecteur(vitesseDepartX,
-								vitesseDepartY);
 						break;
 					}
 					}
@@ -322,7 +317,7 @@ public class Niveau
 	 * 
 	 * @return La vitesse de départ du vaisseau.
 	 */
-	public Vecteur getVitesseDepart()
+	public double getVitesseDepart()
 	{
 		return vitesseDepart;
 	}
@@ -407,8 +402,7 @@ public class Niveau
 			bw.write("TitreNiveau ; " + titreNiveau);
 			bw.newLine();
 			
-			bw.write("VitesseDepart ; " + vitesseDepart.getX() + " ; "
-					+ vitesseDepart.getY());
+			bw.write("VitesseDepart ; " + vitesseDepart);
 			bw.newLine();
 			
 			bw.close();
@@ -475,9 +469,9 @@ public class Niveau
 	 * @param nouvelleVitesseDepart
 	 *            La nouvelle vitesse de départ du vaisseau.
 	 */
-	public void setVitesseDepart(Vecteur nouvelleVitesseDepart)
+	public void setVitesseDepart(double nouvelleVitesseDepart)
 	{
-		if (nouvelleVitesseDepart != null)
+		if (nouvelleVitesseDepart >= 0)
 		{
 			vitesseDepart = nouvelleVitesseDepart;
 		}

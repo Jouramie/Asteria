@@ -13,4 +13,4 @@ DescriptionNiveau ; Ceci est le niveau 3
 ObjectifRayon ; 0.0 ; 0.0 ; 0.0
 PointDepart ; 0.0 ; 0.0
 TitreNiveau ; 
-VitesseDepart ; 0.0 ; 0.0
+VitesseDepart ; 0.0

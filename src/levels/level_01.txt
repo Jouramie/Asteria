@@ -11,4 +11,4 @@ DescriptionNiveau ; Les envahisseurs s'en viennent vous chercher ! Rejoignez le 
 ObjectifRayon ; -496.0 ; -53.0 ; 50.0
 PointDepart ; 800 ; 0.0
 TitreNiveau ; Quick Escape
-VitesseDepart ; 0.0 ; 0.0
+VitesseDepart ; 0.0

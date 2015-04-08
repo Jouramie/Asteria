@@ -1,10 +1,7 @@
 package controleur;
-
 import modele.Corps;
 import modele.Objectif;
-
 import java.io.File;
-
 import modele.Niveau;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -12,7 +9,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -250,7 +246,6 @@ public class ContJeu implements Controleur
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
-			vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
 			
 			vue.initialiserCorps();
 			
@@ -321,7 +316,7 @@ public class ContJeu implements Controleur
 			Camera cam = vue.getCamera();
 			Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
 			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
-			vaisseauJoueur.setVitesse(sub.normaliser().multiplication(50));
+			vaisseauJoueur.setVitesse(sub.normaliser().multiplication(niveau.getVitesseDepart()));
 			
 			listenMouse = false;
 			

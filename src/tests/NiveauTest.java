@@ -34,7 +34,7 @@ public class NiveauTest
 	
 	private VaisseauJoueur vaisseau;
 	
-	private Vecteur vitesseDepart;
+	private double vitesseDepart;
 	
 	@Before
 	public void testNiveau()
@@ -50,7 +50,7 @@ public class NiveauTest
 		objectif = new ObjectifRayon(new Vecteur(1000, 1000), 20);
 		pointDepart = new Vecteur(10, 10);
 		titreNiveau = "Niveau 1";
-		vitesseDepart = new Vecteur(10, 0);
+		vitesseDepart = 10;
 		
 		niveau = new Niveau(corps, descriptionNiveau, objectif, pointDepart, titreNiveau, vitesseDepart);
 	}
@@ -109,7 +109,7 @@ public class NiveauTest
 	@Test
 	public void testGetVitesseDepart()
 	{
-		assertEquals(niveau.getVitesseDepart(), vitesseDepart);
+		assertEquals(niveau.getVitesseDepart() == vitesseDepart, true);
 	}
 	
 	@Test
@@ -167,10 +167,10 @@ public class NiveauTest
 	@Test
 	public void testSetVitesseDepart()
 	{
-		assertEquals(niveau.getVitesseDepart(), vitesseDepart);
-		niveau.setVitesseDepart(new Vecteur(0, 0));
+		assertEquals(niveau.getVitesseDepart() == vitesseDepart, true);
+		niveau.setVitesseDepart(0);
 		assertNotEquals(niveau.getVitesseDepart(), vitesseDepart);
-		niveau.setVitesseDepart(null);
+		niveau.setVitesseDepart(-1);
 		assertNotEquals(niveau.getVitesseDepart(), null);
 	}
 }

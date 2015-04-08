@@ -9,4 +9,4 @@ DescriptionNiveau ; Vous devez démontrer vos aptitudes en conduite de vaisseau s
 ObjectifRayon ; 623.0 ; -407.0 ; 50.0
 PointDepart ; -500 ; 550
 TitreNiveau ; Narrow Passage
-VitesseDepart ; 0.0 ; 0.0
+VitesseDepart ; 0.0
