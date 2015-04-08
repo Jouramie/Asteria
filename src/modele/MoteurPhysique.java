@@ -163,7 +163,6 @@ public class MoteurPhysique
 													/ Math.pow(distance, 2)));
 						}
 					}
-					
 					force = force.additionner(c1.getForceExt());
 					c1.setVitesse(c1.getVitesse().additionner(
 							force.multiplication(1.0 / c1.getMasse())
