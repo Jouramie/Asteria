@@ -13,18 +13,7 @@
 
 <BorderPane styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<center>
-		<AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="746.0" prefWidth="937.0">
-			<children>
-				<VBox prefHeight="62.0" prefWidth="1167.0">
-					<children>
-						<ImageView fitHeight="61.0" fitWidth="1119.0" styleClass="#pane">
-							<image>
-								<Image url="@titleeditor.png" />
-							</image>
-						</ImageView>
-					</children>
-				</VBox>
-			</children>
+		<AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom">
 			<styleClass>
 				<String fx:value="editeur-jeu" />
 				<String fx:value="jeu-root" />
@@ -32,7 +21,7 @@
 		</AnchorPane>
 	</center>
 	<bottom>
-		<HBox alignment="CENTER" prefHeight="112.0" prefWidth="1294.0" styleClass="editeur-menu-bas" BorderPane.alignment="CENTER">
+		<HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="1294.0" styleClass="editeur-menu-bas" BorderPane.alignment="CENTER">
 			<children>
 				<Button fx:id="retour" mnemonicParsing="false" onAction="#retour" text="Retour">
 					<HBox.margin>
@@ -47,7 +36,7 @@
 		</HBox>
 	</bottom>
 	<right>
-		<VBox fx:id="vBoxMenu" alignment="TOP_CENTER" prefHeight="746.0" prefWidth="200.0" styleClass="editeur-menu-droite">
+		<VBox fx:id="vBoxMenu" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="200.0" styleClass="editeur-menu-droite">
 			<children>
 				<Label styleClass="editeur-label" text="Masse" />
 				<TextField fx:id="textFieldMasse" onAction="#onMasse" prefHeight="25.0" prefWidth="200.0" />
@@ -85,4 +74,11 @@
 			</children>
 		</VBox>
 	</right>
+   <top>
+						<ImageView fitHeight="61.0" fitWidth="1119.0" styleClass="#pane" BorderPane.alignment="CENTER">
+							<image>
+								<Image url="@titleeditor.png" />
+							</image>
+						</ImageView>
+   </top>
 </BorderPane>

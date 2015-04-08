@@ -84,7 +84,6 @@ public class VaisseauJoueur extends Vaisseau
 	 */
 	public void maj(double dt)
 	{
-		
 		if ((gauche || droite) && !(gauche && droite))
 		{
 			if (gauche)
@@ -115,5 +114,10 @@ public class VaisseauJoueur extends Vaisseau
 	public void onCollision(Corps c)
 	{
 		setSante(0.0);
+	}
+	
+	public void setAngle(double angle)
+	{
+		direction.setAngle(angle);
 	}
 }
