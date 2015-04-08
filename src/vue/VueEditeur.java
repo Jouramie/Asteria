@@ -1,12 +1,12 @@
 package vue;
 
 
-public class VueNiveau extends VueJeu
+public class VueEditeur extends VueJeu
 {
 	@Override
 	public String getFXML()
 	{
-		return "/res/niveau.fxml";
+		return "/res/Editeur.fxml";
 	}
 	
 	/*

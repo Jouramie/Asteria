@@ -21,13 +21,13 @@ public class VaisseauTest
 	public void testVaisseauDoubleVecteurDoubleDoubleVecteurVecteur()
 	{
 		v1 = new Vaisseau(0, 0, 0, null, null);
-		assertTrue(v1.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v1.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
 		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
 		v2 = new Vaisseau(-10, -1, -1, new Vecteur(),
 				new Vecteur());
-		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
 		assertTrue(v2.getVitesse().getX() == 0 && v2.getVitesse().getY() == 0);
@@ -44,12 +44,12 @@ public class VaisseauTest
 	public void testVaisseauDoubleDoubleDoubleDoubleDoubleVecteur()
 	{
 		v4 = new Vaisseau(0, 0, 0, 0, 0, null);
-		assertTrue(v4.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v4.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v4.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v4.getPositionX() == 0 && v4.getPositionY() == 0);
 		assertTrue(v4.getVitesse().getX() == 0 && v4.getVitesse().getY() == 0);
 		v5 = new Vaisseau(-10, -1, -1, -1, -1, new Vecteur());
-		assertTrue(v5.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v5.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v5.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v5.getPositionX() == -1 && v5.getPositionY() == -1);
 		assertTrue(v5.getVitesse().getX() == 0 && v5.getVitesse().getY() == 0);
@@ -84,11 +84,11 @@ public class VaisseauTest
 	@Test
 	public void testGetPuissanceMax()
 	{
-		assertTrue(v1.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
-		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v1.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
+		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v3.getPuissanceMax() == 100);
-		assertTrue(v4.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
-		assertTrue(v5.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v4.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
+		assertTrue(v5.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v6.getPuissanceMax() == 100);
 	}
 	
@@ -98,9 +98,9 @@ public class VaisseauTest
 		v1.setPuissanceMax(50);
 		assertTrue(v1.getPuissanceMax() == 50);
 		v2.setPuissanceMax(-1000);
-		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v2.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 		v3.setPuissanceMax(0);
-		assertTrue(v3.getPuissanceMax() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v3.getPuissanceMax() == Vaisseau.PUISSANCE_DEFAUT);
 	}
 	
 	@Test
@@ -120,9 +120,9 @@ public class VaisseauTest
 		v1.setPuissance(50);
 		assertTrue(v1.getPuissance() == 50);
 		v2.setPuissance(-1000);
-		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		v3.setPuissance(0);
-		assertTrue(v3.getPuissance() == Vaisseau.PUISSANCE_MAX_DEFAUT);
+		assertTrue(v3.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 	}
 	
 }

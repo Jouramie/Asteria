@@ -17,7 +17,7 @@ public class VueMenu implements Vue
 	
 	public String getFXML()
 	{
-		return "/res/Test.fxml";
+		return "/res/Menu.fxml";
 	}
 	
 	public void initialiser(BorderPane pane)

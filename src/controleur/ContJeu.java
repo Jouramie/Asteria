@@ -1,10 +1,13 @@
 package controleur;
 
 import modele.Corps;
+import modele.Objectif;
 
 import java.io.File;
+
 import modele.Niveau;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
@@ -12,6 +15,7 @@ import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
+import vue.Dessinable;
 import vue.VueJeu;
 
 /**
@@ -26,12 +30,14 @@ public class ContJeu implements Controleur
 	
 	@FXML
 	private VBox menuPause;
-	
 	@FXML
 	private VBox menuVictoire;
-	
 	@FXML
 	private VBox menuMort;
+	@FXML
+	private ProgressBar progressBarCarburant;
+	@FXML
+	private ProgressBar progressBarSante;
 	
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
@@ -56,19 +62,12 @@ public class ContJeu implements Controleur
 	 */
 	public void initialiser()
 	{
-		ContPrincipal.getInstance().demarrerHorloge();
-		
-		vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0), 16e3,
-				100, new Vecteur(10, 10), new Vecteur(10, 10));
-		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
-
-		progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+		
 		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
@@ -114,18 +113,22 @@ public class ContJeu implements Controleur
 				wPressed = true;
 			}
 			break;
-	
+		
 		case R:
 			if (!menuPause.isVisible())
 			{
 				reset();
 			}
 			break;
+		case H:
+			vaisseauJoueur
+					.setCarburantRestant(vaisseauJoueur.getCarburantMax());
+			vaisseauJoueur.setSante(1);
 		default:
 			break;
 		}
 	}
-
+	
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
@@ -159,10 +162,10 @@ public class ContJeu implements Controleur
 			break;
 		}
 	}
-
+	
 	public void afficherMenuPause()
 	{
-		if(!objectifAtteint && !mort)
+		if (!objectifAtteint && !mort)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
@@ -207,7 +210,9 @@ public class ContJeu implements Controleur
 	
 	/**
 	 * Charge un niveau de jeu.
-	 * @param niv Niveau à charger.
+	 * 
+	 * @param niv
+	 *            Niveau à charger.
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
@@ -234,6 +239,8 @@ public class ContJeu implements Controleur
 			
 			Objectif objectif = niveau.getObjectif();
 			
+			progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+			
 			if (objectif != null)
 			{
 				objectif.setVaisseau(vaisseauJoueur);
@@ -246,24 +253,12 @@ public class ContJeu implements Controleur
 		else if (niveau == null)
 		{
 			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
-//			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
-//					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
-//			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-//			vue.initialiserCorps();
 		}
-		
-		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-		vaisseauJoueur.setPosition(niveau.getPointDepart());
-		vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
-		
-		niveau.getObjectif().setVaisseau(vaisseauJoueur);
-		
-		vue.initialiserCorps();
 	}
-
+	
 	public void reset()
 	{
-		for(Corps c : ContPrincipal.getInstance().getCorps())
+		for (Corps c : ContPrincipal.getInstance().getCorps())
 		{
 			c.reset();
 		}
@@ -280,7 +275,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void retour()
 	{
-		ContPrincipal.getInstance().enleverCorps(vaisseauJoueur);
+		ContPrincipal.getInstance().viderCorps();
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 	
@@ -318,10 +313,14 @@ public class ContJeu implements Controleur
 	 */
 	public void update(double dt)
 	{
-		Camera camera = vue.getCamera();
-		camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
-		
-		verifierObjectif();
+		if (vaisseauJoueur != null)
+		{
+			Camera camera = vue.getCamera();
+			camera.deplacer(vaisseauJoueur.getPositionX(),
+					vaisseauJoueur.getPositionY());
+			
+			verifierObjectif();
+		}
 	}
 	
 	/**
@@ -329,15 +328,16 @@ public class ContJeu implements Controleur
 	 */
 	private void verifierObjectif()
 	{
-		if(niveau != null && !objectifAtteint)
+		if (niveau != null && !objectifAtteint)
 		{
-			if(niveau.getObjectif() != null && niveau.getObjectif().verifierObjectif())
+			if (niveau.getObjectif() != null
+					&& niveau.getObjectif().verifierObjectif())
 			{
 				objectifAtteint = true;
 				afficherMenuVictoire();
 			}
 			
-			if(vaisseauJoueur.getSante() == 0.0)
+			if (vaisseauJoueur.getSante() == 0.0)
 			{
 				mort = true;
 				afficherMenuMort();

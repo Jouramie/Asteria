@@ -65,14 +65,17 @@ public class VueJeu implements Vue
 		Pane p = (Pane) borderPane.lookup("#pane");
 		p.getChildren().remove(noeud);
 		
+		noeud = new Group();
+		liste.clear();
+		noeud.getTransforms().add(scale);
+		noeud.getTransforms().add(trans);
+		p.getChildren().add(noeud);
+		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
 		if (listTemp.size() == 0)
 		{
 			return;
 		}
-		
-		noeud = new Group();
-		liste.clear();
 		
 		for (Corps c : listTemp)
 		{
@@ -94,10 +97,21 @@ public class VueJeu implements Vue
 				noeud.getChildren().add(n);
 			}
 		}
-		
-		noeud.getTransforms().add(scale);
-		noeud.getTransforms().add(trans);
-		p.getChildren().add(noeud);
+	}
+	
+	public void ajouterDessinable(Dessinable obj)
+	{
+		if(obj != null)
+		{
+			liste.add(obj);
+			Node n = obj.getNoeud();
+			
+			if(n != null)
+			{
+				noeud.getChildren().add(n);
+				n.toBack();
+			}
+		}
 	}
 	
 	/**

@@ -1,9 +1,8 @@
-VaisseauJoueur ; 1.0 ; 1.0 ; 0.0 ; 100.0 ; 100 ; 50.0 ; 50.0 ; 10.0 ; 0.0
 Planete ; 1000.0 ; 100.0 ; 100.0 ; 15.0 ; BLEUE
 Vaisseau ; 1.0 ; 100.0 ; 100 ; 250.0 ; 250.0 ; 10.0 ; 0.0
 Planete ; 10.0 ; 10.0 ; 10.0 ; 10.0 ; MAGENTA
 DescriptionNiveau ; Niveau très difficile
-ObjectifRayon ; 0 ; 1000.0 ; 1000.0 ; 20.0
-PointDepart ; 10.0 ; 10.0
+ObjectifRayon ; 1000.0 ; 1000.0 ; 20.0
+PointDepart ; -100.0 ; 10.0
 TitreNiveau ; Niveau 1
 VitesseDepart ; 10.0 ; 0.0

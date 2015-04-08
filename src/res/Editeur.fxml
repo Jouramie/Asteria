@@ -42,7 +42,7 @@
 				<Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
 				<Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
 				<Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />
-				<ChoiceBox fx:id="choiceBoxCorps" prefHeight="40.0" prefWidth="150.0" />
+            <ComboBox fx:id="comboBoxCorps" prefWidth="150.0" />
 			</children>
 		</HBox>
 	</bottom>
@@ -65,15 +65,21 @@
 							<children>
             				<Label styleClass="editeur-label" text="Texture">
             					<VBox.margin>
-            						<Insets top="20.0" />
+            						<Insets />
             					</VBox.margin>
             				</Label>
-            				<ComboBox fx:id="comboBoxTexture" onAction="#onTexture" prefHeight="25.0" prefWidth="200.0"/>
+            				<ComboBox fx:id="comboBoxTexture" onAction="#onTexture" prefHeight="46.0" prefWidth="200.0" />
 								<Label styleClass="editeur-label" text="Rayon" />
 								<TextField fx:id="textFieldRayon" onAction="#onRayon" prefHeight="25.0" prefWidth="119.0" />
 							</children>
 						</VBox>
-						<VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false" />
+						<VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
+                     <children>
+                        <Label styleClass="editeur-label" text="Carburant maximum" />
+                        <TextField fx:id="textFieldCarburantMax" onAction="#onCarburantMax" prefHeight="25.0" prefWidth="119.0" />
+                        <Label styleClass="editeur-label" text="Carburant de départ" />
+                        <TextField fx:id="textFieldCarburantDepart" onAction="#onCarburantDepart" prefHeight="25.0" prefWidth="119.0" />
+                     </children></VBox>
 					</children>
 				</Pane>
 			</children>

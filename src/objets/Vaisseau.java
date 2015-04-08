@@ -17,16 +17,17 @@ import utils.Vecteur;
  */
 public class Vaisseau extends ObjetSpatial
 {
-	public final static double CONVERTION_CARBURANT = 1.0;
-	public final static double PUISSANCE_MAX_DEFAUT = 1.0;
 	
+	public final static double CARBURANT_DEFAUT = 100;
+	public final static double PUISSANCE_DEFAUT = 1.0;
 	public final static double VITESSE_ANIM_FLAMME = 6;
 	
 	protected double puissanceMax;
 	protected double puissance;
 	protected Vecteur direction;
-	protected double capaciteCarburant;
-	protected DoubleProperty carburant;
+	protected DoubleProperty carburantMax;
+	protected DoubleProperty carburantRestant;
+	
 	private boolean premierGetNoeud;
 	
 	protected Node noeud;
@@ -34,8 +35,8 @@ public class Vaisseau extends ObjetSpatial
 	protected ImageView imageFlamme;
 	protected double currentFlamme;
 	
+	@Deprecated
 	protected double sante;
-	
 	protected double carburantDepart;
 	
 	/**
@@ -47,18 +48,18 @@ public class Vaisseau extends ObjetSpatial
 	 *            la direction du vaisseau
 	 * @param pMasse
 	 *            la masse du vaisseau
-	 * @param pCapaciteCarburant
+	 * @param pCarburantMax
 	 *            la capacité maximale de caburant du vaisseau
 	 * @param pPosition
 	 *            la position du vaisseau
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
-	public Vaisseau(double pPuissanceMax, double pMasse,
-			double pCapaciteCarburant, Vecteur pPosition, Vecteur pVitesse)
+	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
+			Vecteur pPosition, Vecteur pVitesse)
 	{
 		super(pMasse, pPosition, false, pVitesse);
-		init(pPuissanceMax,pCapaciteCarburant);
+		init(pPuissanceMax, pCarburantMax);
 	}
 	
 	/**
@@ -70,7 +71,7 @@ public class Vaisseau extends ObjetSpatial
 	 *            la direction du vaisseau
 	 * @param pMasse
 	 *            la masse du vaisseau
-	 * @param pCapaciteCarburant
+	 * @param pCarburantMax
 	 *            la capacité maximale de caburant du vaisseau
 	 * @param pPositionX
 	 *            la positionX de la planète
@@ -79,20 +80,23 @@ public class Vaisseau extends ObjetSpatial
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
-	public Vaisseau(double pPuissanceMax, double pMasse,
-			double pCapaciteCarburant, double pPositionX, double pPositionY,
-			Vecteur pVitesse)
+	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
+			double pPositionX, double pPositionY, Vecteur pVitesse)
 	{
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
-		init(pPuissanceMax, pCapaciteCarburant);
+		init(pPuissanceMax, pCarburantMax);
 	}
 	
-	private void init(double pPuissanceMax, double pCapaciteCarburant){
+	private void init(double pPuissanceMax, double pCarburantMax)
+	{
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
 		direction = new Vecteur();
-		capaciteCarburant = pCapaciteCarburant;
-		carburant = new SimpleDoubleProperty(capaciteCarburant);
+		carburantMax = new SimpleDoubleProperty();
+		setCarburantMax(pCarburantMax);
+		carburantRestant = new SimpleDoubleProperty();
+		setCarburantRestant(carburantMax.get());
+		carburantDepart = carburantRestant.get();
 		premierGetNoeud = true;
 		
 		currentFlamme = 0.0;
@@ -107,7 +111,7 @@ public class Vaisseau extends ObjetSpatial
 	public void setPuissanceMax(double pPuissanceMax)
 	{
 		if (pPuissanceMax <= 0)
-			puissanceMax = PUISSANCE_MAX_DEFAUT;
+			puissanceMax = PUISSANCE_DEFAUT;
 		else
 			puissanceMax = pPuissanceMax;
 	}
@@ -120,59 +124,97 @@ public class Vaisseau extends ObjetSpatial
 	public void setPuissance(double pPuissance)
 	{
 		if (pPuissance <= 0)
-			puissance = PUISSANCE_MAX_DEFAUT;
+			puissance = PUISSANCE_DEFAUT;
 		else
 			puissance = pPuissance;
 	}
 	
 	/**
 	 * Retourne la santé actuelle du vaisseau.
+	 * 
 	 * @return Santé actuelle (entre 0.0 et 1.0).
 	 */
+	@Deprecated
 	public double getSante()
 	{
 		return sante;
 	}
 	
 	/**
-	 * Modifie la santé du vaisseau.
-	 * Doit être située entre 0.0 et 1.0 inclusivement.
-	 * @param sante Nouvelle santé.
+	 * Modifie la santé du vaisseau. Doit être située entre 0.0 et 1.0
+	 * inclusivement.
+	 * 
+	 * @param sante
+	 *            Nouvelle santé.
 	 */
+	@Deprecated
 	public void setSante(double sante)
 	{
-		if(sante <= 1.0 && sante >= 0.0)
+		if (sante <= 1.0 && sante >= 0.0)
 		{
 			this.sante = sante;
 		}
 	}
 	
-	// public void setCarburantMax(double pCarburantMax)
-	// {
-	// // TODO story implementation du carburant
-	// }
-	//
-	// public void getCarburantMax(double pCarburantMax)
-	// {
-	// // TODO story implementation du carburant
-	// }
-	//
-	// public void setCarburant(double pCarburant)
-	// {
-	// // TODO story implementation du carburant
-	// }
-	//
-	// public void getCarburant(double pCarburant)
-	// {
-	// // TODO story implementation du carburant
-	// }
-	//
-	// TODO story implementation du carburant
-	// @Override
-	// public double getMasse()
-	// {
-	// return masse + CONVERTION_CARBURANT * carburant.get();
-	// }
+	public void setCarburantMax(double pCarburantMax)
+	{
+		if (pCarburantMax <= 0)
+			carburantMax.set(CARBURANT_DEFAUT);
+		else
+		{
+			carburantMax.set(pCarburantMax);
+		}
+		if (carburantMax.get() < carburantDepart)
+			setCarburantDepart(carburantMax.get());
+		else
+			syso();// TODO
+			
+	}
+	
+	public double getCarburantMax()
+	{
+		return carburantMax.get();
+	}
+	
+	public double getCarburantRestant()
+	{
+		return carburantRestant.get();
+	}
+	
+	public void setCarburantRestant(double pCarburantRestant)
+	{
+		if (pCarburantRestant < 0)
+			carburantRestant.set(0);
+		else if (pCarburantRestant > carburantMax.get())
+			carburantRestant.set(carburantMax.get());
+		else
+			carburantRestant.set(pCarburantRestant);
+		syso();// TODO
+		
+	}
+	
+	public void setCarburantDepart(double pCarburantDepart)
+	{
+		if (pCarburantDepart > carburantMax.get())
+			setCarburantMax(pCarburantDepart);
+		carburantDepart = pCarburantDepart;
+		setCarburantRestant(pCarburantDepart);
+	}
+	
+	public double getCarburantDepart()
+	{
+		return carburantDepart;
+	}
+	
+	public DoubleProperty carburantMaxProperty()
+	{
+		return carburantMax;
+	}
+	
+	public DoubleProperty carburantRestantProperty()
+	{
+		return carburantRestant;
+	}
 	
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
@@ -249,7 +291,7 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public void maj(double dt)
 	{
-		if(getForceExt().getNorme() > 0)
+		if (getForceExt().getNorme() > 0)
 		{
 			currentFlamme += VITESSE_ANIM_FLAMME * dt;
 			currentFlamme = Math.min(1.0, currentFlamme);
@@ -267,5 +309,38 @@ public class Vaisseau extends ObjetSpatial
 	public double getRayon()
 	{
 		return 20.0;
-	}	
+	}
+	
+	/**
+	 * Remet les corps à leur position et leur vitesse de départ.
+	 */
+	public void reset()
+	{
+		setCarburantRestant(carburantDepart);
+		setSante(1);
+		setPositionX(positionXDepart);
+		setPositionY(positionYDepart);
+		setVitesse(vitesseDepart);
+	}
+	
+	public String toString()
+	{
+		try
+		{
+			return "Carburant Max = " + carburantMax.get()
+					+ "\nCarburant Restant = " + carburantRestant.get()
+					+ "\nCarburant Depart = " + carburantDepart;
+		}
+		catch (NullPointerException e)
+		{
+			return "";
+		}
+	}
+	
+	public void syso()
+	{
+		
+		System.out.println(toString());
+		
+	}
 }
