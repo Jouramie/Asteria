@@ -1,16 +1,16 @@
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -867.0 ; -339.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -875.0 ; -164.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -886.0 ; 1.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -891.0 ; 166.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -898.0 ; 347.0 ; 0.0 ; 0.0
-Planete ; 6.0E15 ; -224.0 ; -351.0 ; 50.0 ; BLEUE
-Planete ; 6.0E15 ; -256.0 ; -108.0 ; 60.0 ; JAUNE
-Planete ; 6.0E15 ; -143.0 ; 112.0 ; 70.0 ; MAGENTA
-Planete ; 6.0E15 ; 72.0 ; 271.0 ; 80.0 ; ORANGE
-Planete ; 6.0E15 ; 438.0 ; 179.0 ; 120.0 ; ROUGE
-Planete ; 6.0E15 ; 388.0 ; -309.0 ; 156.0 ; VERTE
-DescriptionNiveau ; Ceci est le niveau 4
-ObjectifRayon ; 0.0 ; 0.0 ; 0.0
-PointDepart ; 0.0 ; 0.0
-TitreNiveau ; 
+Planete ; 6.0E15 ; -572.9425832418485 ; -540.475836858144 ; 100.0 ; BLEUE
+Planete ; 6.0E15 ; -695.170334333443 ; -158.51411469691152 ; 100.0 ; MAGENTA
+Planete ; 6.0E15 ; -502.27966464202063 ; 171.88277497255444 ; 100.0 ; ROUGE
+Planete ; 6.0E15 ; -126.04736831320679 ; -687.5310998902185 ; 100.0 ; VERTE
+Planete ; 6.0E15 ; 227.26722468593312 ; -324.66746383704776 ; 100.0 ; ORANGE
+Planete ; 6.0E15 ; -3.8196172216123614 ; 85.94138748627711 ; 100.0 ; JAUNE
+Planete ; 6.0E15 ; -240.6358849615765 ; 192.89066969142232 ; 87.0 ; VERTE
+Planete ; 6.0E15 ; 129.86698553481892 ; -116.498325259176 ; 50.0 ; ROUGE
+Planete ; 6.0E15 ; -797.7736931672907 ; 124.09813004824537 ; 87.0 ; BLEUE
+Planete ; 6.0E15 ; -783.0001062567853 ; -407.7509987299486 ; 50.0 ; ROUGE
+Planete ; 6.0E15 ; -336.8377815595227 ; -614.581215477024 ; 50.0 ; MAGENTA
+DescriptionNiveau ; Ceci est le premier vrai défi que vous allez rencontrer. Vous recommencerez ce niveau à plusieurs reprises.
+ObjectifRayon ; -242.5456935723828 ; 656.9741621173198 ; 50.0
+PointDepart ; -300.0 ; 0.0
+TitreNiveau ; Le Retry
 VitesseDepart ; 0.0 ; 0.0
