@@ -35,7 +35,6 @@ public class Vaisseau extends ObjetSpatial
 	protected ImageView imageFlamme;
 	protected double currentFlamme;
 	
-	@Deprecated
 	protected double sante;
 	protected double carburantDepart;
 	
@@ -134,7 +133,6 @@ public class Vaisseau extends ObjetSpatial
 	 * 
 	 * @return Santé actuelle (entre 0.0 et 1.0).
 	 */
-	@Deprecated
 	public double getSante()
 	{
 		return sante;
@@ -147,7 +145,6 @@ public class Vaisseau extends ObjetSpatial
 	 * @param sante
 	 *            Nouvelle santé.
 	 */
-	@Deprecated
 	public void setSante(double sante)
 	{
 		if (sante <= 1.0 && sante >= 0.0)
@@ -344,7 +341,7 @@ public class Vaisseau extends ObjetSpatial
 	public void syso()
 	{
 		
-		System.out.println(toString());
+		System.out.println(toString() + "\n======================");
 		
 	}
 }

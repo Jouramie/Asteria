@@ -1,11 +1,12 @@
 package objets;
 
+import controleur.ContPrincipal;
 import modele.Corps;
 import utils.Vecteur;
 
 public class VaisseauJoueur extends Vaisseau
 {
-	
+	public static final double PUISSANCE_MOTEUR = 200000;
 	public static final double PUISSANCE_ROTATION_DEFAUT = 1;
 	
 	protected boolean gauche;
@@ -71,9 +72,9 @@ public class VaisseauJoueur extends Vaisseau
 	public Vecteur getForceExt()
 	{
 		Vecteur r = new Vecteur();
-		if (moteur)
+		if (moteur && !carburantRestant.equals(0))
 		{
-			r = direction.multiplication(puissance);
+			r = direction.multiplication(puissance * PUISSANCE_MOTEUR);
 		}
 		return r;
 	}
@@ -98,6 +99,16 @@ public class VaisseauJoueur extends Vaisseau
 		}
 		
 		super.maj(dt);
+	}
+	
+	public void update(double dt)
+	{
+		if(moteur)
+		{
+			System.out.println(getCarburantRestant() + " - (" + puissance + " * " + dt + ") = ");
+			setCarburantRestant(getCarburantRestant() - (puissance * dt));
+			System.out.println(getCarburantRestant());
+		}
 	}
 	
 	public void onCollision(Corps c)
