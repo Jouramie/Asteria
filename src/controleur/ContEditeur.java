@@ -123,8 +123,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
-					.getText())));
+			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
 			((Planete) corpsSelect).maj();
 		}
 		catch (NumberFormatException ex)
@@ -166,13 +165,19 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
-					.getText())));
+			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
 		}
+	}
+	
+	@FXML
+	public void onSupprimer()
+	{
+		niveau.supprimerCorps(corpsSelect);
+		chargerNiveau();
 	}
 	
 	@FXML

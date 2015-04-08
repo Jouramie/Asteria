@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
@@ -32,7 +33,7 @@ public class ContJeu implements Controleur
 	public static final double VITESSE_ZOOM = 0.005;
 	
 	@FXML
-	private AnchorPane pane;
+	private Pane pane;
 	@FXML
 	private VBox menuPause;
 	@FXML
@@ -78,7 +79,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
-		if(!listenMouse)
+		if(!listenMouse && !objectifAtteint && !mort)
 		{
 			switch (e.getCode())
 			{
@@ -172,6 +173,8 @@ public class ContJeu implements Controleur
 		{
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
+			menuPause.setMinWidth(pane.getWidth());
+			menuPause.setMinHeight(pane.getHeight());
 			menuPause.toFront();
 		}
 	}
@@ -186,6 +189,8 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().arreterHorloge();
 		menuMort.setVisible(true);
+		menuMort.setMinWidth(pane.getWidth());
+		menuMort.setMinHeight(pane.getHeight());
 		menuMort.toFront();
 	}
 	
@@ -202,6 +207,8 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().arreterHorloge();
 		menuVictoire.setVisible(true);
+		menuVictoire.setMinWidth(pane.getWidth());
+		menuVictoire.setMinHeight(pane.getHeight());
 		menuVictoire.toFront();
 	}
 	
@@ -317,9 +324,9 @@ public class ContJeu implements Controleur
 			vaisseauJoueur.setVitesse(sub.normaliser().multiplication(50));
 			
 			listenMouse = false;
+			
+			ContPrincipal.getInstance().demarrerHorloge();
 		}
-		
-		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
 	@FXML
@@ -353,18 +360,21 @@ public class ContJeu implements Controleur
 	@FXML
 	public void zoom(ScrollEvent e)
 	{
-		Camera cam = vue.getCamera();
-		
-		double delta = e.getDeltaY();
-		
-		if (delta > 0)
+		if(!objectifAtteint && !mort)
 		{
-			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
-		}
-		
-		else
-		{
-			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
+			Camera cam = vue.getCamera();
+			
+			double delta = e.getDeltaY();
+			
+			if (delta > 0)
+			{
+				cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
+			}
+			
+			else
+			{
+				cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
+			}
 		}
 	}
 	

@@ -96,6 +96,18 @@ public class Niveau
 	}
 	
 	/**
+	 * Enlève un corps du niveau.
+	 * @param c
+	 */
+	public void supprimerCorps(Corps c)
+	{
+		if(corps.contains(c))
+		{
+			corps.remove(c);
+		}
+	}
+	
+	/**
 	 * Charge le niveau passé en paramètre.
 	 * 
 	 * @param fichier
