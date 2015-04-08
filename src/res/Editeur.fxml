@@ -63,6 +63,7 @@
                      </children></VBox>
 					</children>
 				</Pane>
+            <Button mnemonicParsing="false" onAction="#onSupprimer" text="Supprimer" />
 			</children>
 		</VBox>
 	</right>
