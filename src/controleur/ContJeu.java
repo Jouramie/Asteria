@@ -67,7 +67,7 @@ public class ContJeu implements Controleur
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
-		progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+		
 		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
@@ -239,6 +239,8 @@ public class ContJeu implements Controleur
 			
 			Objectif objectif = niveau.getObjectif();
 			
+			progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+			
 			if (objectif != null)
 			{
 				objectif.setVaisseau(vaisseauJoueur);
@@ -251,10 +253,6 @@ public class ContJeu implements Controleur
 		else if (niveau == null)
 		{
 			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
-//			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
-//					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
-//			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
-//			vue.initialiserCorps();
 		}
 	}
 	

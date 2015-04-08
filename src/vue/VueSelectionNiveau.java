@@ -16,7 +16,7 @@ public class VueSelectionNiveau extends VueJeu
 	@Override
 	public String getFXML()
 	{
-		return "/res/screen.fxml";
+		return "/res/SelectionNiveau.fxml";
 	}
 	
 	/**
