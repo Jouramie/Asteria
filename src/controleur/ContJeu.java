@@ -119,13 +119,6 @@ public class ContJeu implements Controleur
 					wPressed = true;
 				}
 				break;
-			
-			case R:
-				if (!menuPause.isVisible())
-				{
-					reset();
-				}
-				break;
 			case H:
 				vaisseauJoueur
 						.setCarburantRestant(vaisseauJoueur.getCarburantMax());
@@ -288,6 +281,7 @@ public class ContJeu implements Controleur
 		{
 			c.reset();
 		}
+		vaisseauJoueur = null;
 		chargerNiveau(niveau);
 	}
 	
