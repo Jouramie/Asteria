@@ -83,7 +83,6 @@ public class VaisseauJoueur extends Vaisseau
 	 */
 	public void maj(double dt)
 	{
-		
 		if ((gauche || droite) && !(gauche && droite))
 		{
 			if (gauche)

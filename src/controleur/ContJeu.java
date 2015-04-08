@@ -78,92 +78,98 @@ public class ContJeu implements Controleur
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
-		switch (e.getCode())
+		if(!listenMouse)
 		{
-		case P:
-		case ESCAPE:
-		{
-			if (!menuPause.isVisible())
+			switch (e.getCode())
 			{
-				afficherMenuPause();
-			}
-			else
+			case P:
+			case ESCAPE:
 			{
-				cacherMenuPause();
+				if (!menuPause.isVisible())
+				{
+					afficherMenuPause();
+				}
+				else
+				{
+					cacherMenuPause();
+				}
+				break;
 			}
-			break;
-		}
-		case LEFT:
-		case A:
-			if (!aPressed)
-			{
-				vaisseauJoueur.tournerGauche();
-				aPressed = true;
+			case LEFT:
+			case A:
+				if (!aPressed)
+				{
+					vaisseauJoueur.tournerGauche();
+					aPressed = true;
+				}
+				break;
+			case RIGHT:
+			case D:
+				if (!dPressed)
+				{
+					vaisseauJoueur.tournerDroite();
+					dPressed = true;
+				}
+				break;
+			case UP:
+			case W:
+				if (!wPressed)
+				{
+					vaisseauJoueur.avancer();
+					wPressed = true;
+				}
+				break;
+			
+			case R:
+				if (!menuPause.isVisible())
+				{
+					reset();
+				}
+				break;
+			case H:
+				vaisseauJoueur
+						.setCarburantRestant(vaisseauJoueur.getCarburantMax());
+				vaisseauJoueur.setSante(1);
+			default:
+				break;
 			}
-			break;
-		case RIGHT:
-		case D:
-			if (!dPressed)
-			{
-				vaisseauJoueur.tournerDroite();
-				dPressed = true;
-			}
-			break;
-		case UP:
-		case W:
-			if (!wPressed)
-			{
-				vaisseauJoueur.avancer();
-				wPressed = true;
-			}
-			break;
-		
-		case R:
-			if (!menuPause.isVisible())
-			{
-				reset();
-			}
-			break;
-		case H:
-			vaisseauJoueur
-					.setCarburantRestant(vaisseauJoueur.getCarburantMax());
-			vaisseauJoueur.setSante(1);
-		default:
-			break;
 		}
 	}
 	
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
-		switch (e.getCode())
+		if(!listenMouse)
 		{
-		case LEFT:
-		case A:
-			if (aPressed)
+			switch (e.getCode())
 			{
-				vaisseauJoueur.tournerGauche();
-				aPressed = false;
+			case LEFT:
+			case A:
+				if (aPressed)
+				{
+					vaisseauJoueur.tournerGauche();
+					aPressed = false;
+				}
+				break;
+			case RIGHT:
+			case D:
+				if (dPressed)
+				{
+					vaisseauJoueur.tournerDroite();
+					dPressed = false;
+				}
+				break;
+			case UP:
+			case W:
+				if (wPressed)
+				{
+					vaisseauJoueur.avancer();
+					wPressed = false;
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		case RIGHT:
-		case D:
-			if (dPressed)
-			{
-				vaisseauJoueur.tournerDroite();
-				dPressed = false;
-			}
-			break;
-		case UP:
-		case W:
-			if (wPressed)
-			{
-				vaisseauJoueur.avancer();
-				wPressed = false;
-			}
-			break;
-		default:
-			break;
 		}
 	}
 	
@@ -314,8 +320,8 @@ public class ContJeu implements Controleur
 	@FXML
 	public void recommencer()
 	{
-		reset();
 		retourjeu();
+		reset();
 	}
 	
 	@FXML
