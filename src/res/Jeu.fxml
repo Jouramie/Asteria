@@ -10,7 +10,7 @@
 
 <BorderPane focusTraversable="true" maxHeight="848.0" maxWidth="1284.0" prefHeight="848.0" prefWidth="1284.0" styleClass="jeu-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <center>
-    <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onScroll="#zoom" prefHeight="848.0" prefWidth="1361.0">
+    <AnchorPane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onMouseMoved="#mouseMove" onScroll="#zoom" prefHeight="848.0" prefWidth="1361.0">
       <children>
         <VBox fx:id="menuPause" alignment="CENTER" focusTraversable="true" prefHeight="848.0" prefWidth="1284.0" spacing="50.0" styleClass="jeu-pause" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>

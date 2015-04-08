@@ -149,7 +149,7 @@ public class ContSelectionNiveau implements Controleur
 		
 		if (n != null)
 		{
-			label.setText(n.getDescriptionNiveau());	
+			label.setText("Titre :  " + n.getTitreNiveau() + "\n" + "Description :  " + n.getDescriptionNiveau());	
 		}
     }
 

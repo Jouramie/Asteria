@@ -254,7 +254,11 @@ public class Vaisseau extends ObjetSpatial
 	{
 		Group group = new Group();
 		
-		Image texture = new Image("/res/spaceship.png");
+		Image texture = new Image("/res/spaceship-ennemy.png");
+		if(this instanceof VaisseauJoueur)
+		{
+			texture = new Image("/res/spaceship.png");
+		}
 		ImageView image = new ImageView(texture);
 		image.setFitWidth(40);
 		image.setFitHeight(40);

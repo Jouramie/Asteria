@@ -7,9 +7,12 @@ import java.io.File;
 
 import modele.Niveau;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
@@ -29,6 +32,8 @@ public class ContJeu implements Controleur
 	public static final double VITESSE_ZOOM = 0.005;
 	
 	@FXML
+	private AnchorPane pane;
+	@FXML
 	private VBox menuPause;
 	@FXML
 	private VBox menuVictoire;
@@ -47,6 +52,7 @@ public class ContJeu implements Controleur
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
+	private boolean listenMouse;
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -67,99 +73,103 @@ public class ContJeu implements Controleur
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
-		
-		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
-		switch (e.getCode())
+		if(!listenMouse)
 		{
-		case P:
-		case ESCAPE:
-		{
-			if (!menuPause.isVisible())
+			switch (e.getCode())
 			{
-				afficherMenuPause();
-			}
-			else
+			case P:
+			case ESCAPE:
 			{
-				cacherMenuPause();
+				if (!menuPause.isVisible())
+				{
+					afficherMenuPause();
+				}
+				else
+				{
+					cacherMenuPause();
+				}
+				break;
 			}
-			break;
-		}
-		case LEFT:
-		case A:
-			if (!aPressed)
-			{
-				vaisseauJoueur.tournerGauche();
-				aPressed = true;
+			case LEFT:
+			case A:
+				if (!aPressed)
+				{
+					vaisseauJoueur.tournerGauche();
+					aPressed = true;
+				}
+				break;
+			case RIGHT:
+			case D:
+				if (!dPressed)
+				{
+					vaisseauJoueur.tournerDroite();
+					dPressed = true;
+				}
+				break;
+			case UP:
+			case W:
+				if (!wPressed)
+				{
+					vaisseauJoueur.avancer();
+					wPressed = true;
+				}
+				break;
+			
+			case R:
+				if (!menuPause.isVisible())
+				{
+					reset();
+				}
+				break;
+			case H:
+				vaisseauJoueur
+						.setCarburantRestant(vaisseauJoueur.getCarburantMax());
+				vaisseauJoueur.setSante(1);
+			default:
+				break;
 			}
-			break;
-		case RIGHT:
-		case D:
-			if (!dPressed)
-			{
-				vaisseauJoueur.tournerDroite();
-				dPressed = true;
-			}
-			break;
-		case UP:
-		case W:
-			if (!wPressed)
-			{
-				vaisseauJoueur.avancer();
-				wPressed = true;
-			}
-			break;
-		
-		case R:
-			if (!menuPause.isVisible())
-			{
-				reset();
-			}
-			break;
-		case H:
-			vaisseauJoueur
-					.setCarburantRestant(vaisseauJoueur.getCarburantMax());
-			vaisseauJoueur.setSante(1);
-		default:
-			break;
 		}
 	}
 	
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
-		switch (e.getCode())
+		if(!listenMouse)
 		{
-		case LEFT:
-		case A:
-			if (aPressed)
+			switch (e.getCode())
 			{
-				vaisseauJoueur.tournerGauche();
-				aPressed = false;
+			case LEFT:
+			case A:
+				if (aPressed)
+				{
+					vaisseauJoueur.tournerGauche();
+					aPressed = false;
+				}
+				break;
+			case RIGHT:
+			case D:
+				if (dPressed)
+				{
+					vaisseauJoueur.tournerDroite();
+					dPressed = false;
+				}
+				break;
+			case UP:
+			case W:
+				if (wPressed)
+				{
+					vaisseauJoueur.avancer();
+					wPressed = false;
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		case RIGHT:
-		case D:
-			if (dPressed)
-			{
-				vaisseauJoueur.tournerDroite();
-				dPressed = false;
-			}
-			break;
-		case UP:
-		case W:
-			if (wPressed)
-			{
-				vaisseauJoueur.avancer();
-				wPressed = false;
-			}
-			break;
-		default:
-			break;
 		}
 	}
 	
@@ -211,8 +221,7 @@ public class ContJeu implements Controleur
 	/**
 	 * Charge un niveau de jeu.
 	 * 
-	 * @param niv
-	 *            Niveau à charger.
+	 * @param niv Niveau à charger.
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
@@ -249,13 +258,19 @@ public class ContJeu implements Controleur
 					vue.ajouterDessinable((Dessinable) objectif);
 				}
 			}
+			
+			ContPrincipal.getInstance().arreterHorloge();
+			listenMouse = true;
 		}
 		else if (niveau == null)
 		{
 			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
 		}
 	}
-	
+
+	/**
+	 * Recharge le niveau.
+	 */
 	public void reset()
 	{
 		for (Corps c : ContPrincipal.getInstance().getCorps())
@@ -265,11 +280,48 @@ public class ContJeu implements Controleur
 		chargerNiveau(niveau);
 	}
 	
+	/**
+	 * Écouteur lors de la sélection de la vitesse initiale.
+	 * @param e
+	 */
+	@FXML
+	public void mouseMove(MouseEvent e)
+	{
+		if(listenMouse)
+		{
+			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
+			Camera cam = vue.getCamera();
+			Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
+			vaisseauJoueur.setAngle(sub.getAngle());
+		}
+	}
+	
+	/**
+	 * Écouteur lors de la sélection de la vitesse initiale.
+	 */
+	@FXML
+	public void mouseClicked(MouseEvent e)
+	{
+		if(listenMouse)
+		{
+			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
+			Camera cam = vue.getCamera();
+			Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
+			vaisseauJoueur.setVitesse(sub.normaliser().multiplication(50));
+			
+			listenMouse = false;
+		}
+		
+		ContPrincipal.getInstance().demarrerHorloge();
+	}
+	
 	@FXML
 	public void recommencer()
 	{
-		reset();
 		retourjeu();
+		reset();
 	}
 	
 	@FXML
@@ -290,6 +342,9 @@ public class ContJeu implements Controleur
 		mort = false;
 	}
 	
+	/**
+	 * Écouteur sur le mouse wheel pour contrôler le zoom de la caméra.
+	 */
 	@FXML
 	public void zoom(ScrollEvent e)
 	{
@@ -309,22 +364,21 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Met à jour le vaisseau.
+	 * Met à jour la caméra et vérifie l'objectif.
 	 */
 	public void update(double dt)
 	{
 		if (vaisseauJoueur != null)
 		{
 			Camera camera = vue.getCamera();
-			camera.deplacer(vaisseauJoueur.getPositionX(),
-					vaisseauJoueur.getPositionY());
+			camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 			
 			verifierObjectif();
 		}
 	}
 	
 	/**
-	 * Vérifie si l'objectif actuel est atteint.
+	 * Vérifie si l'objectif actuel est atteint et vérifie si le joueur est mort.
 	 */
 	private void verifierObjectif()
 	{

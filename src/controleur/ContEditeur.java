@@ -400,8 +400,8 @@ public class ContEditeur implements Controleur
 	{
 		Point2D point = pane.sceneToLocal(event.getSceneX(), event.getSceneY());
 		Camera cam = vue.getCamera();
-		Vecteur pos = cam
-				.localToGlobal(new Vecteur(point.getX(), point.getY()));
+		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+		
 		switch (event.getButton())
 		{
 		case PRIMARY:
