@@ -7,6 +7,6 @@ Planete ; 6.0E15 ; -372.0 ; -240.0 ; 89.0 ; MAGENTA
 Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -731.0 ; -58.0 ; 0.0 ; 0.0
 DescriptionNiveau ; Vous devez démontrer vos aptitudes en conduite de vaisseau spatial. Éviter de vous écraser sur une planète et rejoignez le portail.
 ObjectifRayon ; 623.0 ; -407.0 ; 50.0
-PointDepart ; -500 ; 500
+PointDepart ; -500 ; 550
 TitreNiveau ; Narrow Passage
 VitesseDepart ; 0.0 ; 0.0
