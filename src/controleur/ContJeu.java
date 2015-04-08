@@ -67,6 +67,9 @@ public class ContJeu implements Controleur
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
+
+		progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
 	@FXML
@@ -208,15 +211,45 @@ public class ContJeu implements Controleur
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
-		niveau = niv;
-		objectifAtteint = false;
-		mort = false;
-		
-		ContPrincipal.getInstance().viderCorps();
-		
-		for(Corps c : niveau.getCorps())
+		if (niv != null)
 		{
-			ContPrincipal.getInstance().ajouterCorps(c);
+			niveau = niv;
+			objectifAtteint = false;
+			mort = false;
+			
+			ContPrincipal.getInstance().viderCorps();
+			
+			for (Corps c : niveau.getCorps())
+			{
+				ContPrincipal.getInstance().ajouterCorps(c);
+			}
+			
+			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
+					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
+			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+			vaisseauJoueur.setPosition(niveau.getPointDepart());
+			vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
+			
+			vue.initialiserCorps();
+			
+			Objectif objectif = niveau.getObjectif();
+			
+			if (objectif != null)
+			{
+				objectif.setVaisseau(vaisseauJoueur);
+				if (objectif instanceof Dessinable)
+				{
+					vue.ajouterDessinable((Dessinable) objectif);
+				}
+			}
+		}
+		else if (niveau == null)
+		{
+			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
+//			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
+//					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
+//			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+//			vue.initialiserCorps();
 		}
 		
 		ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
