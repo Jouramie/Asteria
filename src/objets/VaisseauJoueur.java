@@ -105,4 +105,9 @@ public class VaisseauJoueur extends Vaisseau
 	{
 		setSante(0.0);
 	}
+	
+	public void setAngle(double angle)
+	{
+		direction.setAngle(angle);
+	}
 }

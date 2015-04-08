@@ -7,9 +7,12 @@ import java.io.File;
 
 import modele.Niveau;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
@@ -29,6 +32,8 @@ public class ContJeu implements Controleur
 	public static final double VITESSE_ZOOM = 0.005;
 	
 	@FXML
+	private AnchorPane pane;
+	@FXML
 	private VBox menuPause;
 	@FXML
 	private VBox menuVictoire;
@@ -47,6 +52,7 @@ public class ContJeu implements Controleur
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
+	private boolean listenMouse;
 	
 	/**
 	 * Constructeur du contrôleur.
@@ -67,8 +73,6 @@ public class ContJeu implements Controleur
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
-		
-		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
 	@FXML
@@ -249,6 +253,8 @@ public class ContJeu implements Controleur
 					vue.ajouterDessinable((Dessinable) objectif);
 				}
 			}
+			
+			demarrerSelectionVitesse();
 		}
 		else if (niveau == null)
 		{
@@ -256,6 +262,12 @@ public class ContJeu implements Controleur
 		}
 	}
 	
+	private void demarrerSelectionVitesse()
+	{
+		ContPrincipal.getInstance().arreterHorloge();
+		listenMouse = true;
+	}
+
 	public void reset()
 	{
 		for (Corps c : ContPrincipal.getInstance().getCorps())
@@ -263,6 +275,19 @@ public class ContJeu implements Controleur
 			c.reset();
 		}
 		chargerNiveau(niveau);
+	}
+	
+	@FXML
+	public void mouseMove(MouseEvent e)
+	{
+		if(listenMouse)
+		{
+			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
+			Camera cam = vue.getCamera();
+			Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
+			vaisseauJoueur.setAngle(sub.getAngle());
+		}
 	}
 	
 	@FXML
