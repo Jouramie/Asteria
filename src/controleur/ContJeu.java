@@ -227,11 +227,19 @@ public class ContJeu implements Controleur
 			for (Corps c : niveau.getCorps())
 			{
 				ContPrincipal.getInstance().ajouterCorps(c);
+				if (c.getClass().equals(
+						new VaisseauJoueur(1, new Vecteur(), 0, 0,
+								new Vecteur(), new Vecteur()).getClass()))
+				{
+					vaisseauJoueur = (VaisseauJoueur) c;
+				}
 			}
-			
-			vaisseauJoueur = new VaisseauJoueur(2167.27e2, new Vecteur(0, 0),
-					16e3, 100, new Vecteur(10, 10), new Vecteur(10, 10));
-			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+			if (vaisseauJoueur == null)
+			{
+				vaisseauJoueur = new VaisseauJoueur(1, new Vecteur(0, 0), 16e3,
+						30, new Vecteur(10, 10), new Vecteur(10, 10));
+				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
+			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
 			vaisseauJoueur.setVitesse(niveau.getVitesseDepart());
 			
@@ -239,7 +247,9 @@ public class ContJeu implements Controleur
 			
 			Objectif objectif = niveau.getObjectif();
 			
-			progressBarCarburant.progressProperty().bind(vaisseauJoueur.carburantRestantProperty().divide(vaisseauJoueur.carburantMaxProperty()));
+			progressBarCarburant.progressProperty().bind(
+					vaisseauJoueur.carburantRestantProperty().divide(
+							vaisseauJoueur.carburantMaxProperty()));
 			
 			if (objectif != null)
 			{
@@ -252,7 +262,8 @@ public class ContJeu implements Controleur
 		}
 		else if (niveau == null)
 		{
-			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
+			ContPrincipal.getInstance().selectionnerControleur(
+					new ContSelectionNiveau());
 		}
 	}
 	
@@ -318,7 +329,7 @@ public class ContJeu implements Controleur
 			Camera camera = vue.getCamera();
 			camera.deplacer(vaisseauJoueur.getPositionX(),
 					vaisseauJoueur.getPositionY());
-			
+			vaisseauJoueur.update(dt);
 			verifierObjectif();
 		}
 	}
