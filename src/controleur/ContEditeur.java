@@ -451,7 +451,6 @@ public class ContEditeur implements Controleur
 			}
 			
 			chargerNiveau();
-			pane.requestFocus();
 			
 		}
 		selectionnerCorps();
