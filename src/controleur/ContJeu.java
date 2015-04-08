@@ -215,8 +215,7 @@ public class ContJeu implements Controleur
 	/**
 	 * Charge un niveau de jeu.
 	 * 
-	 * @param niv
-	 *            Niveau à charger.
+	 * @param niv Niveau à charger.
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
@@ -254,20 +253,18 @@ public class ContJeu implements Controleur
 				}
 			}
 			
-			demarrerSelectionVitesse();
+			ContPrincipal.getInstance().arreterHorloge();
+			listenMouse = true;
 		}
 		else if (niveau == null)
 		{
 			ContPrincipal.getInstance().selectionnerControleur(new ContSelectionNiveau());
 		}
 	}
-	
-	private void demarrerSelectionVitesse()
-	{
-		ContPrincipal.getInstance().arreterHorloge();
-		listenMouse = true;
-	}
 
+	/**
+	 * Recharge le niveau.
+	 */
 	public void reset()
 	{
 		for (Corps c : ContPrincipal.getInstance().getCorps())
@@ -277,6 +274,10 @@ public class ContJeu implements Controleur
 		chargerNiveau(niveau);
 	}
 	
+	/**
+	 * Écouteur lors de la sélection de la vitesse initiale.
+	 * @param e
+	 */
 	@FXML
 	public void mouseMove(MouseEvent e)
 	{
@@ -288,6 +289,26 @@ public class ContJeu implements Controleur
 			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
 			vaisseauJoueur.setAngle(sub.getAngle());
 		}
+	}
+	
+	/**
+	 * Écouteur lors de la sélection de la vitesse initiale.
+	 */
+	@FXML
+	public void mouseClicked(MouseEvent e)
+	{
+		if(listenMouse)
+		{
+			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
+			Camera cam = vue.getCamera();
+			Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+			Vecteur sub = pos.soustraire(vaisseauJoueur.getPosition());
+			vaisseauJoueur.setVitesse(sub.normaliser().multiplication(50));
+			
+			listenMouse = false;
+		}
+		
+		ContPrincipal.getInstance().demarrerHorloge();
 	}
 	
 	@FXML
@@ -315,6 +336,9 @@ public class ContJeu implements Controleur
 		mort = false;
 	}
 	
+	/**
+	 * Écouteur sur le mouse wheel pour contrôler le zoom de la caméra.
+	 */
 	@FXML
 	public void zoom(ScrollEvent e)
 	{
@@ -334,22 +358,21 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Met à jour le vaisseau.
+	 * Met à jour la caméra et vérifie l'objectif.
 	 */
 	public void update(double dt)
 	{
 		if (vaisseauJoueur != null)
 		{
 			Camera camera = vue.getCamera();
-			camera.deplacer(vaisseauJoueur.getPositionX(),
-					vaisseauJoueur.getPositionY());
+			camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 			
 			verifierObjectif();
 		}
 	}
 	
 	/**
-	 * Vérifie si l'objectif actuel est atteint.
+	 * Vérifie si l'objectif actuel est atteint et vérifie si le joueur est mort.
 	 */
 	private void verifierObjectif()
 	{
