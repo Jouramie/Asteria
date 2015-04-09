@@ -162,10 +162,7 @@ public class Vaisseau extends ObjetSpatial
 			carburantMax.set(pCarburantMax);
 		}
 		if (carburantMax.get() < carburantDepart)
-			setCarburantDepart(carburantMax.get());
-		else
-			syso();// TODO
-			
+			setCarburantDepart(carburantMax.get());			
 	}
 	
 	public double getCarburantMax()
@@ -185,9 +182,7 @@ public class Vaisseau extends ObjetSpatial
 		else if (pCarburantRestant > carburantMax.get())
 			carburantRestant.set(carburantMax.get());
 		else
-			carburantRestant.set(pCarburantRestant);
-		syso();// TODO
-		
+			carburantRestant.set(pCarburantRestant);		
 	}
 	
 	public void setCarburantDepart(double pCarburantDepart)

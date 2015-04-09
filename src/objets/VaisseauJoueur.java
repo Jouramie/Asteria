@@ -105,9 +105,7 @@ public class VaisseauJoueur extends Vaisseau
 	{
 		if(moteur)
 		{
-			System.out.println(getCarburantRestant() + " - (" + puissance + " * " + dt + ") = ");
 			setCarburantRestant(getCarburantRestant() - (puissance * dt));
-			System.out.println(getCarburantRestant());
 		}
 	}
 	
