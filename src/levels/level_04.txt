@@ -13,4 +13,4 @@ DescriptionNiveau ; Ceci est le premier vrai défi que vous allez rencontrer. Vou
 ObjectifRayon ; -242.5456935723828 ; 656.9741621173198 ; 50.0
 PointDepart ; -300.0 ; 0.0
 TitreNiveau ; Le Retry
-VitesseDepart ; 0.0 ; 0.0
+VitesseDepart ; 0.0

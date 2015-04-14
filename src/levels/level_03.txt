@@ -13,4 +13,4 @@ DescriptionNiveau ; Enfin un long voyage ! Assurez-vous de ne pas manquer de car
 ObjectifRayon ; -161.17934832233823 ; -2088.0946118211573 ; 50.0
 PointDepart ; -500 ; 500
 TitreNiveau ; L'excursion
-VitesseDepart ; 0.0 ; 0.0
+VitesseDepart ; 0.0

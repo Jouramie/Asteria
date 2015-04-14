@@ -5,4 +5,4 @@ DescriptionNiveau ; Niveau très difficile
 ObjectifRayon ; 1000.0 ; 1000.0 ; 20.0
 PointDepart ; -100.0 ; 10.0
 TitreNiveau ; Niveau 1
-VitesseDepart ; 10.0 ; 0.0
+VitesseDepart ; 10.0
