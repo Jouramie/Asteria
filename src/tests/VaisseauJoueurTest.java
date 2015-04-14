@@ -41,7 +41,7 @@ public class VaisseauJoueurTest
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 		v2.avancer();
-		assertEquals(1, v2.getForceExt().getX(), 0.0001);
+		assertEquals(200000, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 		v2.avancer();
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
