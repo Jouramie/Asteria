@@ -28,6 +28,7 @@ import vue.VueJeu;
 public class ContJeu implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
+	public static final double MARGE_ECRAN = 300;
 	
 	@FXML
 	private Pane pane;
@@ -404,7 +405,35 @@ public class ContJeu implements Controleur
 		if (vaisseauJoueur != null)
 		{
 			Camera camera = vue.getCamera();
-			camera.deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			double x = camera.getDeplacement().getX();
+			double y = camera.getDeplacement().getY();
+			
+			double marginLeft = camera.localToGlobal(new Vecteur(MARGE_ECRAN, 0)).getX();
+			double marginRight = camera.localToGlobal(new Vecteur(pane.getWidth() - MARGE_ECRAN, 0)).getX();
+			
+			if(vaisseauJoueur.getPositionX() < marginLeft)
+			{
+				camera.deplacer(x - (marginLeft - vaisseauJoueur.getPositionX()), y);
+			}
+			
+			else if(vaisseauJoueur.getPositionX() > marginRight)
+			{
+				camera.deplacer(x + (vaisseauJoueur.getPositionX() - marginRight), y);
+			}
+			
+			double marginTop = camera.localToGlobal(new Vecteur(0, MARGE_ECRAN)).getY();
+			double marginBottom = camera.localToGlobal(new Vecteur(0, pane.getHeight() - MARGE_ECRAN)).getY();
+			
+			if(vaisseauJoueur.getPositionY() < marginTop)
+			{
+				camera.deplacer(x, y - (marginTop - vaisseauJoueur.getPositionY()));
+			}
+			
+			else if(vaisseauJoueur.getPositionY() > marginBottom)
+			{
+				camera.deplacer(x, y + (vaisseauJoueur.getPositionY() - marginBottom));
+			}
+			
 			vaisseauJoueur.update(dt);
 			verifierObjectif();
 		}
