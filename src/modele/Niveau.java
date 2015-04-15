@@ -3,12 +3,12 @@ package modele;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
@@ -114,7 +114,7 @@ public class Niveau
 	 *            Le niveau à charger.
 	 * @return Le niveau chargé.
 	 */
-	public static Niveau chargerNiveau(File fichier)
+	public static Niveau chargerNiveau(InputStream fichier)
 	{
 		ArrayList<Corps> corps = new ArrayList<>();
 		String descriptionNiveau = null;
@@ -128,8 +128,8 @@ public class Niveau
 		{
 			try
 			{
-				FileReader fw = new FileReader(fichier);
-				BufferedReader bw = new BufferedReader(fw);
+				InputStreamReader isr = new InputStreamReader(fichier);
+				BufferedReader bw = new BufferedReader(isr);
 				String ligne;
 				StringTokenizer st;
 				
@@ -250,7 +250,7 @@ public class Niveau
 					}
 				}
 				bw.close();
-				fw.close();
+				isr.close();
 				
 				niveau = new Niveau(corps, descriptionNiveau, objectif,
 						pointDepart, titreNiveau, vitesseDepart);

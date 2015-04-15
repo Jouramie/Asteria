@@ -1,10 +1,7 @@
 package controleur;
+
 import modele.Corps;
 import modele.Objectif;
-
-import java.io.File;
-import java.util.StringTokenizer;
-
 import modele.Niveau;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -350,10 +347,7 @@ public class ContJeu implements Controleur
 	public void niveauSuivant()
 	{
 		numeroNiveau ++;
-		StringTokenizer st = new StringTokenizer(System.getProperty("java.class.path"),";");
-		String chemin = st.nextToken();
-		chemin = chemin.replace("\\", "\\\\");
-		Niveau niv = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_" + numeroNiveau + ".txt"));
+		Niveau niv = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_" + numeroNiveau + ".txt"));
 		Platform.runLater(() -> {
 			chargerNiveau(niv);
 		});

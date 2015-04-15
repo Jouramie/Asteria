@@ -1,6 +1,7 @@
 package controleur;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,9 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-
 import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Niveau;
 import modele.ObjectifRayon;
@@ -328,7 +327,7 @@ public class ContEditeur implements Controleur
 				file = (new FileChooser()).showOpenDialog(null);
 			}
 			
-			niveau = Niveau.chargerNiveau(file);
+			niveau = Niveau.chargerNiveau(new FileInputStream(file));
 			
 			chargerNiveau();
 		}
