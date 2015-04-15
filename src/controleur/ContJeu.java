@@ -1,13 +1,16 @@
 package controleur;
 import modele.Corps;
 import modele.Objectif;
+
 import java.io.File;
 import java.util.StringTokenizer;
+
 import modele.Niveau;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -47,6 +50,7 @@ public class ContJeu implements Controleur
 	private Niveau niveau;
 	private boolean objectifAtteint;
 	private boolean mort;
+	private boolean menuAffiche;
 	private boolean aPressed;
 	private boolean dPressed;
 	private boolean wPressed;
@@ -79,23 +83,22 @@ public class ContJeu implements Controleur
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
-		if(!listenMouse && !objectifAtteint && !mort)
+		if(!listenMouse && !objectifAtteint && !mort && e.getCode() == KeyCode.ESCAPE)
+		{
+			if (!menuPause.isVisible())
+			{
+				afficherMenuPause();
+			}
+			else
+			{
+				cacherMenuPause();
+			}
+		}
+		
+		if(!listenMouse && !objectifAtteint && !mort && !menuAffiche)
 		{
 			switch (e.getCode())
 			{
-			case P:
-			case ESCAPE:
-			{
-				if (!menuPause.isVisible())
-				{
-					afficherMenuPause();
-				}
-				else
-				{
-					cacherMenuPause();
-				}
-				break;
-			}
 			case LEFT:
 			case A:
 				if (!aPressed)
@@ -176,6 +179,7 @@ public class ContJeu implements Controleur
 			menuPause.setMinWidth(pane.getWidth());
 			menuPause.setMinHeight(pane.getHeight());
 			menuPause.toFront();
+			menuAffiche = true;
 		}
 	}
 	
@@ -183,6 +187,7 @@ public class ContJeu implements Controleur
 	{
 		ContPrincipal.getInstance().demarrerHorloge();
 		menuPause.setVisible(false);
+		menuAffiche = false;
 	}
 	
 	public void afficherMenuMort()
@@ -192,12 +197,14 @@ public class ContJeu implements Controleur
 		menuMort.setMinWidth(pane.getWidth());
 		menuMort.setMinHeight(pane.getHeight());
 		menuMort.toFront();
+		menuAffiche = true;
 	}
 	
 	public void cacherMenuMort()
 	{
 		ContPrincipal.getInstance().demarrerHorloge();
 		menuMort.setVisible(false);
+		menuAffiche = false;
 	}
 	
 	/**
@@ -210,12 +217,14 @@ public class ContJeu implements Controleur
 		menuVictoire.setMinWidth(pane.getWidth());
 		menuVictoire.setMinHeight(pane.getHeight());
 		menuVictoire.toFront();
+		menuAffiche = true;
 	}
 	
 	public void cacherMenuVictoire()
 	{
 		ContPrincipal.getInstance().demarrerHorloge();
 		menuVictoire.setVisible(false);
+		menuAffiche = false;
 	}
 	
 	/**
