@@ -121,6 +121,10 @@ public class ObjectifRayon implements Objectif, Dessinable
 		return resultat;
 	}
 
+	/**
+	 * Retourne un noeud représentant le portail de fin.
+	 * @return Retourne le noeud.
+	 */
 	public Node getNoeud()
 	{
 		portal.getChildren().clear();
@@ -138,6 +142,10 @@ public class ObjectifRayon implements Objectif, Dessinable
 		return portal;
 	}
 
+	/**
+	 * Met à jour le portail (animation de rotation).
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 */
 	public void maj(double dt)
 	{
 		noeudRotate.setAngle(noeudRotate.getAngle() + VITESSE_ROTATION * dt);
