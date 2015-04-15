@@ -91,11 +91,10 @@ public class ContSelectionNiveau implements Controleur
 	@FXML
 	public void levels(ActionEvent event) throws URISyntaxException
 	{
-		File file = new File(System.getProperty("java.class.path"));
 		Niveau n = null;
-		StringTokenizer st = new StringTokenizer(file.getAbsolutePath(),";");
+		StringTokenizer st = new StringTokenizer(System.getProperty("java.class.path"),";");
 		String chemin = st.nextToken();
-		chemin.replace("\\", "\\\\");
+		chemin = chemin.replace("\\", "\\\\");
 		
 		if (event.getSource() == b1)
 		{

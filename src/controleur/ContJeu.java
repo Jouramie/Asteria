@@ -2,7 +2,9 @@ package controleur;
 import modele.Corps;
 import modele.Objectif;
 import java.io.File;
+import java.util.StringTokenizer;
 import modele.Niveau;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
@@ -11,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
@@ -51,6 +52,8 @@ public class ContJeu implements Controleur
 	private boolean wPressed;
 	private boolean listenMouse;
 	
+	private int numeroNiveau;
+	
 	/**
 	 * Constructeur du contrôleur.
 	 */
@@ -68,9 +71,9 @@ public class ContJeu implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		progressBarCarburant.setPrefWidth(((VBox)progressBarCarburant.getParent()).getWidth());
 		progressBarSante.setPrefWidth(((VBox)progressBarSante.getParent()).getWidth());
-		File f = (new FileChooser()).showOpenDialog(null);
-		Niveau niv = Niveau.chargerNiveau(f);
-		chargerNiveau(niv);
+		
+		numeroNiveau = 0;
+		niveauSuivant();
 	}
 	
 	@FXML
@@ -332,6 +335,20 @@ public class ContJeu implements Controleur
 	{
 		retourjeu();
 		reset();
+	}
+	
+	@FXML
+	public void niveauSuivant()
+	{
+		numeroNiveau ++;
+		StringTokenizer st = new StringTokenizer(System.getProperty("java.class.path"),";");
+		String chemin = st.nextToken();
+		chemin = chemin.replace("\\", "\\\\");
+		Niveau niv = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_0" + numeroNiveau + ".txt"));
+		Platform.runLater(() -> {
+			chargerNiveau(niv);
+		});
+		cacherMenuVictoire();
 	}
 	
 	@FXML

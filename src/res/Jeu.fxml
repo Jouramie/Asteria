@@ -61,6 +61,16 @@
                 <Font size="36.0" />
               </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#niveauSuivant" prefHeight="77.0" prefWidth="169.0" text="Niveau suivant">
+              <textFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                  <stops>
+                    <Stop color="#ff7b00" />
+                    <Stop color="#13d33c" offset="1.0" />
+                  </stops>
+                </LinearGradient>
+              </textFill>
+            </Button>
             <Button mnemonicParsing="false" onAction="#retour" prefHeight="77.0" prefWidth="169.0" text="Menu">
               <textFill>
                 <LinearGradient endX="1.0" endY="1.0">

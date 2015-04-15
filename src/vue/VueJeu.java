@@ -2,7 +2,9 @@ package vue;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import utils.Vecteur;
+import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +22,7 @@ import controleur.ContPrincipal;
  */
 public class VueJeu implements Vue
 {
+	@FXML
 	private BorderPane borderPane;
 	private Group noeud;
 	private List<Dessinable> liste;
@@ -56,7 +59,6 @@ public class VueJeu implements Vue
 		borderPane = pane;
 		
 		camera.setGrandeurs(pane.getWidth(), pane.getHeight());
-		
 		initialiserCorps();
 	}
 	
