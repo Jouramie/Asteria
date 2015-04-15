@@ -352,7 +352,7 @@ public class Niveau
 				{
 					Vaisseau v = (Vaisseau) c;
 					bw.write("Vaisseau ; " + v.getPuissanceMax() + " ; "
-							+ v.getMasse() + " ; " + "100"/* TODO : carburant */
+							+ v.getMasse() + " ; " + v.getCarburantMax()
 							+ " ; " + v.getPositionX() + " ; "
 							+ v.getPositionY() + " ; " + v.getVitesse().getX()
 							+ " ; " + v.getVitesse().getY());
