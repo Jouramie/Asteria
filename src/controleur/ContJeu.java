@@ -193,7 +193,6 @@ public class ContJeu implements Controleur
 	{
 		if (!objectifAtteint && !mort)
 		{
-			wPressed = true;
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
 			menuPause.setMinWidth(pane.getWidth());
@@ -212,7 +211,6 @@ public class ContJeu implements Controleur
 	
 	public void afficherMenuMort()
 	{
-		wPressed = true;
 		ContPrincipal.getInstance().arreterHorloge();
 		menuMort.setVisible(true);
 		menuMort.setMinWidth(pane.getWidth());
@@ -233,7 +231,6 @@ public class ContJeu implements Controleur
 	 */
 	public void afficherMenuVictoire()
 	{
-		wPressed = true;
 		if(numeroNiveau < 10)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
