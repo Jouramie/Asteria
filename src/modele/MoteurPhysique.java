@@ -114,9 +114,9 @@ public class MoteurPhysique
 							
 							if (distance < sommeRayons)
 							{
+								calculerCollision(corps.get(i), corps.get(j));
 								corps.get(i).onCollision(corps.get(j));
 								corps.get(j).onCollision(corps.get(i));
-								calculerCollision(corps.get(i), corps.get(j));
 							}
 						}
 					}
