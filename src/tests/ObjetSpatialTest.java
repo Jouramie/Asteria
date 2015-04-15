@@ -19,7 +19,7 @@ import utils.Vecteur;
  */
 public class ObjetSpatialTest
 {
-	
+	//Incertitude toléré
 	private static final double d = 0.001;
 	ObjetSpatial oS1, oS2, oS3, oS4, oS5, oS6, oS7, oS8;
 	
@@ -174,7 +174,7 @@ public class ObjetSpatialTest
 	public void testIsStatique()
 	{
 		assertTrue(oS1.isStatique());
-		// assertFalse(oS7.isStatique());
+
 	}
 	
 	@Test
@@ -182,8 +182,7 @@ public class ObjetSpatialTest
 	{
 		oS1.setStatique(false);
 		assertFalse(oS1.isStatique());
-		// oS7.setStatique(true);
-		// assertTrue(oS7.isStatique());
+
 	}
 	
 	@Test
@@ -191,8 +190,7 @@ public class ObjetSpatialTest
 	{
 		oS1.setVitesse(new Vecteur(60, 60));
 		assertTrue(oS1.getVitesse().getX() == 0 && oS1.getVitesse().getY() == 0);
-		// assertTrue(oS7.getVitesse().getX() == 40
-		// && oS7.getVitesse().getY() == 40);
+
 	}
 	
 	@Test
@@ -202,14 +200,78 @@ public class ObjetSpatialTest
 		oS1.setStatique(false);
 		assertTrue(oS1.getVitesse().getX() == 60
 				&& oS1.getVitesse().getY() == 60);
-		// oS7.setVitesse(new Vecteur(60, 60));
-		// assertTrue(oS7.getVitesse().getX() == 60
-		// && oS7.getVitesse().getY() == 60);
+		oS2.setVitesse(null);
+		assertEquals(new Vecteur().getNorme(),oS2.getVitesse().getNorme() , d);
+
 	}
 	
-	// @Test
-	// public void testGetNoeud() {
-	// assertTrue(((Circle) oS1.getNoeud()).getRadius() > 0);
-	// }
+	@Test
+	public void testSetPositionXdoubleboolean()
+	{
+		oS1.setPositionX(-42.6, true);
+		assertEquals(-42.6, oS1.getPositionX(), d);
+		oS1.setPositionX(42.6, false);
+		assertEquals(42.6, oS1.getPositionX(), d);
+		oS1.reset();
+		assertEquals(-42.6, oS1.getPositionX(), d);
+		oS1.setPositionX(0, true);
+		assertEquals(0, oS1.getPositionX(), d);
+		oS1.setPositionX(500, false);
+		assertEquals(500, oS1.getPositionX(), d);
+		oS1.reset();
+		assertEquals(0, oS1.getPositionX(), d);
+	}
+	
+	@Test
+	public void testSetPositionYdoubleboolean()
+	{
+		oS1.setPositionY(-42.6, true);
+		assertEquals(-42.6, oS1.getPositionY(), d);
+		oS1.setPositionY(28);
+		assertEquals(28, oS1.getPositionY(), d);
+		oS1.reset();
+		assertEquals(-42.6, oS1.getPositionY(), d);
+		oS1.setPositionY(0, true);
+		assertEquals(0, oS1.getPositionY(), d);
+		oS1.setPositionY(500, false);
+		assertEquals(500, oS1.getPositionY(), d);
+		oS1.reset();
+		assertEquals(0, oS1.getPositionY(), d);
+	}
+	
+	@Test
+	public void testSetPositionVecteurboolean()
+	{
+		oS1.setPosition(new Vecteur(-42.6, -42.6) , true);
+		assertEquals(-42.6, oS1.getPositionY(), d);
+		assertEquals(-42.6, oS1.getPositionX(), d);
+		oS1.setPosition(new Vecteur(42.6, 42.6) , false);
+		assertEquals(42.6, oS1.getPositionY(), d);
+		assertEquals(42.6, oS1.getPositionX(), d);
+		oS1.reset();
+		assertEquals(-42.6, oS1.getPositionY(), d);
+		assertEquals(-42.6, oS1.getPositionX(), d);
+		oS1.setPosition(new Vecteur(100, 100), true);
+		assertEquals(100, oS1.getPositionY(), d);
+		assertEquals(100, oS1.getPositionX(), d);
+		oS1.setPosition(new Vecteur(500, 500) , false);
+		assertEquals(500, oS1.getPositionY(), d);
+		assertEquals(500, oS1.getPositionX(), d);
+		oS1.reset();
+		assertEquals(100, oS1.getPositionY(), d);
+		assertEquals(100, oS1.getPositionX(), d);
+		oS1.setPosition(null, true);
+		oS1.reset();
+		assertEquals(0, oS1.getPositionY(), d);
+		assertEquals(0, oS1.getPositionX(), d);
+		
+	}
+	
+	@Test
+	public void testReset()
+	{
+		
+	}
+	
 	
 }
