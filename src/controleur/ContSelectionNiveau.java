@@ -41,6 +41,8 @@ public class ContSelectionNiveau implements Controleur
 	@FXML
 	Button b10;
 	
+	private int niveauSelectionne;
+	
 	private VueSelectionNiveau vue;
 	
 	/**
@@ -57,7 +59,7 @@ public class ContSelectionNiveau implements Controleur
 	@FXML
 	public void play()
 	{
-		ContPrincipal.getInstance().selectionnerControleur(new ContJeu());
+		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveauSelectionne));
 	}
 	/**
 	 * Affiche la vue du constructeur.
@@ -65,6 +67,7 @@ public class ContSelectionNiveau implements Controleur
 	public void initialiser()
 	{
 		ContPrincipal.getInstance().afficherVue(vue, true);
+		niveauSelectionne = 1;
 	}
 
 	/**
@@ -75,6 +78,7 @@ public class ContSelectionNiveau implements Controleur
 	public void retour()
 	{
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
+		
 	}
 	
 	/**
@@ -88,51 +92,61 @@ public class ContSelectionNiveau implements Controleur
 		if (event.getSource() == b1)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_1.txt"));
+			niveauSelectionne = 1;
 			
 		}
 		else if (event.getSource() == b2)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_2.txt"));
+			niveauSelectionne = 2;
 		}
 		
 		else if (event.getSource() == b3)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_3.txt"));
+			niveauSelectionne = 3;
 		}
 		
 		else if (event.getSource() == b4)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_4.txt"));
+			niveauSelectionne = 4;
 		}
 		
 		else if (event.getSource() == b5)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_5.txt"));
+			niveauSelectionne = 5;
 		}
 		
 		else if (event.getSource() == b6)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_6.txt"));
+			niveauSelectionne = 6;
 		}
 		
 		else if (event.getSource() == b7)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_7.txt"));
+			niveauSelectionne = 7;
 		}
 		
 		else if (event.getSource() == b8)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_8.txt"));
+			niveauSelectionne = 8;
 		}
 		
 		else if (event.getSource() == b9)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_9.txt"));
+			niveauSelectionne = 9;
 		}
 		
 		else if (event.getSource() == b10)
 		{
 			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_10.txt"));
+			niveauSelectionne = 10;
 		}
 		
 		if (n != null)

@@ -11,7 +11,7 @@ Planete ; 6.0E15 ; 72.0 ; 271.0 ; 80.0 ; ORANGE
 Planete ; 6.0E15 ; 438.0 ; 179.0 ; 120.0 ; ROUGE
 Planete ; 6.0E15 ; 388.0 ; -309.0 ; 156.0 ; VERTE
 DescriptionNiveau ; Ceci est le niveau 10
-ObjectifRayon ; 0.0 ; 0.0 ; 0.0
+ObjectifRayon ; 10.0 ; 10.0 ; 10.0
 PointDepart ; 0.0 ; 0.0
 TitreNiveau ; 
 VitesseDepart ; 0.0 ; 0.0
