@@ -242,7 +242,7 @@ public class ContJeu implements Controleur
 			if (vaisseauJoueur == null)
 			{
 				vaisseauJoueur = new VaisseauJoueur(1, new Vecteur(0, 0), 16e3,
-						30, new Vecteur(10, 10), new Vecteur(10, 10));
+						2, new Vecteur(10, 10), new Vecteur(10, 10));
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());

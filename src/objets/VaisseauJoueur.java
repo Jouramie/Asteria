@@ -111,7 +111,7 @@ public class VaisseauJoueur extends Vaisseau
 	public Vecteur getForceExt()
 	{
 		Vecteur r = new Vecteur();
-		if (moteur && !carburantRestant.equals(0))
+		if (moteur && !(carburantRestant.get() <= 0))
 		{
 			r = direction.multiplication(puissance * PUISSANCE_MOTEUR);
 		}
