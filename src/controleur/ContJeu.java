@@ -251,10 +251,12 @@ public class ContJeu implements Controleur
 			vue.initialiserCorps();
 			
 			Objectif objectif = niveau.getObjectif();
-			
+			progressBarCarburant.progressProperty().unbind();
 			progressBarCarburant.progressProperty().bind(
 					vaisseauJoueur.carburantRestantProperty().divide(
 							vaisseauJoueur.carburantMaxProperty()));
+			progressBarSante.progressProperty().unbind();
+			progressBarSante.progressProperty().bind(vaisseauJoueur.santeProperty());
 			
 			if (objectif != null)
 			{

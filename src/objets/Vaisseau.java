@@ -174,7 +174,7 @@ public class Vaisseau extends ObjetSpatial {
 	/**
 	 * Retourne une propriété observable de la santé du vaisseau.
 	 * 
-	 * @return Propriété observable.
+	 * @return Propriété observable (en %).
 	 */
 	public DoubleProperty santeProperty() {
 		return sante;
