@@ -156,13 +156,13 @@ public class VaisseauJoueur extends Vaisseau {
 	 * Réagit à la collision avec un autre corps.
 	 */
 	public void onCollision(Corps c) {
-		moteur = false;
 		if(c.getClass().equals(Vaisseau.class) && c.getMasse() < getMasse() * 2)
 		{
 			setSante(getSante() - 0.5);
 		}
 		else
 		{
+			moteur = false;
 			setSante(0.0);
 		}
 	}
