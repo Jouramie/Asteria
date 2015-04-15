@@ -1,8 +1,6 @@
 package controleur;
 
-import java.io.File;
 import java.net.URISyntaxException;
-import java.util.StringTokenizer;
 import modele.Niveau;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,58 +84,55 @@ public class ContSelectionNiveau implements Controleur
 	public void levels(ActionEvent event) throws URISyntaxException
 	{
 		Niveau n = null;
-		StringTokenizer st = new StringTokenizer(System.getProperty("java.class.path"),";");
-		String chemin = st.nextToken();
-		chemin = chemin.replace("\\", "\\\\");
 		
 		if (event.getSource() == b1)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_01.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_1.txt"));
 			
 		}
 		else if (event.getSource() == b2)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_02.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_2.txt"));
 		}
 		
 		else if (event.getSource() == b3)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_03.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_3.txt"));
 		}
 		
 		else if (event.getSource() == b4)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_04.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_4.txt"));
 		}
 		
 		else if (event.getSource() == b5)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_05.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_5.txt"));
 		}
 		
 		else if (event.getSource() == b6)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_06.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_6.txt"));
 		}
 		
 		else if (event.getSource() == b7)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_07.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_7.txt"));
 		}
 		
 		else if (event.getSource() == b8)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_08.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_8.txt"));
 		}
 		
 		else if (event.getSource() == b9)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_09.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_9.txt"));
 		}
 		
 		else if (event.getSource() == b10)
 		{
-			n = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_10.txt"));
+			n = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_10.txt"));
 		}
 		
 		if (n != null)
