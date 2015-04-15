@@ -101,4 +101,51 @@ public class PlaneteTest
 		assertEquals(p4.getTexture().name(), Planete.TEXTURE_DEFAUT.name());
 	}
 	
+	@Test
+	public void testGetRayonAtmosphere()
+	{
+		assertEquals(Planete.RAYON_ATMOSPHERE_DEFAUT, p1.getRayonAtmosphere(), d);
+	}
+	
+	@Test
+	public void testSetRayonAtmosphere()
+	{
+		p1.setRayonAtmosphere(5);
+		assertEquals(5, p1.getRayonAtmosphere(), d);
+		p2.setRayonAtmosphere(0);
+		assertEquals(0, p2.getRayonAtmosphere(), d);
+		p3.setRayonAtmosphere(-5);
+		assertEquals(Planete.RAYON_ATMOSPHERE_DEFAUT, p3.getRayonAtmosphere(), d);
+	}
+	
+	@Test
+	public void testGetForceExt()
+	{
+		assertEquals(0, p1.getForceExt().getNorme(), d);
+	}
+	
+
+	@Test
+	public void testGetRayonCollision()
+	{
+		assertEquals(p1.getRayon(), p1.getRayonCollision(), d);
+	}
+	
+	@Test
+	public void testTexture()
+	{
+		//public static Texture getTexture(String tex)
+		assertEquals(Texture.BLEUE, Texture.getTexture("bleue"));
+		assertEquals(Texture.JAUNE, Texture.getTexture("jaune"));
+		assertEquals(Texture.MAGENTA, Texture.getTexture("magenta"));
+		assertEquals(Texture.ORANGE, Texture.getTexture("orange"));
+		assertEquals(Texture.ROUGE, Texture.getTexture("rouge"));
+		assertEquals(Texture.VERTE, Texture.getTexture("verte"));
+		assertEquals(Planete.TEXTURE_DEFAUT, Texture.getTexture("oiasdfkhaskjfh"));
+		
+		//public String getTexture()
+		assertEquals("/res/planeteBleue.png", Texture.BLEUE.getTexture());
+		
+	}
+	
 }

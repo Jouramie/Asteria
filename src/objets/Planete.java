@@ -28,6 +28,11 @@ public class Planete extends ObjetSpatial
 	public static final Color COULEUR_ATMOSHPERE_DEFAUT = Color.ORANGE;
 	public static final double PLANETE_MASSE_DEFAUT = 6e15;
 	
+	/**
+	 * Enum des textures possible pour une planète.
+	 * 
+	 * @author EquBolduc
+	 */
 	public enum Texture
 	{
 		BLEUE("/res/planeteBleue.png"),
@@ -39,11 +44,22 @@ public class Planete extends ObjetSpatial
 		
 		private final String texture;
 		
+		/**
+		 * Constructeur de texture.
+		 * 
+		 * @param pTexture l'emplacement du fichier contenant la texture.
+		 */
 		Texture(String pTexture)
 		{
 			texture = pTexture;
 		}
 		
+		/**
+		 * Retourne la texture selon son nom.
+		 * 
+		 * @param tex le nom de la texture recherché.
+		 * @return la texture.
+		 */
 		public static Texture getTexture(String tex)
 		{
 			switch(tex.toLowerCase())
@@ -71,6 +87,9 @@ public class Planete extends ObjetSpatial
 			}
 		}
 		
+		/**
+		 * @return l'emplacement du fichier contenant la texture.
+		 */
 		public String getTexture()
 		{
 			return texture;
@@ -115,6 +134,11 @@ public class Planete extends ObjetSpatial
 		init(pRayon);
 	}
 	
+	/**
+	 * Initialise les attributs de la classe.
+	 * 
+	 * @param pRayon le rayon.
+	 */
 	private void init(double pRayon)
 	{
 		setRayon(pRayon);
@@ -122,6 +146,11 @@ public class Planete extends ObjetSpatial
 		group = new Group();
 	}
 	
+	/**
+	 * Change la texture de la planète.
+	 * 
+	 * @param pTexture la nouvelle texture de la planète.
+	 */
 	public void setTexture(Texture pTexture)
 	{
 		if (pTexture == null)
@@ -130,11 +159,19 @@ public class Planete extends ObjetSpatial
 			texture = pTexture;
 	}
 	
+	/**
+	 * @return la texture de la planète.
+	 */
 	public Texture getTexture()
 	{
 		return texture;
 	}
 	
+	/**
+	 * Modifie le rayon de la planète.
+	 * 
+	 * @param pRayon le nouveau rayon de la planète.
+	 */
 	public void setRayon(double pRayon)
 	{
 		if (pRayon < 0)
@@ -147,11 +184,21 @@ public class Planete extends ObjetSpatial
 		}
 	}
 	
+	/** 
+	 * Retourne le rayon de la planète
+	 * 
+	 * @return le rayon de la planète.
+	 */
 	public double getRayon()
 	{
 		return rayon;
 	}
 	
+	/**
+	 * Modifie le rayon de l'atmosphere de la planète.
+	 * 
+	 * @param pRayonAtmosphere le nouveau rayon de la planète.
+	 */
 	public void setRayonAtmosphere(double pRayonAtmosphere)
 	{
 		if (pRayonAtmosphere < 0)
@@ -164,16 +211,31 @@ public class Planete extends ObjetSpatial
 		}
 	}
 	
+	/**
+	 * Retourne le rayon de l'atmosphère de la planète.
+	 * 
+	 * @return le rayon de l'atmosphère de la planète. (en pixel)
+	 */
 	public double getRayonAtmosphere()
 	{
 		return rayonAtmosphere;
 	}
 	
+	/**
+	 * Retourne le rayon dans lequel un corps est considéré comme en collision avec la planète. Exactement la même valeur que getRayon().
+	 * 
+	 * @return le rayon de collision.
+	 */
 	public int getRayonCollision()
 	{
 		return (int) rayon;
 	}
 	
+	/**
+	 * Retourne un noeud correspondant à l'aspect graphique de la planète.
+	 * 
+	 * @return un group contenant les composants graphique de la planète.
+	 */
 	public Node getNoeud()
 	{
 		group.getChildren().clear();
@@ -196,17 +258,26 @@ public class Planete extends ObjetSpatial
 		return group;
 	}
 	
+	/**
+	 * Retourne une force extérieur appliqué sur la planète. 
+	 * @return toujours un vecteur null.
+	 */
 	public Vecteur getForceExt()
 	{
 		return new Vecteur();
 	}
 	
+	/**
+	 * Met à jour l'aspect graphique de la planète.
+	 */
 	public void maj(){
 		group.getChildren().clear();
 		getNoeud();
 	}
 	
-	@Override
+	/**
+	 * Met à jour les attributs de la planète.
+	 */
 	public void maj(double dt)
 	{
 		
