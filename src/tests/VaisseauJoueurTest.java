@@ -9,6 +9,10 @@ import org.junit.Test;
 
 import utils.Vecteur;
 
+/**
+ * Classe de test de VaisseauJoueur.
+ * @author EquBolduc
+ */
 public class VaisseauJoueurTest
 {
 	VaisseauJoueur v1, v2, v4;
@@ -41,21 +45,40 @@ public class VaisseauJoueurTest
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 		v2.avancer();
-		assertEquals(1, v2.getForceExt().getX(), 0.0001);
+		assertEquals(200000, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 		v2.avancer();
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 	}
 	
-	/*
-	 * @Test public void testMaj() { assertEquals(135,
-	 * v2.getNoeud().getRotate(), 0.0001); v2.maj(); assertEquals(135,
-	 * v2.getNoeud().getRotate(), 0.0001); v2.tournerGauche(); v2.maj();
-	 * assertEquals(494, v2.getNoeud().getRotate(), 0.0001); v2.tournerDroite();
-	 * v2.maj(); assertEquals(494, v2.getNoeud().getRotate(), 0.0001);
-	 * v2.tournerGauche(); v2.maj(); assertEquals(495,
-	 * v2.getNoeud().getRotate(), 0.0001); v2.tournerDroite(); v2.maj();
-	 * assertEquals(495, v2.getNoeud().getRotate(), 0.0001); }
-	 */
+	@Test
+	public void testMaj()
+	{
+		// Méthode nécessite un contexte JavaFx.
+	}
+	
+	@Test
+	public void testUpdate()
+	{
+		v1.tournerDroite();
+		v1.tournerGauche();
+		v1.avancer();
+		v1.update(1.0);
+		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
+	}
+	
+	@Test
+	public void testOnCollision()
+	{
+		v1.onCollision(v2);
+		assertEquals(0.0, v1.getSante(), 0.0001);
+	}
+	
+	@Test
+	public void testSetAngle()
+	{
+		v1.setAngle(0.0);
+		assertEquals(0.0, v1.getDirection().getAngle(), 0.0001);
+	}
 }

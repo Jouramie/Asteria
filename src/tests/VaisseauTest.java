@@ -74,13 +74,103 @@ public class VaisseauTest
 		assertTrue(v1.isStatique());
 	}
 	
-	/*
-	 * @Test public void testGetNoeud() { assertTrue(v1.getNoeud() != null);
-	 * assertTrue(v2.getNoeud() != null); assertTrue(v3.getNoeud() != null);
-	 * assertTrue(v4.getNoeud() != null); assertTrue(v5.getNoeud() != null);
-	 * assertTrue(v6.getNoeud() != null); }
-	 */
+	@Test
+	public void testSetCarburantMax()
+	{
+		v1.setCarburantMax(76.0);
+		assertEquals(76.0, v1.getCarburantMax(), 0.0001);
+		v1.setCarburantMax(-76);
+		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
+		v1.setCarburantMax(0);
+		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
+	}
 	
+	@Test
+	public void testGetCarburantMax()
+	{
+		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
+		assertEquals(100.0, v2.getCarburantMax(), 0.0001);
+		assertEquals(100.0, v3.getCarburantMax(), 0.0001);
+		assertEquals(100.0, v4.getCarburantMax(), 0.0001);
+		assertEquals(100.0, v5.getCarburantMax(), 0.0001);
+	}
+	
+	@Test
+	public void testSetCarburantRestant()
+	{
+		v1.setCarburantRestant(76.0);
+		assertEquals(76.0, v1.getCarburantRestant(), 0.0001);
+		v1.setCarburantRestant(-76);
+		assertEquals(0.0, v1.getCarburantRestant(), 0.0001);
+		v1.setCarburantRestant(0);
+		assertEquals(0.0, v1.getCarburantRestant(), 0.0001);
+		v1.setCarburantRestant(80000);
+		assertEquals(100.0, v1.getCarburantRestant(), 0.0001);
+	}
+	
+	@Test
+	public void testGetCarburantRestant()
+	{
+		assertEquals(100.0, v1.getCarburantRestant(), 0.0001);
+		assertEquals(100.0, v2.getCarburantRestant(), 0.0001);
+		assertEquals(100.0, v3.getCarburantRestant(), 0.0001);
+		assertEquals(100.0, v4.getCarburantRestant(), 0.0001);
+		assertEquals(100.0, v5.getCarburantRestant(), 0.0001);
+	}
+	
+	@Test
+	public void testSetCarburantDepart()
+	{
+		v1.setCarburantDepart(76.0);
+		assertEquals(76.0, v1.getCarburantDepart(), 0.0001);
+		v1.setCarburantDepart(-76);
+		assertEquals(0.0, v1.getCarburantDepart(), 0.0001);
+		v1.setCarburantDepart(8000);
+		assertEquals(8000.0, v1.getCarburantMax(), 0.0001);
+		assertEquals(8000.0, v1.getCarburantDepart(), 0.0001);
+		v1.setCarburantDepart(0);
+		assertEquals(0.0, v1.getCarburantDepart(), 0.0001);
+	}
+	
+	@Test
+	public void testGetCarburantDepart()
+	{
+		assertEquals(100.0, v1.getCarburantDepart(), 0.0001);
+		assertEquals(100.0, v2.getCarburantDepart(), 0.0001);
+		assertEquals(100.0, v3.getCarburantDepart(), 0.0001);
+		assertEquals(100.0, v4.getCarburantDepart(), 0.0001);
+		assertEquals(100.0, v5.getCarburantDepart(), 0.0001);
+	}
+	
+	@Test
+	public void testGetPuissanceMax()
+	{
+		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v1.getPuissanceMax(), 0.0001);
+		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v2.getPuissanceMax(), 0.0001);
+		assertEquals(100, v3.getPuissanceMax(), 0.0001);
+		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v4.getPuissanceMax(), 0.0001);
+		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v5.getPuissanceMax(), 0.0001);
+	}
+	
+	@Test
+	public void testCarburantMaxProperty()
+	{
+		assertTrue(v1.carburantMaxProperty() != null);
+		assertTrue(v2.carburantMaxProperty() != null);
+		assertTrue(v3.carburantMaxProperty() != null);
+		assertTrue(v4.carburantMaxProperty() != null);
+		assertTrue(v5.carburantMaxProperty() != null);
+	}
+	
+	@Test
+	public void testCarburantRestantProperty()
+	{
+		assertTrue(v1.carburantRestantProperty() != null);
+		assertTrue(v2.carburantRestantProperty() != null);
+		assertTrue(v3.carburantRestantProperty() != null);
+		assertTrue(v4.carburantRestantProperty() != null);
+		assertTrue(v5.carburantRestantProperty() != null);
+	}
 	
 	@Test
 	public void testGetPuissance()
@@ -104,4 +194,85 @@ public class VaisseauTest
 		assertTrue(v3.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 	}
 	
+	@Test
+	public void testGetSante()
+	{
+		assertEquals(1.0, v1.getSante(), 0.0001);
+		assertEquals(1.0, v2.getSante(), 0.0001);
+		assertEquals(1.0, v3.getSante(), 0.0001);
+		assertEquals(1.0, v4.getSante(), 0.0001);
+		assertEquals(1.0, v5.getSante(), 0.0001);
+	}
+	
+	@Test
+	public void testSetSante()
+	{
+		v1.setSante(0.5);
+		assertEquals(0.5, v1.getSante(), 0.0001);
+		
+		v1.setSante(100);
+		assertEquals(0.5, v1.getSante(), 0.0001);
+		
+		v1.setSante(-100);
+		assertEquals(0.5, v1.getSante(), 0.0001);
+	}
+	
+	@Test
+	public void testGetForceExt()
+	{
+		assertEquals(0.0, v1.getForceExt().getNorme(), 0.0001);
+		assertEquals(0.0, v2.getForceExt().getNorme(), 0.0001);
+		assertEquals(0.0, v3.getForceExt().getNorme(), 0.0001);
+		assertEquals(0.0, v4.getForceExt().getNorme(), 0.0001);
+		assertEquals(0.0, v5.getForceExt().getNorme(), 0.0001);
+	}
+	
+	@Test
+	public void testGetDirection()
+	{
+		assertEquals(0.0, v1.getDirection().getNorme(), 0.0001);
+		assertEquals(0.0, v2.getDirection().getNorme(), 0.0001);
+		assertEquals(0.0, v3.getDirection().getNorme(), 0.0001);
+		assertEquals(0.0, v4.getDirection().getNorme(), 0.0001);
+		assertEquals(0.0, v5.getDirection().getNorme(), 0.0001);
+	}
+	
+	@Test
+	public void testGetNoeud()
+	{
+		// Nécessite un contexte JavaFX.
+		/*
+		Node noeud = v1.getNoeud();
+		assertTrue(noeud instanceof Group);
+		assertTrue(((Group)(noeud)).getChildren().size() != 0);
+		assertEquals(noeud, v1.getNoeud());
+		*/
+	}
+	
+	@Test
+	public void testMaj()
+	{
+		// Nécessite un contexte JavaFX.
+	}
+	
+	@Test
+	public void testGetRayon()
+	{
+		assertEquals(20.0, v1.getRayon(), 0.0001);
+		assertEquals(20.0, v2.getRayon(), 0.0001);
+		assertEquals(20.0, v3.getRayon(), 0.0001);
+		assertEquals(20.0, v4.getRayon(), 0.0001);
+		assertEquals(20.0, v5.getRayon(), 0.0001);
+	}
+	
+	@Test
+	public void testReset()
+	{
+		v1.reset();
+		assertEquals(100.0, v1.getCarburantRestant(), 0.0001);
+		assertEquals(1.0, v1.getSante(), 0.0001);
+		assertEquals(0.0, v1.getPosition().getX(), 0.0001);
+		assertEquals(0.0, v1.getPosition().getY(), 0.0001);
+		assertTrue(v1.getVitesse().getNorme() == 0.0);
+	}
 }
