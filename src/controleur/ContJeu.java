@@ -95,7 +95,7 @@ public class ContJeu implements Controleur
 			}
 		}
 		
-		if(!listenMouse && !objectifAtteint && !mort && !menuAffiche)
+		else if(!listenMouse && !objectifAtteint && !mort && !menuAffiche)
 		{
 			switch (e.getCode())
 			{
@@ -353,7 +353,7 @@ public class ContJeu implements Controleur
 		StringTokenizer st = new StringTokenizer(System.getProperty("java.class.path"),";");
 		String chemin = st.nextToken();
 		chemin = chemin.replace("\\", "\\\\");
-		Niveau niv = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_0" + numeroNiveau + ".txt"));
+		Niveau niv = Niveau.chargerNiveau(new File(chemin + "\\levels\\level_" + numeroNiveau + ".txt"));
 		Platform.runLater(() -> {
 			chargerNiveau(niv);
 		});
