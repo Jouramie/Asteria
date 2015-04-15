@@ -1,5 +1,6 @@
 package controleur;
 
+import javax.swing.JOptionPane;
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
@@ -61,7 +62,25 @@ public class ContJeu implements Controleur
 	 */
 	public ContJeu()
 	{
+		this(1);
+	}
+	
+	/**
+	 * Constructeur du contrôleur.
+	 * @param nouvNiveau Niveau à charger.
+	 */
+	public ContJeu(int nouvNumeroNiveau)
+	{
 		vue = new VueJeu();
+		
+		if(nouvNumeroNiveau >= 1 || nouvNumeroNiveau <= 10)
+		{
+			numeroNiveau = nouvNumeroNiveau;
+		}
+		else
+		{
+			numeroNiveau = 1;
+		}
 	}
 	
 	/**
@@ -74,8 +93,10 @@ public class ContJeu implements Controleur
 		progressBarCarburant.setPrefWidth(((VBox)progressBarCarburant.getParent()).getWidth());
 		progressBarSante.setPrefWidth(((VBox)progressBarSante.getParent()).getWidth());
 		
-		numeroNiveau = 0;
-		niveauSuivant();
+		Niveau niv = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_" + numeroNiveau + ".txt"));
+		Platform.runLater(() -> {
+			chargerNiveau(niv);
+		});
 	}
 	
 	@FXML
@@ -172,6 +193,7 @@ public class ContJeu implements Controleur
 	{
 		if (!objectifAtteint && !mort)
 		{
+			wPressed = true;
 			ContPrincipal.getInstance().arreterHorloge();
 			menuPause.setVisible(true);
 			menuPause.setMinWidth(pane.getWidth());
@@ -190,6 +212,7 @@ public class ContJeu implements Controleur
 	
 	public void afficherMenuMort()
 	{
+		wPressed = true;
 		ContPrincipal.getInstance().arreterHorloge();
 		menuMort.setVisible(true);
 		menuMort.setMinWidth(pane.getWidth());
@@ -210,12 +233,21 @@ public class ContJeu implements Controleur
 	 */
 	public void afficherMenuVictoire()
 	{
-		ContPrincipal.getInstance().arreterHorloge();
-		menuVictoire.setVisible(true);
-		menuVictoire.setMinWidth(pane.getWidth());
-		menuVictoire.setMinHeight(pane.getHeight());
-		menuVictoire.toFront();
-		menuAffiche = true;
+		wPressed = true;
+		if(numeroNiveau < 10)
+		{
+			ContPrincipal.getInstance().arreterHorloge();
+			menuVictoire.setVisible(true);
+			menuVictoire.setMinWidth(pane.getWidth());
+			menuVictoire.setMinHeight(pane.getHeight());
+			menuVictoire.toFront();
+			menuAffiche = true;
+		}
+		else
+		{
+			retour();
+			JOptionPane.showMessageDialog(null, "Vous avez réussi le jeu!\nFélicitation!", "Victoire", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 	
 	public void cacherMenuVictoire()
