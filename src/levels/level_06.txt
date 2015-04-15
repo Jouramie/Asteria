@@ -1,16 +1,16 @@
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -867.0 ; -339.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -875.0 ; -164.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -886.0 ; 1.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -891.0 ; 166.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -898.0 ; 347.0 ; 0.0 ; 0.0
-Planete ; 6.0E15 ; -224.0 ; -351.0 ; 50.0 ; BLEUE
-Planete ; 6.0E15 ; -256.0 ; -108.0 ; 60.0 ; JAUNE
-Planete ; 6.0E15 ; -143.0 ; 112.0 ; 70.0 ; MAGENTA
-Planete ; 6.0E15 ; 72.0 ; 271.0 ; 80.0 ; ORANGE
-Planete ; 6.0E15 ; 438.0 ; 179.0 ; 120.0 ; ROUGE
-Planete ; 6.0E15 ; 388.0 ; -309.0 ; 156.0 ; VERTE
-DescriptionNiveau ; Ceci est le niveau 6
-ObjectifRayon ; 0.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -558.0 ; -315.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -531.0 ; -220.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -583.0 ; -126.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -518.0 ; -80.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -581.0 ; -1.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -499.0 ; 81.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -605.0 ; 128.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -508.0 ; 186.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -623.0 ; 247.0 ; 0.0 ; 0.0
+Planete ; 6.0E15 ; 402.0 ; -292.0 ; 240.0 ; ROUGE
+Planete ; 6.0E15 ; 481.0666334961297 ; 476.1577902971899 ; 240.0 ; VERTE
+DescriptionNiveau ; Dans ce niveau, faites attention à votre barre de vie. Si trop de vaisseaux vous touchent, vous mourrez.
+ObjectifRayon ; 539.9727600223268 ; 73.63264909395366 ; 50.0
 PointDepart ; 0.0 ; 0.0
-TitreNiveau ; 
-VitesseDepart ; 0.0 ; 0.0
+TitreNiveau ; L'entre-deux
+VitesseDepart ; 0.0
