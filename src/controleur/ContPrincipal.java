@@ -249,7 +249,7 @@ public class ContPrincipal
 	{
 		return instance;
 	}
-	
+		
 	/**
 	 * Classe responsable de l'horloge interne.
 	 * 

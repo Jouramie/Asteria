@@ -66,7 +66,8 @@ public class ContJeu implements Controleur
 	public void initialiser()
 	{
 		ContPrincipal.getInstance().afficherVue(vue, true);
-		
+		progressBarCarburant.setPrefWidth(((VBox)progressBarCarburant.getParent()).getWidth());
+		progressBarSante.setPrefWidth(((VBox)progressBarSante.getParent()).getWidth());
 		File f = (new FileChooser()).showOpenDialog(null);
 		Niveau niv = Niveau.chargerNiveau(f);
 		chargerNiveau(niv);
@@ -242,7 +243,7 @@ public class ContJeu implements Controleur
 			if (vaisseauJoueur == null)
 			{
 				vaisseauJoueur = new VaisseauJoueur(1, new Vecteur(0, 0), 16e3,
-						2, new Vecteur(10, 10), new Vecteur(10, 10));
+						30, new Vecteur(10, 10), new Vecteur(10, 10));
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
