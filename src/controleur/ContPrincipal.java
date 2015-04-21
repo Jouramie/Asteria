@@ -72,7 +72,8 @@ public class ContPrincipal
 		Thread th = new Thread(horloge);
 		th.setDaemon(true);
 		th.start();
-		stage.getIcons().add(new Image("file:favicon.png"));
+		stage.getIcons().clear();
+		stage.getIcons().add(new Image("/res/favicon.png"));
 	}
 	
 	/**
