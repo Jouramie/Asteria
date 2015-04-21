@@ -23,7 +23,7 @@
 				<Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
 				<Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
 				<Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />
-            <ComboBox fx:id="comboBoxCorps" prefWidth="150.0" />
+            <ComboBox fx:id="comboBoxCorps" onAction="#onComboBoxCorps" />
 			</children>
 		</HBox>
 	</bottom>

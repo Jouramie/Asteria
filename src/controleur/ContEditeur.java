@@ -2,8 +2,11 @@ package controleur;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -114,10 +117,13 @@ public class ContEditeur implements Controleur
 		ContPrincipal.getInstance().arreterHorloge();
 		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail",
 				"Vaisseau Joueur");
-		
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
 		ContPrincipal.getInstance().viderCorps();
+		corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_MOTEUR, VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT);
+		niveau.ajouterCorps(corpsSelect);
+		chargerNiveau();
+		selectionnerCorps();
 	}
 	
 	@FXML
@@ -227,6 +233,12 @@ public class ContEditeur implements Controleur
 			textFieldCarburantDepart.setText(""
 					+ ((Vaisseau) corpsSelect).getCarburantDepart());
 		}
+	}
+	
+	@FXML
+	public void onComboBoxCorps(ActionEvent e)
+	{
+		System.out.println("asdfasdfd");
 	}
 	
 	/**
@@ -458,9 +470,17 @@ public class ContEditeur implements Controleur
 				niveau.setObjectif(new ObjectifRayon(pos, 50.0));
 				break;
 			case "Vaisseau Joueur":
-				creeVaisseauJoueur(pos);
-				niveau.ajouterCorps(corpsSelect);
-				break;
+				Iterator<Corps> i = niveau.getCorps().iterator();
+				while (i.hasNext())
+				{
+					Corps c = i.next();
+					if (c instanceof VaisseauJoueur)
+					{			
+						c.setPosition(pos);
+						corpsSelect = c;
+						break;
+					}
+				}
 			}
 			chargerNiveau();
 		}
@@ -533,8 +553,8 @@ public class ContEditeur implements Controleur
 		{
 			carburantMax = Vaisseau.CARBURANT_DEFAUT;
 		}
-		// TODO ajouter la puissance et la vitesse de départ dans l'éditeur
-		Vaisseau v = new Vaisseau(1, masse, carburantMax, carburantDepart, pos, new Vecteur());
+		Vaisseau v = new Vaisseau(1, masse, carburantMax, carburantDepart, pos,
+				new Vecteur());
 		
 		corpsSelect = v;
 	}
@@ -573,7 +593,8 @@ public class ContEditeur implements Controleur
 			carburantMax = Vaisseau.CARBURANT_DEFAUT;
 		}
 		// TODO ajouter la puissance et la vitesse de départ dans l'éditeur
-		VaisseauJoueur v = new VaisseauJoueur(1, masse, carburantMax, carburantDepart);
+		VaisseauJoueur v = new VaisseauJoueur(1, masse, carburantMax,
+				carburantDepart);
 		
 		corpsSelect = v;
 	}
@@ -589,8 +610,16 @@ public class ContEditeur implements Controleur
 			return;
 		}
 		
+		afficherMenuParametre();
+	}
+	
+	/**
+	 * Affiche le menu pour modifier les paramètres de l'objet sélectionné.
+	 */
+	private void afficherMenuParametre()
+	{
 		vBoxMenu.setVisible(true);
-		if (corpsSelect.getClass().equals(Planete.class))
+		if (corpsSelect instanceof Planete)
 		{
 			vBoxMenu.setVisible(true);
 			vBoxMenuPlanete.setVisible(true);
@@ -602,7 +631,7 @@ public class ContEditeur implements Controleur
 			comboBoxTexture.getSelectionModel().select(
 					((Planete) corpsSelect).getTexture());
 		}
-		else if (corpsSelect.getClass().equals(Vaisseau.class))
+		else if (corpsSelect instanceof Vaisseau)
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
 			vBoxMenu.setVisible(true);
@@ -619,7 +648,7 @@ public class ContEditeur implements Controleur
 	
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
-		// TODO Faire bouger la caméra
+		// Inutile pour l'instant.
 	}
 	
 	/**

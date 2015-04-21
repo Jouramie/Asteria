@@ -18,9 +18,10 @@ import utils.Vecteur;
 public class Vaisseau extends ObjetSpatial
 {
 	
-	public final static double CARBURANT_DEFAUT = 100;
+	public final static double CARBURANT_DEFAUT = 20;
 	public final static double PUISSANCE_DEFAUT = 1.0;
 	public final static double VITESSE_ANIM_FLAMME = 6;
+	public final static double MASSE_DEFAUT = 16e3;
 	
 	protected double puissanceMax;
 	protected double puissance;
@@ -109,7 +110,7 @@ public class Vaisseau extends ObjetSpatial
 			double pCarburantDepart, Vecteur pPosition, Vecteur pVitesse)
 	{
 		super(pMasse, pPosition, false, pVitesse);
-		init(pPuissance, pCarburantMax, pCarburantMax);
+		init(pPuissance, pCarburantMax, pCarburantDepart);
 	}
 	
 	/**
@@ -171,7 +172,8 @@ public class Vaisseau extends ObjetSpatial
 	 * @param pCarburantMax
 	 *            Quantité de carburant maximale.
 	 */
-	private void init(double pPuissanceMax, double pCarburantMax, double pCarburantDepart)
+	private void init(double pPuissanceMax, double pCarburantMax,
+			double pCarburantDepart)
 	{
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
@@ -179,8 +181,9 @@ public class Vaisseau extends ObjetSpatial
 		carburantMax = new SimpleDoubleProperty();
 		setCarburantMax(pCarburantMax);
 		carburantDepart = pCarburantDepart;
-		setCarburantRestant(carburantDepart);
 		carburantRestant = new SimpleDoubleProperty();
+		setCarburantRestant(carburantDepart);
+		
 		premierGetNoeud = true;
 		
 		currentFlamme = 0.0;
@@ -324,7 +327,9 @@ public class Vaisseau extends ObjetSpatial
 		else if (pCarburantRestant > carburantMax.get())
 			carburantRestant.set(carburantMax.get());
 		else
+		{
 			carburantRestant.set(pCarburantRestant);
+		}
 	}
 	
 	/**
