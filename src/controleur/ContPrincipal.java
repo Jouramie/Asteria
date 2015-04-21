@@ -2,11 +2,13 @@ package controleur;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
@@ -70,6 +72,7 @@ public class ContPrincipal
 		Thread th = new Thread(horloge);
 		th.setDaemon(true);
 		th.start();
+		stage.getIcons().add(new Image("file:favicon.png"));
 	}
 	
 	/**
