@@ -3,6 +3,7 @@ package controleur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -21,13 +22,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+
 import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Niveau;
 import modele.ObjectifRayon;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
+import objets.VaisseauJoueur;
 import utils.Vecteur;
 import vue.Camera;
 import vue.Dessinable;
@@ -108,7 +112,8 @@ public class ContEditeur implements Controleur
 		
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
-		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail");
+		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail",
+				"Vaisseau Joueur");
 		
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
@@ -120,7 +125,8 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
+			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
+					.getText())));
 			((Planete) corpsSelect).maj();
 		}
 		catch (NumberFormatException ex)
@@ -162,7 +168,8 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
+			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
+					.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
@@ -193,8 +200,8 @@ public class ContEditeur implements Controleur
 		try
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
-			corpsSelect.setCarburantMax((Double
-					.valueOf(textFieldCarburantMax.getText())));
+			corpsSelect.setCarburantMax((Double.valueOf(textFieldCarburantMax
+					.getText())));
 			textFieldCarburantDepart.setText(""
 					+ corpsSelect.getCarburantDepart());
 		}
@@ -213,8 +220,7 @@ public class ContEditeur implements Controleur
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
 			corpsSelect.setCarburantDepart((Double
 					.valueOf(textFieldCarburantDepart.getText())));
-			textFieldCarburantMax.setText(""
-					+ corpsSelect.getCarburantMax());
+			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
 		}
 		catch (NumberFormatException ex)
 		{
@@ -402,7 +408,8 @@ public class ContEditeur implements Controleur
 	{
 		Point2D point = pane.sceneToLocal(event.getSceneX(), event.getSceneY());
 		Camera cam = vue.getCamera();
-		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+		Vecteur pos = cam
+				.localToGlobal(new Vecteur(point.getX(), point.getY()));
 		
 		switch (event.getButton())
 		{
@@ -450,10 +457,12 @@ public class ContEditeur implements Controleur
 			case "Portail":
 				niveau.setObjectif(new ObjectifRayon(pos, 50.0));
 				break;
+			case "Vaisseau Joueur":
+				creeVaisseauJoueur(pos);
+				niveau.ajouterCorps(corpsSelect);
+				break;
 			}
-			
 			chargerNiveau();
-			
 		}
 		selectionnerCorps();
 	}
@@ -508,7 +517,8 @@ public class ContEditeur implements Controleur
 		
 		try
 		{
-			carburantDepart = Double.valueOf(textFieldCarburantDepart.getText());
+			carburantDepart = Double
+					.valueOf(textFieldCarburantDepart.getText());
 		}
 		catch (NumberFormatException e)
 		{
@@ -518,13 +528,52 @@ public class ContEditeur implements Controleur
 		try
 		{
 			carburantMax = Double.valueOf(textFieldCarburantMax.getText());
-		}catch(NumberFormatException e)
+		}
+		catch (NumberFormatException e)
 		{
 			carburantMax = Vaisseau.CARBURANT_DEFAUT;
 		}
-		//TODO ajouter la puissance et la vitesse de départ dans l'éditeur
-		Vaisseau v = new Vaisseau(1, masse, carburantMax, pos, new Vecteur());
-		v.setCarburantDepart(carburantDepart);
+		// TODO ajouter la puissance et la vitesse de départ dans l'éditeur
+		Vaisseau v = new Vaisseau(1, masse, carburantMax, carburantDepart, pos, new Vecteur());
+		
+		corpsSelect = v;
+	}
+	
+	private void creeVaisseauJoueur(Vecteur pos)
+	{
+		double masse;
+		double carburantDepart;
+		double carburantMax;
+		
+		try
+		{
+			masse = Double.valueOf(textFieldMasse.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			masse = Planete.PLANETE_MASSE_DEFAUT;
+		}
+		
+		try
+		{
+			carburantDepart = Double
+					.valueOf(textFieldCarburantDepart.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			carburantDepart = Vaisseau.CARBURANT_DEFAUT;
+		}
+		
+		try
+		{
+			carburantMax = Double.valueOf(textFieldCarburantMax.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			carburantMax = Vaisseau.CARBURANT_DEFAUT;
+		}
+		// TODO ajouter la puissance et la vitesse de départ dans l'éditeur
+		VaisseauJoueur v = new VaisseauJoueur(1, masse, carburantMax, carburantDepart);
 		
 		corpsSelect = v;
 	}

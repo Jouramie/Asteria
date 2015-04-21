@@ -15,12 +15,13 @@ import utils.Vecteur;
  * @author EquBolduc
  * @version 1.0
  */
-public class Vaisseau extends ObjetSpatial {
-
+public class Vaisseau extends ObjetSpatial
+{
+	
 	public final static double CARBURANT_DEFAUT = 100;
 	public final static double PUISSANCE_DEFAUT = 1.0;
 	public final static double VITESSE_ANIM_FLAMME = 6;
-
+	
 	protected double puissanceMax;
 	protected double puissance;
 	protected Vecteur direction;
@@ -28,16 +29,17 @@ public class Vaisseau extends ObjetSpatial {
 	protected DoubleProperty carburantRestant;
 	protected DoubleProperty sante;
 	private boolean premierGetNoeud;
-
+	
 	protected Node noeud;
 	protected Rotate noeudRotate;
 	protected ImageView imageFlamme;
 	protected double currentFlamme;
-
+	
 	protected double carburantDepart;
-
+	
 	/**
-	 * Constructeur de vaisseau, prend un vecteur pour la position
+	 * Utilisez plutôt le constructeur avec le carburant de départ et le
+	 * carburant maximum.
 	 * 
 	 * @param pPuissanceMax
 	 *            la puissance maximale du vaisseau
@@ -52,14 +54,17 @@ public class Vaisseau extends ObjetSpatial {
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
+	@Deprecated
 	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
-			Vecteur pPosition, Vecteur pVitesse) {
+			Vecteur pPosition, Vecteur pVitesse)
+	{
 		super(pMasse, pPosition, false, pVitesse);
-		init(pPuissanceMax, pCarburantMax);
+		init(pPuissanceMax, pCarburantMax, pCarburantMax);
 	}
-
+	
 	/**
-	 * Constructeur de vaisseau, prend des doubles pour la position
+	 * Utilisez plutôt le constructeur avec le carburant de départ et le
+	 * carburant maximum.
 	 * 
 	 * @param pPuissanceMax
 	 *            la puissance maximale du vaisseau
@@ -76,12 +81,88 @@ public class Vaisseau extends ObjetSpatial {
 	 * @param pVitesse
 	 *            la vitesse du vaisseau
 	 */
+	@Deprecated
 	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
-			double pPositionX, double pPositionY, Vecteur pVitesse) {
+			double pPositionX, double pPositionY, Vecteur pVitesse)
+	{
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
-		init(pPuissanceMax, pCarburantMax);
+		init(pPuissanceMax, pCarburantMax, pCarburantMax);
 	}
-
+	
+	/**
+	 * Constructeur de vaisseau, prend un vecteur pour la position
+	 * 
+	 * @param pPuissance
+	 *            la puissance maximale du vaisseau
+	 * @param pDirection
+	 *            la direction du vaisseau
+	 * @param pMasse
+	 *            la masse du vaisseau
+	 * @param pCarburantMax
+	 *            la capacité maximale de caburant du vaisseau
+	 * @param pPosition
+	 *            la position du vaisseau
+	 * @param pVitesse
+	 *            la vitesse du vaisseau
+	 */
+	public Vaisseau(double pPuissance, double pMasse, double pCarburantMax,
+			double pCarburantDepart, Vecteur pPosition, Vecteur pVitesse)
+	{
+		super(pMasse, pPosition, false, pVitesse);
+		init(pPuissance, pCarburantMax, pCarburantMax);
+	}
+	
+	/**
+	 * Constructeur de vaisseau, prend des doubles pour la position
+	 * 
+	 * @param pPuissance
+	 *            la puissance maximale du vaisseau
+	 * @param pDirection
+	 *            la direction du vaisseau
+	 * @param pMasse
+	 *            la masse du vaisseau
+	 * @param pCarburantMax
+	 *            la capacité maximale de caburant du vaisseau
+	 * @param pPositionX
+	 *            la positionX de la planète
+	 * @param pPositionY
+	 *            la positionY de la planète
+	 * @param pVitesse
+	 *            la vitesse du vaisseau
+	 */
+	public Vaisseau(double pPuissance, double pMasse, double pCarburantMax,
+			double pCarburantDepart, double pPositionX, double pPositionY,
+			Vecteur pVitesse)
+	{
+		super(pMasse, pPositionX, pPositionY, false, pVitesse);
+		init(pPuissance, pCarburantMax, pCarburantDepart);
+	}
+	
+	/**
+	 * Constructeur de vaisseau, sert à la construction de vaisseauJoueur.
+	 * 
+	 * @param pPuissance
+	 *            la puissance maximale du vaisseau
+	 * @param pDirection
+	 *            la direction du vaisseau
+	 * @param pMasse
+	 *            la masse du vaisseau
+	 * @param pCarburantMax
+	 *            la capacité maximale de caburant du vaisseau
+	 * @param pPositionX
+	 *            la positionX de la planète
+	 * @param pPositionY
+	 *            la positionY de la planète
+	 * @param pVitesse
+	 *            la vitesse du vaisseau
+	 */
+	protected Vaisseau(double pPuissance, double pMasse, double pCarburantMax,
+			double pCarburantDepart)
+	{
+		super(pMasse, 0, 0, false, null);
+		init(pPuissance, pCarburantMax, pCarburantDepart);
+	}
+	
 	/**
 	 * Initialise le vaisseau avec des valeurs par défaut.
 	 * 
@@ -90,74 +171,80 @@ public class Vaisseau extends ObjetSpatial {
 	 * @param pCarburantMax
 	 *            Quantité de carburant maximale.
 	 */
-	private void init(double pPuissanceMax, double pCarburantMax) {
+	private void init(double pPuissanceMax, double pCarburantMax, double pCarburantDepart)
+	{
 		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
 		direction = new Vecteur();
 		carburantMax = new SimpleDoubleProperty();
 		setCarburantMax(pCarburantMax);
+		carburantDepart = pCarburantDepart;
+		setCarburantRestant(carburantDepart);
 		carburantRestant = new SimpleDoubleProperty();
-		setCarburantRestant(carburantMax.get());
-		carburantDepart = carburantRestant.get();
 		premierGetNoeud = true;
-
+		
 		currentFlamme = 0.0;
 		sante = new SimpleDoubleProperty(1.0);
 	}
-
+	
 	/**
 	 * Retourne la puissance maximale du réacteur (en Newton).
 	 * 
 	 * @return Puissance maximale du réacteur.
 	 */
-	public double getPuissanceMax() {
+	public double getPuissanceMax()
+	{
 		return puissanceMax;
 	}
-
+	
 	/**
 	 * Modifie la puissance maximale du réacteur.
 	 * 
 	 * @param pPuissanceMax
 	 *            Puissance maximale (en Newton).
 	 */
-	public void setPuissanceMax(double pPuissanceMax) {
+	public void setPuissanceMax(double pPuissanceMax)
+	{
 		if (pPuissanceMax <= 0)
 			puissanceMax = PUISSANCE_DEFAUT;
 		else
 			puissanceMax = pPuissanceMax;
 	}
-
+	
 	/**
 	 * Retourne la puissance actuelle du moteur.
 	 * 
 	 * @return Puissance actuelle (en Newton).
 	 */
-	public double getPuissance() {
+	public double getPuissance()
+	{
 		return puissance;
 	}
-
+	
 	/**
 	 * Modifie la puissance actuelle du moteur.
 	 * 
 	 * @param pPuissance
 	 *            Puissance (en Newton).
 	 */
-	public void setPuissance(double pPuissance) {
+	public void setPuissance(double pPuissance)
+	{
 		if (pPuissance <= 0)
 			puissance = PUISSANCE_DEFAUT;
 		else
 			puissance = pPuissance;
 	}
-
+	
 	/**
 	 * Retourne la santé actuelle du vaisseau.
 	 * 
 	 * @return Santé actuelle (entre 0.0 et 1.0).
 	 */
-	public double getSante() {
+	public double getSante()
+	{
 		return sante.get();
 	}
-
+	
 	/**
 	 * Modifie la santé du vaisseau. Doit être située entre 0.0 et 1.0
 	 * inclusivement.
@@ -165,64 +252,73 @@ public class Vaisseau extends ObjetSpatial {
 	 * @param sante
 	 *            Nouvelle santé.
 	 */
-	public void setSante(double pSante) {
-		if (pSante <= 1.0 & pSante >= 0.0) {
+	public void setSante(double pSante)
+	{
+		if (pSante <= 1.0 & pSante >= 0.0)
+		{
 			sante.set(pSante);
 		}
 	}
-
+	
 	/**
 	 * Retourne une propriété observable de la santé du vaisseau.
 	 * 
 	 * @return Propriété observable (en %).
 	 */
-	public DoubleProperty santeProperty() {
+	public DoubleProperty santeProperty()
+	{
 		return sante;
 	}
-
+	
 	/**
 	 * Modifie la quantité maximale de carburant du vaisseau.
 	 * 
 	 * @param pCarburantMax
 	 *            Quantité maximale de carburant (en kg).
 	 */
-	public void setCarburantMax(double pCarburantMax) {
+	public void setCarburantMax(double pCarburantMax)
+	{
 		if (pCarburantMax <= 0)
 			carburantMax.set(CARBURANT_DEFAUT);
-		else {
+		else
+		{
 			carburantMax.set(pCarburantMax);
 		}
-
-		if (carburantMax.get() < carburantDepart) {
+		
+		if (carburantMax.get() < carburantDepart)
+		{
 			setCarburantDepart(carburantMax.get());
 		}
 	}
-
+	
 	/**
 	 * Retourne la quantité maximale de carburant.
 	 * 
 	 * @return Quantité maximale de carburant (en kg).
 	 */
-	public double getCarburantMax() {
+	public double getCarburantMax()
+	{
 		return carburantMax.get();
 	}
-
+	
 	/**
 	 * Retourne la quantité restante de carburant dans le vaisseau.
 	 * 
 	 * @return Quantité de carburant restante (en kg).
 	 */
-	public double getCarburantRestant() {
+	public double getCarburantRestant()
+	{
 		return carburantRestant.get();
 	}
-
+	
 	/**
 	 * Modifie la quantité de carburant restante.
 	 * 
 	 * @param pCarburantRestant
 	 *            Quantité de carburant (en kg).
 	 */
-	public void setCarburantRestant(double pCarburantRestant) {
+	public void setCarburantRestant(double pCarburantRestant)
+	{
 		if (pCarburantRestant < 0)
 			carburantRestant.set(0);
 		else if (pCarburantRestant > carburantMax.get())
@@ -230,99 +326,114 @@ public class Vaisseau extends ObjetSpatial {
 		else
 			carburantRestant.set(pCarburantRestant);
 	}
-
+	
 	/**
 	 * Modifie la quantité de carburant que le vaisseau a au départ.
 	 * 
 	 * @param pCarburantDepart
 	 *            Quantité de carburant au départ (en kg).
 	 */
-	public void setCarburantDepart(double pCarburantDepart) {
-		if (pCarburantDepart > carburantMax.get()) {
+	public void setCarburantDepart(double pCarburantDepart)
+	{
+		if (pCarburantDepart > carburantMax.get())
+		{
 			setCarburantMax(pCarburantDepart);
 		}
-
+		
 		carburantDepart = pCarburantDepart;
-
-		if (pCarburantDepart < 0) {
+		
+		if (pCarburantDepart < 0)
+		{
 			carburantDepart = 0;
 		}
-
+		
 		setCarburantRestant(pCarburantDepart);
 	}
-
+	
 	/**
 	 * Retourne la quantité de carburant que le vaisseau a au départ.
 	 * 
 	 * @return Quantité de carburant de départ (en kg).
 	 */
-	public double getCarburantDepart() {
+	public double getCarburantDepart()
+	{
 		return carburantDepart;
 	}
-
+	
 	/**
 	 * Retourne une propriété observable de la quantité de carburant maximale.
 	 * 
 	 * @return Propriété observable (en kg).
 	 */
-	public DoubleProperty carburantMaxProperty() {
+	public DoubleProperty carburantMaxProperty()
+	{
 		return carburantMax;
 	}
-
+	
 	/**
 	 * Retourne une propriété observable de la quantité de carburant restante.
 	 * 
 	 * @return Propriété observable (en kg).
 	 */
-	public DoubleProperty carburantRestantProperty() {
+	public DoubleProperty carburantRestantProperty()
+	{
 		return carburantRestant;
 	}
-
+	
 	/**
 	 * Ne pas mettre True sinon le vaisseau reste immobile
 	 */
-	public void setStatique(boolean pStatique) {
+	public void setStatique(boolean pStatique)
+	{
 		statique = pStatique;
 	}
-
+	
 	/**
 	 * Si le vecteur est null, met la vitesse à 0.
 	 */
-	public void setVitesse(Vecteur pVitesse) {
-		if (pVitesse == null) {
+	public void setVitesse(Vecteur pVitesse)
+	{
+		if (pVitesse == null)
+		{
 			vitesse = new Vecteur();
-		} else {
+		}
+		else
+		{
 			vitesse = pVitesse;
 			direction = vitesse.normaliser();
 		}
 	}
-
+	
 	/**
 	 * Retourne la force appliquée par le réacteur (en Newton).
 	 * 
 	 * @return Vecteur de la force appliquée par le réacteur.
 	 */
-	public Vecteur getForceExt() {
+	public Vecteur getForceExt()
+	{
 		return new Vecteur();
 	}
-
+	
 	/**
 	 * Retourne la direction du vaisseau.
 	 * 
 	 * @return Vecteur normaliser représentant la direction du vaisseau.
 	 */
-	public Vecteur getDirection() {
+	public Vecteur getDirection()
+	{
 		return direction;
 	}
-
+	
 	/**
 	 * Crée le noeud JavaFX du vaisseau.
 	 */
-	private void creeNoeud() {
+	private void creeNoeud()
+	{
 		Group group = new Group();
-
+		
 		Image texture = new Image("/res/spaceship-ennemy.png");
-		if (this instanceof VaisseauJoueur) {
+		if (this instanceof VaisseauJoueur)
+		{
 			texture = new Image("/res/spaceship.png");
 		}
 		ImageView image = new ImageView(texture);
@@ -331,7 +442,7 @@ public class Vaisseau extends ObjetSpatial {
 		image.setTranslateX(-20);
 		image.setTranslateY(-20);
 		group.getChildren().add(image);
-
+		
 		Image textureFlamme = new Image("/res/flame.png");
 		imageFlamme = new ImageView(textureFlamme);
 		imageFlamme.setFitWidth(15);
@@ -339,56 +450,64 @@ public class Vaisseau extends ObjetSpatial {
 		imageFlamme.setTranslateX(-7);
 		imageFlamme.setTranslateY(22);
 		group.getChildren().add(imageFlamme);
-
+		
 		noeudRotate = new Rotate(0, 0, 0);
 		group.getTransforms().add(noeudRotate);
-
+		
 		noeud = group;
 	}
-
+	
 	/**
 	 * Retourne le noeud JavaFX représentant le vaisseau. Le noeud ne change pas
 	 * entre chaque appel de la méthode.
 	 * 
 	 * @return Noeud JavaFX du vaisseau.
 	 */
-	public Node getNoeud() {
-		if (premierGetNoeud) {
+	public Node getNoeud()
+	{
+		if (premierGetNoeud)
+		{
 			creeNoeud();
 			premierGetNoeud = false;
 		}
 		return noeud;
 	}
-
+	
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj(double dt) {
-		if (getForceExt().getNorme() > 0) {
+	public void maj(double dt)
+	{
+		if (getForceExt().getNorme() > 0)
+		{
 			currentFlamme += VITESSE_ANIM_FLAMME * dt;
 			currentFlamme = Math.min(1.0, currentFlamme);
-		} else {
+		}
+		else
+		{
 			currentFlamme -= VITESSE_ANIM_FLAMME * dt;
 			currentFlamme = Math.max(0.0, currentFlamme);
 		}
 		imageFlamme.setOpacity(currentFlamme);
-
+		
 		noeudRotate.setAngle(direction.getAngle() / 2 / Math.PI * 360 + 90);
 	}
-
+	
 	/**
 	 * Retourne le rayon de collision du vaisseau.
 	 * 
 	 * @return Rayon de collision (en m).
 	 */
-	public double getRayon() {
+	public double getRayon()
+	{
 		return 20.0;
 	}
-
+	
 	/**
 	 * Remet les corps à leur position et leur vitesse de départ.
 	 */
-	public void reset() {
+	public void reset()
+	{
 		setCarburantRestant(carburantDepart);
 		setSante(1);
 		setPositionX(positionXDepart);
