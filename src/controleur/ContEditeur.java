@@ -120,10 +120,11 @@ public class ContEditeur implements Controleur
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
 		ContPrincipal.getInstance().viderCorps();
-		corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_MOTEUR, VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT);
+		corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
+				VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT,
+				VaisseauJoueur.CARBURANT_DEFAUT);
 		niveau.ajouterCorps(corpsSelect);
 		chargerNiveau();
-		selectionnerCorps();
 	}
 	
 	@FXML
@@ -475,7 +476,7 @@ public class ContEditeur implements Controleur
 				{
 					Corps c = i.next();
 					if (c instanceof VaisseauJoueur)
-					{			
+					{
 						c.setPosition(pos);
 						corpsSelect = c;
 						break;

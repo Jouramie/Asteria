@@ -160,7 +160,7 @@ public class Vaisseau extends ObjetSpatial
 	protected Vaisseau(double pPuissance, double pMasse, double pCarburantMax,
 			double pCarburantDepart)
 	{
-		super(pMasse, 0, 0, false, null);
+		super(pMasse, 1, 1, false, new Vecteur(1, 1));
 		init(pPuissance, pCarburantMax, pCarburantDepart);
 	}
 	
