@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -120,11 +121,9 @@ public class ContEditeur implements Controleur
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
 		ContPrincipal.getInstance().viderCorps();
-		corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
-				VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT,
-				VaisseauJoueur.CARBURANT_DEFAUT);
-		niveau.ajouterCorps(corpsSelect);
-		chargerNiveau();
+		Platform.runLater(() -> {
+			chargerNiveau();
+		});
 	}
 	
 	@FXML
@@ -239,7 +238,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onComboBoxCorps(ActionEvent e)
 	{
-		System.out.println("asdfasdfd");
+		
 	}
 	
 	/**
@@ -658,10 +657,22 @@ public class ContEditeur implements Controleur
 	private void chargerNiveau()
 	{
 		ContPrincipal.getInstance().viderCorps();
-		
+		boolean vs = false;
 		for (Corps c : niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
+			if (c instanceof VaisseauJoueur)
+				vs = true;
+		}
+		if (!vs)
+		{
+			corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
+					VaisseauJoueur.MASSE_DEFAUT,
+					VaisseauJoueur.CARBURANT_DEFAUT,
+					VaisseauJoueur.CARBURANT_DEFAUT);
+			corpsSelect.setPosition(niveau.getPointDepart());
+			niveau.ajouterCorps(corpsSelect);
+			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
 		}
 		
 		vue.initialiserCorps();
@@ -710,7 +721,6 @@ public class ContEditeur implements Controleur
 		}
 	}
 	
-	// Cette méthode ne sert pas encore.
 	@FXML
 	public void keyReleased(KeyEvent e)
 	{
