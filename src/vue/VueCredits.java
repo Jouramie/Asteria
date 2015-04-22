@@ -28,6 +28,8 @@ public class VueCredits implements Vue
 	{
 		borderPane = pane;
 		initialiserCorps();
+		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranX(pane.getWidth());
+		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranY(pane.getHeight());
 	}
 
 	public void initialiserCorps()

@@ -15,8 +15,17 @@ import utils.Vecteur;
 public class MoteurPhysique
 {
 	private static final double GRAVITE = 6.67384E-11;
-	private static final double TAILLE_ECRANX = 1366 - 10;
-	private static final double TAILLE_ECRANY = 768 - 10;
+	private double tailleEcranX;
+	private double tailleEcranY;
+	
+	/**
+	 * Sert à initialiser les variables du moteur physique.
+	 */
+	public MoteurPhysique()
+	{
+		tailleEcranX = 600;
+		tailleEcranY = 600;
+	}
 	
 	/**
 	 * Calcule les forces exercées sur les objets à la suite de la collision.
@@ -110,28 +119,27 @@ public class MoteurPhysique
 				{
 					if(corps.get(i) instanceof Tete)
 					{
-						if(corps.get(i).getPositionX() - corps.get(i).getRayon() < 0)
+						if(corps.get(i).getPositionX() < 0)
 						{
-							System.out.println(corps.get(i).getPositionX());
-							corps.get(i).setPositionX(corps.get(i).getRayon());
+							corps.get(i).setPositionX(0);
 							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
 						}
 						
-						if(corps.get(i).getPositionX() + corps.get(i).getRayon() > TAILLE_ECRANX)
+						if(corps.get(i).getPositionX() + 2 * corps.get(i).getRayon() > tailleEcranX)
 						{
-							corps.get(i).setPositionX(TAILLE_ECRANX - corps.get(i).getRayon());
+							corps.get(i).setPositionX(tailleEcranX - 2 * corps.get(i).getRayon());
 							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
 						}
 						
-						if(corps.get(i).getPositionY() - corps.get(i).getRayon() < 0)
+						if(corps.get(i).getPositionY() < 0)
 						{
-							corps.get(i).setPositionY(corps.get(i).getRayon());
+							corps.get(i).setPositionY(0);
 							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
 						}
 						
-						if(corps.get(i).getPositionY() + corps.get(i).getRayon() > TAILLE_ECRANY)
+						if(corps.get(i).getPositionY() + 2 * corps.get(i).getRayon() > tailleEcranY)
 						{
-							corps.get(i).setPositionY(TAILLE_ECRANY - corps.get(i).getRayon());
+							corps.get(i).setPositionY(tailleEcranY - 2 * corps.get(i).getRayon());
 							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
 						}
 					}
@@ -154,6 +162,48 @@ public class MoteurPhysique
 					}
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Retourne la largeur de l'écran.
+	 * @return Largeur de l'écran.
+	 */
+	public double getTailleEcranX()
+	{
+		return tailleEcranX;
+	}
+	
+	/**
+	 * Modifie la largeur de l'écran.
+	 * @param nouvelleTailleEcran La nouvelle largeur de l'écran.
+	 */
+	public void setTailleEcranX(double nouvelleTailleEcran)
+	{
+		if(nouvelleTailleEcran > 0)
+		{
+			tailleEcranX = nouvelleTailleEcran;
+		}
+	}
+	
+	/**
+	 * Retourne la hauteur de l'écran.
+	 * @return Hauteur de l'écran.
+	 */
+	public double getTailleEcranY()
+	{
+		return tailleEcranY;
+	}
+	
+	/**
+	 * Modifie la hauteur de l'écran.
+	 * @param nouvelleTailleEcran La nouvelle hauteur de l'écran.
+	 */
+	public void setTailleEcranY(double nouvelleTailleEcran)
+	{
+		if(nouvelleTailleEcran > 0)
+		{
+			tailleEcranY = nouvelleTailleEcran;
 		}
 	}
 	
