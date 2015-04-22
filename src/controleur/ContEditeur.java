@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 
 import modele.Corps;
 import modele.Niveau;
+import modele.Objectif;
 import modele.ObjectifRayon;
 import objets.Planete;
 import objets.Planete.Texture;
@@ -92,6 +93,9 @@ public class ContEditeur implements Controleur
 	private boolean upPressed;
 	private boolean downPressed;
 	private Corps corpsSelect;
+	private Objectif objectifSelect;
+	private VaisseauJoueur vaisseauJoueur;
+	private Objectif objectif;
 	
 	private Niveau niveau;
 	
@@ -121,9 +125,12 @@ public class ContEditeur implements Controleur
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
 		ContPrincipal.getInstance().viderCorps();
+		vaisseauJoueur = null;
+		objectif = null;
 		Platform.runLater(() -> {
 			chargerNiveau();
 		});
+		
 	}
 	
 	@FXML
@@ -366,6 +373,8 @@ public class ContEditeur implements Controleur
 		c.clear();
 		vue.initialiserCorps();
 		niveau.getCorps().clear();
+		niveau.ajouterCorps(vaisseauJoueur);
+		chargerNiveau();
 	}
 	
 	private void initialiserComboBoxTexture()
@@ -454,6 +463,24 @@ public class ContEditeur implements Controleur
 				break;
 			}
 		}
+		if (!toucheCorps)
+		{
+			if (objectif instanceof ObjectifRayon)
+			{
+				ObjectifRayon or = (ObjectifRayon) objectif;
+				if (Math.abs(or.getPosRayon().getX() - pos.getX()) < or
+						.getRayon()
+						&& Math.abs(or.getPosRayon().getY() - pos.getY()) < (or
+								.getRayon()))
+				{
+				toucheCorps = true;
+				objectifSelect = objectif;
+				System.out.println("ASDFAS");
+				}
+				
+			}
+			
+		}
 		if (!toucheCorps && comboBoxCorps.getValue() != null)
 		{
 			switch (comboBoxCorps.getValue())
@@ -461,30 +488,26 @@ public class ContEditeur implements Controleur
 			case "Planète":
 				creePlanete(pos);
 				niveau.ajouterCorps(corpsSelect);
+				objectifSelect = null;
 				break;
 			case "Vaisseau":
 				creeVaisseau(pos);
 				niveau.ajouterCorps(corpsSelect);
+				objectifSelect = null;
 				break;
 			case "Portail":
-				niveau.setObjectif(new ObjectifRayon(pos, 50.0));
+				corpsSelect = null;
+				objectifSelect = new ObjectifRayon(pos, 50.0);
+				niveau.setObjectif(objectifSelect);
 				break;
 			case "Vaisseau Joueur":
-				Iterator<Corps> i = niveau.getCorps().iterator();
-				while (i.hasNext())
-				{
-					Corps c = i.next();
-					if (c instanceof VaisseauJoueur)
-					{
-						c.setPosition(pos);
-						corpsSelect = c;
-						break;
-					}
-				}
+				corpsSelect = vaisseauJoueur;
+				objectifSelect = null;
+				vaisseauJoueur.setPosition(pos);
 			}
 			chargerNiveau();
 		}
-		selectionnerCorps();
+		afficherMenuParametre();
 	}
 	
 	/**
@@ -600,24 +623,10 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère la sélection d'un objet de l'éditeur dans le but de la
-	 * modifier.
-	 */
-	private void selectionnerCorps()
-	{
-		if (corpsSelect == null)
-		{
-			return;
-		}
-		
-		afficherMenuParametre();
-	}
-	
-	/**
 	 * Affiche le menu pour modifier les paramètres de l'objet sélectionné.
 	 */
 	private void afficherMenuParametre()
-	{
+	{		
 		vBoxMenu.setVisible(true);
 		if (corpsSelect instanceof Planete)
 		{
@@ -630,6 +639,7 @@ public class ContEditeur implements Controleur
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
 			comboBoxTexture.getSelectionModel().select(
 					((Planete) corpsSelect).getTexture());
+			comboBoxCorps.setValue("Planète");
 		}
 		else if (corpsSelect instanceof Vaisseau)
 		{
@@ -643,7 +653,17 @@ public class ContEditeur implements Controleur
 			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
 			textFieldCarburantDepart.setText(""
 					+ corpsSelect.getCarburantDepart());
+			comboBoxCorps.setValue("Vaisseau");
+			if (corpsSelect instanceof VaisseauJoueur)
+				comboBoxCorps.setValue("Vaisseau Joueur");
 		}
+		else if (objectifSelect instanceof ObjectifRayon)
+		{
+			System.out.println("afassd");
+			vBoxMenu.setVisible(false);
+		}
+		System.out.println(objectifSelect);
+		System.out.println(corpsSelect);
 	}
 	
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
@@ -657,14 +677,13 @@ public class ContEditeur implements Controleur
 	private void chargerNiveau()
 	{
 		ContPrincipal.getInstance().viderCorps();
-		boolean vs = false;
 		for (Corps c : niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
 			if (c instanceof VaisseauJoueur)
-				vs = true;
+				vaisseauJoueur = (VaisseauJoueur) c;
 		}
-		if (!vs)
+		if (vaisseauJoueur == null)
 		{
 			corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
 					VaisseauJoueur.MASSE_DEFAUT,
@@ -673,8 +692,9 @@ public class ContEditeur implements Controleur
 			corpsSelect.setPosition(niveau.getPointDepart());
 			niveau.ajouterCorps(corpsSelect);
 			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
+			vaisseauJoueur = (VaisseauJoueur) corpsSelect;
 		}
-		
+		objectif = niveau.getObjectif();
 		vue.initialiserCorps();
 		
 		if (niveau.getObjectif() != null
