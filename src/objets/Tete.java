@@ -4,6 +4,7 @@ import javafx.scene.image.ImageView;
 import utils.Vecteur;
 public class Tete extends ObjetSpatial
 {
+	private Texture texture;
 	public static final Texture TEXTURE_DEFAUT = Texture.SIMONPIERRE;
 	
 	public Tete(double pMasse, Vecteur pPosition, boolean pStatique,
@@ -14,10 +15,10 @@ public class Tete extends ObjetSpatial
 	
 	public enum Texture
 	{
-		EMILE("/res/planeteBleue.png"),
-		JEREMIE("/res/planeteJaune.png"),
-		JONATHAN("/res/planeteMagenta.png"),
-		SIMONPIERRE("/res/planeteOrange.png");
+		EMILE("/res/emile.png"),
+		JEREMIE("/res/je.png"),
+		JONATHAN("/res/jo.png"),
+		SIMONPIERRE("/res/spd.png");
 		
 		private final String texture;
 		
@@ -81,13 +82,32 @@ public class Tete extends ObjetSpatial
 	{
 	}
 
+	/**
+	 * Change la texture de la tête.
+	 * 
+	 * @param pTexture la nouvelle texture de la tête.
+	 */
+	public void setTexture(Texture pTexture)
+	{
+		if (pTexture == null)
+			texture = TEXTURE_DEFAUT;
+		else
+			texture = pTexture;
+	}
+	
+	/**
+	 * @return la texture de la tête.
+	 */
+	public Texture getTexture()
+	{
+		return texture;
+	}
+	
 	public Node getNoeud()
 	{
-		ImageView image = new ImageView("/res/planeteBleue.png");
+		ImageView image = new ImageView(texture.getTexture());
 		image.setFitWidth(200);
 		image.setFitHeight(200);
-		image.setTranslateX(-100);
-		image.setTranslateY(-100);
 		return image;
 	}
 }

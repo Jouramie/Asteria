@@ -98,6 +98,15 @@ public class ContPrincipal
 	}
 	
 	/**
+	 * Retourne le moteur physique.
+	 * @return Le moteur physique.
+	 */
+	public MoteurPhysique getMoteurPhysique()
+	{
+		return phys;
+	}
+	
+	/**
 	 * Charge un contrôleur.
 	 * 
 	 * @param c

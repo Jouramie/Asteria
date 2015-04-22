@@ -136,7 +136,6 @@ public class ContEditeur implements Controleur
 		Platform.runLater(() -> {
 			chargerNiveau();
 		});
-		
 	}
 	
 	@FXML
