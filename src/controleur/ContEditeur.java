@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -124,7 +125,8 @@ public class ContEditeur implements Controleur
 				VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT,
 				VaisseauJoueur.CARBURANT_DEFAUT);
 		niveau.ajouterCorps(corpsSelect);
-		chargerNiveau();
+		Platform.runLater(()->{
+					chargerNiveau();});
 	}
 	
 	@FXML

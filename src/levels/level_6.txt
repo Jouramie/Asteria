@@ -1,17 +1,12 @@
-VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 3000.0 ; 100 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -558.0 ; -315.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -531.0 ; -220.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -583.0 ; -126.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -518.0 ; -80.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -581.0 ; -1.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -499.0 ; 81.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -605.0 ; 128.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -508.0 ; 186.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100 ; -623.0 ; 247.0 ; 0.0 ; 0.0
+VaisseauJoueur ; 1.0 ; 0.7071067811865475 ; 0.7071067811865475 ; 3000.0 ; 3 ; 20.0 ; 5.0 ; 5.0 ; 5.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100.0 ; -558.0 ; -315.0 ; 0.0 ; 0.0
+Vaisseau ; 1.0 ; 6.0E15 ; 100.0 ; -581.0 ; -1.0 ; 0.0 ; 0.0
 Planete ; 6.0E15 ; 402.0 ; -292.0 ; 240.0 ; ROUGE
 Planete ; 6.0E15 ; 481.0666334961297 ; 476.1577902971899 ; 240.0 ; VERTE
+Planete ; 3000.0 ; 1314.726313666437 ; -789.6964928241939 ; 160.0 ; BLEUE
+Planete ; 6.0E15 ; 186.85213051468054 ; -1005.5594918487407 ; 100.0 ; JAUNE
 DescriptionNiveau ; Dans ce niveau, faites attention à votre barre de vie. Si trop de vaisseaux vous touchent, vous mourrez.
-ObjectifRayon ; 539.9727600223268 ; 73.63264909395366 ; 50.0
+ObjectifRayon ; 538.42916556204 ; -558.0978108793744 ; 50.0
 PointDepart ; 0.0 ; 0.0
 TitreNiveau ; L'entre-deux
-VitesseDepart ; 0.0
+VitesseDepart ; 60.0

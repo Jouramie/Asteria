@@ -1,17 +1,15 @@
-VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 3000.0 ; 100 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -867.0 ; -339.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -875.0 ; -164.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -886.0 ; 1.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -891.0 ; 166.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 1000.0 ; 100 ; -898.0 ; 347.0 ; 0.0 ; 0.0
-Planete ; 6.0E15 ; -224.0 ; -351.0 ; 50.0 ; BLEUE
-Planete ; 6.0E15 ; -256.0 ; -108.0 ; 60.0 ; JAUNE
-Planete ; 6.0E15 ; -143.0 ; 112.0 ; 70.0 ; MAGENTA
-Planete ; 6.0E15 ; 72.0 ; 271.0 ; 80.0 ; ORANGE
-Planete ; 6.0E15 ; 438.0 ; 179.0 ; 120.0 ; ROUGE
-Planete ; 6.0E15 ; 388.0 ; -309.0 ; 156.0 ; VERTE
-DescriptionNiveau ; Ceci est le niveau 9
-ObjectifRayon ; 0.0 ; 0.0 ; 0.0
+VaisseauJoueur ; 1.0 ; 0.7071067811865475 ; 0.7071067811865475 ; 16000.0 ; 20.0 ; 1.0 ; 1.0 ; 1.0 ; 1.0
+Planete ; 6.0E15 ; -527.8364425456452 ; -19.194052456205554 ; 100.0 ; BLEUE
+Planete ; 6.0E15 ; -1103.6580162318046 ; -23.99256557025683 ; 100.0 ; BLEUE
+Planete ; 9.0E15 ; -2005.7784816734534 ; -19.194052456205554 ; 300.0 ; JAUNE
+Planete ; 1.1E16 ; -3243.794865098695 ; -4.79851311405173 ; 450.0 ; JAUNE
+Planete ; 4.0E15 ; -4676.13034764254 ; 37.409042781140215 ; 30.0 ; ORANGE
+Planete ; 4.0E15 ; -5551.501948721223 ; 29.927234224912354 ; 35.0 ; BLEUE
+Planete ; 5.0E15 ; -6516.655252474644 ; 44.89085133736853 ; 45.0 ; ORANGE
+Planete ; 2.0E15 ; -7152.608979754029 ; 52.37265989359639 ; 30.0 ; MAGENTA
+Planete ; 6.0E18 ; -12833.09088794177 ; -149.22198706908966 ; 4000.0 ; ROUGE
+DescriptionNiveau ; Vous voici maintenant en direction vers la planète Terre. Ne ratez pas votre arrivée en orbite !
+ObjectifRayon ; -5706.2878490872245 ; 0.0 ; 50.0
 PointDepart ; 0.0 ; 0.0
-TitreNiveau ; 
-VitesseDepart ; 0.0 ; 0.0
+TitreNiveau ; The Milky Way
+VitesseDepart ; 100.0
