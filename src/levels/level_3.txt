@@ -1,4 +1,4 @@
-VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 3000.0 ; 100 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
+VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 3000.0 ; 3 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
 Planete ; 6.0E15 ; 89.0 ; -144.0 ; 100.0 ; VERTE
 Planete ; 6.0E15 ; -12.227612258060162 ; -815.1741505373304 ; 120.0 ; JAUNE
 Planete ; 6.0E15 ; -631.7599666664314 ; -1210.5336135479356 ; 105.0 ; ROUGE
@@ -14,4 +14,4 @@ DescriptionNiveau ; Enfin un long voyage ! Assurez-vous de ne pas manquer de car
 ObjectifRayon ; -161.17934832233823 ; -2088.0946118211573 ; 50.0
 PointDepart ; -500 ; 500
 TitreNiveau ; L'excursion
-VitesseDepart ; 0.0
+VitesseDepart ; 100.0

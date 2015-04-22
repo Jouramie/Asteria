@@ -1,4 +1,4 @@
-VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 3000.0 ; 100 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
+VaisseauJoueur ; 1.0 ; 1.0; 0.0 ; 6000.0 ; 9 ; 20 ; 5 ; 5 ; 5.0 ; 5.0
 Planete ; 6.0E15 ; -670.0 ; -361.0 ; 150.0 ; ROUGE
 Planete ; 6.0E15 ; 297.0 ; 21.0 ; 100.0 ; VERTE
 Planete ; 6.0E15 ; 646.0 ; 275.0 ; 60.0 ; VERTE
@@ -10,4 +10,4 @@ DescriptionNiveau ; Vous devez démontrer vos aptitudes en conduite de vaisseau s
 ObjectifRayon ; 623.0 ; -407.0 ; 50.0
 PointDepart ; -500 ; 550
 TitreNiveau ; Narrow Passage
-VitesseDepart ; 0.0
+VitesseDepart ; 100.0

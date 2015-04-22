@@ -44,10 +44,11 @@ public class VaisseauJoueurTest
 	{
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
-		v2.avancer();
-		assertEquals(200000, v2.getForceExt().getX(), 0.0001);
-		assertEquals(0, v2.getForceExt().getY(), 0.0001);
-		v2.avancer();
+		v2.avancer(true);
+		v2.setCarburantMax(9e9);
+		v2.setCarburantRestant(9e9);
+		assertEquals(200000, v2.getForceExt().getNorme(), 0.0001);
+		v2.avancer(false);
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
 	}
@@ -61,9 +62,11 @@ public class VaisseauJoueurTest
 	@Test
 	public void testUpdate()
 	{
-		v1.tournerDroite();
-		v1.tournerGauche();
-		v1.avancer();
+		v1.tournerDroite(true);
+		v1.tournerGauche(true);
+		v1.avancer(true);
+		v1.setCarburantMax(100);
+		v1.setCarburantRestant(100);
 		v1.update(1.0);
 		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
 	}
