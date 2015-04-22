@@ -64,4 +64,10 @@ public class ContMenu implements Controleur
 	{
 		ContPrincipal.getInstance().selectionnerControleur(new ContEditeur());
 	}
+	
+	@FXML
+	public void credits()
+	{
+		ContPrincipal.getInstance().selectionnerControleur(new ContCredits());
+	}
 }
