@@ -54,8 +54,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		if (pPosition == null)
 		{
-			init(pMasse, 0, 0, pStatique,
-					pVitesse);
+			init(pMasse, 0, 0, pStatique, pVitesse);
 		}
 		else
 		{
@@ -103,7 +102,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		return masse;
 	}
-		
+	
 	/**
 	 * Modifie la masse de l'objet, masse minimum : 1.0 .
 	 */
@@ -111,7 +110,13 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		if (pMasse <= 0)
 		{
-			masse = MASSE_DEFAUT;
+			if (this instanceof Vaisseau)
+				masse = Vaisseau.MASSE_DEFAUT;
+			else if (this instanceof Planete)
+				masse = Planete.MASSE_DEFAUT;
+			else
+				masse = MASSE_DEFAUT;
+			
 		}
 		else
 		{
@@ -267,7 +272,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	
 	/**
 	 * Met à jour le noeud
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * 
+	 * @param dt
+	 *            Temps écoulé depuis le dernier frame (en secondes).
 	 */
 	public abstract void maj(double dt);
 	
@@ -288,7 +295,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	
 	/**
 	 * Callback lors d'une collision.
-	 * @param c Corps avec lequel on est en collision.
+	 * 
+	 * @param c
+	 *            Corps avec lequel on est en collision.
 	 */
 	public void onCollision(Corps c)
 	{
