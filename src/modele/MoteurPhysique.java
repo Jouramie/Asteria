@@ -1,6 +1,8 @@
 package modele;
 
 import java.util.List;
+
+import objets.Tete;
 import utils.Vecteur;
 
 /**
@@ -13,6 +15,8 @@ import utils.Vecteur;
 public class MoteurPhysique
 {
 	private static final double GRAVITE = 6.67384E-11;
+	private static final double TAILLE_ECRANX = 1366 - 10;
+	private static final double TAILLE_ECRANY = 768 - 10;
 	
 	/**
 	 * Calcule les forces exercées sur les objets à la suite de la collision.
@@ -104,6 +108,34 @@ public class MoteurPhysique
 			{
 				if (corps.get(i) != null)
 				{
+					if(corps.get(i) instanceof Tete)
+					{
+						if(corps.get(i).getPositionX() - corps.get(i).getRayon() < 0)
+						{
+							System.out.println(corps.get(i).getPositionX());
+							corps.get(i).setPositionX(corps.get(i).getRayon());
+							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
+						}
+						
+						if(corps.get(i).getPositionX() + corps.get(i).getRayon() > TAILLE_ECRANX)
+						{
+							corps.get(i).setPositionX(TAILLE_ECRANX - corps.get(i).getRayon());
+							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
+						}
+						
+						if(corps.get(i).getPositionY() - corps.get(i).getRayon() < 0)
+						{
+							corps.get(i).setPositionY(corps.get(i).getRayon());
+							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
+						}
+						
+						if(corps.get(i).getPositionY() + corps.get(i).getRayon() > TAILLE_ECRANY)
+						{
+							corps.get(i).setPositionY(TAILLE_ECRANY - corps.get(i).getRayon());
+							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
+						}
+					}
+					
 					for (int j = i + 1; j < corps.size(); j++)
 					{
 						if (corps.get(j) != null)
