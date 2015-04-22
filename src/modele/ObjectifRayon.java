@@ -17,6 +17,7 @@ import vue.Dessinable;
 public class ObjectifRayon implements Objectif, Dessinable
 {
 	public static final double VITESSE_ROTATION = 50;
+	public static final double RAYON_DEFAUT = 50;
 	
 	private Vaisseau vaisseau;
 	private Vecteur posRayon;

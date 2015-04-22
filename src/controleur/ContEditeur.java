@@ -76,15 +76,21 @@ public class ContEditeur implements Controleur
 	@FXML
 	private TextField textFieldRayon;
 	@FXML
+	private TextField textFieldRayonObjectif;
+	@FXML
 	private TextField textFieldCarburantMax;
 	@FXML
 	private TextField textFieldCarburantDepart;
+	@FXML
+	private VBox vBoxMenu;
+	@FXML
+	private VBox vBoxMenuCorps;
 	@FXML
 	private VBox vBoxMenuPlanete;
 	@FXML
 	private VBox vBoxMenuVaisseau;
 	@FXML
-	private VBox vBoxMenu;
+	private VBox vBoxMenuObjectif;
 	
 	private VueEditeur vue;
 	
@@ -136,15 +142,36 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onRayon(ActionEvent e)
 	{
-		try
+		if (corpsSelect instanceof Planete)
 		{
-			((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
-					.getText())));
-			((Planete) corpsSelect).maj();
+			try
+			{
+				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
+						.getText())));
+				((Planete) corpsSelect).maj();
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldRayon.setText("" + corpsSelect.getRayon());
+			}
 		}
-		catch (NumberFormatException ex)
+	}
+	
+	@FXML
+	public void onRayonObjectif(ActionEvent e)
+	{
+		if (objectifSelect instanceof ObjectifRayon)
 		{
-			textFieldRayon.setText("" + corpsSelect.getRayon());
+			ObjectifRayon or = (ObjectifRayon) objectifSelect;
+			try
+			{
+				or.setRayon((Double.valueOf(textFieldRayonObjectif.getText())));
+				or.getNoeud();
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldRayonObjectif.setText("" + or.getRayon());
+			}
 		}
 	}
 	
@@ -165,28 +192,56 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onPositionX(ActionEvent e)
 	{
-		try
+		if (corpsSelect instanceof Corps)
+			try
+			{
+				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
+						.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldPositionX.setText("" + corpsSelect.getPositionX());
+			}
+		else if (objectifSelect instanceof ObjectifRayon)
 		{
-			corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
-					.getText())));
-		}
-		catch (NumberFormatException ex)
-		{
-			textFieldPositionX.setText("" + corpsSelect.getPositionX());
+			ObjectifRayon or = (ObjectifRayon) objectifSelect;
+			try
+			{
+				or.getPosRayon().setX(
+						(Double.valueOf(textFieldPositionX.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldPositionX.setText("" + or.getPosRayon().getX());
+			}
 		}
 	}
 	
 	@FXML
 	public void onPositionY(ActionEvent e)
 	{
-		try
+		if (corpsSelect instanceof Corps)
+			try
+			{
+				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
+						.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldPositionY.setText("" + corpsSelect.getPositionY());
+			}
+		else if (objectifSelect instanceof ObjectifRayon)
 		{
-			corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
-					.getText())));
-		}
-		catch (NumberFormatException ex)
-		{
-			textFieldPositionY.setText("" + corpsSelect.getPositionY());
+			ObjectifRayon or = (ObjectifRayon) objectifSelect;
+			try
+			{
+				or.getPosRayon().setY(
+						(Double.valueOf(textFieldPositionY.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldPositionY.setText("" + or.getPosRayon().getY());
+			}
 		}
 	}
 	
@@ -473,9 +528,8 @@ public class ContEditeur implements Controleur
 						&& Math.abs(or.getPosRayon().getY() - pos.getY()) < (or
 								.getRayon()))
 				{
-				toucheCorps = true;
-				objectifSelect = objectif;
-				System.out.println("ASDFAS");
+					toucheCorps = true;
+					objectifSelect = objectif;
 				}
 				
 			}
@@ -497,8 +551,8 @@ public class ContEditeur implements Controleur
 				break;
 			case "Portail":
 				corpsSelect = null;
-				objectifSelect = new ObjectifRayon(pos, 50.0);
-				niveau.setObjectif(objectifSelect);
+				objectifSelect = niveau.getObjectif();
+				((ObjectifRayon) objectifSelect).setPosRayon(pos);
 				break;
 			case "Vaisseau Joueur":
 				corpsSelect = vaisseauJoueur;
@@ -582,6 +636,7 @@ public class ContEditeur implements Controleur
 		corpsSelect = v;
 	}
 	
+	@SuppressWarnings("unused")
 	private void creeVaisseauJoueur(Vecteur pos)
 	{
 		double masse;
@@ -626,11 +681,14 @@ public class ContEditeur implements Controleur
 	 * Affiche le menu pour modifier les paramètres de l'objet sélectionné.
 	 */
 	private void afficherMenuParametre()
-	{		
+	{
+		if (corpsSelect == null && objectifSelect == null)
+			return;
 		vBoxMenu.setVisible(true);
 		if (corpsSelect instanceof Planete)
 		{
-			vBoxMenu.setVisible(true);
+			vBoxMenuCorps.setVisible(true);
+			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(true);
 			vBoxMenuVaisseau.setVisible(false);
 			textFieldRayon.setText("" + corpsSelect.getRayon());
@@ -644,7 +702,8 @@ public class ContEditeur implements Controleur
 		else if (corpsSelect instanceof Vaisseau)
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
-			vBoxMenu.setVisible(true);
+			vBoxMenuCorps.setVisible(true);
+			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(false);
 			vBoxMenuVaisseau.setVisible(true);
 			textFieldMasse.setText("" + corpsSelect.getMasse());
@@ -659,11 +718,15 @@ public class ContEditeur implements Controleur
 		}
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
-			System.out.println("afassd");
-			vBoxMenu.setVisible(false);
+			ObjectifRayon or = (ObjectifRayon) objectif;
+			vBoxMenuCorps.setVisible(false);
+			vBoxMenuObjectif.setVisible(true);
+			textFieldPositionX.setText("" + or.getPosRayon().getX());
+			textFieldPositionY.setText("" + or.getPosRayon().getY());
+			textFieldRayonObjectif.setText("" + or.getRayon());
+			comboBoxCorps.setValue("Portail");
+			
 		}
-		System.out.println(objectifSelect);
-		System.out.println(corpsSelect);
 	}
 	
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
@@ -693,6 +756,11 @@ public class ContEditeur implements Controleur
 			niveau.ajouterCorps(corpsSelect);
 			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
 			vaisseauJoueur = (VaisseauJoueur) corpsSelect;
+		}
+		if (niveau.getObjectif() == null)
+		{
+			niveau.setObjectif(new ObjectifRayon(new Vecteur(0, 10),
+					ObjectifRayon.RAYON_DEFAUT));
 		}
 		objectif = niveau.getObjectif();
 		vue.initialiserCorps();
