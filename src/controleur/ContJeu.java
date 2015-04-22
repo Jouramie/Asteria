@@ -1,10 +1,12 @@
 package controleur;
 
 import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ProgressBar;
@@ -29,7 +31,8 @@ import vue.VueJeu;
 public class ContJeu implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
-	public static final double MARGE_ECRAN = 300;
+	public static final double MARGE_ECRAN_HORIZ = 300;
+	public static final double MARGE_ECRAN_VERT = 200;
 	
 	@FXML
 	private Pane pane;
@@ -50,9 +53,6 @@ public class ContJeu implements Controleur
 	private boolean objectifAtteint;
 	private boolean mort;
 	private boolean menuAffiche;
-	private boolean aPressed;
-	private boolean dPressed;
-	private boolean wPressed;
 	private boolean listenMouse;
 	
 	private int numeroNiveau;
@@ -102,7 +102,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void keyPressed(KeyEvent e)
 	{
-		if(!listenMouse && !objectifAtteint && !mort && e.getCode() == KeyCode.ESCAPE)
+		if(!objectifAtteint && !mort && e.getCode() == KeyCode.ESCAPE)
 		{
 			if (!menuPause.isVisible())
 			{
@@ -120,27 +120,15 @@ public class ContJeu implements Controleur
 			{
 			case LEFT:
 			case A:
-				if (!aPressed)
-				{
-					vaisseauJoueur.tournerGauche();
-					aPressed = true;
-				}
+				vaisseauJoueur.tournerGauche(true);
 				break;
 			case RIGHT:
 			case D:
-				if (!dPressed)
-				{
-					vaisseauJoueur.tournerDroite();
-					dPressed = true;
-				}
+				vaisseauJoueur.tournerDroite(true);
 				break;
 			case UP:
 			case W:
-				if (!wPressed)
-				{
-					vaisseauJoueur.avancer();
-					wPressed = true;
-				}
+				vaisseauJoueur.avancer(true);
 				break;
 			case H:
 				vaisseauJoueur
@@ -161,27 +149,15 @@ public class ContJeu implements Controleur
 			{
 			case LEFT:
 			case A:
-				if (aPressed)
-				{
-					vaisseauJoueur.tournerGauche();
-					aPressed = false;
-				}
+				vaisseauJoueur.tournerGauche(false);
 				break;
 			case RIGHT:
 			case D:
-				if (dPressed)
-				{
-					vaisseauJoueur.tournerDroite();
-					dPressed = false;
-				}
+				vaisseauJoueur.tournerDroite(false);
 				break;
 			case UP:
 			case W:
-				if (wPressed)
-				{
-					vaisseauJoueur.avancer();
-					wPressed = false;
-				}
+				vaisseauJoueur.avancer(false);
 				break;
 			default:
 				break;
@@ -194,6 +170,9 @@ public class ContJeu implements Controleur
 		if (!objectifAtteint && !mort)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
+			vaisseauJoueur.avancer(false);
+			vaisseauJoueur.tournerDroite(false);
+			vaisseauJoueur.tournerGauche(false);
 			menuPause.setVisible(true);
 			menuPause.setMinWidth(pane.getWidth());
 			menuPause.setMinHeight(pane.getHeight());
@@ -204,7 +183,10 @@ public class ContJeu implements Controleur
 	
 	public void cacherMenuPause()
 	{
-		ContPrincipal.getInstance().demarrerHorloge();
+		if(!listenMouse)
+		{
+			ContPrincipal.getInstance().demarrerHorloge();
+		}
 		menuPause.setVisible(false);
 		menuAffiche = false;
 	}
@@ -212,6 +194,9 @@ public class ContJeu implements Controleur
 	public void afficherMenuMort()
 	{
 		ContPrincipal.getInstance().arreterHorloge();
+		vaisseauJoueur.avancer(false);
+		vaisseauJoueur.tournerDroite(false);
+		vaisseauJoueur.tournerGauche(false);
 		menuMort.setVisible(true);
 		menuMort.setMinWidth(pane.getWidth());
 		menuMort.setMinHeight(pane.getHeight());
@@ -221,7 +206,10 @@ public class ContJeu implements Controleur
 	
 	public void cacherMenuMort()
 	{
-		ContPrincipal.getInstance().demarrerHorloge();
+		if(!listenMouse)
+		{
+			ContPrincipal.getInstance().demarrerHorloge();
+		}
 		menuMort.setVisible(false);
 		menuAffiche = false;
 	}
@@ -231,6 +219,10 @@ public class ContJeu implements Controleur
 	 */
 	public void afficherMenuVictoire()
 	{
+		vaisseauJoueur.avancer(false);
+		vaisseauJoueur.tournerDroite(false);
+		vaisseauJoueur.tournerGauche(false);
+		
 		if(numeroNiveau < 10)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
@@ -249,7 +241,10 @@ public class ContJeu implements Controleur
 	
 	public void cacherMenuVictoire()
 	{
-		ContPrincipal.getInstance().demarrerHorloge();
+		if(!listenMouse)
+		{
+			ContPrincipal.getInstance().demarrerHorloge();
+		}
 		menuVictoire.setVisible(false);
 		menuAffiche = false;
 	}
@@ -336,7 +331,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void mouseMove(MouseEvent e)
 	{
-		if(listenMouse)
+		if(listenMouse && !menuAffiche)
 		{
 			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
 			Camera cam = vue.getCamera();
@@ -352,7 +347,7 @@ public class ContJeu implements Controleur
 	@FXML
 	public void mouseClicked(MouseEvent e)
 	{
-		if(listenMouse)
+		if(listenMouse && !menuAffiche)
 		{
 			Point2D point = pane.sceneToLocal(e.getSceneX(), e.getSceneY());
 			Camera cam = vue.getCamera();
@@ -367,9 +362,9 @@ public class ContJeu implements Controleur
 	}
 	
 	@FXML
-	public void recommencer()
+	public void recommencer(ActionEvent e)
 	{
-		retourjeu();
+		retourjeu(e);
 		reset();
 	}
 	
@@ -392,8 +387,8 @@ public class ContJeu implements Controleur
 	}
 	
 	@FXML
-	public void retourjeu()
-	{
+	public void retourjeu(ActionEvent e)
+	{	
 		cacherMenuPause();
 		cacherMenuVictoire();
 		cacherMenuMort();
@@ -433,12 +428,15 @@ public class ContJeu implements Controleur
 	{
 		if (vaisseauJoueur != null)
 		{
+			vaisseauJoueur.update(dt);
+			verifierObjectif();
+			
 			Camera camera = vue.getCamera();
 			double x = camera.getDeplacement().getX();
 			double y = camera.getDeplacement().getY();
 			
-			double marginLeft = camera.localToGlobal(new Vecteur(MARGE_ECRAN, 0)).getX();
-			double marginRight = camera.localToGlobal(new Vecteur(pane.getWidth() - MARGE_ECRAN, 0)).getX();
+			double marginLeft = camera.localToGlobal(new Vecteur(MARGE_ECRAN_HORIZ, 0)).getX();
+			double marginRight = camera.localToGlobal(new Vecteur(pane.getWidth() - MARGE_ECRAN_HORIZ, 0)).getX();
 			
 			if(vaisseauJoueur.getPositionX() < marginLeft)
 			{
@@ -450,8 +448,11 @@ public class ContJeu implements Controleur
 				camera.deplacer(x + (vaisseauJoueur.getPositionX() - marginRight), y);
 			}
 			
-			double marginTop = camera.localToGlobal(new Vecteur(0, MARGE_ECRAN)).getY();
-			double marginBottom = camera.localToGlobal(new Vecteur(0, pane.getHeight() - MARGE_ECRAN)).getY();
+			x = camera.getDeplacement().getX();
+			y = camera.getDeplacement().getY();
+			
+			double marginTop = camera.localToGlobal(new Vecteur(0, MARGE_ECRAN_VERT)).getY();
+			double marginBottom = camera.localToGlobal(new Vecteur(0, pane.getHeight() - MARGE_ECRAN_VERT)).getY();
 			
 			if(vaisseauJoueur.getPositionY() < marginTop)
 			{
@@ -462,9 +463,6 @@ public class ContJeu implements Controleur
 			{
 				camera.deplacer(x, y + (vaisseauJoueur.getPositionY() - marginBottom));
 			}
-			
-			vaisseauJoueur.update(dt);
-			verifierObjectif();
 		}
 	}
 	

@@ -112,25 +112,25 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Commence ou arrête de faire tourner le vaisseau vers la gauche.
 	 */
-	public void tournerGauche()
+	public void tournerGauche(boolean tourner)
 	{
-		gauche = !gauche;
+		gauche = tourner;
 	}
 	
 	/**
 	 * Commence ou arrête de faire tourner le vaisseau vers la droite.
 	 */
-	public void tournerDroite()
+	public void tournerDroite(boolean tourner)
 	{
-		droite = !droite;
+		droite = tourner;
 	}
 	
 	/**
 	 * Commence ou arrête de faire avancer le vaisseau vers la gauche.
 	 */
-	public void avancer()
+	public void avancer(boolean avancer)
 	{
-		moteur = !moteur;
+		moteur = avancer;
 	}
 	
 	/**
