@@ -410,8 +410,6 @@ public class ContEditeur implements Controleur
 		catch (Exception e)
 		{
 		}
-		
-		vue.initialiserCorps();
 	}
 	
 	/**
@@ -760,7 +758,7 @@ public class ContEditeur implements Controleur
 		}
 		objectif = niveau.getObjectif();
 		vue.initialiserCorps();
-		//TODO: Rétablir le dépalcement de la caméra et régler le bug du portail qui ne s'affiche pas.
+		//TODO: Rétablir le dépalcement de la caméra.
 		if (niveau.getObjectif() != null
 				&& niveau.getObjectif() instanceof Dessinable)
 		{

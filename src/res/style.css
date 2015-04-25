@@ -19,6 +19,7 @@
 .credit-pane
 {
 	-fx-background-image: url("space.png");
+	-fx-border-color: white;
 }
 
 .button:hover
