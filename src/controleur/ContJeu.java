@@ -386,6 +386,7 @@ public class ContJeu implements Controleur
 	public void niveauSuivant()
 	{
 		numeroNiveau ++;
+		vaisseauJoueur = null;
 		Niveau niv = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_" + numeroNiveau + ".txt"));
 		Platform.runLater(() -> {
 			chargerNiveau(niv);
