@@ -7,7 +7,6 @@ import javafx.scene.input.KeyEvent;
 import objets.Tete;
 import utils.Vecteur;
 import vue.VueCredits;
-import vue.VueJeu;
 
 public class ContCredits implements Controleur
 {

@@ -2,12 +2,9 @@ package controleur;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Iterator;
 import java.util.List;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -763,7 +760,7 @@ public class ContEditeur implements Controleur
 		}
 		objectif = niveau.getObjectif();
 		vue.initialiserCorps();
-		
+		//TODO: Rétablir le dépalcement de la caméra et régler le bug du portail qui ne s'affiche pas.
 		if (niveau.getObjectif() != null
 				&& niveau.getObjectif() instanceof Dessinable)
 		{
