@@ -39,58 +39,6 @@ public class Vaisseau extends ObjetSpatial
 	protected double carburantDepart;
 	
 	/**
-	 * Utilisez plutôt le constructeur avec le carburant de départ et le
-	 * carburant maximum.
-	 * 
-	 * @param pPuissanceMax
-	 *            la puissance maximale du vaisseau
-	 * @param pDirection
-	 *            la direction du vaisseau
-	 * @param pMasse
-	 *            la masse du vaisseau
-	 * @param pCarburantMax
-	 *            la capacité maximale de caburant du vaisseau
-	 * @param pPosition
-	 *            la position du vaisseau
-	 * @param pVitesse
-	 *            la vitesse du vaisseau
-	 */
-	@Deprecated
-	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
-			Vecteur pPosition, Vecteur pVitesse)
-	{
-		super(pMasse, pPosition, false, pVitesse);
-		init(pPuissanceMax, pCarburantMax, pCarburantMax);
-	}
-	
-	/**
-	 * Utilisez plutôt le constructeur avec le carburant de départ et le
-	 * carburant maximum.
-	 * 
-	 * @param pPuissanceMax
-	 *            la puissance maximale du vaisseau
-	 * @param pDirection
-	 *            la direction du vaisseau
-	 * @param pMasse
-	 *            la masse du vaisseau
-	 * @param pCarburantMax
-	 *            la capacité maximale de caburant du vaisseau
-	 * @param pPositionX
-	 *            la positionX de la planète
-	 * @param pPositionY
-	 *            la positionY de la planète
-	 * @param pVitesse
-	 *            la vitesse du vaisseau
-	 */
-	@Deprecated
-	public Vaisseau(double pPuissanceMax, double pMasse, double pCarburantMax,
-			double pPositionX, double pPositionY, Vecteur pVitesse)
-	{
-		super(pMasse, pPositionX, pPositionY, false, pVitesse);
-		init(pPuissanceMax, pCarburantMax, pCarburantMax);
-	}
-	
-	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
 	 * 
 	 * @param pPuissance

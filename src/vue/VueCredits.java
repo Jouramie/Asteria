@@ -1,10 +1,8 @@
 package vue;
 import java.util.LinkedList;
 import java.util.List;
-
 import modele.Corps;
 import controleur.ContPrincipal;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;

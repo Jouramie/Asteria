@@ -167,6 +167,8 @@ public class Niveau
 									.parseDouble(st.nextToken().trim());
 							double capaciteCarburant = Double.parseDouble(st
 									.nextToken().trim());
+							double carburantDepart = Double.parseDouble(st
+									.nextToken().trim());
 							double positionX = Double.parseDouble(st.nextToken()
 									.trim());
 							double positionY = Double.parseDouble(st.nextToken()
@@ -179,35 +181,22 @@ public class Niveau
 							Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
 							
 							corps.add(new Vaisseau(puissance, masse,
-									capaciteCarburant, position, vitesse));
+									capaciteCarburant, carburantDepart, position, vitesse));
 							break;
 						}
 						case "vaisseaujoueur":
 						{
 							double puissance = Double.parseDouble(st.nextToken()
 									.trim());
-							double directionX = Double.parseDouble(st.nextToken()
-									.trim());
-							double directionY = Double.parseDouble(st.nextToken()
-									.trim());
 							double masse = Double
 									.parseDouble(st.nextToken().trim());
 							double capaciteCarburant = Double.parseDouble(st
 									.nextToken().trim());
-							double positionX = Double.parseDouble(st.nextToken()
-									.trim());
-							double positionY = Double.parseDouble(st.nextToken()
-									.trim());
-							double vitesseX = Double.parseDouble(st.nextToken()
-									.trim());
-							double vitesseY = Double.parseDouble(st.nextToken()
-									.trim());
-							Vecteur direction = new Vecteur(directionX, directionY);
-							Vecteur position = new Vecteur(positionX, positionY);
-							Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
+							double carburantDepart = Double.parseDouble(st
+									.nextToken().trim());
 							
-							corps.add(new VaisseauJoueur(puissance, direction,
-									masse, capaciteCarburant, position, vitesse));
+							corps.add(new VaisseauJoueur(puissance,
+									masse, capaciteCarburant, carburantDepart));
 							break;
 						}
 						case "descriptionniveau":
@@ -356,7 +345,7 @@ public class Niveau
 					Vaisseau v = (Vaisseau) c;
 					bw.write("Vaisseau ; " + v.getPuissanceMax() + " ; "
 							+ v.getMasse() + " ; " + v.getCarburantMax()
-							+ " ; " + v.getPositionX() + " ; "
+							+ " ; " + v.getCarburantDepart() + " ; " + v.getPositionX() + " ; "
 							+ v.getPositionY() + " ; " + v.getVitesse().getX()
 							+ " ; " + v.getVitesse().getY());
 					break;
@@ -365,14 +354,9 @@ public class Niveau
 				{
 					VaisseauJoueur vj = (VaisseauJoueur) c;
 					bw.write("VaisseauJoueur ; " + vj.getPuissanceMax() + " ; "
-							+ vj.getDirection().getX() + " ; "
-							+ vj.getDirection().getY() + " ; " 
 							+ vj.getMasse() + " ; " 
-							+ vj.getCarburantDepart() + " ; "
-							+ vj.getPositionX() + " ; " 
-							+ vj.getPositionY()+ " ; " 
-							+ vj.getVitesse().getX() + " ; "
-							+ vj.getVitesse().getY());
+							+ vj.getCarburantMax() + " ; "
+							+ vj.getCarburantDepart());
 					break;
 				}
 				}

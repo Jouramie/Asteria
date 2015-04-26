@@ -19,59 +19,6 @@ public class VaisseauJoueur extends Vaisseau
 	protected double puissanceRotation;
 	
 	/**
-	 * Utilisez plutôt le constructeur comprenant le carburant de départ et le carburant maximum.
-	 * 
-	 * @param pPuissance
-	 *            Puissance maximale du moteur (en Newton).
-	 * @param pDirection
-	 *            Direction initiale du vaisseau.
-	 * @param pMasse
-	 *            Masse du vaisseau (en kg).
-	 * @param pCarburantMax
-	 *            Quantité maximale de carburant (en kg).
-	 * @param pPosition
-	 *            Position dans l'espace.
-	 * @param pVitesse
-	 *            Vitesse initiale du vaisseau.
-	 */
-	@Deprecated
-	public VaisseauJoueur(double pPuissance, Vecteur pDirection,
-			double pMasse, double pCarburantMax, Vecteur pPosition,
-			Vecteur pVitesse)
-	{
-		super(pPuissance, pMasse, pCarburantMax, pPosition, pVitesse);
-		initDefaut();
-	}
-	
-	/**
-	 * Utilisez plutôt le constructeur comprenant le carburant de départ et le carburant maximum.
-	 * 
-	 * @param pPuissance
-	 *            Puissance maximale du moteur (en Newton).
-	 * @param pDirection
-	 *            Direction initiale du vaisseau.
-	 * @param pMasse
-	 *            Masse du vaisseau (en kg).
-	 * @param pCarburantMax
-	 *            Quantité de carburant maximale (en kg).
-	 * @param pPositionX
-	 *            Position en X dans l'espace.
-	 * @param pPositionY
-	 *            Position en Y dans l'espace.
-	 * @param pVitesse
-	 *            Vitesse initiale du vaisseau.
-	 */
-	@Deprecated
-	public VaisseauJoueur(double pPuissance, Vecteur pDirection,
-			double pMasse, double pCarburantMax, double pPositionX,
-			double pPositionY, Vecteur pVitesse)
-	{
-		super(pPuissance, pMasse, pCarburantMax, pPositionX,
-				pPositionY, pVitesse);
-		initDefaut();
-	}
-	
-	/**
 	 * Constructeur du vaisseauJoueur de base.
 	 * 
 	 * @param pPuissance

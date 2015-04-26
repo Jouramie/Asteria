@@ -1,6 +1,4 @@
 package controleur;
-
-import java.io.File;
 import javax.swing.JOptionPane;
 import modele.Corps;
 import modele.Objectif;
@@ -281,17 +279,15 @@ public class ContJeu implements Controleur
 			for (Corps c : niveau.getCorps())
 			{
 				ContPrincipal.getInstance().ajouterCorps(c);
-				if (c.getClass().equals(
-						new VaisseauJoueur(1, new Vecteur(), 0, 0,
-								new Vecteur(), new Vecteur()).getClass()))
+				if (c instanceof VaisseauJoueur)
 				{
 					vaisseauJoueur = (VaisseauJoueur) c;
 				}
 			}
 			if (vaisseauJoueur == null)
 			{
-				vaisseauJoueur = new VaisseauJoueur(1, new Vecteur(0, 0), 16e3,
-						30, new Vecteur(10, 10), new Vecteur(10, 10));
+				vaisseauJoueur = new VaisseauJoueur(1, 16e3,
+						30, 30);
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
