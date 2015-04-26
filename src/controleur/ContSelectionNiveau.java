@@ -3,6 +3,7 @@ package controleur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URISyntaxException;
+import javax.swing.JOptionPane;
 import modele.Niveau;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -75,8 +76,17 @@ public class ContSelectionNiveau implements Controleur
 		Platform.runLater(() -> {
 			try
 			{
-				File f = (new FileChooser()).showOpenDialog(null);
-				Niveau niveau = Niveau.chargerNiveau(new FileInputStream(f));
+				File file = (new FileChooser()).showOpenDialog(null);
+				
+				while (!file.canRead())
+				{
+					JOptionPane.showMessageDialog(null,
+							"L'emplacement choisi ne peut pas être lu!", "Erreur",
+							JOptionPane.ERROR_MESSAGE);
+					file = (new FileChooser()).showOpenDialog(null);
+				}
+				
+				Niveau niveau = Niveau.chargerNiveau(new FileInputStream(file));
 				ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
 			}
 			catch(Exception e)
