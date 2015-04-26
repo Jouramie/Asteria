@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 public class VueCredits implements Vue
 {
-	@FXML
 	private BorderPane borderPane;
 	private List<Dessinable> liste;
 	
@@ -27,9 +26,10 @@ public class VueCredits implements Vue
 	public void initialiser(BorderPane pane)
 	{
 		borderPane = pane;
+		Pane p = (Pane) borderPane.lookup("#pane");
 		initialiserCorps();
-		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranX(pane.getWidth());
-		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranY(pane.getHeight());
+		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranX(p.getWidth());
+		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranY(p.getHeight());
 	}
 
 	public void initialiserCorps()
