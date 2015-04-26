@@ -552,6 +552,7 @@ public class ContEditeur implements Controleur
 				corpsSelect = vaisseauJoueur;
 				objectifSelect = null;
 				vaisseauJoueur.setPosition(pos);
+				niveau.setPointDepart(pos);
 			}
 			chargerNiveau();
 		}
