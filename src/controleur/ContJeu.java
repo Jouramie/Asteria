@@ -1,7 +1,7 @@
 package controleur;
 
+import java.io.File;
 import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
@@ -84,6 +84,17 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
+	 * Constructeur du contrôleur.
+	 * @param niv Le niveau dans lequel commence le jeu.
+	 */
+	public ContJeu(Niveau niv)
+	{
+		vue = new VueJeu();
+		numeroNiveau = 0;
+		niveau = niv;
+	}
+	
+	/**
 	 * Initialise les éléments du jeu et affiche la vue. Démarre l'horloge du
 	 * contrôleur principal.
 	 */
@@ -93,9 +104,12 @@ public class ContJeu implements Controleur
 		progressBarCarburant.setPrefWidth(((VBox)progressBarCarburant.getParent()).getWidth());
 		progressBarSante.setPrefWidth(((VBox)progressBarSante.getParent()).getWidth());
 		
-		Niveau niv = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_" + numeroNiveau + ".txt"));
+		if(numeroNiveau > 0)
+		{
+			niveau = Niveau.chargerNiveau(this.getClass().getResourceAsStream("/levels/level_" + numeroNiveau + ".txt"));
+		}
 		Platform.runLater(() -> {
-			chargerNiveau(niv);
+			chargerNiveau(niveau);
 		});
 	}
 	

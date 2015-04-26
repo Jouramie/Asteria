@@ -1,11 +1,15 @@
 package controleur;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URISyntaxException;
 import modele.Niveau;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
 import vue.VueSelectionNiveau;
 
 /**
@@ -61,6 +65,27 @@ public class ContSelectionNiveau implements Controleur
 	{
 		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveauSelectionne));
 	}
+	
+	/**
+	 * Charge un niveau ne faisant pas partie de la campagne.
+	 */
+	@FXML
+	public void autreNiveau()
+	{
+		Platform.runLater(() -> {
+			try
+			{
+				File f = (new FileChooser()).showOpenDialog(null);
+				Niveau niveau = Niveau.chargerNiveau(new FileInputStream(f));
+				ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
+			}
+			catch(Exception e)
+			{
+			}
+		});
+		
+	}
+	
 	/**
 	 * Affiche la vue du constructeur.
 	 */
@@ -69,7 +94,7 @@ public class ContSelectionNiveau implements Controleur
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		niveauSelectionne = 1;
 	}
-
+	
 	/**
 	 * Retourne au controleur principal, et à sa vue.
 	 * 
@@ -153,8 +178,8 @@ public class ContSelectionNiveau implements Controleur
 		{
 			label.setText("Titre :  " + n.getTitreNiveau() + "\n" + "Description :  " + n.getDescriptionNiveau());	
 		}
-    }
-
+	}
+	
 	@Override
 	public void update(double dt) {
 		// TODO Auto-generated method stub

@@ -35,10 +35,17 @@
                   </LinearGradient>
                </textFill>
             </Button>
+            <Button mnemonicParsing="false" onAction="#autreNiveau" prefHeight="71.0" prefWidth="175.0" text="Autre niveau">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#007217" />
+                        <Stop color="#ffaa00" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
             <Button mnemonicParsing="false" onAction="#retour" prefHeight="71.0" prefWidth="172.0" text="Retour" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font size="1.0" />
-               </font>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
