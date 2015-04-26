@@ -137,118 +137,121 @@ public class Niveau
 				{
 					st = new StringTokenizer(ligne, ";");
 					
-					switch (st.nextToken().trim().toLowerCase())
+					if(st.hasMoreTokens())
 					{
-					case "planete":
-					{
-						double masse = Double
-								.parseDouble(st.nextToken().trim());
-						double positionX = Double.parseDouble(st.nextToken()
-								.trim());
-						double positionY = Double.parseDouble(st.nextToken()
-								.trim());
-						double rayon = Double
-								.parseDouble(st.nextToken().trim());
-						String texture = st.nextToken().trim();
-						
-						Planete p = new Planete(masse, positionX, positionY,
-								rayon);
-						p.setTexture(Texture.getTexture(texture));
-						corps.add(p);
-						break;
+						switch (st.nextToken().trim().toLowerCase())
+						{
+						case "planete":
+						{
+							double masse = Double
+									.parseDouble(st.nextToken().trim());
+							double positionX = Double.parseDouble(st.nextToken()
+									.trim());
+							double positionY = Double.parseDouble(st.nextToken()
+									.trim());
+							double rayon = Double
+									.parseDouble(st.nextToken().trim());
+							String texture = st.nextToken().trim();
+							
+							Planete p = new Planete(masse, positionX, positionY,
+									rayon);
+							p.setTexture(Texture.getTexture(texture));
+							corps.add(p);
+							break;
+						}
+						case "vaisseau":
+						{
+							double puissance = Double.parseDouble(st.nextToken()
+									.trim());
+							double masse = Double
+									.parseDouble(st.nextToken().trim());
+							double capaciteCarburant = Double.parseDouble(st
+									.nextToken().trim());
+							double positionX = Double.parseDouble(st.nextToken()
+									.trim());
+							double positionY = Double.parseDouble(st.nextToken()
+									.trim());
+							double vitesseX = Double.parseDouble(st.nextToken()
+									.trim());
+							double vitesseY = Double.parseDouble(st.nextToken()
+									.trim());
+							Vecteur position = new Vecteur(positionX, positionY);
+							Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
+							
+							corps.add(new Vaisseau(puissance, masse,
+									capaciteCarburant, position, vitesse));
+							break;
+						}
+						case "vaisseaujoueur":
+						{
+							double puissance = Double.parseDouble(st.nextToken()
+									.trim());
+							double directionX = Double.parseDouble(st.nextToken()
+									.trim());
+							double directionY = Double.parseDouble(st.nextToken()
+									.trim());
+							double masse = Double
+									.parseDouble(st.nextToken().trim());
+							double capaciteCarburant = Double.parseDouble(st
+									.nextToken().trim());
+							double positionX = Double.parseDouble(st.nextToken()
+									.trim());
+							double positionY = Double.parseDouble(st.nextToken()
+									.trim());
+							double vitesseX = Double.parseDouble(st.nextToken()
+									.trim());
+							double vitesseY = Double.parseDouble(st.nextToken()
+									.trim());
+							Vecteur direction = new Vecteur(directionX, directionY);
+							Vecteur position = new Vecteur(positionX, positionY);
+							Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
+							
+							corps.add(new VaisseauJoueur(puissance, direction,
+									masse, capaciteCarburant, position, vitesse));
+							break;
+						}
+						case "descriptionniveau":
+						{
+							descriptionNiveau = st.nextToken().trim();
+							break;
+						}
+						case "objectifrayon":
+						{
+							double posRayonX = Double.parseDouble(st.nextToken()
+									.trim());
+							double posRayonY = Double.parseDouble(st.nextToken()
+									.trim());
+							double rayon = Double
+									.parseDouble(st.nextToken().trim());
+							Vecteur posRayon = new Vecteur(posRayonX, posRayonY);
+							
+							objectif = new ObjectifRayon(posRayon, rayon);
+							break;
+						}
+						case "pointdepart":
+						{
+							double pointDepartX = Double.parseDouble(st.nextToken()
+									.trim());
+							double pointDepartY = Double.parseDouble(st.nextToken()
+									.trim());
+							
+							pointDepart = new Vecteur(pointDepartX, pointDepartY);
+							break;
+						}
+						case "titreniveau":
+						{
+							titreNiveau = st.nextToken().trim();
+							break;
+						}
+						case "vitessedepart":
+						{
+							vitesseDepart = Double.parseDouble(st
+									.nextToken().trim());
+							break;
+						}
+						}
 					}
-					case "vaisseau":
-					{
-						double puissance = Double.parseDouble(st.nextToken()
-								.trim());
-						double masse = Double
-								.parseDouble(st.nextToken().trim());
-						double capaciteCarburant = Double.parseDouble(st
-								.nextToken().trim());
-						double positionX = Double.parseDouble(st.nextToken()
-								.trim());
-						double positionY = Double.parseDouble(st.nextToken()
-								.trim());
-						double vitesseX = Double.parseDouble(st.nextToken()
-								.trim());
-						double vitesseY = Double.parseDouble(st.nextToken()
-								.trim());
-						Vecteur position = new Vecteur(positionX, positionY);
-						Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
-						
-						corps.add(new Vaisseau(puissance, masse,
-								capaciteCarburant, position, vitesse));
-						break;
 					}
-					case "vaisseaujoueur":
-					{
-						double puissance = Double.parseDouble(st.nextToken()
-								.trim());
-						double directionX = Double.parseDouble(st.nextToken()
-								.trim());
-						double directionY = Double.parseDouble(st.nextToken()
-								.trim());
-						double masse = Double
-								.parseDouble(st.nextToken().trim());
-						double capaciteCarburant = Double.parseDouble(st
-								.nextToken().trim());
-						double positionX = Double.parseDouble(st.nextToken()
-								.trim());
-						double positionY = Double.parseDouble(st.nextToken()
-								.trim());
-						double vitesseX = Double.parseDouble(st.nextToken()
-								.trim());
-						double vitesseY = Double.parseDouble(st.nextToken()
-								.trim());
-						Vecteur direction = new Vecteur(directionX, directionY);
-						Vecteur position = new Vecteur(positionX, positionY);
-						Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
-						
-						corps.add(new VaisseauJoueur(puissance, direction,
-								masse, capaciteCarburant, position, vitesse));
-						break;
-					}
-					case "descriptionniveau":
-					{
-						descriptionNiveau = st.nextToken().trim();
-						break;
-					}
-					case "objectifrayon":
-					{
-						double posRayonX = Double.parseDouble(st.nextToken()
-								.trim());
-						double posRayonY = Double.parseDouble(st.nextToken()
-								.trim());
-						double rayon = Double
-								.parseDouble(st.nextToken().trim());
-						Vecteur posRayon = new Vecteur(posRayonX, posRayonY);
-						
-						objectif = new ObjectifRayon(posRayon, rayon);
-						break;
-					}
-					case "pointdepart":
-					{
-						double pointDepartX = Double.parseDouble(st.nextToken()
-								.trim());
-						double pointDepartY = Double.parseDouble(st.nextToken()
-								.trim());
-						
-						pointDepart = new Vecteur(pointDepartX, pointDepartY);
-						break;
-					}
-					case "titreniveau":
-					{
-						titreNiveau = st.nextToken().trim();
-						break;
-					}
-					case "vitessedepart":
-					{
-						vitesseDepart = Double.parseDouble(st
-								.nextToken().trim());
-						break;
-					}
-					}
-				}
 				bw.close();
 				isr.close();
 				
