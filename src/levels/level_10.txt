@@ -1,3 +1,4 @@
+VaisseauJoueur ; 1.0 ; 16000.0 ; 20.0 ; 20.0
 Planete ; 6.0E15 ; 590.5335390402861 ; -141.43030136679135 ; 100.0 ; MAGENTA
 Planete ; 6.0E15 ; 272.9356693043337 ; -248.12333573121282 ; 100.0 ; JAUNE
 Planete ; 6.0E15 ; 188.5737351557218 ; -610.3834058987832 ; 100.0 ; BLEUE
@@ -44,9 +45,9 @@ Vaisseau ; 1.0 ; 1000.0 ; 100.0 ; 100.0 ; 258.04826916046113 ; 272.9356693043339
 Vaisseau ; 1.0 ; 1000.0 ; 100.0 ; 100.0 ; -607.9021725414709 ; 503.6903715343617 ; 0.0 ; 0.0
 Vaisseau ; 1.0 ; 1000.0 ; 100.0 ; 100.0 ; 302.71046959207933 ; 722.0389069778289 ; 0.0 ; 0.0
 Vaisseau ; 1.0 ; 1000.0 ; 100.0 ; 100.0 ; -285.3418360908945 ; -86.84316750592461 ; 0.0 ; 0.0
-DescriptionNiveau ; Vous devez démontrer vos aptitudes en conduite de vaisseau spatial. Éviter de vous écraser sur une planète et rejoignez le portail.
+DescriptionNiveau ; Ce niveau est très difficile, car le chaos y règne. Saurez-vous vous frayer un chemin pour rejoindre le dernier portail du jeu ?
 ObjectifRayon ; 521.0590050355463 ; -483.8405046758646 ; 50.0
 PointDepart ; -500.0 ; 550.0
-TitreNiveau ; Narrow Passage
+TitreNiveau ; Chaos
 VitesseDepart ; 10
 
