@@ -442,13 +442,14 @@ public class Vaisseau extends ObjetSpatial
 	{
 		animationMort = true;
 		ImageView image = new ImageView("/res/explosion_1.png");
-		image.setFitWidth(40);
-		image.setFitHeight(40);
-		image.setTranslateX(-20);
-		image.setTranslateY(-20);
+		image.setFitWidth(150);
+		image.setFitHeight(150);
+		image.setTranslateX(-75);
+		image.setTranslateY(-100);
 		((Group)noeud).getChildren().clear();
 		((Group)noeud).getChildren().add(image);
 		noeudRotate.setAngle(0);
+		noeud.toFront();
 	}
 	
 	/**
