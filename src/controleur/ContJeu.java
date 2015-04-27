@@ -52,7 +52,6 @@ public class ContJeu implements Controleur
 	private boolean mort;
 	private boolean menuAffiche;
 	private boolean listenMouse;
-	
 	private int numeroNiveau;
 	
 	/**
@@ -144,7 +143,7 @@ public class ContJeu implements Controleur
 				break;
 			case H:
 				vaisseauJoueur
-						.setCarburantRestant(vaisseauJoueur.getCarburantMax());
+				.setCarburantRestant(vaisseauJoueur.getCarburantMax());
 				vaisseauJoueur.setSante(1);
 			default:
 				break;
@@ -209,11 +208,14 @@ public class ContJeu implements Controleur
 		vaisseauJoueur.avancer(false);
 		vaisseauJoueur.tournerDroite(false);
 		vaisseauJoueur.tournerGauche(false);
-		menuMort.setVisible(true);
-		menuMort.setMinWidth(pane.getWidth());
-		menuMort.setMinHeight(pane.getHeight());
-		menuMort.toFront();
-		menuAffiche = true;
+		if(!vaisseauJoueur.isAnimationMort())
+		{
+			menuMort.setVisible(true);
+			menuMort.setMinWidth(pane.getWidth());
+			menuMort.setMinHeight(pane.getHeight());
+			menuMort.toFront();
+			menuAffiche = true;
+		}
 	}
 	
 	public void cacherMenuMort()
@@ -319,8 +321,10 @@ public class ContJeu implements Controleur
 			ContPrincipal.getInstance().selectionnerControleur(
 					new ContSelectionNiveau());
 		}
+		
+		//TODO: Centrer la caméra
 	}
-
+	
 	/**
 	 * Recharge le niveau.
 	 */
@@ -493,7 +497,12 @@ public class ContJeu implements Controleur
 			
 			if (vaisseauJoueur.getSante() == 0.0)
 			{
-				mort = true;
+				if(!mort)
+				{
+					mort = true;
+					vaisseauJoueur.jouerAnimationMort();
+				}
+				
 				afficherMenuMort();
 			}
 		}

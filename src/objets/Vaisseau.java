@@ -21,6 +21,7 @@ public class Vaisseau extends ObjetSpatial
 	public final static double CARBURANT_DEFAUT = 20;
 	public final static double PUISSANCE_DEFAUT = 1.0;
 	public final static double VITESSE_ANIM_FLAMME = 6;
+	public final static double VITESSE_ANIM_MORT = 8;
 	public final static double MASSE_DEFAUT = 16e3;
 	
 	protected double puissanceMax;
@@ -34,8 +35,10 @@ public class Vaisseau extends ObjetSpatial
 	protected Node noeud;
 	protected Rotate noeudRotate;
 	protected ImageView imageFlamme;
+	protected ImageView imageExplosion;
+	protected double currentExplosion;
 	protected double currentFlamme;
-	
+	protected boolean animationMort;
 	protected double carburantDepart;
 	
 	/**
@@ -133,7 +136,7 @@ public class Vaisseau extends ObjetSpatial
 		setCarburantRestant(carburantDepart);
 		
 		premierGetNoeud = true;
-		
+		currentExplosion = 1.0;
 		currentFlamme = 0.0;
 		sante = new SimpleDoubleProperty(1.0);
 	}
@@ -384,12 +387,18 @@ public class Vaisseau extends ObjetSpatial
 	{
 		Group group = new Group();
 		
-		Image texture = new Image("/res/spaceship-ennemy.png");
+		Image textureVaisseau = null;
+		
 		if (this instanceof VaisseauJoueur)
 		{
-			texture = new Image("/res/spaceship.png");
+			textureVaisseau = new Image("/res/spaceship.png");
 		}
-		ImageView image = new ImageView(texture);
+		else
+		{
+			textureVaisseau = new Image("/res/spaceship-ennemy.png");
+		}
+		
+		ImageView image = new ImageView(textureVaisseau);
 		image.setFitWidth(40);
 		image.setFitHeight(40);
 		image.setTranslateX(-20);
@@ -418,12 +427,37 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public Node getNoeud()
 	{
-		if (premierGetNoeud)
+		if(!animationMort && premierGetNoeud)
 		{
 			creeNoeud();
 			premierGetNoeud = false;
 		}
 		return noeud;
+	}
+	
+	/**
+	 * Démarre l'animation d'explosion,
+	 */
+	public void jouerAnimationMort()
+	{
+		animationMort = true;
+		ImageView image = new ImageView("/res/explosion_1.png");
+		image.setFitWidth(40);
+		image.setFitHeight(40);
+		image.setTranslateX(-20);
+		image.setTranslateY(-20);
+		((Group)noeud).getChildren().clear();
+		((Group)noeud).getChildren().add(image);
+		noeudRotate.setAngle(0);
+	}
+	
+	/**
+	 * Retourne l'état de l'animation d'explosion.
+	 * @return Vrai si l'ainmation d'explosion est en cours.
+	 */
+	public boolean isAnimationMort()
+	{
+		return animationMort;
 	}
 	
 	/**
@@ -441,9 +475,26 @@ public class Vaisseau extends ObjetSpatial
 			currentFlamme -= VITESSE_ANIM_FLAMME * dt;
 			currentFlamme = Math.max(0.0, currentFlamme);
 		}
-		imageFlamme.setOpacity(currentFlamme);
 		
-		noeudRotate.setAngle(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		if(!animationMort)
+		{
+			imageFlamme.setOpacity(currentFlamme);
+			noeudRotate.setAngle(direction.getAngle() / 2 / Math.PI * 360 + 90);
+		}
+		else
+		{
+			if(currentExplosion < Math.floor(currentExplosion += VITESSE_ANIM_MORT * dt) && currentExplosion < 10)
+			{
+				((ImageView)((Group)noeud).getChildren().get(0)).setImage(new Image("/res/explosion_" + (int)Math.floor(currentExplosion) + ".png"));
+			}
+			else if(currentExplosion >= 10)
+			{
+				((Group)noeud).getChildren().clear();
+				currentExplosion = 1.0;
+				animationMort = false;
+				premierGetNoeud = true;
+			}
+		}
 	}
 	
 	/**

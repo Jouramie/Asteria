@@ -12,11 +12,10 @@ public class VaisseauJoueur extends Vaisseau
 {
 	public static final double PUISSANCE_MOTEUR = 200000;
 	public static final double PUISSANCE_ROTATION_DEFAUT = 1;
-	
-	protected boolean gauche;
-	protected boolean droite;
-	protected boolean moteur;
-	protected double puissanceRotation;
+	private boolean gauche;
+	private boolean droite;
+	private boolean moteur;
+	private double puissanceRotation;
 	
 	/**
 	 * Constructeur du vaisseauJoueur de base.
@@ -54,6 +53,7 @@ public class VaisseauJoueur extends Vaisseau
 		gauche = false;
 		droite = false;
 		moteur = false;
+		animationMort = false;
 	}
 	
 	/**
