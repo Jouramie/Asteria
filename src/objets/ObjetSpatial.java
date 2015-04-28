@@ -17,8 +17,7 @@ import vue.Dessinable;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 	/**
-	 * Densité (en kg/m) des planètes. TODO: Mofidier la valeur pour qu'elle
-	 * soit cohérente.
+	 * Densité (en kg/m) des planètes.
 	 */
 	public final static double DENSITE = 1.0 / 2.0;
 	/**

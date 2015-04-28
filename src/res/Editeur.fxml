@@ -20,6 +20,7 @@
 						<Insets />
 					</HBox.margin>
 				</Button>
+            <Button fx:id="essayer" layoutX="837.0" layoutY="43.0" mnemonicParsing="false" onAction="#essayer" text="Essayer" textFill="RED" />
 				<Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
 				<Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
 				<Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />

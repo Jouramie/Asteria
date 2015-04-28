@@ -296,7 +296,6 @@ public class ContJeu implements Controleur
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
-			System.out.println(vaisseauJoueur.getPositionX());
 			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 			
 			// Ajoute les corps dans le JavaFX.

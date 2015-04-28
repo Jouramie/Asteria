@@ -292,6 +292,16 @@ public class ContEditeur implements Controleur
 	}
 	
 	@FXML
+	public void essayer()
+	{
+		ContJeu cont = new ContJeu();
+		ContPrincipal.getInstance().selectionnerControleur(cont);
+		Platform.runLater(() -> {;
+			cont.chargerNiveau(niveau);
+		});
+	}
+	
+	@FXML
 	public void sauve()
 	{
 		try
