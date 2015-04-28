@@ -35,19 +35,17 @@ public class Planete extends ObjetSpatial
 	 */
 	public enum Texture
 	{
-		BLEUE("/res/planeteBleue.png"),
-		JAUNE("/res/planeteJaune.png"),
-		MAGENTA("/res/planeteMagenta.png"),
-		ORANGE("/res/planeteOrange.png"),
-		ROUGE("/res/planeteRouge.png"),
-		VERTE("/res/planeteVerte.png");
+		BLEUE("/res/planeteBleue.png"), JAUNE("/res/planeteJaune.png"), MAGENTA(
+				"/res/planeteMagenta.png"), ORANGE("/res/planeteOrange.png"), ROUGE(
+				"/res/planeteRouge.png"), VERTE("/res/planeteVerte.png");
 		
 		private final String texture;
 		
 		/**
 		 * Constructeur de texture.
 		 * 
-		 * @param pTexture l'emplacement du fichier contenant la texture.
+		 * @param pTexture
+		 *            l'emplacement du fichier contenant la texture.
 		 */
 		Texture(String pTexture)
 		{
@@ -57,12 +55,13 @@ public class Planete extends ObjetSpatial
 		/**
 		 * Retourne la texture selon son nom.
 		 * 
-		 * @param tex le nom de la texture recherché.
+		 * @param tex
+		 *            le nom de la texture recherché.
 		 * @return la texture.
 		 */
 		public static Texture getTexture(String tex)
 		{
-			switch(tex.toLowerCase())
+			switch (tex.toLowerCase())
 			{
 			case "bleue":
 				return Texture.BLEUE;
@@ -114,7 +113,7 @@ public class Planete extends ObjetSpatial
 	public Planete(double pMasse, Vecteur pPosition, double pRayon)
 	{
 		super(pMasse, pPosition, true, new Vecteur());
-		init(pRayon);
+		init(pRayon, COULEUR_ATMOSHPERE_DEFAUT);
 	}
 	
 	/**
@@ -131,25 +130,28 @@ public class Planete extends ObjetSpatial
 			double pRayon)
 	{
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
-		init(pRayon);
+		init(pRayon, COULEUR_ATMOSHPERE_DEFAUT);
 	}
 	
 	/**
 	 * Initialise les attributs de la classe.
 	 * 
-	 * @param pRayon le rayon.
+	 * @param pRayon
+	 *            le rayon.
 	 */
-	private void init(double pRayon)
+	private void init(double pRayon, Color pCouleurAtmosphere)
 	{
 		setRayon(pRayon);
 		setRayonAtmosphere(RAYON_ATMOSPHERE_DEFAUT);
+		setCouleurAtmosphere(pCouleurAtmosphere);
 		group = new Group();
 	}
 	
 	/**
 	 * Change la texture de la planète.
 	 * 
-	 * @param pTexture la nouvelle texture de la planète.
+	 * @param pTexture
+	 *            la nouvelle texture de la planète.
 	 */
 	public void setTexture(Texture pTexture)
 	{
@@ -170,7 +172,8 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Modifie le rayon de la planète.
 	 * 
-	 * @param pRayon le nouveau rayon de la planète.
+	 * @param pRayon
+	 *            le nouveau rayon de la planète.
 	 */
 	public void setRayon(double pRayon)
 	{
@@ -184,7 +187,7 @@ public class Planete extends ObjetSpatial
 		}
 	}
 	
-	/** 
+	/**
 	 * Retourne le rayon de la planète
 	 * 
 	 * @return le rayon de la planète.
@@ -197,7 +200,8 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Modifie le rayon de l'atmosphere de la planète.
 	 * 
-	 * @param pRayonAtmosphere le nouveau rayon de la planète.
+	 * @param pRayonAtmosphere
+	 *            le nouveau rayon de la planète.
 	 */
 	public void setRayonAtmosphere(double pRayonAtmosphere)
 	{
@@ -222,7 +226,29 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le rayon dans lequel un corps est considéré comme en collision avec la planète. Exactement la même valeur que getRayon().
+	 * Modifie la cou leur de l'atmosphère de la planète.
+	 * 
+	 * @param pCouleurAtmosphere
+	 *            la nouvelle couleur de la planète.
+	 */
+	public void setCouleurAtmosphere(Color pCouleurAtmosphere)
+	{
+		couleurAtmosphere = pCouleurAtmosphere;
+	}
+	
+	/**
+	 * Retourne la couleur de l'atmosphère de la planète.
+	 * 
+	 * @return la couleur de l'atmnosphère de la planète.
+	 */
+	public Color getCouleurAtmosphere()
+	{
+		return couleurAtmosphere;
+	}
+	
+	/**
+	 * Retourne le rayon dans lequel un corps est considéré comme en collision
+	 * avec la planète. Exactement la même valeur que getRayon().
 	 * 
 	 * @return le rayon de collision.
 	 */
@@ -242,9 +268,10 @@ public class Planete extends ObjetSpatial
 		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + rayonAtmosphere);
-		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon + rayonAtmosphere + 2, false,
-				CycleMethod.REPEAT, new Stop(0.7, Color.ORANGE), new Stop(1,
-						Color.TRANSPARENT));
+		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon
+				+ rayonAtmosphere + 2, false, CycleMethod.REPEAT, new Stop(
+				rayon / (rayon + rayonAtmosphere + 1), Color.ORANGE), new Stop(1,
+				Color.TRANSPARENT));
 		cercle.setFill(grad);
 		
 		ImageView image = new ImageView(texture);
@@ -259,7 +286,8 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne une force extérieur appliqué sur la planète. 
+	 * Retourne une force extérieur appliqué sur la planète.
+	 * 
 	 * @return toujours un vecteur null.
 	 */
 	public Vecteur getForceExt()
@@ -270,7 +298,8 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Met à jour l'aspect graphique de la planète.
 	 */
-	public void maj(){
+	public void maj()
+	{
 		group.getChildren().clear();
 		getNoeud();
 	}
