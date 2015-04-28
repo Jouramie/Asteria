@@ -233,8 +233,11 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onSupprimer()
 	{
-		niveau.supprimerCorps(corpsSelect);
-		chargerNiveau();
+		if(!(corpsSelect instanceof VaisseauJoueur))
+		{
+			niveau.supprimerCorps(corpsSelect);
+			chargerNiveau();
+		}
 	}
 	
 	@FXML
@@ -614,7 +617,9 @@ public class ContEditeur implements Controleur
 			textFieldCarburantDepart.setText("" + corpsSelect.getCarburantDepart());
 			comboBoxCorps.setValue("Vaisseau");
 			if (corpsSelect instanceof VaisseauJoueur)
+			{
 				comboBoxCorps.setValue("Vaisseau Joueur");
+			}
 		}
 		
 		else if (objectifSelect instanceof ObjectifRayon)
