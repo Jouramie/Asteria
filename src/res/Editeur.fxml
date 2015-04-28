@@ -23,7 +23,7 @@
 				<Button fx:id="sauve" mnemonicParsing="false" onAction="#sauve" text="Sauvegarder" />
 				<Button fx:id="buttonCharger" mnemonicParsing="false" onAction="#charge" text="Charger" />
 				<Button fx:id="erase" mnemonicParsing="false" onAction="#erase" text="Effacer" textFill="RED" />
-				<ComboBox fx:id="comboBoxCorps" onAction="#onComboBoxCorps" />
+				<ComboBox fx:id="comboBoxCorps" />
 			</children>
 		</HBox>
 	</bottom>
@@ -90,7 +90,7 @@
 		</ImageView>
 	</top>
 	<center>
-		<Pane fx:id="pane" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="727.0" prefWidth="1270.0" BorderPane.alignment="CENTER">
+		<Pane fx:id="pane" onMouseClicked="#mouseClicked" onScroll="#zoom" prefHeight="727.0" prefWidth="1270.0" BorderPane.alignment="CENTER">
 			<styleClass>
 				<String fx:value="editeur-jeu" />
 				<String fx:value="jeu-root" />
