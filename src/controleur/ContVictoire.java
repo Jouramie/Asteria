@@ -1,28 +1,28 @@
 package controleur;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import vue.VueWin;
-
+import vue.VueVictoire;
 /**
  * Contrôleur pour l'écran de réussite du jeu !
  * 
  * @author Jonathan Samson
  * @version 1.0
  */
-public class ContWin implements Controleur
+public class ContVictoire implements Controleur
 {
 	@FXML
 	private Button jouer;
 	@FXML
 	private Button quitter;
 	
+	private VueVictoire vue;
+	
 	/**
 	 * Constructeur du contrôleur.
 	 */
-	public ContWin()
+	public ContVictoire()
 	{
-		
+		vue = new VueVictoire();
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class ContWin implements Controleur
 	 */
 	public void initialiser()
 	{
-		ContPrincipal.getInstance().afficherVue(new VueWin(),true);
+		ContPrincipal.getInstance().afficherVue(vue, true);
 	}
 	
 	/**

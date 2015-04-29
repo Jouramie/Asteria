@@ -1,6 +1,4 @@
 package controleur;
-import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
@@ -273,7 +271,7 @@ public class ContJeu implements Controleur
 		else
 		{
 			retour();
-			ContPrincipal.getInstance().selectionnerControleur(new ContWin());
+			ContPrincipal.getInstance().selectionnerControleur(new ContVictoire());
 		}
 	}
 	
