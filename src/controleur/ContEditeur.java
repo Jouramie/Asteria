@@ -692,21 +692,23 @@ public class ContEditeur implements Controleur
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
 			if (c instanceof VaisseauJoueur)
+			{
 				vaisseauJoueur = (VaisseauJoueur) c;
+			}
 		}
 		
 		// Si aucun vaisseau joueur n'est défini, on en ajoute un.
 		if (vaisseauJoueur == null)
 		{
-			corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
+			vaisseauJoueur = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
 					VaisseauJoueur.MASSE_DEFAUT,
 					VaisseauJoueur.CARBURANT_DEFAUT,
 					VaisseauJoueur.CARBURANT_DEFAUT);
-			corpsSelect.setPosition(niveau.getPointDepart());
-			niveau.ajouterCorps(corpsSelect);
-			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
-			vaisseauJoueur = (VaisseauJoueur) corpsSelect;
+			niveau.ajouterCorps(vaisseauJoueur);
+			ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 		}
+		vaisseauJoueur.setPosition(niveau.getPointDepart());
+		vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 		
 		// S'il n'y a pas d'objectif, on en ajoute un.
 		if (niveau.getObjectif() == null)
