@@ -324,8 +324,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onEssayer()
 	{
-		ContJeu cont = new ContJeu(niveau);
-		ContPrincipal.getInstance().selectionnerControleur(cont);
+		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
 	}
 	
 	@FXML
