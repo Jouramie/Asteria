@@ -273,7 +273,7 @@ public class ContJeu implements Controleur
 		else
 		{
 			retour();
-			JOptionPane.showMessageDialog(null, "Vous avez réussi le jeu!\nFélicitation!", "Victoire", JOptionPane.PLAIN_MESSAGE);
+			ContPrincipal.getInstance().selectionnerControleur(new ContWin());
 		}
 	}
 	
