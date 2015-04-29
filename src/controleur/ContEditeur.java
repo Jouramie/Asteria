@@ -584,7 +584,7 @@ public class ContEditeur implements Controleur
 	 */
 	private void creePlanete(Vecteur pos)
 	{
-		Planete p = new Planete(Planete.PLANETE_MASSE_DEFAUT, pos, Planete.RAYON_DEFAUT);
+		Planete p = new Planete(Planete.PLANETE_MASSE_DEFAUT, pos, Planete.RAYON_DEFAUT, Planete.RAYON_ATMOSPHERE_DEFAUT, Planete.COULEUR_ATMOSHPERE_DEFAUT);
 		p.setTexture(Planete.TEXTURE_DEFAUT);
 		corpsSelect = p;
 	}
