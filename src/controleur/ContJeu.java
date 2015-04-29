@@ -30,8 +30,8 @@ import vue.VueJeu;
 public class ContJeu implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
-	public static final double MARGE_ECRAN_HORIZ = 300;
-	public static final double MARGE_ECRAN_VERT = 200;
+	public static final double MARGE_ECRAN_HORIZ = 350;
+	public static final double MARGE_ECRAN_VERT = 250;
 	
 	@FXML
 	private Pane pane;
