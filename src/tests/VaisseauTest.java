@@ -142,16 +142,6 @@ public class VaisseauTest
 	}
 	
 	@Test
-	public void testGetPuissanceMax()
-	{
-		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v1.getPuissanceMax(), 0.0001);
-		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v2.getPuissanceMax(), 0.0001);
-		assertEquals(100, v3.getPuissanceMax(), 0.0001);
-		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v4.getPuissanceMax(), 0.0001);
-		assertEquals(Vaisseau.PUISSANCE_DEFAUT, v5.getPuissanceMax(), 0.0001);
-	}
-	
-	@Test
 	public void testCarburantMaxProperty()
 	{
 		assertTrue(v1.carburantMaxProperty() != null);

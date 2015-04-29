@@ -25,7 +25,6 @@ public class Vaisseau extends ObjetSpatial
 	public final static int NB_FRAMES_ANIM_MORT = 9;
 	public final static double MASSE_DEFAUT = 16e3;
 	
-	protected double puissanceMax;
 	protected double puissance;
 	protected Vecteur direction;
 	protected DoubleProperty carburantMax;
@@ -127,7 +126,6 @@ public class Vaisseau extends ObjetSpatial
 	private void init(double pPuissanceMax, double pCarburantMax,
 			double pCarburantDepart)
 	{
-		setPuissanceMax(pPuissanceMax);
 		setPuissance(pPuissanceMax);
 		direction = new Vecteur();
 		carburantMax = new SimpleDoubleProperty();
@@ -149,30 +147,6 @@ public class Vaisseau extends ObjetSpatial
 		currentExplosion = 1.0;
 		currentFlamme = 0.0;
 		sante = new SimpleDoubleProperty(1.0);
-	}
-	
-	/**
-	 * Retourne la puissance maximale du réacteur (en Newton).
-	 * 
-	 * @return Puissance maximale du réacteur.
-	 */
-	public double getPuissanceMax()
-	{
-		return puissanceMax;
-	}
-	
-	/**
-	 * Modifie la puissance maximale du réacteur.
-	 * 
-	 * @param pPuissanceMax
-	 *            Puissance maximale (en Newton).
-	 */
-	public void setPuissanceMax(double pPuissanceMax)
-	{
-		if (pPuissanceMax <= 0)
-			puissanceMax = PUISSANCE_DEFAUT;
-		else
-			puissanceMax = pPuissanceMax;
 	}
 	
 	/**
