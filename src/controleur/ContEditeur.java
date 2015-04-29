@@ -412,6 +412,7 @@ public class ContEditeur implements Controleur
 			niveau = Niveau.chargerNiveau(new FileInputStream(file));
 			
 			chargerNiveau();
+			vBoxMenu.setVisible(false);
 			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 		}
 		catch (Exception e)
