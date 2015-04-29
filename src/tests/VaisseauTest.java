@@ -20,18 +20,18 @@ public class VaisseauTest
 	@Before
 	public void testVaisseauDoubleVecteurDoubleDoubleVecteurVecteur()
 	{
-		v1 = new Vaisseau(0, 0, 0, null, null);
+		v1 = new Vaisseau(0, 0, 100, 100, new Vecteur(), new Vecteur());
 		assertTrue(v1.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
 		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
-		v2 = new Vaisseau(-10, -1, -1, new Vecteur(),
+		v2 = new Vaisseau(-10, -1, -1, -1, new Vecteur(),
 				new Vecteur());
 		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
 		assertTrue(v2.getVitesse().getX() == 0 && v2.getVitesse().getY() == 0);
-		v3 = new Vaisseau(100, 100, 100, new Vecteur(150,
+		v3 = new Vaisseau(100, 100, 100, 100, new Vecteur(150,
 				125), new Vecteur(10, 10));
 		assertTrue(v3.getPuissance() == 100);
 		assertTrue(v3.getMasse() == 100);
@@ -43,18 +43,17 @@ public class VaisseauTest
 	@Before
 	public void testVaisseauDoubleDoubleDoubleDoubleDoubleVecteur()
 	{
-		v4 = new Vaisseau(0, 0, 0, 0, 0, null);
+		v4 = new Vaisseau(0, 0, 0, 0, null, null);
 		assertTrue(v4.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v4.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v4.getPositionX() == 0 && v4.getPositionY() == 0);
 		assertTrue(v4.getVitesse().getX() == 0 && v4.getVitesse().getY() == 0);
-		v5 = new Vaisseau(-10, -1, -1, -1, -1, new Vecteur());
+		v5 = new Vaisseau(-10, -1, -1, -1, new Vecteur(-1, -1), new Vecteur());
 		assertTrue(v5.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v5.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v5.getPositionX() == -1 && v5.getPositionY() == -1);
 		assertTrue(v5.getVitesse().getX() == 0 && v5.getVitesse().getY() == 0);
-		v6 = new Vaisseau(100, 100, 100, 150, 125,
-				new Vecteur(10, 10));
+		v6 = new Vaisseau(100, 100, 100, 150, new Vecteur(150, 125), new Vecteur(10, 10));
 		assertTrue(v6.getPuissance() == 100);
 		assertTrue(v6.getMasse() == 100);
 		assertTrue(v6.getPositionX() == 150 && v6.getPositionY() == 125);
@@ -80,19 +79,19 @@ public class VaisseauTest
 		v1.setCarburantMax(76.0);
 		assertEquals(76.0, v1.getCarburantMax(), 0.0001);
 		v1.setCarburantMax(-76);
-		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
+		assertEquals(20.0, v1.getCarburantMax(), 0.0001);
 		v1.setCarburantMax(0);
-		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
+		assertEquals(20.0, v1.getCarburantMax(), 0.0001);
 	}
 	
 	@Test
 	public void testGetCarburantMax()
 	{
 		assertEquals(100.0, v1.getCarburantMax(), 0.0001);
-		assertEquals(100.0, v2.getCarburantMax(), 0.0001);
+		assertEquals(20.0, v2.getCarburantMax(), 0.0001);
 		assertEquals(100.0, v3.getCarburantMax(), 0.0001);
-		assertEquals(100.0, v4.getCarburantMax(), 0.0001);
-		assertEquals(100.0, v5.getCarburantMax(), 0.0001);
+		assertEquals(20.0, v4.getCarburantMax(), 0.0001);
+		assertEquals(20.0, v5.getCarburantMax(), 0.0001);
 	}
 	
 	@Test
@@ -112,10 +111,10 @@ public class VaisseauTest
 	public void testGetCarburantRestant()
 	{
 		assertEquals(100.0, v1.getCarburantRestant(), 0.0001);
-		assertEquals(100.0, v2.getCarburantRestant(), 0.0001);
+		assertEquals(0.0, v2.getCarburantRestant(), 0.0001);
 		assertEquals(100.0, v3.getCarburantRestant(), 0.0001);
-		assertEquals(100.0, v4.getCarburantRestant(), 0.0001);
-		assertEquals(100.0, v5.getCarburantRestant(), 0.0001);
+		assertEquals(0.0, v4.getCarburantRestant(), 0.0001);
+		assertEquals(0.0, v5.getCarburantRestant(), 0.0001);
 	}
 	
 	@Test
@@ -136,10 +135,10 @@ public class VaisseauTest
 	public void testGetCarburantDepart()
 	{
 		assertEquals(100.0, v1.getCarburantDepart(), 0.0001);
-		assertEquals(100.0, v2.getCarburantDepart(), 0.0001);
+		assertEquals(0.0, v2.getCarburantDepart(), 0.0001);
 		assertEquals(100.0, v3.getCarburantDepart(), 0.0001);
-		assertEquals(100.0, v4.getCarburantDepart(), 0.0001);
-		assertEquals(100.0, v5.getCarburantDepart(), 0.0001);
+		assertEquals(0.0, v4.getCarburantDepart(), 0.0001);
+		assertEquals(0.0, v5.getCarburantDepart(), 0.0001);
 	}
 	
 	@Test

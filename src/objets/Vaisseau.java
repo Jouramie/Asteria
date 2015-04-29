@@ -111,7 +111,7 @@ public class Vaisseau extends ObjetSpatial
 	protected Vaisseau(double pPuissance, double pMasse, double pCarburantMax,
 			double pCarburantDepart)
 	{
-		super(pMasse, 1, 1, false, new Vecteur(1, 1));
+		super(pMasse, 0, 0, false, new Vecteur(1, 1));
 		init(pPuissance, pCarburantMax, pCarburantDepart);
 	}
 	
@@ -131,7 +131,16 @@ public class Vaisseau extends ObjetSpatial
 		direction = new Vecteur();
 		carburantMax = new SimpleDoubleProperty();
 		setCarburantMax(pCarburantMax);
-		carburantDepart = pCarburantDepart;
+		
+		if(pCarburantDepart >= 0)
+		{
+			carburantDepart = pCarburantDepart;
+		}
+		else
+		{
+			carburantDepart = 0;
+		}
+		
 		carburantRestant = new SimpleDoubleProperty();
 		setCarburantRestant(carburantDepart);
 		

@@ -3,12 +3,8 @@ package tests;
 import static org.junit.Assert.*;
 import objets.Vaisseau;
 import objets.VaisseauJoueur;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import utils.Vecteur;
-
 /**
  * Classe de test de VaisseauJoueur.
  * @author EquBolduc
@@ -20,23 +16,20 @@ public class VaisseauJoueurTest
 	@Before
 	public void testVaisseauJoueur()
 	{
-		v1 = new VaisseauJoueur(0, null, 0, 0, null, null);
+		v1 = new VaisseauJoueur(0, 0, 0, 0);
 		assertTrue(v1.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
-		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
-		v2 = new VaisseauJoueur(-10, new Vecteur(), -1, -1, new Vecteur(),
-				new Vecteur(10, 0));
+		assertTrue(v1.getVitesse().getX() == 1 && v1.getVitesse().getY() == 1);
+		v2 = new VaisseauJoueur(-1, -1, -1, -1);
 		assertTrue(v2.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
-		assertEquals(10, v2.getVitesse().getX(), 0.0001);
-		assertEquals(0, v2.getVitesse().getY(), 0.0001);
-		v4 = new VaisseauJoueur(0, null, 0, 0, 0, 0, null);
+		v4 = new VaisseauJoueur(0, 0, 0, 0);
 		assertTrue(v4.getPuissance() == Vaisseau.PUISSANCE_DEFAUT);
 		assertTrue(v4.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v4.getPositionX() == 0 && v4.getPositionY() == 0);
-		assertTrue(v4.getVitesse().getX() == 0 && v4.getVitesse().getY() == 0);
+		assertTrue(v4.getVitesse().getX() == 1 && v4.getVitesse().getY() == 1);
 	}
 	
 	@Test
@@ -44,9 +37,11 @@ public class VaisseauJoueurTest
 	{
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
+		v2.setAngle(0);
 		v2.avancer(true);
 		v2.setCarburantMax(9e9);
 		v2.setCarburantRestant(9e9);
+		System.out.println(v2.getForceExt().getNorme());
 		assertEquals(200000, v2.getForceExt().getNorme(), 0.0001);
 		v2.avancer(false);
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
@@ -56,7 +51,7 @@ public class VaisseauJoueurTest
 	@Test
 	public void testMaj()
 	{
-		// Méthode nécessite un contexte JavaFx.
+		assertTrue(true);
 	}
 	
 	@Test

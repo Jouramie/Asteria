@@ -26,7 +26,7 @@ public class ObjectifRayonTest
 	{
 		posRayon = new Vecteur(100, 100);
 		rayon = 10;
-		vaisseau = new Vaisseau(100, 6e10, 1000, 0, 0, new Vecteur(0, 0));
+		vaisseau = new Vaisseau(100, 6e10, 1000, 0, 0, 0, new Vecteur(0, 0));
 		obj = new ObjectifRayon(posRayon, rayon);
 		obj.setVaisseau(vaisseau);
 	}
@@ -79,7 +79,7 @@ public class ObjectifRayonTest
 	public void testSetVaisseau()
 	{
 		assertEquals(vaisseau == obj.getVaisseau(), true);
-		obj.setVaisseau(new Vaisseau(10, 6e12, 100, 10, 10, new Vecteur(10, 10)));
+		obj.setVaisseau(new Vaisseau(10, 6e12, 100, 100, 10, 10, new Vecteur(10, 10)));
 		assertNotEquals(vaisseau == obj.getVaisseau(), true);
 		obj.setVaisseau(null);
 		assertNotEquals(null == obj.getVaisseau(), true);
