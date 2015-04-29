@@ -600,13 +600,6 @@ public class ContEditeur implements Controleur
 		corpsSelect = v;
 	}
 	
-	@SuppressWarnings("unused")
-	private void creeVaisseauJoueur(Vecteur pos)
-	{
-		VaisseauJoueur v = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT, VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT);
-		corpsSelect = v;
-	}
-	
 	/**
 	 * Affiche le menu pour modifier les paramètres de l'objet sélectionné.
 	 */
