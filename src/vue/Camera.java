@@ -13,10 +13,12 @@ public class Camera
 	/**
 	 * Défini la vitesse du zoom.
 	 */
-	public static final double VITESSE_ZOOM = 15.0;
+	public static final double VITESSE_ZOOM = 10.0;
 	
 	private double largeur;
 	private double hauteur;
+	private double targetX;
+	private double targetY;
 	private double x;
 	private double y;
 	private double facteur;
@@ -31,6 +33,8 @@ public class Camera
 	{
 		largeur = 0.0;
 		hauteur = 0.0;
+		targetX = 0.0;
+		targetY = 0.0;
 		x = 0.0;
 		y = 0.0;
 		facteur = 1.0;
@@ -82,8 +86,8 @@ public class Camera
 	 */
 	public void deplacer(double pX, double pY)
 	{
-		x = pX;
-		y = pY;
+		targetX = pX;
+		targetY = pY;
 	}
 	
 	/**
@@ -92,7 +96,7 @@ public class Camera
 	 */
 	public Vecteur getDeplacement()
 	{
-		return new Vecteur(x, y);
+		return new Vecteur(targetX, targetY);
 	}
 	
 	/**
@@ -168,6 +172,8 @@ public class Camera
 	public void update(double dt)
 	{
 		facteur = bezier(dt, facteur, targetFacteur, VITESSE_ZOOM);
+		x = bezier(dt, x, targetX, VITESSE_ZOOM);
+		y = bezier(dt, y, targetY, VITESSE_ZOOM);
 	}
 	
 	/**

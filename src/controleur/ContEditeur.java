@@ -414,6 +414,7 @@ public class ContEditeur implements Controleur
 			chargerNiveau();
 			vBoxMenu.setVisible(false);
 			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().zoomer(1.0);
 		}
 		catch (Exception e)
 		{

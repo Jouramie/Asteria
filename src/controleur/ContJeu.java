@@ -297,6 +297,8 @@ public class ContJeu implements Controleur
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
 			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().zoomer(1.0);
+			vue.getCamera().update(0.1);
 			
 			// Ajoute les corps dans le JavaFX.
 			vue.initialiserCorps();
