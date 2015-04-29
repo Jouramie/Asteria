@@ -41,7 +41,7 @@
 						<TextField fx:id="textFieldPositionY" onAction="#onPositionY" prefHeight="25.0" prefWidth="119.0" />
 						<Pane>
 							<children>
-      								<VBox fx:id="vBoxMenuCorps" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
+      								<VBox fx:id="vBoxMenuCorps" prefWidth="200.0" styleClass="editeur-menu-droite">
       									<children>
       										<Label styleClass="editeur-label" text="Masse" />
       										<TextField fx:id="textFieldMasse" onAction="#onMasse" prefHeight="25.0" prefWidth="119.0" />
@@ -57,9 +57,13 @@
       														<ComboBox fx:id="comboBoxTexture" onAction="#onTexture" prefHeight="46.0" prefWidth="200.0" />
       														<Label styleClass="editeur-label" text="Rayon" />
       														<TextField fx:id="textFieldRayon" onAction="#onRayon" prefHeight="25.0" prefWidth="119.0" />
+                                    <Label styleClass="editeur-label" text="Rayon Atmosphere" />
+                                    <TextField fx:id="textFieldRayonAtmosphere" onAction="#onRayonAtmosphere" prefHeight="25.0" prefWidth="119.0" />
+                                    <Label styleClass="editeur-label" text="Couleur Atmosphere" />
+                                    <ColorPicker fx:id="colorPickerCouleurAtmosphere" onAction="#onCouleurAtmosphere" />
       													</children>
       												</VBox>
-      												<VBox fx:id="vBoxMenuVaisseauJoueur" prefWidth="200.0" styleClass="editeur-menu-droite">
+      												<VBox fx:id="vBoxMenuVaisseauJoueur" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
       													<children>
       														<Label styleClass="editeur-label" text="Carburant maximum" />
       														<TextField fx:id="textFieldCarburantMax" onAction="#onCarburantMax" prefHeight="25.0" prefWidth="119.0" />
@@ -80,7 +84,7 @@
       										<Button fx:id="supprimer" mnemonicParsing="false" onAction="#onSupprimer" text="Supprimer" />
       									</children>
       								</VBox>
-								<VBox fx:id="vBoxMenuObjectif" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="editeur-menu-droite">
+								<VBox fx:id="vBoxMenuObjectif" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
 									<children>
 										<Label styleClass="editeur-label" text="Rayon" />
 										<TextField fx:id="textFieldRayonObjectif" onAction="#onRayonObjectif" prefHeight="25.0" prefWidth="119.0" />

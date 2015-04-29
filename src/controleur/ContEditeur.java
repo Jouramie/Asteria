@@ -3,11 +3,13 @@ package controleur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ListCell;
@@ -21,7 +23,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+
 import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
@@ -61,6 +65,8 @@ public class ContEditeur implements Controleur
 	@FXML
 	private ComboBox<Texture> comboBoxTexture;
 	@FXML
+	private ColorPicker colorPickerCouleurAtmosphere;
+	@FXML
 	private TextField textFieldMasse;
 	@FXML
 	private TextField textFieldPositionX;
@@ -78,6 +84,8 @@ public class ContEditeur implements Controleur
 	private TextField textFieldPuissance;
 	@FXML
 	private TextField textFieldVitesseDepart;
+	@FXML
+	private TextField textFieldRayonAtmosphere;
 	@FXML
 	private VBox vBoxMenu;
 	@FXML
@@ -144,6 +152,35 @@ public class ContEditeur implements Controleur
 			{
 				textFieldRayon.setText("" + corpsSelect.getRayon());
 			}
+		}
+	}
+	
+	@FXML
+	public void onRayonAtmosphere(ActionEvent e)
+	{
+		if (corpsSelect instanceof Planete)
+		{
+			Planete p = (Planete) corpsSelect;
+			try
+			{
+				p.setRayonAtmosphere(Double.valueOf(textFieldRayonAtmosphere.getText()));
+				p.maj();
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldRayonAtmosphere.setText("" + p.getRayonAtmosphere());
+			}
+		}
+	}
+	
+	@FXML
+	public void onCouleurAtmosphere(ActionEvent e)
+	{
+		if (corpsSelect instanceof Planete)
+		{
+			Planete p = (Planete) corpsSelect;
+			p.setCouleurAtmosphere(colorPickerCouleurAtmosphere.getValue());
+			p.maj();
 		}
 	}
 	
@@ -581,6 +618,7 @@ public class ContEditeur implements Controleur
 		
 		if (corpsSelect instanceof Planete)
 		{
+			Planete corpsSelect = (Planete) this.corpsSelect;
 			vBoxMenuCorps.setVisible(true);
 			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(true);
@@ -590,6 +628,8 @@ public class ContEditeur implements Controleur
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
+			textFieldRayonAtmosphere.setText("" + corpsSelect.getRayonAtmosphere());
+			colorPickerCouleurAtmosphere.setValue(corpsSelect.getCouleurAtmosphere());
 			comboBoxTexture.getSelectionModel().select(
 					((Planete) corpsSelect).getTexture());
 			comboBoxCorps.setValue("Planète");
