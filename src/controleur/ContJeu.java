@@ -431,6 +431,11 @@ public class ContJeu implements Controleur
 	public void editeur()
 	{
 		ContPrincipal.getInstance().viderCorps();
+		for(Corps c : niveau.getCorps())
+		{
+			c.reset();
+		}
+		vaisseauJoueur = null;
 		ContPrincipal.getInstance().selectionnerControleur(new ContEditeur(niveau));
 		
 	}
