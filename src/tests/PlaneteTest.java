@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.*;
+import javafx.scene.paint.Color;
 import objets.Planete;
 import objets.Planete.Texture;
 
@@ -24,15 +25,15 @@ public class PlaneteTest
 	@Before
 	public void beforePlaneteDoubleVecteur()
 	{
-		p1 = new Planete(0, null, 0);
+		p1 = new Planete(0, null, 0, 0, Color.WHITE);
 		assertEquals(Planete.MASSE_DEFAUT, p1.getMasse(), d);
 		assertEquals(0, p1.getPositionX(), d);
 		assertEquals(0, p1.getPositionY(), d);
-		p2 = new Planete(1, new Vecteur(), -1);
+		p2 = new Planete(1, new Vecteur(), -1, 0, Color.WHITE);
 		assertEquals(1, p2.getMasse(), d);
 		assertEquals(0, p2.getPositionX(), d);
 		assertEquals(0, p2.getPositionY(), d);
-		p4 = new Planete(60, new Vecteur(50, 40), 100);
+		p4 = new Planete(60, new Vecteur(50, 40), 100, 0, Color.WHITE);
 		assertEquals(60, p4.getMasse(), d);
 		assertEquals(50, p4.getPositionX(), d);
 		assertEquals(40, p4.getPositionY(), d);
@@ -41,15 +42,15 @@ public class PlaneteTest
 	@Before
 	public void beforePlaneteDoubleDoubleDouble()
 	{
-		p3 = new Planete(60, 50, 40, 30);
+		p3 = new Planete(60, 50, 40, 30, 0, Color.WHITE);
 		assertEquals(60, p3.getMasse(), d);
 		assertEquals(50, p3.getPositionX(), d);
 		assertEquals(40, p3.getPositionY(), d);
-		p5 = new Planete(-1, 0, 0, 0);
+		p5 = new Planete(-1, 0, 0, 0, 0, Color.WHITE);
 		assertEquals(Planete.MASSE_DEFAUT, p5.getMasse(), d);
 		assertEquals(0, p5.getPositionX(), d);
 		assertEquals(0, p5.getPositionY(), d);
-		p6 = new Planete(500000, 300, 300, 100);
+		p6 = new Planete(500000, 300, 300, 100, 0, Color.WHITE);
 		assertEquals(500000, p6.getMasse(), d);
 		assertEquals(300, p6.getPositionX(), d);
 		assertEquals(300, p6.getPositionY(), d);
@@ -104,7 +105,7 @@ public class PlaneteTest
 	@Test
 	public void testGetRayonAtmosphere()
 	{
-		assertEquals(Planete.RAYON_ATMOSPHERE_DEFAUT, p1.getRayonAtmosphere(), d);
+		assertEquals(0, p1.getRayonAtmosphere(), d);
 	}
 	
 	@Test

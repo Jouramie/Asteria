@@ -201,3 +201,30 @@
 	-fx-background-color: gray;
 	-fx-text-fill: #010010FF;
 }
+
+.color-picker .label
+{
+	-fx-background-color: #010010FF;
+	-fx-background-radius: 1.0px;
+	-fx-font-size: 20.0px;
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+	-fx-alignment: center;
+	-fx-pref-height: 46;
+}
+
+.color-palette{
+	-fx-background-color: #010010FF;
+	-fx-background-radius: 1.0px;
+	-fx-border-color: white;
+}
+
+.color-palette-region > .color-square.hover-square {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: white;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+}

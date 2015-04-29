@@ -1,11 +1,16 @@
 package tests;
 
 import static org.junit.Assert.*;
+
 import java.util.List;
+
+import javafx.scene.paint.Color;
 import modele.Corps;
 import objets.Planete;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import controleur.ContPrincipal;
 import utils.Vecteur;
 
@@ -22,8 +27,8 @@ public class ContPrincipalTest
 	@Before
 	public void testContPrincipal()
 	{
-		p1 = new Planete(5000, new Vecteur(0, 0), 100);
-		p2 = new Planete(10000, new Vecteur(10, 10), 100);
+		p1 = new Planete(5000, new Vecteur(0, 0), 100, 0, Color.WHITE);
+		p2 = new Planete(10000, new Vecteur(10, 10), 100, 0, Color.WHITE);
 		
 		ContPrincipal.getInstance().viderCorps();
 	}

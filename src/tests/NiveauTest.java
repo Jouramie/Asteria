@@ -1,8 +1,11 @@
 package tests;
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.paint.Color;
 import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
@@ -10,8 +13,10 @@ import modele.ObjectifRayon;
 import objets.Planete;
 import objets.Vaisseau;
 import objets.VaisseauJoueur;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import utils.Vecteur;
 /**
  * Classe de tests pour Niveau.
@@ -43,7 +48,7 @@ public class NiveauTest
 		
 		corps = new ArrayList<>();
 		corps.add(vaisseau);
-		corps.add(new Planete(1000, 100, 100, 15));
+		corps.add(new Planete(1000, 100, 100, 15, 0, Color.WHITE));
 		corps.add(new Vaisseau(0, 100, 0, 0, new Vecteur(250, 250), new Vecteur(10, 0)));
 		
 		descriptionNiveau = "Niveau très difficile";
@@ -59,7 +64,7 @@ public class NiveauTest
 	public void testAjouterCorps()
 	{
 		assertEquals(niveau.getCorps().size(), 3);
-		niveau.ajouterCorps(new Planete(0, 0, 0, 0));
+		niveau.ajouterCorps(new Planete(0, 0, 0, 0, 0, Color.WHITE));
 		assertEquals(niveau.getCorps().size(), 4);
 		niveau.ajouterCorps(null);
 		assertEquals(niveau.getCorps().size(), 4);
@@ -70,7 +75,7 @@ public class NiveauTest
 	{
 		File f = new File("/IOTest.txt");
 		niveau.sauvegarderNiveau(f);
-		niveau.ajouterCorps(new Planete(10, 10, 10, 10));
+		niveau.ajouterCorps(new Planete(10, 10, 10, 10, 0, Color.WHITE));
 		//assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size(), false);
 		niveau.sauvegarderNiveau(f);
 		//assertEquals(Niveau.chargerNiveau(null) == null, true);
@@ -117,10 +122,10 @@ public class NiveauTest
 	{
 		File f = new File("/IOTest.txt");
 		niveau.sauvegarderNiveau(f);
-		niveau.ajouterCorps(new Planete(10, 10, 10, 10));
+		niveau.ajouterCorps(new Planete(10, 10, 10, 10, 0, Color.WHITE));
 		//assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size() + 1, true);
 		niveau.sauvegarderNiveau(null);
-		niveau.ajouterCorps(new Planete(10, 450, 450, 10));
+		niveau.ajouterCorps(new Planete(10, 450, 450, 10, 0, Color.WHITE));
 		//assertEquals(niveau.getCorps().size() == Niveau.chargerNiveau(f).getCorps().size() + 1, false);
 	}
 	

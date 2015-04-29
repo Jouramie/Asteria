@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import javafx.scene.paint.Color;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
@@ -152,9 +154,12 @@ public class Niveau
 							double rayon = Double
 									.parseDouble(st.nextToken().trim());
 							String texture = st.nextToken().trim();
+							double rayonAtmosphere = Double
+									.parseDouble(st.nextToken().trim());
+							String couleurAtmosphere = st.nextToken().trim();
 							
 							Planete p = new Planete(masse, positionX, positionY,
-									rayon);
+									rayon, rayonAtmosphere, Color.web(couleurAtmosphere));
 							p.setTexture(Texture.getTexture(texture));
 							corps.add(p);
 							break;
@@ -337,7 +342,9 @@ public class Niveau
 					bw.write("Planete ; " + p.getMasse() + " ; "
 							+ p.getPositionX() + " ; " + p.getPositionY()
 							+ " ; " + p.getRayon() + " ; "
-							+ p.getTexture().toString());
+							+ p.getTexture().toString() + " ; "
+									+ p.getRayonAtmosphere() + " ; "
+											+ p.getCouleurAtmosphere().toString());
 					break;
 				}
 				case "objets.vaisseau":

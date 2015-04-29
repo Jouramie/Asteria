@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import javafx.scene.paint.Color;
 import objets.ObjetSpatial;
 import objets.Planete;
 
@@ -26,12 +27,12 @@ public class ObjetSpatialTest
 	@Before
 	public void beforeObjetSpatial()
 	{
-		oS1 = new Planete(0, null, 0);
-		oS2 = new Planete(1, new Vecteur(), 0);
-		oS3 = new Planete(60, 50, 40, 0);
-		oS4 = new Planete(60, new Vecteur(50, 40), 0);
-		oS5 = new Planete(-1, 0, 0, 0);
-		oS6 = new Planete(500000, 300, 300, 0);
+		oS1 = new Planete(0, null, 0, 0, Color.WHITE);
+		oS2 = new Planete(1, new Vecteur(), 0, 0, Color.WHITE);
+		oS3 = new Planete(60, 50, 40, 0, 0, Color.WHITE);
+		oS4 = new Planete(60, new Vecteur(50, 40), 0, 0, Color.WHITE);
+		oS5 = new Planete(-1, 0, 0, 0, 0, Color.WHITE);
+		oS6 = new Planete(500000, 300, 300, 0, 0, Color.WHITE);
 		// oS7 = new Vaisseau(1, new Vecteur(), 1, 1, new Vecteur(), new
 		// Vecteur(
 		// 40, 40));
