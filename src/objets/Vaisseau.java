@@ -440,16 +440,19 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public void jouerAnimationMort()
 	{
-		animationMort = true;
-		ImageView image = new ImageView("/res/explosion_1.png");
-		image.setFitWidth(150);
-		image.setFitHeight(150);
-		image.setTranslateX(-75);
-		image.setTranslateY(-100);
-		((Group)noeud).getChildren().clear();
-		((Group)noeud).getChildren().add(image);
-		noeudRotate.setAngle(0);
-		noeud.toFront();
+		if(!animationMort)
+		{
+			animationMort = true;
+			ImageView image = new ImageView("/res/explosion_1.png");
+			image.setFitWidth(150);
+			image.setFitHeight(150);
+			image.setTranslateX(-75);
+			image.setTranslateY(-100);
+			((Group)noeud).getChildren().clear();
+			((Group)noeud).getChildren().add(image);
+			noeudRotate.setAngle(0);
+			noeud.toFront();
+		}
 	}
 	
 	/**

@@ -343,7 +343,7 @@ public class Niveau
 				case "objets.vaisseau":
 				{
 					Vaisseau v = (Vaisseau) c;
-					bw.write("Vaisseau ; " + v.getPuissanceMax() + " ; "
+					bw.write("Vaisseau ; " + v.getPuissance() + " ; "
 							+ v.getMasse() + " ; " + v.getCarburantMax()
 							+ " ; " + v.getCarburantDepart() + " ; " + v.getPositionX() + " ; "
 							+ v.getPositionY() + " ; " + v.getVitesse().getX()
@@ -353,7 +353,7 @@ public class Niveau
 				case "objets.vaisseaujoueur":
 				{
 					VaisseauJoueur vj = (VaisseauJoueur) c;
-					bw.write("VaisseauJoueur ; " + vj.getPuissanceMax() + " ; "
+					bw.write("VaisseauJoueur ; " + vj.getPuissance() + " ; "
 							+ vj.getMasse() + " ; " 
 							+ vj.getCarburantMax() + " ; "
 							+ vj.getCarburantDepart());

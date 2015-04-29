@@ -57,6 +57,8 @@ public class ContEditeur implements Controleur
 	@FXML
 	private Button retour;
 	@FXML
+	private Button supprimer;
+	@FXML
 	private Button sauve;
 	@FXML
 	private Button erase;
@@ -79,13 +81,17 @@ public class ContEditeur implements Controleur
 	@FXML
 	private TextField textFieldCarburantDepart;
 	@FXML
+	private TextField textFieldPuissance;
+	@FXML
+	private TextField textFieldVitesseDepart;
+	@FXML
 	private VBox vBoxMenu;
 	@FXML
 	private VBox vBoxMenuCorps;
 	@FXML
 	private VBox vBoxMenuPlanete;
 	@FXML
-	private VBox vBoxMenuVaisseau;
+	private VBox vBoxMenuVaisseauJoueur;
 	@FXML
 	private VBox vBoxMenuObjectif;
 	
@@ -290,6 +296,33 @@ public class ContEditeur implements Controleur
 		{
 			textFieldCarburantDepart.setText(""
 					+ ((Vaisseau) corpsSelect).getCarburantDepart());
+		}
+	}
+	
+	@FXML
+	public void onPuissance(ActionEvent e)
+	{
+		try
+		{
+			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance.getText())));
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldPuissance.setText("" + ((Vaisseau) corpsSelect).getPuissance());
+		}
+	}
+	
+	@FXML
+	public void onVitesseDepart(ActionEvent e)
+	{
+		try
+		{
+			niveau.setVitesseDepart((Double.valueOf(textFieldVitesseDepart.getText())));
+		}
+		catch (NumberFormatException ex)
+		{
+			textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 		}
 	}
 	
@@ -564,28 +597,8 @@ public class ContEditeur implements Controleur
 	 */
 	private void creePlanete(Vecteur pos)
 	{
-		double masse;
-		double rayon;
-		try
-		{
-			masse = Double.valueOf(textFieldMasse.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			masse = Planete.PLANETE_MASSE_DEFAUT;
-		}
-		try
-		{
-			rayon = Double.valueOf(textFieldRayon.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			rayon = Planete.RAYON_DEFAUT;
-		}
-		
-		Planete p = new Planete(masse, pos, rayon);
-		p.setTexture(comboBoxTexture.getValue());
-		
+		Planete p = new Planete(Planete.PLANETE_MASSE_DEFAUT, pos, Planete.RAYON_DEFAUT);
+		p.setTexture(Planete.TEXTURE_DEFAUT);
 		corpsSelect = p;
 	}
 	
@@ -594,81 +607,14 @@ public class ContEditeur implements Controleur
 	 */
 	private void creeVaisseau(Vecteur pos)
 	{
-		double masse;
-		double carburantDepart;
-		double carburantMax;
-		
-		try
-		{
-			masse = Double.valueOf(textFieldMasse.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			masse = Planete.PLANETE_MASSE_DEFAUT;
-		}
-		
-		try
-		{
-			carburantDepart = Double
-					.valueOf(textFieldCarburantDepart.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			carburantDepart = Vaisseau.CARBURANT_DEFAUT;
-		}
-		
-		try
-		{
-			carburantMax = Double.valueOf(textFieldCarburantMax.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			carburantMax = Vaisseau.CARBURANT_DEFAUT;
-		}
-		Vaisseau v = new Vaisseau(1, masse, carburantMax, carburantDepart, pos,
-				new Vecteur());
-		
+		Vaisseau v = new Vaisseau(Vaisseau.PUISSANCE_DEFAUT, Vaisseau.MASSE_DEFAUT, Vaisseau.CARBURANT_DEFAUT, Vaisseau.CARBURANT_DEFAUT, pos, new Vecteur());
 		corpsSelect = v;
 	}
 	
 	@SuppressWarnings("unused")
 	private void creeVaisseauJoueur(Vecteur pos)
 	{
-		double masse;
-		double carburantDepart;
-		double carburantMax;
-		
-		try
-		{
-			masse = Double.valueOf(textFieldMasse.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			masse = Planete.PLANETE_MASSE_DEFAUT;
-		}
-		
-		try
-		{
-			carburantDepart = Double
-					.valueOf(textFieldCarburantDepart.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			carburantDepart = Vaisseau.CARBURANT_DEFAUT;
-		}
-		
-		try
-		{
-			carburantMax = Double.valueOf(textFieldCarburantMax.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			carburantMax = Vaisseau.CARBURANT_DEFAUT;
-		}
-		// TODO ajouter la puissance et la vitesse de départ dans l'éditeur
-		VaisseauJoueur v = new VaisseauJoueur(1, masse, carburantMax,
-				carburantDepart);
-		
+		VaisseauJoueur v = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT, VaisseauJoueur.MASSE_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT, VaisseauJoueur.CARBURANT_DEFAUT);
 		corpsSelect = v;
 	}
 	
@@ -678,14 +624,17 @@ public class ContEditeur implements Controleur
 	private void afficherMenuParametre()
 	{
 		if (corpsSelect == null && objectifSelect == null)
+		{
 			return;
+		}
 		vBoxMenu.setVisible(true);
 		if (corpsSelect instanceof Planete)
 		{
 			vBoxMenuCorps.setVisible(true);
 			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(true);
-			vBoxMenuVaisseau.setVisible(false);
+			vBoxMenuVaisseauJoueur.setVisible(false);
+			supprimer.setVisible(true);
 			textFieldRayon.setText("" + corpsSelect.getRayon());
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
@@ -700,16 +649,22 @@ public class ContEditeur implements Controleur
 			vBoxMenuCorps.setVisible(true);
 			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(false);
-			vBoxMenuVaisseau.setVisible(true);
+			vBoxMenuVaisseauJoueur.setVisible(false);
+			supprimer.setVisible(true);
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
-			textFieldCarburantDepart.setText(""
-					+ corpsSelect.getCarburantDepart());
 			comboBoxCorps.setValue("Vaisseau");
 			if (corpsSelect instanceof VaisseauJoueur)
+			{
+				vBoxMenuVaisseauJoueur.setVisible(true);
+				supprimer.setVisible(false);
+				textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
+				textFieldCarburantDepart.setText(""	+ corpsSelect.getCarburantDepart());
+				textFieldPuissance.setText("" + corpsSelect.getPuissance());
+				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 				comboBoxCorps.setValue("Vaisseau Joueur");
+			}
 		}
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
