@@ -124,20 +124,13 @@ public class PlaneteTest
 		assertEquals(0, p1.getForceExt().getNorme(), d);
 	}
 	
-
-	@Test
-	public void testGetRayonCollision()
-	{
-		assertEquals(p1.getRayon(), p1.getRayonCollision(), d);
-	}
-	
 	@Test
 	public void testTexture()
 	{
 		//public static Texture getTexture(String tex)
 		assertEquals(Texture.BLEUE, Texture.getTexture("bleue"));
 		assertEquals(Texture.JAUNE, Texture.getTexture("jaune"));
-		assertEquals(Texture.MAGENTA, Texture.getTexture("magenta"));
+		assertEquals(Texture.MAGENTA, Texture.getTexture("MAGENTA"));
 		assertEquals(Texture.ORANGE, Texture.getTexture("orange"));
 		assertEquals(Texture.ROUGE, Texture.getTexture("rouge"));
 		assertEquals(Texture.VERTE, Texture.getTexture("verte"));

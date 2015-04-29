@@ -173,4 +173,14 @@ public class NiveauTest
 		niveau.setVitesseDepart(-1);
 		assertNotEquals(niveau.getVitesseDepart(), null);
 	}
+	
+	@Test
+	public void testSupprimerCorps()
+	{
+		assertEquals(niveau.getCorps().size() == 3, true);
+		niveau.supprimerCorps(niveau.getCorps().get(0));
+		assertEquals(niveau.getCorps().size() == 2, true);
+		niveau.supprimerCorps(new VaisseauJoueur(0, 0, 0, 0));
+		assertEquals(niveau.getCorps().size() == 2, true);
+	}
 }

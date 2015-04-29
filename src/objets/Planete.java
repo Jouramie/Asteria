@@ -247,17 +247,6 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le rayon dans lequel un corps est considéré comme en collision
-	 * avec la planète. Exactement la même valeur que getRayon().
-	 * 
-	 * @return le rayon de collision.
-	 */
-	public int getRayonCollision()
-	{
-		return (int) rayon;
-	}
-	
-	/**
 	 * Retourne un noeud correspondant à l'aspect graphique de la planète.
 	 * 
 	 * @return un group contenant les composants graphique de la planète.

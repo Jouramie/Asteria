@@ -315,7 +315,7 @@ public class Niveau
 	}
 	
 	/**
-	 * Saucegarde le niveau dans le fichier passé en paramètre.
+	 * Sauvegarde le niveau dans le fichier passé en paramètre.
 	 * 
 	 * @param fichier
 	 *            Fichier dans lequel le niveau est à sauvegarder.

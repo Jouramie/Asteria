@@ -5,6 +5,7 @@ import objets.Vaisseau;
 import objets.VaisseauJoueur;
 import org.junit.Before;
 import org.junit.Test;
+import utils.Vecteur;
 /**
  * Classe de test de VaisseauJoueur.
  * @author EquBolduc
@@ -37,7 +38,6 @@ public class VaisseauJoueurTest
 	{
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
-		v2.setAngle(0);
 		v2.avancer(true);
 		v2.setCarburantMax(9e9);
 		v2.setCarburantRestant(9e9);
@@ -45,12 +45,18 @@ public class VaisseauJoueurTest
 		v2.avancer(false);
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
 		assertEquals(0, v2.getForceExt().getY(), 0.0001);
+		v2.setCarburantRestant(0);
+		v2.avancer(true);
+		assertEquals(0, v2.getForceExt().getNorme(), 0.0001);
 	}
 	
 	@Test
-	public void testMaj()
+	public void testSetVitesse()
 	{
-		assertTrue(true);
+		v1.setVitesse(new Vecteur(10, 0));
+		assertEquals(v1.getVitesse().getNorme() == 10, true);
+		v1.setVitesse(null);
+		assertEquals(v1.getVitesse().getNorme() == 0, true);
 	}
 	
 	@Test
@@ -63,12 +69,19 @@ public class VaisseauJoueurTest
 		v1.setCarburantRestant(100);
 		v1.update(1.0);
 		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
+		v1.avancer(false);
+		v1.update(1.0);
+		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
 	}
 	
 	@Test
 	public void testOnCollision()
 	{
 		v1.onCollision(v2);
+		assertEquals(0.5, v1.getSante(), 0.0001);
+		v1.setSante(1.0);
+		v4.setMasse(v1.getMasse() * 2 + 1);
+		v1.onCollision(v4);
 		assertEquals(0.0, v1.getSante(), 0.0001);
 	}
 	

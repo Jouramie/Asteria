@@ -2,17 +2,38 @@ package objets;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import utils.Vecteur;
+/**
+ * Classe représentant une tête.
+ * 
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class Tete extends ObjetSpatial
 {
 	private Texture texture;
+	private double rayon;
 	public static final Texture TEXTURE_DEFAUT = Texture.SIMONPIERRE;
+	public static final double RAYON_DEFAUT = 100.0;
 	
-	public Tete(double pMasse, Vecteur pPosition, boolean pStatique,
+	/**
+	 * Constructeur de la classe Tete.
+	 * @param pMasse Masse de la tête.
+	 * @param pRayon Rayon de la tête.
+	 * @param pPosition Position initiale de la tête.
+	 * @param pVitesse Vitesse initiale de la tête.
+	 */
+	public Tete(double pMasse, double pRayon, Vecteur pPosition,
 			Vecteur pVitesse)
 	{
-		super(pMasse, pPosition, pStatique, pVitesse);
+		super(pMasse, pPosition, false, pVitesse);
+		init(pRayon, TEXTURE_DEFAUT);
 	}
 	
+	/**
+	 * Enum des textures possible pour une tête.
+	 * 
+	 * @author EquBolduc
+	 */
 	public enum Texture
 	{
 		EMILE("/res/emile.png"),
@@ -67,17 +88,53 @@ public class Tete extends ObjetSpatial
 			return texture;
 		}
 	}
-
+	
+	/**
+	 * Initialise les attributs de la classe Tete.
+	 * @param pRayon Rayon de la tête.
+	 * @param textureDefaut Texture de la tête.
+	 */
+	private void init(double pRayon, Texture textureDefaut)
+	{
+		setRayon(pRayon);
+		texture = TEXTURE_DEFAUT;
+	}
+	
+	/**
+	 * Retourne le rayon de la tête.
+	 */
 	public double getRayon()
 	{
-		return 100.0;
+		return rayon;
+	}
+	
+	/**
+	 * Change le rayon de la tête.
+	 * Dois être plus grand que 0.
+	 */
+	public void setRayon(double nouvRayon)
+	{
+		if (nouvRayon < 0)
+		{
+			rayon = RAYON_DEFAUT;
+		}
+		else
+		{
+			rayon = nouvRayon;
+		}
 	}
 
+	/**
+	 * Retourne la force extérieure exercée sur cette tête.
+	 */
 	public Vecteur getForceExt()
 	{
 		return new Vecteur();
 	}
 
+	/**
+	 * Met à jour l'apparence de la tête.
+	 */
 	public void maj(double dt)
 	{
 	}
@@ -103,11 +160,14 @@ public class Tete extends ObjetSpatial
 		return texture;
 	}
 	
+	/**
+	 * Retourne le noeud pour l'affichage.
+	 */
 	public Node getNoeud()
 	{
 		ImageView image = new ImageView(texture.getTexture());
-		image.setFitWidth(200);
-		image.setFitHeight(200);
+		image.setFitWidth(2 * rayon);
+		image.setFitHeight(2 * rayon);
 		return image;
 	}
 }

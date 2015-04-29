@@ -202,6 +202,8 @@ public class ObjetSpatialTest
 				&& oS1.getVitesse().getY() == 60);
 		oS2.setVitesse(null);
 		assertEquals(new Vecteur().getNorme(),oS2.getVitesse().getNorme() , d);
+		oS3.setVitesse(new Vecteur(1, 0),  false);
+		assertEquals(oS3.getVitesse().getNorme() == 1, false);
 
 	}
 	

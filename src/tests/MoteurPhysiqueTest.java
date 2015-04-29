@@ -6,6 +6,7 @@ import java.util.List;
 import modele.Corps;
 import modele.MoteurPhysique;
 import objets.Planete;
+import objets.Tete;
 import objets.Vaisseau;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +19,15 @@ import utils.Vecteur;
  */
 public class MoteurPhysiqueTest
 {
-	private List<Corps> corps1, corps2, corps3;
-	private MoteurPhysique moteur;
+	private List<Corps> corps1, corps2, corps3, corps4;
+	private MoteurPhysique moteur1, moteur2;
 	private Vaisseau vaisseau1, vaisseau2, vaisseau3;
+	private Tete tete1;
 	
 	@Before
 	public void creerCorps()
 	{
-		moteur = new MoteurPhysique();
+		moteur1 = new MoteurPhysique();
 		
 		corps1 = new ArrayList<>();
 		vaisseau1 = new Vaisseau(0, 100, 0, 0, new Vecteur(0,
@@ -45,32 +47,80 @@ public class MoteurPhysiqueTest
 				10), new Vecteur(10, 0));
 		corps3.add(new Planete(100, new Vecteur(210, 10), 100));
 		corps3.add(vaisseau3);
+		
+		moteur2 = new MoteurPhysique();
+		
+		corps4 = new ArrayList<>();
+		tete1 = new Tete(100, 20, new Vecteur(550, 500), new Vecteur(50, 50));
+		corps4.add(tete1);
+		corps4.add(null);
 	}
 	
 	@Test
 	public void testUpdate()
 	{
-		moteur.update(corps1, 0.5);
+		moteur1.update(corps1, 0.5);
 		assertEquals(vaisseau1.getPositionX(), 5.0, 0.001);
-		moteur.update(corps1, 0.5);
+		moteur1.update(corps1, 0.5);
 		assertEquals(vaisseau1.getPositionX(), 10.0, 0.001);
-		moteur.update(corps1, 0);
+		moteur1.update(corps1, 0);
 		assertEquals(vaisseau1.getPositionX(), 10.0, 0.001);
-		moteur.update(null, 1);
+		moteur1.update(null, 1);
 		assertEquals(vaisseau1.getPositionX(), 10.0, 0.001);
-		moteur.update(null, 0);
+		moteur1.update(null, 0);
 		assertEquals(vaisseau1.getPositionX(), 10.0, 0.001);
 		
 		assertEquals(vaisseau2.getVitesse().getX(), 10, 0.001);
-		moteur.update(corps2, 2);
+		moteur1.update(corps2, 2);
 		assertEquals(vaisseau2.getVitesse().getX(), 10, 0.001);
-		moteur.update(corps2, 0.5);
+		moteur1.update(corps2, 0.5);
 		assertEquals(vaisseau2.getVitesse().getX(), 0, 0.001);
 		
 		assertEquals(vaisseau3.getVitesse().getX(), 10, 0.001);
-		moteur.update(corps3, 2);
+		moteur1.update(corps3, 2);
 		assertEquals(vaisseau3.getVitesse().getX(), 10, 0.001);
-		moteur.update(corps3, 0.5);
+		moteur1.update(corps3, 0.5);
 		assertEquals(vaisseau3.getVitesse().getX(), 0, 0.001);
+		
+		moteur2.update(corps4, 1.0);
+		assertEquals(tete1.getVitesse().getX(), -50, 0.001);
+		moteur2.update(corps4, 1.0);
+		assertEquals(tete1.getVitesse().getY(), -50, 0.001);
+		moteur2.update(corps4, 30.0);
+		assertEquals(tete1.getVitesse().getX(), 50, 0.001);
+		moteur2.update(corps4, 1.0);
+		assertEquals(tete1.getVitesse().getY(), 50, 0.001);
+	}
+	
+	@Test
+	public void testGetTailleEcranX()
+	{
+		assertEquals(moteur1.getTailleEcranX() == 600, true);
+	}
+	
+	@Test
+	public void testGetTailleEcranY()
+	{
+		assertEquals(moteur1.getTailleEcranY() == 600, true);
+	}
+	
+	@Test
+	public void setTailleEcranX()
+	{
+		assertEquals(moteur1.getTailleEcranX() == 600, true);
+		moteur1.setTailleEcranX(150);
+		assertEquals(moteur1.getTailleEcranX() == 150, true);
+		moteur1.setTailleEcranX(-100);
+		assertEquals(moteur1.getTailleEcranX() == 150, true);
+	}
+	
+	@Test
+	public void setTailleEcranY()
+	{
+		assertEquals(moteur1.getTailleEcranY() == 600, true);
+		moteur1.setTailleEcranY(150);
+		assertEquals(moteur1.getTailleEcranY() == 150, true);
+		moteur1.setTailleEcranY(-100);
+		assertEquals(moteur1.getTailleEcranY() == 150, true);
 	}
 }
