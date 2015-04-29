@@ -1,5 +1,6 @@
 package objets;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utils.Vecteur;
 /**
@@ -165,7 +166,8 @@ public class Tete extends ObjetSpatial
 	 */
 	public Node getNoeud()
 	{
-		ImageView image = new ImageView(texture.getTexture());
+		Image img = new Image(texture.getTexture());
+		ImageView image = new ImageView(img);
 		image.setFitWidth(2 * rayon);
 		image.setFitHeight(2 * rayon);
 		return image;
