@@ -27,6 +27,7 @@ public class ContCredits implements Controleur
 
 	private void chargerCredits()
 	{
+		ContPrincipal.getInstance().viderCorps();
 		Tete simon = new Tete(1, new Vecteur(50, 50), false, new Vecteur(200, 175));
 		simon.setTexture(Tete.Texture.SIMONPIERRE);
 		ContPrincipal.getInstance().ajouterCorps(simon);

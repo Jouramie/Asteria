@@ -3,7 +3,6 @@ package controleur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,16 +15,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-
 import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
@@ -49,8 +45,6 @@ import vue.VueEditeur;
 public class ContEditeur implements Controleur
 {
 	public static final double VITESSE_ZOOM = 0.005;
-	
-	public static final double VITESSE_CAM = 1000;
 	
 	@FXML
 	private Pane pane;
@@ -96,16 +90,10 @@ public class ContEditeur implements Controleur
 	private VBox vBoxMenuObjectif;
 	
 	private VueEditeur vue;
-	
-	private boolean leftPressed;
-	private boolean rightPressed;
-	private boolean upPressed;
-	private boolean downPressed;
 	private Corps corpsSelect;
 	private Objectif objectifSelect;
 	private VaisseauJoueur vaisseauJoueur;
 	private Objectif objectif;
-	
 	private Niveau niveau;
 	
 	/**
@@ -114,33 +102,34 @@ public class ContEditeur implements Controleur
 	public ContEditeur()
 	{
 		vue = new VueEditeur();
-		leftPressed = false;
-		rightPressed = false;
-		upPressed = false;
-		downPressed = false;
 	}
 	
 	/**
-	 * Affiche la vue du constructeur.
+	 * Initialise et affiche la vue de l'éditeur.
 	 */
 	public void initialiser()
-	{
-		niveau = new Niveau();
-		
+	{		
+		// Affiche la vue et supprime tous les corps actuels.
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
-		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail",
-				"Vaisseau Joueur");
+		
+		// Initialisation des combo box.
+		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail", "Vaisseau Joueur");
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
-		ContPrincipal.getInstance().viderCorps();
+		
+		// Initialisation du niveau.
 		vaisseauJoueur = null;
 		objectif = null;
+		niveau = new Niveau();
 		Platform.runLater(() -> {
 			chargerNiveau();
 		});
 	}
 	
+	// ===============================================
+	// Écouteurs des différents text field et boutons.
+	// ===============================================
 	@FXML
 	public void onRayon(ActionEvent e)
 	{
@@ -148,8 +137,7 @@ public class ContEditeur implements Controleur
 		{
 			try
 			{
-				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
-						.getText())));
+				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
 				((Planete) corpsSelect).maj();
 			}
 			catch (NumberFormatException ex)
@@ -183,7 +171,6 @@ public class ContEditeur implements Controleur
 		try
 		{
 			corpsSelect.setMasse((Double.valueOf(textFieldMasse.getText())));
-			
 		}
 		catch (NumberFormatException ex)
 		{
@@ -195,22 +182,23 @@ public class ContEditeur implements Controleur
 	public void onPositionX(ActionEvent e)
 	{
 		if (corpsSelect instanceof Corps)
+		{
 			try
 			{
-				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
-						.getText())));
+				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
 				textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			}
+		}
+		
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
 			{
-				or.getPosRayon().setX(
-						(Double.valueOf(textFieldPositionX.getText())));
+				or.getPosRayon().setX((Double.valueOf(textFieldPositionX.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -223,22 +211,23 @@ public class ContEditeur implements Controleur
 	public void onPositionY(ActionEvent e)
 	{
 		if (corpsSelect instanceof Corps)
+		{
 			try
 			{
-				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
-						.getText())));
+				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
 				textFieldPositionY.setText("" + corpsSelect.getPositionY());
 			}
+		}
+		
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
 			{
-				or.getPosRayon().setY(
-						(Double.valueOf(textFieldPositionY.getText())));
+				or.getPosRayon().setY((Double.valueOf(textFieldPositionY.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -327,70 +316,18 @@ public class ContEditeur implements Controleur
 	}
 	
 	@FXML
-	public void onComboBoxCorps(ActionEvent e)
-	{
-		
-	}
-	
-	/**
-	 * Inutile pour l'instant.
-	 */
-	public void update(double dt)
-	{
-		Camera cam = vue.getCamera();
-		if (leftPressed)
-		{
-			double x = cam.getDeplacement().getX();
-			double y = cam.getDeplacement().getY();
-			
-			x -= VITESSE_CAM * dt;
-			
-			cam.deplacer(x, y);
-		}
-		
-		else if (rightPressed)
-		{
-			double x = cam.getDeplacement().getX();
-			double y = cam.getDeplacement().getY();
-			
-			x += VITESSE_CAM * dt;
-			
-			cam.deplacer(x, y);
-		}
-		
-		if (upPressed)
-		{
-			double x = cam.getDeplacement().getX();
-			double y = cam.getDeplacement().getY();
-			
-			y -= VITESSE_CAM * dt;
-			
-			cam.deplacer(x, y);
-		}
-		
-		else if (downPressed)
-		{
-			double x = cam.getDeplacement().getX();
-			double y = cam.getDeplacement().getY();
-			
-			y += VITESSE_CAM * dt;
-			
-			cam.deplacer(x, y);
-		}
-	}
-	
-	/**
-	 * Méthode pour le bouton retour
-	 */
-	@FXML
 	public void retour()
 	{
 		ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 	}
 	
-	/**
-	 * Méthode pour le bouton sauvegarder
-	 */
+	@FXML
+	public void onEssayer()
+	{
+		ContJeu cont = new ContJeu(niveau);
+		ContPrincipal.getInstance().selectionnerControleur(cont);
+	}
+	
 	@FXML
 	public void sauve()
 	{
@@ -459,15 +396,26 @@ public class ContEditeur implements Controleur
 		chargerNiveau();
 	}
 	
+	/**
+	 * Met à jour le contrôleur. Inutile pour l'instant.
+	 */
+	public void update(double dt)
+	{
+		
+	}
+	
+	/**
+	 * Initialise le combo box de texture.
+	 * Obligatoire, sinon les textures disparaissent si on ne fait que
+	 * les définir dans le FXML.
+	 */
 	private void initialiserComboBoxTexture()
 	{
 		comboBoxTexture.getItems().addAll(Texture.BLEUE, Texture.JAUNE,
 				Texture.MAGENTA, Texture.ORANGE, Texture.ROUGE, Texture.VERTE);
 		
-		comboBoxTexture
-				.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
+		comboBoxTexture.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
 				{
-					@Override
 					public ListCell<Texture> call(ListView<Texture> p)
 					{
 						return new ListCell<Texture>()
@@ -504,15 +452,14 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère l'ajout d'objets dans la construction.
+	 * Gère les clicks de la souris.
 	 */
 	@FXML
 	public void mouseClicked(MouseEvent event)
 	{
 		Point2D point = pane.sceneToLocal(event.getSceneX(), event.getSceneY());
 		Camera cam = vue.getCamera();
-		Vecteur pos = cam
-				.localToGlobal(new Vecteur(point.getX(), point.getY()));
+		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
 		
 		switch (event.getButton())
 		{
@@ -528,12 +475,14 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère l'ajout d'objets dans la construction.
+	 * Gère le clique gauche.
 	 */
 	private void mouseClickedPrimary(MouseEvent event, Vecteur pos)
 	{
 		boolean toucheCorps = false;
 		corpsSelect = null;
+		
+		// Vérifie si un corps est touché.
 		for (Corps c : ContPrincipal.getInstance().getCorps())
 		{
 			if (Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayon()
@@ -545,6 +494,7 @@ public class ContEditeur implements Controleur
 				break;
 			}
 		}
+		
 		if (!toucheCorps)
 		{
 			if (objectif instanceof ObjectifRayon)
@@ -560,8 +510,9 @@ public class ContEditeur implements Controleur
 				}
 				
 			}
-			
 		}
+		
+		// Ajoute le corps voulu.
 		if (!toucheCorps && comboBoxCorps.getValue() != null)
 		{
 			switch (comboBoxCorps.getValue())
@@ -593,7 +544,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère la création de planètes dans l'éditeur de niveaux.
+	 * Gère la création de planètes dans l'éditeur de niveaux.
 	 */
 	private void creePlanete(Vecteur pos)
 	{
@@ -603,7 +554,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * méthode qui gère la création de vaisseau dans l'éditeur de niveaux.
+	 * Gère la création de vaisseau dans l'éditeur de niveaux.
 	 */
 	private void creeVaisseau(Vecteur pos)
 	{
@@ -628,6 +579,7 @@ public class ContEditeur implements Controleur
 			return;
 		}
 		vBoxMenu.setVisible(true);
+		
 		if (corpsSelect instanceof Planete)
 		{
 			vBoxMenuCorps.setVisible(true);
@@ -643,6 +595,7 @@ public class ContEditeur implements Controleur
 					((Planete) corpsSelect).getTexture());
 			comboBoxCorps.setValue("Planète");
 		}
+		
 		else if (corpsSelect instanceof Vaisseau)
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
@@ -666,6 +619,7 @@ public class ContEditeur implements Controleur
 				comboBoxCorps.setValue("Vaisseau Joueur");
 			}
 		}
+		
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectif;
@@ -675,13 +629,15 @@ public class ContEditeur implements Controleur
 			textFieldPositionY.setText("" + or.getPosRayon().getY());
 			textFieldRayonObjectif.setText("" + or.getRayon());
 			comboBoxCorps.setValue("Portail");
-			
 		}
 	}
 	
+	/**
+	 * Gère le click droit de la souris.
+	 */
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
-		// Inutile pour l'instant.
+		vue.getCamera().deplacer(pos.getX(), pos.getY());
 	}
 	
 	/**
@@ -689,13 +645,18 @@ public class ContEditeur implements Controleur
 	 */
 	private void chargerNiveau()
 	{
+		// Vide tous les corps.
 		ContPrincipal.getInstance().viderCorps();
+		
+		// Ajoute les corps un à un.
 		for (Corps c : niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
 			if (c instanceof VaisseauJoueur)
 				vaisseauJoueur = (VaisseauJoueur) c;
 		}
+		
+		// Si aucun vaisseau joueur n'est défini, on en ajoute un.
 		if (vaisseauJoueur == null)
 		{
 			corpsSelect = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
@@ -707,86 +668,23 @@ public class ContEditeur implements Controleur
 			ContPrincipal.getInstance().ajouterCorps(corpsSelect);
 			vaisseauJoueur = (VaisseauJoueur) corpsSelect;
 		}
+		
+		// S'il n'y a pas d'objectif, on en ajoute un.
 		if (niveau.getObjectif() == null)
 		{
 			niveau.setObjectif(new ObjectifRayon(new Vecteur(0, 10),
 					ObjectifRayon.RAYON_DEFAUT));
 		}
-		objectif = niveau.getObjectif();
+		
+		// On ajoute les corps dans la scène.
 		vue.initialiserCorps();
-		//TODO: Rétablir le dépalcement de la caméra.
+		
+		// On ajoute l'objectif.
+		objectif = niveau.getObjectif();
 		if (niveau.getObjectif() != null
 				&& niveau.getObjectif() instanceof Dessinable)
 		{
 			vue.ajouterDessinable((Dessinable) niveau.getObjectif());
-		}
-	}
-	
-	// Cette méthode ne sert pas encore.
-	@FXML
-	public void keyPressed(KeyEvent e)
-	{
-		switch (e.getCode())
-		{
-		case A:
-		{
-			leftPressed = true;
-			break;
-		}
-		case D:
-		{
-			rightPressed = true;
-			break;
-		}
-		case W:
-		{
-			upPressed = true;
-			break;
-		}
-		case S:
-		{
-			downPressed = true;
-			break;
-		}
-		case ESCAPE:
-		{
-			retour();
-			break;
-		}
-		
-		default:
-			break;
-		}
-	}
-	
-	@FXML
-	public void keyReleased(KeyEvent e)
-	{
-		switch (e.getCode())
-		{
-		case A:
-		{
-			leftPressed = false;
-			break;
-		}
-		case D:
-		{
-			rightPressed = false;
-			break;
-		}
-		case W:
-		{
-			upPressed = false;
-			break;
-		}
-		case S:
-		{
-			downPressed = false;
-			break;
-		}
-		
-		default:
-			break;
 		}
 	}
 	

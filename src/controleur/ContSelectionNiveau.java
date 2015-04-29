@@ -190,9 +190,8 @@ public class ContSelectionNiveau implements Controleur
 		}
 	}
 	
-	@Override
-	public void update(double dt) {
-		// TODO Auto-generated method stub
+	public void update(double dt)
+	{
 		
 	}
 	

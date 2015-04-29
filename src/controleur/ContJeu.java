@@ -1,5 +1,6 @@
 package controleur;
 import javax.swing.JOptionPane;
+
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
@@ -276,6 +277,7 @@ public class ContJeu implements Controleur
 			objectifAtteint = false;
 			mort = false;
 			
+			// Vide puis ajoute tous les corps du niveau dans le contrôleur principal.
 			ContPrincipal.getInstance().viderCorps();
 			
 			for (Corps c : niveau.getCorps())
@@ -286,23 +288,29 @@ public class ContJeu implements Controleur
 					vaisseauJoueur = (VaisseauJoueur) c;
 				}
 			}
+			
+			// Initialise le vaisseau du joueur si le niveau n'en définit pas un.
 			if (vaisseauJoueur == null)
 			{
-				vaisseauJoueur = new VaisseauJoueur(1, 16e3,
-						30, 30);
+				vaisseauJoueur = new VaisseauJoueur(1, 16e3, 30, 30);
 				ContPrincipal.getInstance().ajouterCorps(vaisseauJoueur);
 			}
 			vaisseauJoueur.setPosition(niveau.getPointDepart());
+			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
 			
+			// Ajoute les corps dans le JavaFX.
 			vue.initialiserCorps();
 			
-			Objectif objectif = niveau.getObjectif();
+			// Bind les barres de carburant et de santé.
 			progressBarCarburant.progressProperty().unbind();
 			progressBarCarburant.progressProperty().bind(
 					vaisseauJoueur.carburantRestantProperty().divide(
 							vaisseauJoueur.carburantMaxProperty()));
 			progressBarSante.progressProperty().unbind();
 			progressBarSante.progressProperty().bind(vaisseauJoueur.santeProperty());
+			
+			// Ajoute l'objectif du tableau.
+			Objectif objectif = niveau.getObjectif();
 			
 			if (objectif != null)
 			{
@@ -313,6 +321,7 @@ public class ContJeu implements Controleur
 				}
 			}
 			
+			// Commence à écouter la souris pour la vitesse de départ.			
 			ContPrincipal.getInstance().arreterHorloge();
 			listenMouse = true;
 		}
@@ -321,8 +330,6 @@ public class ContJeu implements Controleur
 			ContPrincipal.getInstance().selectionnerControleur(
 					new ContSelectionNiveau());
 		}
-		
-		//TODO: Centrer la caméra
 	}
 	
 	/**
@@ -443,16 +450,24 @@ public class ContJeu implements Controleur
 	{
 		if (vaisseauJoueur != null)
 		{
+			// Met à jour le vaisseau et vérifie l'objectif.
 			vaisseauJoueur.update(dt);
 			verifierObjectif();
 			
+			// =========================
+			// Mise à jour de la caméra.
+			// =========================
+			
+			// Prend les données actuelles.
 			Camera camera = vue.getCamera();
 			double x = camera.getDeplacement().getX();
 			double y = camera.getDeplacement().getY();
 			
+			// Calcul les marges horizontales de l'écran.
 			double marginLeft = camera.localToGlobal(new Vecteur(MARGE_ECRAN_HORIZ, 0)).getX();
 			double marginRight = camera.localToGlobal(new Vecteur(pane.getWidth() - MARGE_ECRAN_HORIZ, 0)).getX();
 			
+			// Vérifie les marges à gauche et à droite et ajuste la caméra.
 			if(vaisseauJoueur.getPositionX() < marginLeft)
 			{
 				camera.deplacer(x - (marginLeft - vaisseauJoueur.getPositionX()), y);
@@ -466,9 +481,11 @@ public class ContJeu implements Controleur
 			x = camera.getDeplacement().getX();
 			y = camera.getDeplacement().getY();
 			
+			// Calcul les marges verticales de l'écran.
 			double marginTop = camera.localToGlobal(new Vecteur(0, MARGE_ECRAN_VERT)).getY();
 			double marginBottom = camera.localToGlobal(new Vecteur(0, pane.getHeight() - MARGE_ECRAN_VERT)).getY();
 			
+			// Vérifie les marges en haut et en bas et ajuste la caméra.
 			if(vaisseauJoueur.getPositionY() < marginTop)
 			{
 				camera.deplacer(x, y - (marginTop - vaisseauJoueur.getPositionY()));

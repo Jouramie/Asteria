@@ -19,8 +19,6 @@ public class Camera
 	private double hauteur;
 	private double x;
 	private double y;
-	private double targetX;
-	private double targetY;
 	private double facteur;
 	private double targetFacteur;
 	
@@ -35,8 +33,6 @@ public class Camera
 		hauteur = 0.0;
 		x = 0.0;
 		y = 0.0;
-		targetX = 0.0;
-		targetY = 0.0;
 		facteur = 1.0;
 		targetFacteur = 1.0;
 	}
@@ -86,8 +82,8 @@ public class Camera
 	 */
 	public void deplacer(double pX, double pY)
 	{
-		targetX = pX;
-		targetY = pY;
+		x = pX;
+		y = pY;
 	}
 	
 	/**
@@ -96,7 +92,7 @@ public class Camera
 	 */
 	public Vecteur getDeplacement()
 	{
-		return new Vecteur(targetX, targetY);
+		return new Vecteur(x, y);
 	}
 	
 	/**
@@ -171,9 +167,6 @@ public class Camera
 	 */
 	public void update(double dt)
 	{
-		x = targetX;
-		y = targetY;
-		
 		facteur = bezier(dt, facteur, targetFacteur, VITESSE_ZOOM);
 	}
 	
