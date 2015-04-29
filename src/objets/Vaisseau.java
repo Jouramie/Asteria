@@ -22,6 +22,7 @@ public class Vaisseau extends ObjetSpatial
 	public final static double PUISSANCE_DEFAUT = 1.0;
 	public final static double VITESSE_ANIM_FLAMME = 6;
 	public final static double VITESSE_ANIM_MORT = 8;
+	public final static int NB_FRAMES_ANIM_MORT = 9;
 	public final static double MASSE_DEFAUT = 16e3;
 	
 	protected double puissanceMax;
@@ -496,11 +497,11 @@ public class Vaisseau extends ObjetSpatial
 		}
 		else
 		{
-			if(currentExplosion < Math.floor(currentExplosion += VITESSE_ANIM_MORT * dt) && currentExplosion < 10)
+			if(currentExplosion < Math.floor(currentExplosion += VITESSE_ANIM_MORT * dt) && currentExplosion < NB_FRAMES_ANIM_MORT + 1)
 			{
 				((ImageView)((Group)noeud).getChildren().get(0)).setImage(new Image("/res/explosion_" + (int)Math.floor(currentExplosion) + ".png"));
 			}
-			else if(currentExplosion >= 10)
+			else if(currentExplosion >= NB_FRAMES_ANIM_MORT + 1)
 			{
 				((Group)noeud).getChildren().clear();
 				currentExplosion = 1.0;
