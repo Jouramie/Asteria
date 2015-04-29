@@ -56,11 +56,11 @@
       														</Label>
       														<ComboBox fx:id="comboBoxTexture" onAction="#onTexture" prefHeight="46.0" prefWidth="200.0" />
       														<Label styleClass="editeur-label" text="Rayon" />
-      														<TextField fx:id="textFieldRayon" onAction="#onRayon" prefHeight="25.0" prefWidth="119.0" />
+      														<TextField fx:id="textFieldRayon" onAction="#onRayon" prefHeight="25.0" prefWidth="50.0" />
                                     <Label styleClass="editeur-label" text="Rayon Atmosphere" />
                                     <TextField fx:id="textFieldRayonAtmosphere" onAction="#onRayonAtmosphere" prefHeight="25.0" prefWidth="119.0" />
                                     <Label styleClass="editeur-label" text="Couleur Atmosphere" />
-                                    <ColorPicker fx:id="colorPickerCouleurAtmosphere" onAction="#onCouleurAtmosphere" />
+                                    <ColorPicker fx:id="colorPickerCouleurAtmosphere" onAction="#onCouleurAtmosphere" prefWidth="200.0" />
       													</children>
       												</VBox>
       												<VBox fx:id="vBoxMenuVaisseauJoueur" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
