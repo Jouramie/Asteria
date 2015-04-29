@@ -56,8 +56,9 @@ public class VueJeu implements Vue
 	public void initialiser(BorderPane pane)
 	{
 		borderPane = pane;
+		Pane p = (Pane)borderPane.lookup("#pane");
 		
-		camera.setGrandeurs(pane.getWidth(), pane.getHeight());
+		camera.setGrandeurs(p.getWidth(), p.getHeight());
 		initialiserCorps();
 	}
 	
