@@ -2,12 +2,14 @@ package vue;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import utils.Vecteur;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import modele.Corps;
@@ -57,7 +59,8 @@ public class VueJeu implements Vue
 	{
 		borderPane = pane;
 		Pane p = (Pane)borderPane.lookup("#pane");
-		
+		Rectangle rect = new Rectangle(p.getWidth(), p.getHeight());
+		p.setClip(rect);
 		camera.setGrandeurs(p.getWidth(), p.getHeight());
 		initialiserCorps();
 	}
