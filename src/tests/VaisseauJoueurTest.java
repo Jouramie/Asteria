@@ -41,7 +41,6 @@ public class VaisseauJoueurTest
 		v2.avancer(true);
 		v2.setCarburantMax(9e9);
 		v2.setCarburantRestant(9e9);
-		System.out.println(v2.getForceExt().getNorme());
 		assertEquals(200000, v2.getForceExt().getNorme(), 0.0001);
 		v2.avancer(false);
 		assertEquals(0, v2.getForceExt().getX(), 0.0001);
