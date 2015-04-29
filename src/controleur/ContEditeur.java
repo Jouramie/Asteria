@@ -109,7 +109,16 @@ public class ContEditeur implements Controleur
 	 */
 	public ContEditeur()
 	{
+		this(null);
+	}
+	
+	/**
+	 * Constructeur du contrôleur avec un niveau en paramètre.
+	 */
+	public ContEditeur(Niveau niv)
+	{
 		vue = new VueEditeur();
+		setNiveau(niv);
 	}
 	
 	/**
@@ -129,9 +138,14 @@ public class ContEditeur implements Controleur
 		// Initialisation du niveau.
 		vaisseauJoueur = null;
 		objectif = null;
-		niveau = new Niveau();
+		if(niveau == null)
+		{
+			niveau = new Niveau();
+		}
 		Platform.runLater(() -> {
 			chargerNiveau();
+			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().zoomer(1.0);
 		});
 	}
 	
@@ -361,7 +375,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onEssayer()
 	{
-		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
+		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau, true));
 	}
 	
 	@FXML
@@ -673,6 +687,27 @@ public class ContEditeur implements Controleur
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
 		vue.getCamera().deplacer(pos.getX(), pos.getY());
+	}
+	
+	/**
+	 * Retourne le niveau de l'éditeur.
+	 * @return Niveau de l'éditeur.
+	 */
+	public Niveau getNiveau()
+	{
+		return niveau;
+	}
+	
+	/**
+	 * Modifie le niveau de l'éditeur
+	 * @param nouvNiveau Nouveau niveau de l'éditeur.
+	 */
+	public void setNiveau(Niveau nouvNiveau)
+	{
+		if(nouvNiveau != null)
+		{
+			niveau = nouvNiveau;
+		}
 	}
 	
 	/**
