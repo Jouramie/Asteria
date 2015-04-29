@@ -6,21 +6,38 @@ import controleur.ContPrincipal;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+/**
+ * Vue des crédits.
+ * 
+ * @author EquBolduc
+ * @version 1.0
+ */
 public class VueCredits implements Vue
 {
 	private BorderPane borderPane;
 	private List<Dessinable> liste;
 	
+	/**
+	 * Constructeur de la vue des crédits.
+	 */
 	public VueCredits()
 	{
 		liste = new LinkedList<Dessinable>();
 	}
 	
+	/**
+	 * Retourne le chemin vers le fichier FXML de la vue.
+	 * 
+	 * @return Chemin vers FXML.
+	 */
 	public String getFXML()
 	{
 		return "/res/Credits.fxml";
 	}
 	
+	/**
+	 * Ajoute tous les corps dessinables dans la vue.
+	 */
 	public void initialiser(BorderPane pane)
 	{
 		borderPane = pane;
@@ -65,6 +82,9 @@ public class VueCredits implements Vue
 		}
 	}
 
+	/**
+	 * Met à jour la caméra.
+	 */
 	public void dessiner(double dt)
 	{
 		
