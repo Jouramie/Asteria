@@ -104,9 +104,10 @@ public class Planete extends ObjetSpatial {
 	 * @param pPosition
 	 *            la position de la planète
 	 */
+	@Deprecated
 	public Planete(double pMasse, Vecteur pPosition, double pRayon) {
 		super(pMasse, pPosition, true, new Vecteur());
-		init(pRayon, COULEUR_ATMOSHPERE_DEFAUT);
+		init(pRayon,RAYON_ATMOSPHERE_DEFAUT ,COULEUR_ATMOSHPERE_DEFAUT);
 	}
 
 	/**
@@ -119,10 +120,40 @@ public class Planete extends ObjetSpatial {
 	 * @param pPositionY
 	 *            la positionY de la planète
 	 */
+	@Deprecated
 	public Planete(double pMasse, double pPositionX, double pPositionY,
 			double pRayon) {
 		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
-		init(pRayon, COULEUR_ATMOSHPERE_DEFAUT);
+		init(pRayon,RAYON_ATMOSPHERE_DEFAUT ,COULEUR_ATMOSHPERE_DEFAUT);
+	}
+	
+	/**
+	 * Constructeur de planète, prend un vecteur pour la position
+	 * 
+	 * @param pMasse
+	 *            la masse de la planète
+	 * @param pPosition
+	 *            la position de la planète
+	 */
+	public Planete(double pMasse, Vecteur pPosition, double pRayon, double pRayonAtmosphere, Color pCouleurAtmosphere) {
+		super(pMasse, pPosition, true, new Vecteur());
+		init(pRayon, pRayonAtmosphere, pCouleurAtmosphere);
+	}
+	
+	/**
+	 * Constructeur de planète, prend des doubles pour la position
+	 * 
+	 * @param pMasse
+	 *            la masse de la planète
+	 * @param pPositionX
+	 *            la positionX de la planète
+	 * @param pPositionY
+	 *            la positionY de la planète
+	 */
+	public Planete(double pMasse, double pPositionX, double pPositionY,
+			double pRayon, double pRayonAtmosphere, Color pCouleurAtmosphere) {
+		super(pMasse, pPositionX, pPositionY, true, new Vecteur());
+		init(pRayon, pRayonAtmosphere, pCouleurAtmosphere);
 	}
 
 	/**
@@ -131,9 +162,9 @@ public class Planete extends ObjetSpatial {
 	 * @param pRayon
 	 *            le rayon.
 	 */
-	private void init(double pRayon, Color pCouleurAtmosphere) {
+	private void init(double pRayon, double pRayonAtmosphere, Color pCouleurAtmosphere) {
 		setRayon(pRayon);
-		setRayonAtmosphere(RAYON_ATMOSPHERE_DEFAUT);
+		setRayonAtmosphere(pRayonAtmosphere);
 		setCouleurAtmosphere(pCouleurAtmosphere);
 		group = new Group();
 	}
