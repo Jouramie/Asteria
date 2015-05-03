@@ -309,7 +309,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setCarburantMax((Double.valueOf(textFieldCarburantMax
 					.getText())));
 			textFieldCarburantDepart.setText(""
@@ -318,7 +318,7 @@ public class ContEditeur implements Controleur
 		catch (NumberFormatException ex)
 		{
 			textFieldCarburantMax.setText(""
-					+ ((Vaisseau) corpsSelect).getCarburantMax());
+					+ ((VaisseauJoueur) corpsSelect).getCarburantMax());
 		}
 	}
 	
@@ -327,7 +327,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setCarburantDepart((Double
 					.valueOf(textFieldCarburantDepart.getText())));
 			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
@@ -335,7 +335,7 @@ public class ContEditeur implements Controleur
 		catch (NumberFormatException ex)
 		{
 			textFieldCarburantDepart.setText(""
-					+ ((Vaisseau) corpsSelect).getCarburantDepart());
+					+ ((VaisseauJoueur) corpsSelect).getCarburantDepart());
 		}
 	}
 	
@@ -344,12 +344,12 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
-			textFieldPuissance.setText("" + ((Vaisseau) corpsSelect).getPuissance());
+			textFieldPuissance.setText("" + ((VaisseauJoueur) corpsSelect).getPuissance());
 		}
 	}
 	
@@ -611,7 +611,7 @@ public class ContEditeur implements Controleur
 	 */
 	private void creeVaisseau(Vecteur pos)
 	{
-		Vaisseau v = new Vaisseau(Vaisseau.PUISSANCE_DEFAUT, Vaisseau.MASSE_DEFAUT, Vaisseau.CARBURANT_DEFAUT, Vaisseau.CARBURANT_DEFAUT, pos, new Vecteur());
+		Vaisseau v = new Vaisseau(Vaisseau.MASSE_DEFAUT, pos, new Vecteur());
 		corpsSelect = v;
 	}
 	
@@ -659,11 +659,12 @@ public class ContEditeur implements Controleur
 			comboBoxCorps.setValue("Vaisseau");
 			if (corpsSelect instanceof VaisseauJoueur)
 			{
+				VaisseauJoueur vj = (VaisseauJoueur)corpsSelect;
 				vBoxMenuVaisseauJoueur.setVisible(true);
 				supprimer.setVisible(false);
-				textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
-				textFieldCarburantDepart.setText(""	+ corpsSelect.getCarburantDepart());
-				textFieldPuissance.setText("" + corpsSelect.getPuissance());
+				textFieldCarburantMax.setText("" + vj.getCarburantMax());
+				textFieldCarburantDepart.setText(""	+ vj.getCarburantDepart());
+				textFieldPuissance.setText("" + vj.getPuissance());
 				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 				comboBoxCorps.setValue("Vaisseau Joueur");
 			}
