@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.collections.FXCollections ?>
 
-<BorderPane maxHeight="900.0" maxWidth="1440.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="900.0" maxWidth="1440.0" styleClass="editeur-root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<bottom>
 		<HBox alignment="CENTER" prefHeight="112.0" styleClass="editeur-menu-bas" BorderPane.alignment="CENTER">
 			<children>
