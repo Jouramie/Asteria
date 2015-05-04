@@ -87,7 +87,7 @@ public class ContSelectionNiveau implements Controleur
 				}
 				
 				Niveau niveau = Niveau.chargerNiveau(new FileInputStream(file));
-				ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
+				ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau, false));
 			}
 			catch(Exception e)
 			{

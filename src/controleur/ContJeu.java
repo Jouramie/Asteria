@@ -1,6 +1,4 @@
 package controleur;
-import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Objectif;
 import modele.Niveau;
@@ -36,16 +34,22 @@ public class ContJeu implements Controleur
 	@FXML
 	private Pane pane;
 	@FXML
-	private VBox menuPause;
+	private VBox menuPauseJeu;
 	@FXML
-	private VBox menuVictoire;
+	private VBox menuPauseEditeur;
 	@FXML
-	private VBox menuMort;
+	private VBox menuVictoireJeu;
+	@FXML
+	private VBox menuVictoireEditeur;
+	@FXML
+	private VBox menuMortJeu;
+	@FXML
+	private VBox menuMortEditeur;
 	@FXML
 	private ProgressBar progressBarCarburant;
 	@FXML
 	private ProgressBar progressBarSante;
-	
+	private boolean editeur;
 	private VueJeu vue;
 	private VaisseauJoueur vaisseauJoueur;
 	private Niveau niveau;
@@ -70,7 +74,7 @@ public class ContJeu implements Controleur
 	public ContJeu(int nouvNumeroNiveau)
 	{
 		vue = new VueJeu();
-		
+		editeur = false;
 		if(nouvNumeroNiveau >= 1 || nouvNumeroNiveau <= 10)
 		{
 			numeroNiveau = nouvNumeroNiveau;
@@ -84,12 +88,14 @@ public class ContJeu implements Controleur
 	/**
 	 * Constructeur du contrôleur.
 	 * @param niv Le niveau dans lequel commence le jeu.
+	 * @param editeur Vrai si le jeu est lancé depuis l'éditeur.
 	 */
-	public ContJeu(Niveau niv)
+	public ContJeu(Niveau niv, boolean editeur)
 	{
 		vue = new VueJeu();
 		numeroNiveau = 0;
 		niveau = niv;
+		this.editeur = editeur;
 	}
 	
 	/**
@@ -116,7 +122,7 @@ public class ContJeu implements Controleur
 	{
 		if(!objectifAtteint && !mort && e.getCode() == KeyCode.ESCAPE)
 		{
-			if (!menuPause.isVisible())
+			if(!menuPauseJeu.isVisible() && !menuPauseEditeur.isVisible())
 			{
 				afficherMenuPause();
 			}
@@ -185,10 +191,15 @@ public class ContJeu implements Controleur
 			vaisseauJoueur.avancer(false);
 			vaisseauJoueur.tournerDroite(false);
 			vaisseauJoueur.tournerGauche(false);
-			menuPause.setVisible(true);
-			menuPause.setMinWidth(pane.getWidth());
-			menuPause.setMinHeight(pane.getHeight());
-			menuPause.toFront();
+			menuPauseJeu.setVisible(!editeur);
+			menuPauseEditeur.setVisible(editeur);
+			menuPauseJeu.setMinWidth(pane.getWidth());
+			menuPauseEditeur.setMinWidth(pane.getWidth());
+			menuPauseJeu.setMinHeight(pane.getHeight());
+			menuPauseEditeur.setMinHeight(pane.getHeight());
+			
+			menuPauseJeu.toFront();
+			menuPauseEditeur.toFront();
 			menuAffiche = true;
 		}
 	}
@@ -199,7 +210,8 @@ public class ContJeu implements Controleur
 		{
 			ContPrincipal.getInstance().demarrerHorloge();
 		}
-		menuPause.setVisible(false);
+		menuPauseJeu.setVisible(false);
+		menuPauseEditeur.setVisible(false);
 		menuAffiche = false;
 	}
 	
@@ -211,10 +223,14 @@ public class ContJeu implements Controleur
 		vaisseauJoueur.tournerGauche(false);
 		if(!vaisseauJoueur.isAnimationMort())
 		{
-			menuMort.setVisible(true);
-			menuMort.setMinWidth(pane.getWidth());
-			menuMort.setMinHeight(pane.getHeight());
-			menuMort.toFront();
+			menuMortJeu.setVisible(!editeur);
+			menuMortEditeur.setVisible(editeur);
+			menuMortJeu.setMinWidth(pane.getWidth());
+			menuMortEditeur.setMinWidth(pane.getWidth());
+			menuMortJeu.setMinHeight(pane.getHeight());
+			menuMortEditeur.setMinHeight(pane.getHeight());
+			menuMortJeu.toFront();
+			menuMortEditeur.toFront();
 			menuAffiche = true;
 		}
 	}
@@ -225,7 +241,8 @@ public class ContJeu implements Controleur
 		{
 			ContPrincipal.getInstance().demarrerHorloge();
 		}
-		menuMort.setVisible(false);
+		menuMortJeu.setVisible(false);
+		menuMortEditeur.setVisible(false);
 		menuAffiche = false;
 	}
 	
@@ -241,16 +258,20 @@ public class ContJeu implements Controleur
 		if(numeroNiveau < 10)
 		{
 			ContPrincipal.getInstance().arreterHorloge();
-			menuVictoire.setVisible(true);
-			menuVictoire.setMinWidth(pane.getWidth());
-			menuVictoire.setMinHeight(pane.getHeight());
-			menuVictoire.toFront();
+			menuVictoireJeu.setVisible(!editeur);
+			menuVictoireEditeur.setVisible(editeur);
+			menuVictoireJeu.setMinWidth(pane.getWidth());
+			menuVictoireEditeur.setMinWidth(pane.getWidth());
+			menuVictoireJeu.setMinHeight(pane.getHeight());
+			menuVictoireEditeur.setMinHeight(pane.getHeight());
+			menuVictoireJeu.toFront();
+			menuVictoireEditeur.toFront();
 			menuAffiche = true;
 		}
 		else
 		{
-			retour();
-			JOptionPane.showMessageDialog(null, "Vous avez réussi le jeu!\nFélicitation!", "Victoire", JOptionPane.PLAIN_MESSAGE);
+			ContPrincipal.getInstance().viderCorps();
+			ContPrincipal.getInstance().selectionnerControleur(new ContVictoire());
 		}
 	}
 	
@@ -260,7 +281,8 @@ public class ContJeu implements Controleur
 		{
 			ContPrincipal.getInstance().demarrerHorloge();
 		}
-		menuVictoire.setVisible(false);
+		menuVictoireJeu.setVisible(false);
+		menuVictoireEditeur.setVisible(false);
 		menuAffiche = false;
 	}
 	
@@ -401,6 +423,19 @@ public class ContJeu implements Controleur
 			chargerNiveau(niv);
 		});
 		cacherMenuVictoire();
+	}
+	
+	@FXML
+	public void editeur()
+	{
+		ContPrincipal.getInstance().viderCorps();
+		for(Corps c : niveau.getCorps())
+		{
+			c.reset();
+		}
+		vaisseauJoueur = null;
+		ContPrincipal.getInstance().selectionnerControleur(new ContEditeur(niveau));
+		
 	}
 	
 	@FXML

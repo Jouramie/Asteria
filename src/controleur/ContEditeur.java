@@ -109,7 +109,16 @@ public class ContEditeur implements Controleur
 	 */
 	public ContEditeur()
 	{
+		this(null);
+	}
+	
+	/**
+	 * Constructeur du contrôleur avec un niveau en paramètre.
+	 */
+	public ContEditeur(Niveau niv)
+	{
 		vue = new VueEditeur();
+		setNiveau(niv);
 	}
 	
 	/**
@@ -129,9 +138,14 @@ public class ContEditeur implements Controleur
 		// Initialisation du niveau.
 		vaisseauJoueur = null;
 		objectif = null;
-		niveau = new Niveau();
+		if(niveau == null)
+		{
+			niveau = new Niveau();
+		}
 		Platform.runLater(() -> {
 			chargerNiveau();
+			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().zoomer(1.0);
 		});
 	}
 	
@@ -295,7 +309,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setCarburantMax((Double.valueOf(textFieldCarburantMax
 					.getText())));
 			textFieldCarburantDepart.setText(""
@@ -304,7 +318,7 @@ public class ContEditeur implements Controleur
 		catch (NumberFormatException ex)
 		{
 			textFieldCarburantMax.setText(""
-					+ ((Vaisseau) corpsSelect).getCarburantMax());
+					+ ((VaisseauJoueur) corpsSelect).getCarburantMax());
 		}
 	}
 	
@@ -313,7 +327,7 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setCarburantDepart((Double
 					.valueOf(textFieldCarburantDepart.getText())));
 			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
@@ -321,7 +335,7 @@ public class ContEditeur implements Controleur
 		catch (NumberFormatException ex)
 		{
 			textFieldCarburantDepart.setText(""
-					+ ((Vaisseau) corpsSelect).getCarburantDepart());
+					+ ((VaisseauJoueur) corpsSelect).getCarburantDepart());
 		}
 	}
 	
@@ -330,12 +344,12 @@ public class ContEditeur implements Controleur
 	{
 		try
 		{
-			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
 			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
-			textFieldPuissance.setText("" + ((Vaisseau) corpsSelect).getPuissance());
+			textFieldPuissance.setText("" + ((VaisseauJoueur) corpsSelect).getPuissance());
 		}
 	}
 	
@@ -361,7 +375,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onEssayer()
 	{
-		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau));
+		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau, true));
 	}
 	
 	@FXML
@@ -597,7 +611,7 @@ public class ContEditeur implements Controleur
 	 */
 	private void creeVaisseau(Vecteur pos)
 	{
-		Vaisseau v = new Vaisseau(Vaisseau.PUISSANCE_DEFAUT, Vaisseau.MASSE_DEFAUT, Vaisseau.CARBURANT_DEFAUT, Vaisseau.CARBURANT_DEFAUT, pos, new Vecteur());
+		Vaisseau v = new Vaisseau(Vaisseau.MASSE_DEFAUT, pos, new Vecteur());
 		corpsSelect = v;
 	}
 	
@@ -645,11 +659,12 @@ public class ContEditeur implements Controleur
 			comboBoxCorps.setValue("Vaisseau");
 			if (corpsSelect instanceof VaisseauJoueur)
 			{
+				VaisseauJoueur vj = (VaisseauJoueur)corpsSelect;
 				vBoxMenuVaisseauJoueur.setVisible(true);
 				supprimer.setVisible(false);
-				textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
-				textFieldCarburantDepart.setText(""	+ corpsSelect.getCarburantDepart());
-				textFieldPuissance.setText("" + corpsSelect.getPuissance());
+				textFieldCarburantMax.setText("" + vj.getCarburantMax());
+				textFieldCarburantDepart.setText(""	+ vj.getCarburantDepart());
+				textFieldPuissance.setText("" + vj.getPuissance());
 				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 				comboBoxCorps.setValue("Vaisseau Joueur");
 			}
@@ -673,6 +688,27 @@ public class ContEditeur implements Controleur
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
 		vue.getCamera().deplacer(pos.getX(), pos.getY());
+	}
+	
+	/**
+	 * Retourne le niveau de l'éditeur.
+	 * @return Niveau de l'éditeur.
+	 */
+	public Niveau getNiveau()
+	{
+		return niveau;
+	}
+	
+	/**
+	 * Modifie le niveau de l'éditeur
+	 * @param nouvNiveau Nouveau niveau de l'éditeur.
+	 */
+	public void setNiveau(Niveau nouvNiveau)
+	{
+		if(nouvNiveau != null)
+		{
+			niveau = nouvNiveau;
+		}
 	}
 	
 	/**

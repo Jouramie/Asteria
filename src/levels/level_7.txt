@@ -1,12 +1,9 @@
-VaisseauJoueur ; 1.0 ; 3000.0 ; 3.0 ; 3.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100.0 ; 100.0 ; -558.0 ; -315.0 ; 0.0 ; 0.0
-Vaisseau ; 1.0 ; 6.0E15 ; 100.0 ; 100.0 ; -581.0 ; -1.0 ; 0.0 ; 0.0
-Planete ; 6.0E15 ; 402.0 ; -292.0 ; 240.0 ; ROUGE ; 100.0 ; 0xffff80ff
-Planete ; 6.0E15 ; 481.0666334961297 ; 476.1577902971899 ; 240.0 ; VERTE ; 30.0 ; 0xccffccff
-Planete ; 3000.0 ; 1314.726313666437 ; -789.6964928241939 ; 160.0 ; BLEUE ; 30.0 ; 0xe6ccffff
-Planete ; 6.0E15 ; 186.85213051468054 ; -1005.5594918487407 ; 100.0 ; JAUNE ; 70.0 ; 0x808080ff
-DescriptionNiveau ; Dans ce niveau, faites attention à votre barre de vie. Si trop de vaisseaux vous touchent, vous mourrez.
-ObjectifRayon ; 538.42916556204 ; -558.0978108793744 ; 50.0
+VaisseauJoueur ; 1.0 ; 3000.0 ; 2 ; 2
+Planete ; 6.0E15 ; 172.0 ; -255.0 ; 240.0 ; ROUGE ; 30.0 ; 0xffa500ff
+Planete ; 6.0E15 ; -1996.8360780141131 ; -1157.855338259346 ; 200.0 ; JAUNE ; 30.0 ; 0xffa500ff
+Planete ; 6.0E15 ; -2074.232825223961 ; 312.6828587277912 ; 150.0 ; BLEUE ; 30.0 ; 0xffa500ff
+DescriptionNiveau ; Dirigez-vous vers une planète et utilisez sa force gravitationelle pour vous diriger vers le portail ! Bonne chance !
+ObjectifRayon ; -2299.3284704980324 ; 394.3362824561568 ; 50.0
 PointDepart ; 0.0 ; 0.0
-TitreNiveau ; L'entre-deux
-VitesseDepart ; 60.0
+TitreNiveau ; Le laisser-aller
+VitesseDepart ; 70

@@ -166,14 +166,8 @@ public class Niveau
 						}
 						case "vaisseau":
 						{
-							double puissance = Double.parseDouble(st.nextToken()
-									.trim());
 							double masse = Double
 									.parseDouble(st.nextToken().trim());
-							double capaciteCarburant = Double.parseDouble(st
-									.nextToken().trim());
-							double carburantDepart = Double.parseDouble(st
-									.nextToken().trim());
 							double positionX = Double.parseDouble(st.nextToken()
 									.trim());
 							double positionY = Double.parseDouble(st.nextToken()
@@ -185,8 +179,7 @@ public class Niveau
 							Vecteur position = new Vecteur(positionX, positionY);
 							Vecteur vitesse = new Vecteur(vitesseX, vitesseY);
 							
-							corps.add(new Vaisseau(puissance, masse,
-									capaciteCarburant, carburantDepart, position, vitesse));
+							corps.add(new Vaisseau(masse, position, vitesse));
 							break;
 						}
 						case "vaisseaujoueur":
@@ -350,9 +343,7 @@ public class Niveau
 				case "objets.vaisseau":
 				{
 					Vaisseau v = (Vaisseau) c;
-					bw.write("Vaisseau ; " + v.getPuissance() + " ; "
-							+ v.getMasse() + " ; " + v.getCarburantMax()
-							+ " ; " + v.getCarburantDepart() + " ; " + v.getPositionX() + " ; "
+					bw.write("Vaisseau ; " + v.getMasse() + " ; " + v.getPositionX() + " ; "
 							+ v.getPositionY() + " ; " + v.getVitesse().getX()
 							+ " ; " + v.getVitesse().getY());
 					break;

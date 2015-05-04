@@ -11,6 +11,27 @@
 	
 }
 
+.victoire-root
+{
+	-fx-background-image: url("trophee.png");
+	-fx-background-size: stretch;
+}
+
+.victoire-label
+{
+	-fx-font-size: 25.0px;
+	-fx-font-weight: bold;
+	-fx-font-family: "Courier New";
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+}
+
+.credits-label
+{
+	-fx-font-size: 35.0px;
+	-fx-font-weight: bold;
+	-fx-text-fill: linear-gradient(from 35.0% 25.0% to 50.0% 100.0%, #24824E 0.0%, #FF9D5C 60.0%, #DDD15C 100.0%);
+}
+
 .credits-root
 {
 	-fx-background-color: black;
@@ -44,7 +65,7 @@
 	-fx-background-color: #010010FF;
 }
 
-.root
+.editeur-root
 {
 	-fx-background-color: #010010FF;
 }
@@ -77,7 +98,7 @@
 
 .niveau-label-description
 {
-	-fx-background-image: url("Capture.PNG");
+	-fx-background-image: url("ecran.png");
 	-fx-background-size: stretch;
 	-fx-font-family: "OCR A Extended";
 	-fx-font-size: 24.0px;
@@ -102,7 +123,8 @@
 
 .niveau-root
 {
-	-fx-background-image: url("back_02.jpg");
+	-fx-background-image: url("niveau.png");
+	-fx-background-size: stretch;
 }
 
 .menu-root

@@ -12,7 +12,7 @@
   <center>
       <Pane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseClicked="#mouseClicked" onMouseMoved="#mouseMove" onScroll="#zoom" BorderPane.alignment="CENTER">
          <children>
-        <VBox fx:id="menuPause" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+        <VBox fx:id="menuPauseJeu" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
           <children>
             <Button mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="180.0" text="Retour au jeu">
               <textFill>
@@ -54,7 +54,7 @@
                   </Button>
           </children>
         </VBox>
-        <VBox fx:id="menuVictoire" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+        <VBox fx:id="menuVictoireJeu" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
           <children>
             <Label text="Bravo ! Vous avez réussi le tableau !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true">
               <font>
@@ -83,7 +83,7 @@
             </Button>
           </children>
         </VBox>
-            <VBox fx:id="menuMort" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+            <VBox fx:id="menuMortJeu" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
                <children>
                   <Label text="Un terrible accident est survenu !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true" wrapText="true">
                      <font>
@@ -117,14 +117,119 @@
                   </Button>
                </children>
             </VBox>
+            <VBox fx:id="menuPauseEditeur" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#retourjeu" prefHeight="77.0" prefWidth="180.0" text="Retour au jeu">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color blue="0.000" green="0.482" red="1.000" fx:id="x11" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color blue="0.235" green="0.827" red="0.075" fx:id="x21" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#recommencer" prefHeight="77.0" prefWidth="180.0" text="Recommencer">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="$x11" />
+                              <Stop color="$x21" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#editeur" prefHeight="77.0" prefWidth="180.0" text="Éditeur">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="$x11" />
+                              <Stop color="$x21" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="menuVictoireEditeur" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+               <children>
+                  <Label text="Bravo ! Vous avez réussi le tableau !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#recommencer" prefHeight="77.0" prefWidth="180.0" text="Recommencer">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="$x11" />
+                              <Stop color="$x21" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#editeur" prefHeight="77.0" prefWidth="180.0" text="Éditeur">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ff7b00" />
+                              <Stop color="#13d33c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="menuMortEditeur" alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="50.0" styleClass="jeu-pause" visible="false">
+               <children>
+                  <Label text="Un terrible accident est survenu !" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true" wrapText="true">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="391.0" layoutY="344.0" text="Requiescat In Pace" textFill="linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, 0xff7b00ff 0.0%, 0x13d33cff 100.0%)" visible="true" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#recommencer" prefHeight="77.0" prefWidth="180.0" text="Recommencer">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ff7b00" />
+                              <Stop color="#13d33c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <Button layoutX="568.0" layoutY="490.0" mnemonicParsing="false" onAction="#editeur" prefHeight="77.0" prefWidth="180.0" text="Éditeur">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#ff7b00" />
+                              <Stop color="#13d33c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </Pane>
   </center>
    <bottom>
       <VBox prefHeight="31.0" prefWidth="1284.0" styleClass="jeu-progress" BorderPane.alignment="CENTER">
          <children>
-            <ProgressBar fx:id="progressBarCarburant" prefHeight="18.0" prefWidth="1296.0" progress="0.32" styleClass="jeu-progress-carburant" />
-            <ProgressBar fx:id="progressBarSante" prefHeight="18.0" prefWidth="1448.0" progress="0.21" styleClass="jeu-progress-solidite" />
+            <ProgressBar fx:id="progressBarCarburant" prefHeight="18.0" prefWidth="1296.0" progress="1.0" styleClass="jeu-progress-carburant" />
+            <ProgressBar fx:id="progressBarSante" prefHeight="18.0" prefWidth="1448.0" progress="1.0" styleClass="jeu-progress-solidite" />
          </children>
       </VBox>
    </bottom>
