@@ -36,6 +36,7 @@ public class CameraTest
 	public void testDeplacer()
 	{
 		c2.deplacer(50, 50);
+		c2.update(1.0);
 		assertEquals(0, c2.getTranslation().getX(), 0.00001);
 		assertEquals(0, c2.getTranslation().getY(), 0.00001);
 	}
@@ -81,6 +82,7 @@ public class CameraTest
 	public void testGetTranslation()
 	{
 		c2.deplacer(50, 50);
+		c2.update(1.0);
 		Vecteur v = c2.getTranslation();
 		assertEquals(0.0, v.getX(), 0.00001);
 		assertEquals(0.0, v.getY(), 0.00001);
