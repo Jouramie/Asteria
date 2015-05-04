@@ -38,9 +38,9 @@ public class Tete extends ObjetSpatial
 	public enum Texture
 	{
 		EMILE("/res/emile.png"),
-		JEREMIE("/res/je.png"),
-		JONATHAN("/res/jo.png"),
-		SIMONPIERRE("/res/spd.png");
+		JEREMIE("/res/jeremie.png"),
+		JONATHAN("/res/jonathan.png"),
+		SIMONPIERRE("/res/simon_pierre.png");
 		
 		private final String texture;
 		

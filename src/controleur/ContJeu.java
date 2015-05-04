@@ -270,7 +270,7 @@ public class ContJeu implements Controleur
 		}
 		else
 		{
-			retour();
+			ContPrincipal.getInstance().viderCorps();
 			ContPrincipal.getInstance().selectionnerControleur(new ContVictoire());
 		}
 	}
