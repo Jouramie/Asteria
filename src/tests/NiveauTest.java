@@ -49,7 +49,7 @@ public class NiveauTest
 		corps = new ArrayList<>();
 		corps.add(vaisseau);
 		corps.add(new Planete(1000, 100, 100, 15, 0, Color.WHITE));
-		corps.add(new Vaisseau(0, 100, 0, 0, new Vecteur(250, 250), new Vecteur(10, 0)));
+		corps.add(new Vaisseau(100, new Vecteur(250, 250), new Vecteur(10, 0)));
 		
 		descriptionNiveau = "Niveau très difficile";
 		objectif = new ObjectifRayon(new Vecteur(1000, 1000), 20);
