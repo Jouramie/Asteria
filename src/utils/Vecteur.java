@@ -145,6 +145,14 @@ public class Vecteur implements Cloneable
 		return Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2));
 	}
 	
+	public void setGrandeur(double pGrandeur)
+	{
+		double angle = getAngle();
+		setAngle(0);
+		setX(pGrandeur);
+		setAngle(angle);
+	}
+	
 	/**
 	 * Additionne deux vecteurs ensembles et retourne un nouveau vecteur
 	 * représentant le résultat de la somme.

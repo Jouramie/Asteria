@@ -55,8 +55,6 @@ public class ContEditeur implements Controleur
 	@FXML
 	private Button retour;
 	@FXML
-	private Button supprimer;
-	@FXML
 	private Button sauve;
 	@FXML
 	private Button erase;
@@ -85,6 +83,8 @@ public class ContEditeur implements Controleur
 	@FXML
 	private TextField textFieldVitesseDepart;
 	@FXML
+	private TextField textFieldOrientation;
+	@FXML
 	private TextField textFieldRayonAtmosphere;
 	@FXML
 	private VBox vBoxMenu;
@@ -93,7 +93,11 @@ public class ContEditeur implements Controleur
 	@FXML
 	private VBox vBoxMenuPlanete;
 	@FXML
+	private VBox vBoxMenuVaisseau;
+	@FXML
 	private VBox vBoxMenuVaisseauJoueur;
+	@FXML
+	private VBox vBoxMenuVaisseauNonJoueur;
 	@FXML
 	private VBox vBoxMenuObjectif;
 	
@@ -125,26 +129,28 @@ public class ContEditeur implements Controleur
 	 * Initialise et affiche la vue de l'éditeur.
 	 */
 	public void initialiser()
-	{		
+	{
 		// Affiche la vue et supprime tous les corps actuels.
 		ContPrincipal.getInstance().afficherVue(vue, true);
 		ContPrincipal.getInstance().arreterHorloge();
 		
 		// Initialisation des combo box.
-		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail", "Vaisseau Joueur");
+		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail",
+				"Vaisseau Joueur");
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
 		
 		// Initialisation du niveau.
 		vaisseauJoueur = null;
 		objectif = null;
-		if(niveau == null)
+		if (niveau == null)
 		{
 			niveau = new Niveau();
 		}
 		Platform.runLater(() -> {
 			chargerNiveau();
-			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(),
+					vaisseauJoueur.getPositionY());
 			vue.getCamera().zoomer(1.0);
 		});
 	}
@@ -159,7 +165,8 @@ public class ContEditeur implements Controleur
 		{
 			try
 			{
-				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon.getText())));
+				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
+						.getText())));
 				((Planete) corpsSelect).maj();
 			}
 			catch (NumberFormatException ex)
@@ -177,7 +184,8 @@ public class ContEditeur implements Controleur
 			Planete p = (Planete) corpsSelect;
 			try
 			{
-				p.setRayonAtmosphere(Double.valueOf(textFieldRayonAtmosphere.getText()));
+				p.setRayonAtmosphere(Double.valueOf(textFieldRayonAtmosphere
+						.getText()));
 				p.maj();
 			}
 			catch (NumberFormatException ex)
@@ -236,7 +244,8 @@ public class ContEditeur implements Controleur
 		{
 			try
 			{
-				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX.getText())));
+				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
+						.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -249,7 +258,8 @@ public class ContEditeur implements Controleur
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
 			{
-				or.getPosRayon().setX((Double.valueOf(textFieldPositionX.getText())));
+				or.getPosRayon().setX(
+						(Double.valueOf(textFieldPositionX.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -265,7 +275,8 @@ public class ContEditeur implements Controleur
 		{
 			try
 			{
-				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY.getText())));
+				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
+						.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -278,7 +289,8 @@ public class ContEditeur implements Controleur
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
 			{
-				or.getPosRayon().setY((Double.valueOf(textFieldPositionY.getText())));
+				or.getPosRayon().setY(
+						(Double.valueOf(textFieldPositionY.getText())));
 			}
 			catch (NumberFormatException ex)
 			{
@@ -345,24 +357,54 @@ public class ContEditeur implements Controleur
 		try
 		{
 			VaisseauJoueur corpsSelect = (VaisseauJoueur) this.corpsSelect;
-			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance.getText())));
+			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance
+					.getText())));
 		}
 		catch (NumberFormatException ex)
 		{
-			textFieldPuissance.setText("" + ((VaisseauJoueur) corpsSelect).getPuissance());
+			textFieldPuissance.setText(""
+					+ ((VaisseauJoueur) corpsSelect).getPuissance());
 		}
 	}
 	
 	@FXML
 	public void onVitesseDepart(ActionEvent e)
 	{
+		if (corpsSelect instanceof VaisseauJoueur)
+			try
+			{
+				niveau.setVitesseDepart((Double.valueOf(textFieldVitesseDepart
+						.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
+			}
+		else
+			try
+			{
+				Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+				corpsSelect.getVitesse().setGrandeur((Double.valueOf(textFieldVitesseDepart
+						.getText())));
+			}
+			catch (NumberFormatException ex)
+			{
+				textFieldVitesseDepart.setText("" + corpsSelect.getVitesse().getNorme());
+			}
+	}
+	
+	@FXML
+	public void onOrientation(ActionEvent e)
+	{
 		try
 		{
-			niveau.setVitesseDepart((Double.valueOf(textFieldVitesseDepart.getText())));
+			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
+			corpsSelect.getVitesse().setAngle((Double.valueOf(textFieldOrientation
+					.getText()))  / 360 * 2 * Math.PI);
 		}
 		catch (NumberFormatException ex)
 		{
-			textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
+			textFieldVitesseDepart.setText("" + corpsSelect.getVitesse().getNorme());
 		}
 	}
 	
@@ -375,7 +417,8 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onEssayer()
 	{
-		ContPrincipal.getInstance().selectionnerControleur(new ContJeu(niveau, true));
+		ContPrincipal.getInstance().selectionnerControleur(
+				new ContJeu(niveau, true));
 	}
 	
 	@FXML
@@ -427,7 +470,8 @@ public class ContEditeur implements Controleur
 			
 			chargerNiveau();
 			vBoxMenu.setVisible(false);
-			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(), vaisseauJoueur.getPositionY());
+			vue.getCamera().deplacer(vaisseauJoueur.getPositionX(),
+					vaisseauJoueur.getPositionY());
 			vue.getCamera().zoomer(1.0);
 		}
 		catch (Exception e)
@@ -458,16 +502,16 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Initialise le combo box de texture.
-	 * Obligatoire, sinon les textures disparaissent si on ne fait que
-	 * les définir dans le FXML.
+	 * Initialise le combo box de texture. Obligatoire, sinon les textures
+	 * disparaissent si on ne fait que les définir dans le FXML.
 	 */
 	private void initialiserComboBoxTexture()
 	{
 		comboBoxTexture.getItems().addAll(Texture.BLEUE, Texture.JAUNE,
 				Texture.MAGENTA, Texture.ORANGE, Texture.ROUGE, Texture.VERTE);
 		
-		comboBoxTexture.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
+		comboBoxTexture
+				.setCellFactory(new Callback<ListView<Texture>, ListCell<Texture>>()
 				{
 					public ListCell<Texture> call(ListView<Texture> p)
 					{
@@ -512,7 +556,8 @@ public class ContEditeur implements Controleur
 	{
 		Point2D point = pane.sceneToLocal(event.getSceneX(), event.getSceneY());
 		Camera cam = vue.getCamera();
-		Vecteur pos = cam.localToGlobal(new Vecteur(point.getX(), point.getY()));
+		Vecteur pos = cam
+				.localToGlobal(new Vecteur(point.getX(), point.getY()));
 		
 		switch (event.getButton())
 		{
@@ -601,7 +646,9 @@ public class ContEditeur implements Controleur
 	 */
 	private void creePlanete(Vecteur pos)
 	{
-		Planete p = new Planete(Planete.PLANETE_MASSE_DEFAUT, pos, Planete.RAYON_DEFAUT, Planete.RAYON_ATMOSPHERE_DEFAUT, Planete.COULEUR_ATMOSHPERE_DEFAUT);
+		Planete p = new Planete(Planete.PLANETE_MASSE_DEFAUT, pos,
+				Planete.RAYON_DEFAUT, Planete.RAYON_ATMOSPHERE_DEFAUT,
+				Planete.COULEUR_ATMOSHPERE_DEFAUT);
 		p.setTexture(Planete.TEXTURE_DEFAUT);
 		corpsSelect = p;
 	}
@@ -625,21 +672,21 @@ public class ContEditeur implements Controleur
 			return;
 		}
 		vBoxMenu.setVisible(true);
-		
 		if (corpsSelect instanceof Planete)
 		{
 			Planete corpsSelect = (Planete) this.corpsSelect;
 			vBoxMenuCorps.setVisible(true);
 			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(true);
-			vBoxMenuVaisseauJoueur.setVisible(false);
-			supprimer.setVisible(true);
+			vBoxMenuVaisseau.setVisible(false);
 			textFieldRayon.setText("" + corpsSelect.getRayon());
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			textFieldRayonAtmosphere.setText("" + corpsSelect.getRayonAtmosphere());
-			colorPickerCouleurAtmosphere.setValue(corpsSelect.getCouleurAtmosphere());
+			textFieldRayonAtmosphere.setText(""
+					+ corpsSelect.getRayonAtmosphere());
+			colorPickerCouleurAtmosphere.setValue(corpsSelect
+					.getCouleurAtmosphere());
 			comboBoxTexture.getSelectionModel().select(
 					((Planete) corpsSelect).getTexture());
 			comboBoxCorps.setValue("Planète");
@@ -651,22 +698,30 @@ public class ContEditeur implements Controleur
 			vBoxMenuCorps.setVisible(true);
 			vBoxMenuObjectif.setVisible(false);
 			vBoxMenuPlanete.setVisible(false);
-			vBoxMenuVaisseauJoueur.setVisible(false);
-			supprimer.setVisible(true);
+			vBoxMenuVaisseau.setVisible(true);
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			comboBoxCorps.setValue("Vaisseau");
 			if (corpsSelect instanceof VaisseauJoueur)
 			{
-				VaisseauJoueur vj = (VaisseauJoueur)corpsSelect;
+				VaisseauJoueur vj = (VaisseauJoueur) corpsSelect;
 				vBoxMenuVaisseauJoueur.setVisible(true);
-				supprimer.setVisible(false);
+				vBoxMenuVaisseauNonJoueur.setVisible(false);
 				textFieldCarburantMax.setText("" + vj.getCarburantMax());
-				textFieldCarburantDepart.setText(""	+ vj.getCarburantDepart());
+				textFieldCarburantDepart.setText("" + vj.getCarburantDepart());
 				textFieldPuissance.setText("" + vj.getPuissance());
 				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 				comboBoxCorps.setValue("Vaisseau Joueur");
+			}
+			else
+			{
+				vBoxMenuVaisseauJoueur.setVisible(false);
+				vBoxMenuVaisseauNonJoueur.setVisible(true);
+				textFieldVitesseDepart.setText(""
+						+ corpsSelect.getVitesse().getNorme());
+				textFieldOrientation.setText(""
+						+ corpsSelect.getVitesse().getAngle());
+				comboBoxCorps.setValue("Vaisseau");
 			}
 		}
 		
@@ -692,6 +747,7 @@ public class ContEditeur implements Controleur
 	
 	/**
 	 * Retourne le niveau de l'éditeur.
+	 * 
 	 * @return Niveau de l'éditeur.
 	 */
 	public Niveau getNiveau()
@@ -701,11 +757,13 @@ public class ContEditeur implements Controleur
 	
 	/**
 	 * Modifie le niveau de l'éditeur
-	 * @param nouvNiveau Nouveau niveau de l'éditeur.
+	 * 
+	 * @param nouvNiveau
+	 *            Nouveau niveau de l'éditeur.
 	 */
 	public void setNiveau(Niveau nouvNiveau)
 	{
-		if(nouvNiveau != null)
+		if (nouvNiveau != null)
 		{
 			niveau = nouvNiveau;
 		}
@@ -732,7 +790,8 @@ public class ContEditeur implements Controleur
 		// Si aucun vaisseau joueur n'est défini, on en ajoute un.
 		if (vaisseauJoueur == null)
 		{
-			vaisseauJoueur = new VaisseauJoueur(VaisseauJoueur.PUISSANCE_DEFAUT,
+			vaisseauJoueur = new VaisseauJoueur(
+					VaisseauJoueur.PUISSANCE_DEFAUT,
 					VaisseauJoueur.MASSE_DEFAUT,
 					VaisseauJoueur.CARBURANT_DEFAUT,
 					VaisseauJoueur.CARBURANT_DEFAUT);

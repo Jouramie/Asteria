@@ -47,7 +47,7 @@
       										<TextField fx:id="textFieldMasse" onAction="#onMasse" prefHeight="25.0" prefWidth="119.0" />
       										<Pane prefWidth="200.0">
       											<children>
-      												<VBox fx:id="vBoxMenuPlanete" prefWidth="200.0" styleClass="editeur-menu-droite">
+      												<VBox fx:id="vBoxMenuPlanete" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
       													<children>
       														<Label styleClass="editeur-label" text="Texture">
       															<VBox.margin>
@@ -61,27 +61,46 @@
                                     <TextField fx:id="textFieldRayonAtmosphere" onAction="#onRayonAtmosphere" prefHeight="25.0" prefWidth="119.0" />
                                     <Label styleClass="editeur-label" text="Couleur Atmosphere" />
                                     <ColorPicker fx:id="colorPickerCouleurAtmosphere" onAction="#onCouleurAtmosphere" prefWidth="200.0" />
+                  										<Button fx:id="supprimer" mnemonicParsing="false" onAction="#onSupprimer" text="Supprimer" />
       													</children>
       												</VBox>
-      												<VBox fx:id="vBoxMenuVaisseauJoueur" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
-      													<children>
-      														<Label styleClass="editeur-label" text="Carburant maximum" />
-      														<TextField fx:id="textFieldCarburantMax" onAction="#onCarburantMax" prefHeight="25.0" prefWidth="119.0" />
-      														<Label styleClass="editeur-label" text="Carburant de départ" />
-      														<TextField fx:id="textFieldCarburantDepart" onAction="#onCarburantDepart" prefHeight="25.0" prefWidth="119.0" />
-                                    <Label styleClass="editeur-label" text="Puissance">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </Label>
-                                    <TextField fx:id="textFieldPuissance" onAction="#onPuissance" prefHeight="25.0" prefWidth="119.0" />
+                              <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
                                     <Label styleClass="editeur-label" text="Vitesse départ" />
                                     <TextField fx:id="textFieldVitesseDepart" onAction="#onVitesseDepart" prefHeight="25.0" prefWidth="119.0" />
-      													</children>
-      												</VBox>
+                                    <Pane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox fx:id="vBoxMenuVaisseauNonJoueur" prefHeight="200.0" prefWidth="200.0" styleClass="editeur-menu-droite">
+                                             <children>
+                                                <Label styleClass="editeur-label" text="Orientation" />
+                                                <TextField fx:id="textFieldOrientation" onAction="#onOrientation" prefHeight="25.0" prefWidth="119.0" />
+                                                <Button fx:id="supprimer11" mnemonicParsing="false" onAction="#onSupprimer" text="Supprimer" />
+                                             </children>
+                                          </VBox>
+                  												<VBox fx:id="vBoxMenuVaisseauJoueur" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
+                  													<children>
+                  														<Label styleClass="editeur-label" text="Carburant maximum" />
+                  														<TextField fx:id="textFieldCarburantMax" onAction="#onCarburantMax" prefHeight="25.0" prefWidth="119.0" />
+                  														<Label styleClass="editeur-label" text="Carburant de départ" />
+                  														<TextField fx:id="textFieldCarburantDepart" onAction="#onCarburantDepart" prefHeight="25.0" prefWidth="119.0" />
+                                                <Label styleClass="editeur-label" text="Puissance">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <TextField fx:id="textFieldPuissance" onAction="#onPuissance" prefHeight="25.0" prefWidth="119.0" />
+                  													</children>
+                  												</VBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="editeur-menu-droite" />
+                                    <String fx:value="editeur-menu-droite" />
+                                 </styleClass>
+                              </VBox>
       											</children>
       										</Pane>
-      										<Button fx:id="supprimer" mnemonicParsing="false" onAction="#onSupprimer" text="Supprimer" />
       									</children>
       								</VBox>
 								<VBox fx:id="vBoxMenuObjectif" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="editeur-menu-droite" visible="false">
