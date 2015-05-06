@@ -307,6 +307,8 @@ public class ContEditeur implements Controleur
 	public void onSupprimer()
 	{
 		niveau.supprimerCorps(corpsSelect);
+		corpsSelect = null;
+		vBoxMenu.setVisible(false);
 		chargerNiveau();
 	}
 	
@@ -390,6 +392,7 @@ public class ContEditeur implements Controleur
 				Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
 				corpsSelect.getVitesse().setGrandeur((Double.valueOf(textFieldVitesseDepart
 						.getText())));
+				corpsSelect.setVitesse(corpsSelect.getVitesse(), true);
 			}
 			catch (NumberFormatException ex)
 			{
@@ -405,10 +408,11 @@ public class ContEditeur implements Controleur
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
 			corpsSelect.getVitesse().setAngle((Double.valueOf(textFieldOrientation
 					.getText()))  / 360 * 2 * Math.PI);
+			corpsSelect.setVitesse(corpsSelect.getVitesse(), true);
 		}
 		catch (NumberFormatException ex)
 		{
-			textFieldVitesseDepart.setText("" + corpsSelect.getVitesse().getNorme());
+			textFieldOrientation.setText("" + corpsSelect.getVitesse().getAngle() / 2 / Math.PI * 360);
 		}
 	}
 	
@@ -724,7 +728,7 @@ public class ContEditeur implements Controleur
 				textFieldVitesseDepart.setText(""
 						+ corpsSelect.getVitesse().getNorme());
 				textFieldOrientation.setText(""
-						+ corpsSelect.getVitesse().getAngle());
+						+ corpsSelect.getVitesse().getAngle() / 2 / Math.PI * 360);
 				comboBoxCorps.setValue("Vaisseau");
 			}
 		}
