@@ -30,6 +30,7 @@ import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
 import modele.ObjectifRayon;
+import objets.ObjetSpatial;
 import objets.Planete;
 import objets.Planete.Texture;
 import objets.Vaisseau;
@@ -240,16 +241,17 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onPositionX(ActionEvent e)
 	{
-		if (corpsSelect instanceof Corps)
+		if (corpsSelect instanceof ObjetSpatial)
 		{
+			ObjetSpatial obj = (ObjetSpatial) corpsSelect;
 			try
 			{
-				corpsSelect.setPositionX((Double.valueOf(textFieldPositionX
-						.getText())));
+				obj.setPositionX((Double.valueOf(textFieldPositionX
+						.getText())), true);
 			}
 			catch (NumberFormatException ex)
 			{
-				textFieldPositionX.setText("" + corpsSelect.getPositionX());
+				textFieldPositionX.setText("" + obj.getPositionX());
 			}
 		}
 		
@@ -271,16 +273,18 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onPositionY(ActionEvent e)
 	{
-		if (corpsSelect instanceof Corps)
+		if (corpsSelect instanceof ObjetSpatial)
 		{
+			ObjetSpatial obj = (ObjetSpatial) corpsSelect;
+			
 			try
 			{
-				corpsSelect.setPositionY((Double.valueOf(textFieldPositionY
-						.getText())));
+				obj.setPositionY((Double.valueOf(textFieldPositionY
+						.getText())), true);
 			}
 			catch (NumberFormatException ex)
 			{
-				textFieldPositionY.setText("" + corpsSelect.getPositionY());
+				textFieldPositionY.setText("" + obj.getPositionY());
 			}
 		}
 		
