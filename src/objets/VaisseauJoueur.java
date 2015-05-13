@@ -362,7 +362,7 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Met à jour le noeud représentant le vaisseau
 	 */
-	public void maj(double dt)
+	public void miseAJourGraphique(double dt)
 	{
 		if (gauche ^ droite)
 		{
@@ -413,9 +413,9 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Crée le noeud JavaFX du vaisseau.
 	 */
-	private void creeNoeud()
+	public void creeNoeud()
 	{
-		Group group = new Group();
+		Group group = new Group();//TODO
 		
 		Image textureVaisseau = new Image("/res/spaceship.png");
 		
@@ -462,7 +462,7 @@ public class VaisseauJoueur extends Vaisseau
 	 * @param dt
 	 *            Temps écoulé (en secondes).
 	 */
-	public void update(double dt)
+	public void miseAJourPhysique(double dt)
 	{
 		if (moteur)
 		{

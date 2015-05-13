@@ -149,5 +149,5 @@ public interface Corps
 	 * @param dt
 	 *            Temps écoulé depuis le dernier frame (en secondes).
 	 */
-	public abstract void update(double dt);
+	void miseAJourPhysique(double dt);
 }

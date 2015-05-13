@@ -10,7 +10,9 @@ import utils.Vecteur;
 import vue.Dessinable;
 
 /**
- * Classe représentant un objectif qui est de placer le vaisseau dans un certain cercle.
+ * Classe représentant un objectif qui est de placer le vaisseau dans un certain
+ * cercle.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -27,9 +29,13 @@ public class ObjectifRayon implements Objectif, Dessinable
 	
 	/**
 	 * Constructeur de l'objectif.
-	 * @param vaisseau Vaisseau sur lequel vérifier l'objectif.
-	 * @param posRayon Position du cercle.
-	 * @param rayon Rayon du cercle.
+	 * 
+	 * @param vaisseau
+	 *            Vaisseau sur lequel vérifier l'objectif.
+	 * @param posRayon
+	 *            Position du cercle.
+	 * @param rayon
+	 *            Rayon du cercle.
 	 */
 	public ObjectifRayon(Vecteur posRayon, double rayon)
 	{
@@ -38,7 +44,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 		this.rayon = rayon;
 		this.portal = new Group();
 	}
-
+	
 	/**
 	 * Retourne une description sommaire de l'objectif.
 	 */
@@ -65,11 +71,13 @@ public class ObjectifRayon implements Objectif, Dessinable
 	
 	/**
 	 * Modifie le vaisseau sur lequel l'objectif est vérifié.
-	 * @param vaisseau Le nouveau vaisseau sur lequel l'objectif est vérifié.
+	 * 
+	 * @param vaisseau
+	 *            Le nouveau vaisseau sur lequel l'objectif est vérifié.
 	 */
 	public void setVaisseau(Vaisseau vaisseau)
 	{
-		if(vaisseau != null)
+		if (vaisseau != null)
 		{
 			this.vaisseau = vaisseau;
 		}
@@ -77,11 +85,13 @@ public class ObjectifRayon implements Objectif, Dessinable
 	
 	/**
 	 * Modifie la position du rayon de l'objectif.
-	 * @param posRayon La nouvelle position du rayon de l'objectif.
+	 * 
+	 * @param posRayon
+	 *            La nouvelle position du rayon de l'objectif.
 	 */
 	public void setPosRayon(Vecteur posRayon)
 	{
-		if(posRayon != null)
+		if (posRayon != null)
 		{
 			this.posRayon = posRayon;
 		}
@@ -89,11 +99,13 @@ public class ObjectifRayon implements Objectif, Dessinable
 	
 	/**
 	 * Modifie le rayon de l'objectif.
-	 * @param rayon Le nouveau rayon de l'objectif.
+	 * 
+	 * @param rayon
+	 *            Le nouveau rayon de l'objectif.
 	 */
 	public void setRayon(double rayon)
 	{
-		if(rayon > 0)
+		if (rayon > 0)
 		{
 			this.rayon = rayon;
 		}
@@ -106,7 +118,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	{
 		return vaisseau;
 	}
-
+	
 	/**
 	 * Vérifie si le vaisseau se retrouve dans le cercle prescrit.
 	 */
@@ -114,19 +126,39 @@ public class ObjectifRayon implements Objectif, Dessinable
 	{
 		boolean resultat = false;
 		
-		if(vaisseau != null && vaisseau.getPosition().soustraire(posRayon).getNorme() < rayon)
+		if (vaisseau != null
+				&& vaisseau.getPosition().soustraire(posRayon).getNorme() < rayon)
 		{
 			resultat = true;
 		}
 		
 		return resultat;
 	}
-
+	
 	/**
 	 * Retourne un noeud représentant le portail de fin.
+	 * 
 	 * @return Retourne le noeud.
 	 */
 	public Node getNoeud()
+	{
+		if (portal.getChildren().isEmpty())
+			creeNoeud();
+		return portal;
+	}
+	
+	/**
+	 * Met à jour le portail (animation de rotation).
+	 * 
+	 * @param dt
+	 *            Temps écoulé depuis le dernier frame (en secondes).
+	 */
+	public void miseAJourGraphique(double dt)
+	{
+		noeudRotate.setAngle(noeudRotate.getAngle() + VITESSE_ROTATION * dt);
+	}
+	
+	public void creeNoeud()
 	{
 		portal.getChildren().clear();
 		
@@ -139,16 +171,5 @@ public class ObjectifRayon implements Objectif, Dessinable
 		
 		noeudRotate = new Rotate(0, rayon, rayon);
 		image.getTransforms().add(noeudRotate);
-		
-		return portal;
-	}
-
-	/**
-	 * Met à jour le portail (animation de rotation).
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
-	 */
-	public void maj(double dt)
-	{
-		noeudRotate.setAngle(noeudRotate.getAngle() + VITESSE_ROTATION * dt);
 	}
 }

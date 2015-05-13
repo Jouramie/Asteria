@@ -488,7 +488,7 @@ public class ContJeu implements Controleur
 		if (vaisseauJoueur != null)
 		{
 			// Met à jour le vaisseau et vérifie l'objectif.
-			vaisseauJoueur.update(dt);
+			vaisseauJoueur.miseAJourPhysique(dt);
 			verifierObjectif();
 			
 			// =========================

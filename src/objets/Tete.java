@@ -2,6 +2,7 @@ package objets;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import modele.Corps;
 import utils.Vecteur;
 /**
  * Classe représentant une tête.
@@ -136,7 +137,7 @@ public class Tete extends ObjetSpatial
 	/**
 	 * Met à jour l'apparence de la tête.
 	 */
-	public void maj(double dt)
+	public void miseAJourGraphique(double dt)
 	{
 	}
 
@@ -171,5 +172,17 @@ public class Tete extends ObjetSpatial
 		image.setFitWidth(2 * rayon);
 		image.setFitHeight(2 * rayon);
 		return image;
+	}
+
+	public void onCollision(Corps c)
+	{	
+	}
+
+	public void miseAJourPhysique(double dt)
+	{
+	}
+
+	public void creeNoeud()
+	{
 	}
 }

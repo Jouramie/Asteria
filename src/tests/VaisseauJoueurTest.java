@@ -216,10 +216,10 @@ public class VaisseauJoueurTest
 		v1.avancer(true);
 		v1.setCarburantMax(100);
 		v1.setCarburantRestant(100);
-		v1.update(1.0);
+		v1.miseAJourPhysique(1.0);
 		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
 		v1.avancer(false);
-		v1.update(1.0);
+		v1.miseAJourPhysique(1.0);
 		assertEquals(99.0, v1.getCarburantRestant(), 0.0001);
 	}
 	

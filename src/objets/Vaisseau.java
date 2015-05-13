@@ -1,4 +1,5 @@
 package objets;
+import modele.Corps;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -90,9 +91,9 @@ public class Vaisseau extends ObjetSpatial
 	/**
 	 * Crée le noeud JavaFX du vaisseau.
 	 */
-	private void creeNoeud()
+	public void creeNoeud()
 	{
-		Group group = new Group();
+		Group group = new Group(); //TODO
 		
 		Image textureVaisseau = new Image("/res/spaceship-ennemy.png");;
 		
@@ -140,8 +141,16 @@ public class Vaisseau extends ObjetSpatial
 		return new Vecteur();
 	}
 
-	public void maj(double dt)
+	public void miseAJourGraphique(double dt)
 	{
 		noeudRotate.setAngle(vitesse.getAngle() / 2 / Math.PI * 360 + 90);
+	}
+
+	public void onCollision(Corps c)
+	{
+	}
+
+	public void miseAJourPhysique(double dt)
+	{
 	}
 }

@@ -2,8 +2,6 @@ package objets;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.Node;
-import javafx.scene.paint.Color;
 import modele.Corps;
 import utils.Vecteur;
 import vue.Dessinable;
@@ -236,9 +234,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public void setVitesse(Vecteur pVitesse)
 	{
 		if (pVitesse == null)
-		{
 			vitesse = new Vecteur();
-		}
 		else
 			vitesse = pVitesse;
 	}
@@ -250,28 +246,11 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	{
 		if (pDepart)
 			if (pVitesse == null)
-			{
 				vitesseDepart = new Vecteur();
-			}
 			else
 				vitesseDepart = pVitesse.clone();
 		setVitesse(pVitesse);
 	}
-	
-	public abstract Vecteur getForceExt();
-	
-	/**
-	 * Met à jour le noeud
-	 * 
-	 * @param dt
-	 *            Temps écoulé depuis le dernier frame (en secondes).
-	 */
-	public abstract void maj(double dt);
-	
-	/**
-	 * Retourne la forme représentant le corps.
-	 */
-	public abstract Node getNoeud();
 	
 	/**
 	 * Remet les corps à leur position et leur vitesse de départ.
@@ -281,16 +260,5 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPositionX(positionXDepart);
 		setPositionY(positionYDepart);
 		setVitesse(vitesseDepart);
-	}
-	
-	/**
-	 * Callback lors d'une collision.
-	 * 
-	 * @param c
-	 *            Corps avec lequel on est en collision.
-	 */
-	public void onCollision(Corps c)
-	{
-		
-	}
+	}	
 }

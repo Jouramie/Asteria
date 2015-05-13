@@ -168,7 +168,7 @@ public class ContEditeur implements Controleur
 			{
 				((Planete) corpsSelect).setRayon((Double.valueOf(textFieldRayon
 						.getText())));
-				((Planete) corpsSelect).maj();
+				((Planete) corpsSelect).getNoeud();
 			}
 			catch (NumberFormatException ex)
 			{
@@ -187,7 +187,7 @@ public class ContEditeur implements Controleur
 			{
 				p.setRayonAtmosphere(Double.valueOf(textFieldRayonAtmosphere
 						.getText()));
-				p.maj();
+				p.getNoeud();
 			}
 			catch (NumberFormatException ex)
 			{
@@ -203,7 +203,7 @@ public class ContEditeur implements Controleur
 		{
 			Planete p = (Planete) corpsSelect;
 			p.setCouleurAtmosphere(colorPickerCouleurAtmosphere.getValue());
-			p.maj();
+			p.getNoeud();
 		}
 	}
 	

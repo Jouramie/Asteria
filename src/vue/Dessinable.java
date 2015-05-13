@@ -18,10 +18,15 @@ public interface Dessinable
 	Node getNoeud();
 	
 	/**
+	 * Crée un noeud représentant l'objet.
+	 */	
+	void creeNoeud();
+	
+	/**
 	 * Met à jour le noeud représentant l'objet.
 	 * 
 	 * @param dt
 	 *            Temps écoulé depuis le dernier frame (en secondes).
 	 */
-	void maj(double dt);
+	void miseAJourGraphique(double dt);
 }
