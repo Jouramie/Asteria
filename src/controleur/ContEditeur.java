@@ -248,14 +248,19 @@ public class ContEditeur implements Controleur
 			{
 				obj.setPositionX((Double.valueOf(textFieldPositionX
 						.getText())), true);
+				
+				if(obj instanceof VaisseauJoueur)
+				{
+					niveau.setPointDepart(new Vecteur(Double.valueOf(textFieldPositionX
+							.getText()), niveau.getPointDepart().getY()));
+				}
 			}
 			catch (NumberFormatException ex)
 			{
 				textFieldPositionX.setText("" + obj.getPositionX());
 			}
 		}
-		
-		else if (objectifSelect instanceof ObjectifRayon)
+		else if(objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
@@ -268,6 +273,7 @@ public class ContEditeur implements Controleur
 				textFieldPositionX.setText("" + or.getPosRayon().getX());
 			}
 		}
+		chargerNiveau();
 	}
 	
 	@FXML
@@ -281,13 +287,18 @@ public class ContEditeur implements Controleur
 			{
 				obj.setPositionY((Double.valueOf(textFieldPositionY
 						.getText())), true);
+				
+				if(obj instanceof VaisseauJoueur)
+				{
+					niveau.setPointDepart(new Vecteur(niveau.getPointDepart().getX(), Double.valueOf(textFieldPositionY
+							.getText())));
+				}
 			}
 			catch (NumberFormatException ex)
 			{
 				textFieldPositionY.setText("" + obj.getPositionY());
 			}
 		}
-		
 		else if (objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
@@ -301,6 +312,7 @@ public class ContEditeur implements Controleur
 				textFieldPositionY.setText("" + or.getPosRayon().getY());
 			}
 		}
+		chargerNiveau();
 	}
 	
 	@FXML
