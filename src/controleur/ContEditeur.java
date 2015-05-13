@@ -172,6 +172,8 @@ public class ContEditeur implements Controleur
 				textFieldRayon.setText("" + corpsSelect.getRayon());
 			}
 		}
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -191,6 +193,8 @@ public class ContEditeur implements Controleur
 				textFieldRayonAtmosphere.setText("" + p.getRayonAtmosphere());
 			}
 		}
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -202,6 +206,8 @@ public class ContEditeur implements Controleur
 			p.setCouleurAtmosphere(colorPickerCouleurAtmosphere.getValue());
 			p.getNoeud();
 		}
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -220,6 +226,8 @@ public class ContEditeur implements Controleur
 				textFieldRayonObjectif.setText("" + or.getRayon());
 			}
 		}
+		if(objectifSelect instanceof Dessinable)
+			((Dessinable) objectifSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -271,7 +279,10 @@ public class ContEditeur implements Controleur
 				textFieldPositionX.setText("" + or.getPosRayon().getX());
 			}
 		}
-		chargerNiveau();
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
+		if(objectifSelect instanceof Dessinable)
+			((Dessinable) objectifSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -311,7 +322,10 @@ public class ContEditeur implements Controleur
 				textFieldPositionY.setText("" + or.getPosRayon().getY());
 			}
 		}
-		chargerNiveau();
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
+		if(objectifSelect instanceof Dessinable)
+			((Dessinable) objectifSelect).creeNoeud();
 	}
 	
 	@FXML
@@ -329,8 +343,9 @@ public class ContEditeur implements Controleur
 		if(corpsSelect != null)
 		{
 			((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
-			chargerNiveau();
 		}
+		if(corpsSelect instanceof Dessinable)
+			((Dessinable) corpsSelect).creeNoeud();
 	}
 	
 	@FXML

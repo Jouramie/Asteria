@@ -257,7 +257,6 @@ public class Planete extends ObjetSpatial
 	public void creeNoeud()
 	{
 		noeud.getChildren().clear();
-		setTexture(texture);
 		Image texture = new Image(this.texture.getTexture());
 		Circle cercle = new Circle(rayon + rayonAtmosphere);
 		RadialGradient grad = new RadialGradient(0, 0, 0, 0, rayon
