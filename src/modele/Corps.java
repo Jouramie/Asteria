@@ -19,6 +19,14 @@ public interface Corps
 	double getMasse();
 	
 	/**
+	 * Modifie la masse du corps.
+	 * 
+	 * @param pMasse
+	 *            Masse du corps (en kg)
+	 */
+	void setMasse(double pMasse);
+	
+	/**
 	 * Retourne la position par rapport à X.
 	 * 
 	 * @return Position X (en m)
@@ -129,9 +137,17 @@ public interface Corps
 	
 	/**
 	 * Callback lorsqu'une collision a lieu.
-	 * @param c Autre corps en collision.
+	 * 
+	 * @param c
+	 *            Autre corps en collision.
 	 */
 	void onCollision(Corps c);
-
-	void setMasse(double pMasse);
+	
+	/**
+	 * Met à jour les attributs
+	 * 
+	 * @param dt
+	 *            Temps écoulé depuis le dernier frame (en secondes).
+	 */
+	public abstract void update(double dt);
 }
