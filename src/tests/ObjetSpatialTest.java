@@ -6,10 +6,8 @@ import static org.junit.Assert.assertEquals;
 import javafx.scene.paint.Color;
 import objets.ObjetSpatial;
 import objets.Planete;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import utils.Vecteur;
 
 /**
@@ -20,7 +18,7 @@ import utils.Vecteur;
  */
 public class ObjetSpatialTest
 {
-	//Incertitude toléré
+	// Incertitude toléré
 	private static final double d = 0.001;
 	ObjetSpatial oS1, oS2, oS3, oS4, oS5, oS6, oS7, oS8;
 	
@@ -175,7 +173,7 @@ public class ObjetSpatialTest
 	public void testIsStatique()
 	{
 		assertTrue(oS1.isStatique());
-
+		
 	}
 	
 	@Test
@@ -183,7 +181,7 @@ public class ObjetSpatialTest
 	{
 		oS1.setStatique(false);
 		assertFalse(oS1.isStatique());
-
+		
 	}
 	
 	@Test
@@ -191,7 +189,7 @@ public class ObjetSpatialTest
 	{
 		oS1.setVitesse(new Vecteur(60, 60));
 		assertTrue(oS1.getVitesse().getX() == 0 && oS1.getVitesse().getY() == 0);
-
+		
 	}
 	
 	@Test
@@ -202,10 +200,10 @@ public class ObjetSpatialTest
 		assertTrue(oS1.getVitesse().getX() == 60
 				&& oS1.getVitesse().getY() == 60);
 		oS2.setVitesse(null);
-		assertEquals(new Vecteur().getNorme(),oS2.getVitesse().getNorme() , d);
-		oS3.setVitesse(new Vecteur(1, 0),  false);
+		assertEquals(new Vecteur().getNorme(), oS2.getVitesse().getNorme(), d);
+		oS3.setVitesse(new Vecteur(1, 0), false);
 		assertEquals(oS3.getVitesse().getNorme() == 1, false);
-
+		
 	}
 	
 	@Test
@@ -245,10 +243,10 @@ public class ObjetSpatialTest
 	@Test
 	public void testSetPositionVecteurboolean()
 	{
-		oS1.setPosition(new Vecteur(-42.6, -42.6) , true);
+		oS1.setPosition(new Vecteur(-42.6, -42.6), true);
 		assertEquals(-42.6, oS1.getPositionY(), d);
 		assertEquals(-42.6, oS1.getPositionX(), d);
-		oS1.setPosition(new Vecteur(42.6, 42.6) , false);
+		oS1.setPosition(new Vecteur(42.6, 42.6), false);
 		assertEquals(42.6, oS1.getPositionY(), d);
 		assertEquals(42.6, oS1.getPositionX(), d);
 		oS1.reset();
@@ -257,7 +255,7 @@ public class ObjetSpatialTest
 		oS1.setPosition(new Vecteur(100, 100), true);
 		assertEquals(100, oS1.getPositionY(), d);
 		assertEquals(100, oS1.getPositionX(), d);
-		oS1.setPosition(new Vecteur(500, 500) , false);
+		oS1.setPosition(new Vecteur(500, 500), false);
 		assertEquals(500, oS1.getPositionY(), d);
 		assertEquals(500, oS1.getPositionX(), d);
 		oS1.reset();
@@ -275,6 +273,5 @@ public class ObjetSpatialTest
 	{
 		
 	}
-	
 	
 }

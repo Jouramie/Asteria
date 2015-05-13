@@ -14,7 +14,7 @@ import utils.Vecteur;
  */
 public class TeteTest
 {
-double d = 0.001;
+	double d = 0.001;
 	
 	Tete t1, t2, t3, t4;
 	
@@ -88,14 +88,16 @@ double d = 0.001;
 	@Test
 	public void testTexture()
 	{
-		//public static Texture getTexture(String tex)
+		// public static Texture getTexture(String tex)
 		assertEquals(Tete.Texture.JONATHAN, Tete.Texture.getTexture("jonathan"));
 		assertEquals(Tete.Texture.EMILE, Tete.Texture.getTexture("EMILE"));
-		assertEquals(Tete.Texture.SIMONPIERRE, Tete.Texture.getTexture("simonpierre"));
+		assertEquals(Tete.Texture.SIMONPIERRE,
+				Tete.Texture.getTexture("simonpierre"));
 		assertEquals(Tete.Texture.JEREMIE, Tete.Texture.getTexture("jeremie"));
-		assertEquals(Tete.TEXTURE_DEFAUT, Tete.Texture.getTexture("oiasdfkhaskjfh"));
+		assertEquals(Tete.TEXTURE_DEFAUT,
+				Tete.Texture.getTexture("oiasdfkhaskjfh"));
 		
-		//public String getTexture()
+		// public String getTexture()
 		assertEquals("/res/emile.png", Tete.Texture.EMILE.getTexture());
 		
 	}

@@ -45,8 +45,7 @@ public class Planete extends ObjetSpatial
 		/**
 		 * Constructeur de texture.
 		 * 
-		 * @param pTexture
-		 *            l'emplacement du fichier contenant la texture.
+		 * @param pTexture l'emplacement du fichier contenant la texture.
 		 */
 		Texture(String pTexture)
 		{
@@ -56,13 +55,12 @@ public class Planete extends ObjetSpatial
 		/**
 		 * Retourne la texture selon son nom.
 		 * 
-		 * @param tex
-		 *            le nom de la texture recherché.
+		 * @param tex le nom de la texture recherché.
 		 * @return la texture.
 		 */
 		public static Texture getTexture(String tex)
 		{
-			switch (tex.toLowerCase())
+			switch(tex.toLowerCase())
 			{
 			case "bleue":
 				return Texture.BLEUE;
@@ -100,16 +98,15 @@ public class Planete extends ObjetSpatial
 	private double rayon;
 	private double rayonAtmosphere;
 	
+
 	protected Group noeud;
 	protected Color couleurAtmosphere;
 	
 	/**
 	 * Constructeur de planète, prend un vecteur pour la position
 	 * 
-	 * @param pMasse
-	 *            la masse de la planète
-	 * @param pPosition
-	 *            la position de la planète
+	 * @param pMasse la masse de la planète
+	 * @param pPosition la position de la planète
 	 */
 	public Planete(double pMasse, Vecteur pPosition, double pRayon,
 			double pRayonAtmosphere, Color pCouleurAtmosphere)
@@ -121,12 +118,9 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Constructeur de planète, prend des doubles pour la position
 	 * 
-	 * @param pMasse
-	 *            la masse de la planète
-	 * @param pPositionX
-	 *            la positionX de la planète
-	 * @param pPositionY
-	 *            la positionY de la planète
+	 * @param pMasse la masse de la planète
+	 * @param pPositionX la positionX de la planète
+	 * @param pPositionY la positionY de la planète
 	 */
 	public Planete(double pMasse, double pPositionX, double pPositionY,
 			double pRayon, double pRayonAtmosphere, Color pCouleurAtmosphere)
@@ -138,8 +132,7 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Initialise les attributs de la classe.
 	 * 
-	 * @param pRayon
-	 *            le rayon.
+	 * @param pRayon le rayon.
 	 */
 	private void init(double pRayon, double pRayonAtmosphere,
 			Color pCouleurAtmosphere)
@@ -153,12 +146,12 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Change la texture de la planète.
 	 * 
-	 * @param pTexture
-	 *            la nouvelle texture de la planète.
+	 * @param pTexture la nouvelle texture de la planète.
 	 */
 	public void setTexture(Texture pTexture)
 	{
-		if (pTexture == null)
+
+		if(pTexture == null)
 			texture = TEXTURE_DEFAUT;
 		else
 			texture = pTexture;
@@ -175,12 +168,11 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Modifie le rayon de la planète.
 	 * 
-	 * @param pRayon
-	 *            le nouveau rayon de la planète.
+	 * @param pRayon le nouveau rayon de la planète.
 	 */
 	public void setRayon(double pRayon)
 	{
-		if (pRayon < 0)
+		if(pRayon < 0)
 		{
 			rayon = RAYON_DEFAUT;
 		}
@@ -203,12 +195,11 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Modifie le rayon de l'atmosphere de la planète.
 	 * 
-	 * @param pRayonAtmosphere
-	 *            le nouveau rayon de la planète.
+	 * @param pRayonAtmosphere le nouveau rayon de la planète.
 	 */
 	public void setRayonAtmosphere(double pRayonAtmosphere)
 	{
-		if (pRayonAtmosphere < 0)
+		if(pRayonAtmosphere < 0)
 		{
 			rayonAtmosphere = RAYON_ATMOSPHERE_DEFAUT;
 		}
@@ -231,8 +222,7 @@ public class Planete extends ObjetSpatial
 	/**
 	 * Modifie la cou leur de l'atmosphère de la planète.
 	 * 
-	 * @param pCouleurAtmosphere
-	 *            la nouvelle couleur de la planète.
+	 * @param pCouleurAtmosphere la nouvelle couleur de la planète.
 	 */
 	public void setCouleurAtmosphere(Color pCouleurAtmosphere)
 	{
@@ -326,4 +316,5 @@ public class Planete extends ObjetSpatial
 	public void onCollision(Corps c)
 	{
 	}
+
 }

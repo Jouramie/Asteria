@@ -3,7 +3,6 @@ package vue;
 import javafx.scene.layout.BorderPane;
 import vue.VueJeu;
 
-
 public class VueSelectionNiveau extends VueJeu
 {
 	
@@ -22,25 +21,22 @@ public class VueSelectionNiveau extends VueJeu
 	/**
 	 * Initialise la vue. Cette méthode est appelée une seule fois.
 	 * 
-	 * @param pane
-	 *            BorderPane de la vue.
+	 * @param pane BorderPane de la vue.
 	 */
-	 public void initialiser(BorderPane pane)
-	 {
+	public void initialiser(BorderPane pane)
+	{
 		
-	 }
+	}
 	
+	/**
+	 * Cette méthode est appelée à toutes les frames. Permet de mettre à jour la
+	 * vue.
+	 * 
+	 * @param dt Temps écoulé depuis le dernier frame.
+	 */
+	public void dessiner(double dt)
+	{
+		
+	}
 	
-	 /**
-		 * Cette méthode est appelée à toutes les frames. Permet de mettre à jour la
-		 * vue.
-		 * 
-		 * @param dt
-		 *            Temps écoulé depuis le dernier frame.
-		 */
-	  public void dessiner(double dt)
-	  {
-	  
-	  }
-	 
 }

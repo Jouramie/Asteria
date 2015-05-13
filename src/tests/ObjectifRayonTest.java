@@ -3,14 +3,13 @@ package tests;
 import static org.junit.Assert.*;
 import modele.ObjectifRayon;
 import objets.Vaisseau;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import utils.Vecteur;
 
 /**
  * Classe de test pour ObjectifRayon.
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -30,7 +29,7 @@ public class ObjectifRayonTest
 		obj = new ObjectifRayon(posRayon, rayon);
 		obj.setVaisseau(vaisseau);
 	}
-
+	
 	@Test
 	public void testGetDescription()
 	{
@@ -84,7 +83,7 @@ public class ObjectifRayonTest
 		obj.setVaisseau(null);
 		assertNotEquals(null == obj.getVaisseau(), true);
 	}
-
+	
 	@Test
 	public void testVerifierObjectif()
 	{

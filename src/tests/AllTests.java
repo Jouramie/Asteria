@@ -11,11 +11,11 @@ import org.junit.runners.Suite.SuiteClasses;
  * @version 1.0
  */
 @RunWith(Suite.class)
-@SuiteClasses({ ContPrincipalTest.class, PlaneteTest.class, TeteTest.class, VecteurTest.class,
-		ObjetSpatialTest.class, VaisseauTest.class, CameraTest.class,
-		MoteurPhysiqueTest.class, VaisseauJoueurTest.class, ObjectifRayonTest.class,
-		NiveauTest.class })
+@SuiteClasses({ContPrincipalTest.class, PlaneteTest.class, TeteTest.class,
+		VecteurTest.class, ObjetSpatialTest.class, VaisseauTest.class,
+		CameraTest.class, MoteurPhysiqueTest.class, VaisseauJoueurTest.class,
+		ObjectifRayonTest.class, NiveauTest.class})
 public class AllTests
-{
+{	
 	
 }

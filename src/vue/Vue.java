@@ -21,8 +21,7 @@ public interface Vue
 	/**
 	 * Initialise la vue. Cette méthode est appelée une seule fois.
 	 * 
-	 * @param pane
-	 *            BorderPane de la vue.
+	 * @param pane BorderPane de la vue.
 	 */
 	public void initialiser(BorderPane pane);
 	
@@ -30,8 +29,7 @@ public interface Vue
 	 * Cette méthode est appelée à toutes les frames. Permet de mettre à jour la
 	 * vue.
 	 * 
-	 * @param dt
-	 *            Temps écoulé depuis le dernier frame.
+	 * @param dt Temps écoulé depuis le dernier frame.
 	 */
 	void dessiner(double dt);
 }

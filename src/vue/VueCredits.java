@@ -1,4 +1,5 @@
 package vue;
+
 import java.util.LinkedList;
 import java.util.List;
 import modele.Corps;
@@ -6,6 +7,7 @@ import controleur.ContPrincipal;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+
 /**
  * Vue des crédits.
  * 
@@ -43,10 +45,12 @@ public class VueCredits implements Vue
 		borderPane = pane;
 		Pane p = (Pane) borderPane.lookup("#pane");
 		initialiserCorps();
-		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranX(p.getWidth());
-		ContPrincipal.getInstance().getMoteurPhysique().setTailleEcranY(p.getHeight());
+		ContPrincipal.getInstance().getMoteurPhysique()
+				.setTailleEcranX(p.getWidth());
+		ContPrincipal.getInstance().getMoteurPhysique()
+				.setTailleEcranY(p.getHeight());
 	}
-
+	
 	public void initialiserCorps()
 	{
 		Pane p = (Pane) borderPane.lookup("#pane");
@@ -55,24 +59,24 @@ public class VueCredits implements Vue
 		liste.clear();
 		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
-		if (listTemp.size() == 0)
+		if(listTemp.size() == 0)
 		{
 			return;
 		}
 		
-		for (Corps c : listTemp)
+		for(Corps c: listTemp)
 		{
-			if (c instanceof Dessinable)
+			if(c instanceof Dessinable)
 			{
 				liste.add((Dessinable) c);
 			}
 		}
 		
-		for (Dessinable c : liste)
+		for(Dessinable c: liste)
 		{
 			Node n = c.getNoeud();
 			
-			if (n != null)
+			if(n != null)
 			{
 				Corps corps = (Corps) c;
 				n.translateXProperty().bind(corps.getPositionXProperty());
@@ -81,7 +85,7 @@ public class VueCredits implements Vue
 			}
 		}
 	}
-
+	
 	/**
 	 * Met à jour la caméra.
 	 */

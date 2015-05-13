@@ -117,7 +117,7 @@
 	<top>
 		<ImageView fitHeight="61.0" fitWidth="1119.0" styleClass="#pane" BorderPane.alignment="CENTER">
 			<image>
-				<Image url="@titleeditor.png" />
+				<Image url="@titreEditeur.png" />
 			</image>
 		</ImageView>
 	</top>

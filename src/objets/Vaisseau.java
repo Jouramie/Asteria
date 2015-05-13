@@ -24,12 +24,9 @@ public class Vaisseau extends ObjetSpatial
 	/**
 	 * Constructeur de vaisseau, prend un vecteur pour la position
 	 * 
-	 * @param pMasse
-	 *            la masse du vaisseau
-	 * @param pPosition
-	 *            la position du vaisseau
-	 * @param pVitesse
-	 *            la vitesse du vaisseau
+	 * @param pMasse la masse du vaisseau
+	 * @param pPosition la position du vaisseau
+	 * @param pVitesse la vitesse du vaisseau
 	 */
 	public Vaisseau(double pMasse, Vecteur pPosition, Vecteur pVitesse)
 	{
@@ -40,16 +37,13 @@ public class Vaisseau extends ObjetSpatial
 	/**
 	 * Constructeur de vaisseau, prend des doubles pour la position
 	 * 
-	 * @param pMasse
-	 *            la masse du vaisseau
-	 * @param pPositionX
-	 *            la positionX de la planète
-	 * @param pPositionY
-	 *            la positionY de la planète
-	 * @param pVitesse
-	 *            la vitesse du vaisseau
+	 * @param pMasse la masse du vaisseau
+	 * @param pPositionX la positionX de la planète
+	 * @param pPositionY la positionY de la planète
+	 * @param pVitesse la vitesse du vaisseau
 	 */
-	public Vaisseau(double pMasse, double pPositionX, double pPositionY, Vecteur pVitesse)
+	public Vaisseau(double pMasse, double pPositionX, double pPositionY,
+			Vecteur pVitesse)
 	{
 		super(pMasse, pPositionX, pPositionY, false, pVitesse);
 		init();
@@ -76,7 +70,7 @@ public class Vaisseau extends ObjetSpatial
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
-		if (pVitesse == null)
+		if(pVitesse == null)
 		{
 			vitesse = new Vecteur();
 		}
@@ -86,8 +80,6 @@ public class Vaisseau extends ObjetSpatial
 		}
 	}
 	
-	
-	
 	/**
 	 * Crée le noeud JavaFX du vaisseau.
 	 */
@@ -95,7 +87,8 @@ public class Vaisseau extends ObjetSpatial
 	{
 		Group group = new Group(); //TODO
 		
-		Image textureVaisseau = new Image("/res/spaceship-ennemy.png");;
+		Image textureVaisseau = new Image("/res/vaisseau.png");
+		;
 		
 		ImageView image = new ImageView(textureVaisseau);
 		image.setFitWidth(40);
@@ -135,7 +128,7 @@ public class Vaisseau extends ObjetSpatial
 	{
 		return 20.0;
 	}
-
+	
 	public Vecteur getForceExt()
 	{
 		return new Vecteur();

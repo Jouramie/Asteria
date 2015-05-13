@@ -32,19 +32,15 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
-	 * @param pMasse
-	 *            la masse de l'objet (1 par défaut)
-	 * @param pPosition
-	 *            le vecteur position de l'objet
-	 * @param pStatique
-	 *            la staticité de l'objet
-	 * @param pVitesse
-	 *            le vecteur vitesse de l'objet
+	 * @param pMasse la masse de l'objet (1 par défaut)
+	 * @param pPosition le vecteur position de l'objet
+	 * @param pStatique la staticité de l'objet
+	 * @param pVitesse le vecteur vitesse de l'objet
 	 */
 	public ObjetSpatial(double pMasse, Vecteur pPosition, boolean pStatique,
 			Vecteur pVitesse)
 	{
-		if (pPosition == null)
+		if(pPosition == null)
 		{
 			init(pMasse, 0, 0, pStatique, pVitesse);
 		}
@@ -58,16 +54,11 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Constructeur d'objet spatial, prend des doubles pour la position
 	 * 
-	 * @param pMasse
-	 *            la masse de l'objet (1 par défaut)
-	 * @param pPositionX
-	 *            la position en X de l'objet
-	 * @param pPositionY
-	 *            la position en Y de l'objet
-	 * @param pStatique
-	 *            la staticité de l'objet
-	 * @param pVitesse
-	 *            le vecteur vitesse de l'objet
+	 * @param pMasse la masse de l'objet (1 par défaut)
+	 * @param pPositionX la position en X de l'objet
+	 * @param pPositionY la position en Y de l'objet
+	 * @param pStatique la staticité de l'objet
+	 * @param pVitesse le vecteur vitesse de l'objet
 	 */
 	public ObjetSpatial(double pMasse, double pPositionX, double pPositionY,
 			boolean pStatique, Vecteur pVitesse)
@@ -133,7 +124,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setPositionX(double pPositionX, boolean pDepart)
 	{
-		if (pDepart)
+		if(pDepart)
 		{
 			positionXDepart = pPositionX;
 		}
@@ -150,7 +141,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setPositionY(double pPositionY, boolean pDepart)
 	{
-		if (pDepart)
+		if(pDepart)
 		{
 			positionYDepart = pPositionY;
 		}
@@ -177,7 +168,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setPosition(Vecteur pPosition)
 	{
-		if (pPosition == null)
+		if(pPosition == null)
 		{
 			positionX.set(0);
 			positionY.set(0);
@@ -194,8 +185,8 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setPosition(Vecteur pPosition, boolean pDepart)
 	{
-		if (pDepart)
-			if (pPosition == null)
+		if(pDepart)
+			if(pPosition == null)
 			{
 				positionXDepart = 0;
 				positionYDepart = 0;
@@ -223,7 +214,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public Vecteur getVitesse()
 	{
-		if (statique)
+		if(statique)
 			return new Vecteur();
 		return vitesse;
 	}
@@ -233,7 +224,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
-		if (pVitesse == null)
+
+
+		if(pVitesse == null)
 			vitesse = new Vecteur();
 		else
 			vitesse = pVitesse;
@@ -244,13 +237,16 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setVitesse(Vecteur pVitesse, boolean pDepart)
 	{
-		if (pDepart)
-			if (pVitesse == null)
+
+		if(pDepart)
+			if(pVitesse == null)
 				vitesseDepart = new Vecteur();
 			else
 				vitesseDepart = pVitesse.clone();
 		setVitesse(pVitesse);
 	}
+	
+	public abstract Vecteur getForceExt();
 	
 	/**
 	 * Remet les corps à leur position et leur vitesse de départ.
@@ -260,5 +256,6 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 		setPositionX(positionXDepart);
 		setPositionY(positionYDepart);
 		setVitesse(vitesseDepart);
-	}	
+	}
+	
 }

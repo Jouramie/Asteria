@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 import javafx.scene.paint.Color;
 import objets.Planete;
 import objets.Planete.Texture;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import utils.Vecteur;
 
 /**
@@ -116,7 +114,8 @@ public class PlaneteTest
 		p2.setRayonAtmosphere(0);
 		assertEquals(0, p2.getRayonAtmosphere(), d);
 		p3.setRayonAtmosphere(-5);
-		assertEquals(Planete.RAYON_ATMOSPHERE_DEFAUT, p3.getRayonAtmosphere(), d);
+		assertEquals(Planete.RAYON_ATMOSPHERE_DEFAUT, p3.getRayonAtmosphere(),
+				d);
 	}
 	
 	@Test
@@ -128,16 +127,17 @@ public class PlaneteTest
 	@Test
 	public void testTexture()
 	{
-		//public static Texture getTexture(String tex)
+		// public static Texture getTexture(String tex)
 		assertEquals(Texture.BLEUE, Texture.getTexture("bleue"));
 		assertEquals(Texture.JAUNE, Texture.getTexture("jaune"));
 		assertEquals(Texture.MAGENTA, Texture.getTexture("MAGENTA"));
 		assertEquals(Texture.ORANGE, Texture.getTexture("orange"));
 		assertEquals(Texture.ROUGE, Texture.getTexture("rouge"));
 		assertEquals(Texture.VERTE, Texture.getTexture("verte"));
-		assertEquals(Planete.TEXTURE_DEFAUT, Texture.getTexture("oiasdfkhaskjfh"));
+		assertEquals(Planete.TEXTURE_DEFAUT,
+				Texture.getTexture("oiasdfkhaskjfh"));
 		
-		//public String getTexture()
+		// public String getTexture()
 		assertEquals("/res/planeteBleue.png", Texture.BLEUE.getTexture());
 		
 	}

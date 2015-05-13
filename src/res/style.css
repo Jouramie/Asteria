@@ -39,7 +39,7 @@
 
 .credit-pane
 {
-	-fx-background-image: url("space.png");
+	-fx-background-image: url("espace.png");
 	-fx-border-color: white;
 }
 
@@ -129,12 +129,12 @@
 
 .menu-root
 {
-	-fx-background-image: url("planet.gif");
+	-fx-background-image: url("planete.gif");
 }
 
 .jeu-root
 {
-	-fx-background-image: url("space.png");
+	-fx-background-image: url("espace.png");
 }
 
 .jeu-pause

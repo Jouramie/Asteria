@@ -25,8 +25,7 @@ public interface Dessinable
 	/**
 	 * Met à jour le noeud représentant l'objet.
 	 * 
-	 * @param dt
-	 *            Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
 	 */
 	void miseAJourGraphique(double dt);
 }
