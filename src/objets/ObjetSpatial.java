@@ -17,20 +17,15 @@ import vue.Dessinable;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 	/**
-	 * Densité (en kg/m) des planètes.
-	 */
-	public final static double DENSITE = 1.0 / 2.0;
-	/**
 	 * Masse par défaut des corps.
 	 */
 	public final static double MASSE_DEFAUT = 1.0;
 	
-	double masse;
+	protected double masse;
 	protected DoubleProperty positionX;
 	protected DoubleProperty positionY;
 	protected boolean statique;
 	protected Vecteur vitesse;
-	protected Color couleur;
 	
 	protected double positionXDepart;
 	protected double positionYDepart;
@@ -107,7 +102,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	 */
 	public void setMasse(double pMasse)
 	{
-		if (pMasse <= 0)
+		if (pMasse < 1)
 		{
 			if (this instanceof Vaisseau)
 				masse = Vaisseau.MASSE_DEFAUT;
@@ -115,13 +110,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 				masse = Planete.MASSE_DEFAUT;
 			else
 				masse = MASSE_DEFAUT;
-			
 		}
 		else
-		{
 			masse = pMasse;
-		}
-		
 	}
 	
 	public double getPositionX()
