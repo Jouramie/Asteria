@@ -174,15 +174,28 @@ public class Tete extends ObjetSpatial
 		image.setFitHeight(2 * rayon);
 		return image;
 	}
-
+	
+	/**
+	 * Callback lorsqu'une collision a lieu.
+	 * 
+	 * @param c Autre corps en collision.
+	 */
 	public void onCollision(Corps c)
 	{	
 	}
-
+	
+	/**
+	 * Met à jour les attributs
+	 * 
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 */
 	public void miseAJourPhysique(double dt)
 	{
 	}
-
+	
+	/**
+	 * Crée un noeud représentant l'objet.
+	 */	
 	public void creeNoeud()
 	{
 	}

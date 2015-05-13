@@ -144,7 +144,10 @@ public class ObjectifRayon implements Objectif, Dessinable
 			creeNoeud();
 		noeudRotate.setAngle(noeudRotate.getAngle() + VITESSE_ROTATION * dt);
 	}
-
+	
+	/**
+	 * Crée un noeud représentant l'objet.
+	 */	
 	public void creeNoeud()
 	{
 		portal.getChildren().clear();

@@ -129,20 +129,41 @@ public class Vaisseau extends ObjetSpatial
 		return 20.0;
 	}
 	
+	/**
+	 * Retourne la force extérieure appliquée sur le corps. Par exemple, la
+	 * force peut être créée par un réacteur.
+	 * 
+	 * @return Vecteur représentant la force (en Newton)
+	 */
 	public Vecteur getForceExt()
 	{
 		return new Vecteur();
 	}
-
+	
+	/**
+	 * Met à jour le noeud représentant l'objet.
+	 * 
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 */
 	public void miseAJourGraphique(double dt)
 	{
 		noeudRotate.setAngle(vitesse.getAngle() / 2 / Math.PI * 360 + 90);
 	}
-
+	
+	/**
+	 * Callback lorsqu'une collision a lieu.
+	 * 
+	 * @param c Autre corps en collision.
+	 */
 	public void onCollision(Corps c)
 	{
 	}
-
+	
+	/**
+	 * Met à jour les attributs
+	 * 
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 */
 	public void miseAJourPhysique(double dt)
 	{
 	}
