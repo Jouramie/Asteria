@@ -1,4 +1,5 @@
 package objets;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Group;
@@ -42,20 +43,13 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Constructeur du vaisseauJoueur de base.
 	 * 
-	 * @param pPuissance
-	 *            Puissance maximale du moteur (en Newton).
-	 * @param pMasse
-	 *            Masse du vaisseau (en kg).
-	 * @param pCarburantMax
-	 *            Quantité de carburant maximale (en kg).
-	 * @param pCarburantDepart
-	 *            Quantité de carburant de départ (en kg).
-	 * @param pPositionX
-	 *            Position en X dans l'espace.
-	 * @param pPositionY
-	 *            Position en Y dans l'espace.
-	 * @param pVitesse
-	 *            Vitesse initiale du vaisseau.
+	 * @param pPuissance Puissance maximale du moteur (en Newton).
+	 * @param pMasse Masse du vaisseau (en kg).
+	 * @param pCarburantMax Quantité de carburant maximale (en kg).
+	 * @param pCarburantDepart Quantité de carburant de départ (en kg).
+	 * @param pPositionX Position en X dans l'espace.
+	 * @param pPositionY Position en Y dans l'espace.
+	 * @param pVitesse Vitesse initiale du vaisseau.
 	 */
 	public VaisseauJoueur(double pPuissance, double pMasse,
 			double pCarburantMax, double pCarburantDepart)
@@ -63,12 +57,12 @@ public class VaisseauJoueur extends Vaisseau
 		super(pMasse, new Vecteur(0, 0), new Vecteur(1, 1));
 		initDefaut(pPuissance, pCarburantMax, pCarburantDepart);
 	}
-
 	
 	/**
 	 * Initialise le vaisseau avec des valeurs par défaut.
 	 */
-	private void initDefaut(double pPuissanceMax, double pCarburantMax, double pCarburantDepart)
+	private void initDefaut(double pPuissanceMax, double pCarburantMax,
+			double pCarburantDepart)
 	{
 		setPuissance(pPuissanceMax);
 		carburantMax = new SimpleDoubleProperty();
@@ -134,12 +128,11 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Modifie la puissance actuelle du moteur.
 	 * 
-	 * @param pPuissance
-	 *            Puissance (en Newton).
+	 * @param pPuissance Puissance (en Newton).
 	 */
 	public void setPuissance(double pPuissance)
 	{
-		if (pPuissance <= 0)
+		if(pPuissance <= 0)
 			puissance = PUISSANCE_DEFAUT;
 		else
 			puissance = pPuissance;
@@ -159,12 +152,11 @@ public class VaisseauJoueur extends Vaisseau
 	 * Modifie la santé du vaisseau. Doit être située entre 0.0 et 1.0
 	 * inclusivement.
 	 * 
-	 * @param sante
-	 *            Nouvelle santé.
+	 * @param sante Nouvelle santé.
 	 */
 	public void setSante(double pSante)
 	{
-		if (pSante <= 1.0 & pSante >= 0.0)
+		if(pSante <= 1.0 & pSante >= 0.0)
 		{
 			sante.set(pSante);
 		}
@@ -183,19 +175,18 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Modifie la quantité maximale de carburant du vaisseau.
 	 * 
-	 * @param pCarburantMax
-	 *            Quantité maximale de carburant (en kg).
+	 * @param pCarburantMax Quantité maximale de carburant (en kg).
 	 */
 	public void setCarburantMax(double pCarburantMax)
 	{
-		if (pCarburantMax <= 0)
+		if(pCarburantMax <= 0)
 			carburantMax.set(CARBURANT_DEFAUT);
 		else
 		{
 			carburantMax.set(pCarburantMax);
 		}
 		
-		if (carburantMax.get() < carburantDepart)
+		if(carburantMax.get() < carburantDepart)
 		{
 			setCarburantDepart(carburantMax.get());
 		}
@@ -224,14 +215,13 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Modifie la quantité de carburant restante.
 	 * 
-	 * @param pCarburantRestant
-	 *            Quantité de carburant (en kg).
+	 * @param pCarburantRestant Quantité de carburant (en kg).
 	 */
 	public void setCarburantRestant(double pCarburantRestant)
 	{
-		if (pCarburantRestant < 0)
+		if(pCarburantRestant < 0)
 			carburantRestant.set(0);
-		else if (pCarburantRestant > carburantMax.get())
+		else if(pCarburantRestant > carburantMax.get())
 			carburantRestant.set(carburantMax.get());
 		else
 		{
@@ -242,19 +232,18 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Modifie la quantité de carburant que le vaisseau a au départ.
 	 * 
-	 * @param pCarburantDepart
-	 *            Quantité de carburant au départ (en kg).
+	 * @param pCarburantDepart Quantité de carburant au départ (en kg).
 	 */
 	public void setCarburantDepart(double pCarburantDepart)
 	{
-		if (pCarburantDepart > carburantMax.get())
+		if(pCarburantDepart > carburantMax.get())
 		{
 			setCarburantMax(pCarburantDepart);
 		}
 		
 		carburantDepart = pCarburantDepart;
 		
-		if (pCarburantDepart < 0)
+		if(pCarburantDepart < 0)
 		{
 			carburantDepart = 0;
 		}
@@ -300,7 +289,7 @@ public class VaisseauJoueur extends Vaisseau
 	public Vecteur getForceExt()
 	{
 		Vecteur r = new Vecteur();
-		if (moteur && !(carburantRestant.get() <= 0))
+		if(moteur && !(carburantRestant.get() <= 0))
 		{
 			r = direction.multiplication(puissance * PUISSANCE_MOTEUR);
 		}
@@ -343,8 +332,8 @@ public class VaisseauJoueur extends Vaisseau
 			image.setFitHeight(150);
 			image.setTranslateX(-75);
 			image.setTranslateY(-100);
-			((Group)noeud).getChildren().clear();
-			((Group)noeud).getChildren().add(image);
+			((Group) noeud).getChildren().clear();
+			((Group) noeud).getChildren().add(image);
 			noeudRotate.setAngle(0);
 			noeud.toFront();
 		}
@@ -352,6 +341,7 @@ public class VaisseauJoueur extends Vaisseau
 	
 	/**
 	 * Retourne l'état de l'animation d'explosion.
+	 * 
 	 * @return Vrai si l'ainmation d'explosion est en cours.
 	 */
 	public boolean isAnimationMort()
@@ -364,21 +354,21 @@ public class VaisseauJoueur extends Vaisseau
 	 */
 	public void maj(double dt)
 	{
-		if (gauche ^ droite)
+		if(gauche ^ droite)
 		{
-			if (gauche)
+			if(gauche)
 			{
 				direction.setAngle(direction.getAngle() - puissanceRotation
 						/ 360 * 2 * Math.PI);
 			}
-			else if (droite)
+			else if(droite)
 			{
 				direction.setAngle(direction.getAngle() + puissanceRotation
 						/ 360 * 2 * Math.PI);
 			}
 		}
 		
-		if (getForceExt().getNorme() > 0)
+		if(getForceExt().getNorme() > 0)
 		{
 			currentFlamme += VITESSE_ANIM_FLAMME * dt;
 			currentFlamme = Math.min(1.0, currentFlamme);
@@ -396,13 +386,17 @@ public class VaisseauJoueur extends Vaisseau
 		}
 		else
 		{
-			if(currentExplosion < Math.floor(currentExplosion += VITESSE_ANIM_MORT * dt) && currentExplosion < NB_FRAMES_ANIM_MORT + 1)
+			if(currentExplosion < Math
+					.floor(currentExplosion += VITESSE_ANIM_MORT * dt)
+					&& currentExplosion < NB_FRAMES_ANIM_MORT + 1)
 			{
-				((ImageView)((Group)noeud).getChildren().get(0)).setImage(new Image("/res/explosion_" + (int)Math.floor(currentExplosion) + ".png"));
+				((ImageView) ((Group) noeud).getChildren().get(0))
+						.setImage(new Image("/res/explosion_"
+								+ (int) Math.floor(currentExplosion) + ".png"));
 			}
 			else if(currentExplosion >= NB_FRAMES_ANIM_MORT + 1)
 			{
-				((Group)noeud).getChildren().clear();
+				((Group) noeud).getChildren().clear();
 				currentExplosion = 1.0;
 				animationMort = false;
 				premierGetNoeud = true;
@@ -459,12 +453,11 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Met à jour la quantité de carburant du vaisseau.
 	 * 
-	 * @param dt
-	 *            Temps écoulé (en secondes).
+	 * @param dt Temps écoulé (en secondes).
 	 */
 	public void update(double dt)
 	{
-		if (moteur)
+		if(moteur)
 		{
 			setCarburantRestant(getCarburantRestant() - (puissance * dt));
 		}
@@ -475,7 +468,7 @@ public class VaisseauJoueur extends Vaisseau
 	 */
 	public void onCollision(Corps c)
 	{
-		if (c instanceof Vaisseau && c.getMasse() < getMasse() * 2)
+		if(c instanceof Vaisseau && c.getMasse() < getMasse() * 2)
 		{
 			setSante(getSante() - 0.5);
 		}
@@ -489,8 +482,7 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Modifie l'angle de direction du vaisseau.
 	 * 
-	 * @param angle
-	 *            Angle du vaisseau.
+	 * @param angle Angle du vaisseau.
 	 */
 	public void setAngle(double angle)
 	{

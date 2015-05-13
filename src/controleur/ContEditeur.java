@@ -3,7 +3,6 @@ package controleur;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,9 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-
 import javax.swing.JOptionPane;
-
 import modele.Corps;
 import modele.Niveau;
 import modele.Objectif;
@@ -144,7 +141,7 @@ public class ContEditeur implements Controleur
 		// Initialisation du niveau.
 		vaisseauJoueur = null;
 		objectif = null;
-		if (niveau == null)
+		if(niveau == null)
 		{
 			niveau = new Niveau();
 		}
@@ -162,7 +159,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onRayon(ActionEvent e)
 	{
-		if (corpsSelect instanceof Planete)
+		if(corpsSelect instanceof Planete)
 		{
 			try
 			{
@@ -170,7 +167,7 @@ public class ContEditeur implements Controleur
 						.getText())));
 				((Planete) corpsSelect).maj();
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldRayon.setText("" + corpsSelect.getRayon());
 			}
@@ -180,7 +177,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onRayonAtmosphere(ActionEvent e)
 	{
-		if (corpsSelect instanceof Planete)
+		if(corpsSelect instanceof Planete)
 		{
 			Planete p = (Planete) corpsSelect;
 			try
@@ -189,7 +186,7 @@ public class ContEditeur implements Controleur
 						.getText()));
 				p.maj();
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldRayonAtmosphere.setText("" + p.getRayonAtmosphere());
 			}
@@ -199,7 +196,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onCouleurAtmosphere(ActionEvent e)
 	{
-		if (corpsSelect instanceof Planete)
+		if(corpsSelect instanceof Planete)
 		{
 			Planete p = (Planete) corpsSelect;
 			p.setCouleurAtmosphere(colorPickerCouleurAtmosphere.getValue());
@@ -210,7 +207,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onRayonObjectif(ActionEvent e)
 	{
-		if (objectifSelect instanceof ObjectifRayon)
+		if(objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
@@ -218,7 +215,7 @@ public class ContEditeur implements Controleur
 				or.setRayon((Double.valueOf(textFieldRayonObjectif.getText())));
 				or.getNoeud();
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldRayonObjectif.setText("" + or.getRayon());
 			}
@@ -232,7 +229,7 @@ public class ContEditeur implements Controleur
 		{
 			corpsSelect.setMasse((Double.valueOf(textFieldMasse.getText())));
 		}
-		catch (NumberFormatException ex)
+		catch(NumberFormatException ex)
 		{
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 		}
@@ -241,21 +238,22 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onPositionX(ActionEvent e)
 	{
-		if (corpsSelect instanceof ObjetSpatial)
+		if(corpsSelect instanceof ObjetSpatial)
 		{
 			ObjetSpatial obj = (ObjetSpatial) corpsSelect;
 			try
 			{
-				obj.setPositionX((Double.valueOf(textFieldPositionX
-						.getText())), true);
+				obj.setPositionX(
+						(Double.valueOf(textFieldPositionX.getText())), true);
 				
 				if(obj instanceof VaisseauJoueur)
 				{
-					niveau.setPointDepart(new Vecteur(Double.valueOf(textFieldPositionX
-							.getText()), niveau.getPointDepart().getY()));
+					niveau.setPointDepart(new Vecteur(Double
+							.valueOf(textFieldPositionX.getText()), niveau
+							.getPointDepart().getY()));
 				}
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldPositionX.setText("" + obj.getPositionX());
 			}
@@ -268,7 +266,7 @@ public class ContEditeur implements Controleur
 				or.getPosRayon().setX(
 						(Double.valueOf(textFieldPositionX.getText())));
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldPositionX.setText("" + or.getPosRayon().getX());
 			}
@@ -279,27 +277,28 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onPositionY(ActionEvent e)
 	{
-		if (corpsSelect instanceof ObjetSpatial)
+		if(corpsSelect instanceof ObjetSpatial)
 		{
 			ObjetSpatial obj = (ObjetSpatial) corpsSelect;
 			
 			try
 			{
-				obj.setPositionY((Double.valueOf(textFieldPositionY
-						.getText())), true);
+				obj.setPositionY(
+						(Double.valueOf(textFieldPositionY.getText())), true);
 				
 				if(obj instanceof VaisseauJoueur)
 				{
-					niveau.setPointDepart(new Vecteur(niveau.getPointDepart().getX(), Double.valueOf(textFieldPositionY
+					niveau.setPointDepart(new Vecteur(niveau.getPointDepart()
+							.getX(), Double.valueOf(textFieldPositionY
 							.getText())));
 				}
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldPositionY.setText("" + obj.getPositionY());
 			}
 		}
-		else if (objectifSelect instanceof ObjectifRayon)
+		else if(objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectifSelect;
 			try
@@ -307,7 +306,7 @@ public class ContEditeur implements Controleur
 				or.getPosRayon().setY(
 						(Double.valueOf(textFieldPositionY.getText())));
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldPositionY.setText("" + or.getPosRayon().getY());
 			}
@@ -327,7 +326,7 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onTexture(ActionEvent e)
 	{
-		if (corpsSelect != null)
+		if(corpsSelect != null)
 		{
 			((Planete) corpsSelect).setTexture(comboBoxTexture.getValue());
 			chargerNiveau();
@@ -345,7 +344,7 @@ public class ContEditeur implements Controleur
 			textFieldCarburantDepart.setText(""
 					+ corpsSelect.getCarburantDepart());
 		}
-		catch (NumberFormatException ex)
+		catch(NumberFormatException ex)
 		{
 			textFieldCarburantMax.setText(""
 					+ ((VaisseauJoueur) corpsSelect).getCarburantMax());
@@ -362,7 +361,7 @@ public class ContEditeur implements Controleur
 					.valueOf(textFieldCarburantDepart.getText())));
 			textFieldCarburantMax.setText("" + corpsSelect.getCarburantMax());
 		}
-		catch (NumberFormatException ex)
+		catch(NumberFormatException ex)
 		{
 			textFieldCarburantDepart.setText(""
 					+ ((VaisseauJoueur) corpsSelect).getCarburantDepart());
@@ -378,7 +377,7 @@ public class ContEditeur implements Controleur
 			corpsSelect.setPuissance((Double.valueOf(textFieldPuissance
 					.getText())));
 		}
-		catch (NumberFormatException ex)
+		catch(NumberFormatException ex)
 		{
 			textFieldPuissance.setText(""
 					+ ((VaisseauJoueur) corpsSelect).getPuissance());
@@ -388,13 +387,13 @@ public class ContEditeur implements Controleur
 	@FXML
 	public void onVitesseDepart(ActionEvent e)
 	{
-		if (corpsSelect instanceof VaisseauJoueur)
+		if(corpsSelect instanceof VaisseauJoueur)
 			try
 			{
 				niveau.setVitesseDepart((Double.valueOf(textFieldVitesseDepart
 						.getText())));
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
 				textFieldVitesseDepart.setText("" + niveau.getVitesseDepart());
 			}
@@ -402,13 +401,14 @@ public class ContEditeur implements Controleur
 			try
 			{
 				Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
-				corpsSelect.getVitesse().setGrandeur((Double.valueOf(textFieldVitesseDepart
-						.getText())));
+				corpsSelect.getVitesse().setGrandeur(
+						(Double.valueOf(textFieldVitesseDepart.getText())));
 				corpsSelect.setVitesse(corpsSelect.getVitesse(), true);
 			}
-			catch (NumberFormatException ex)
+			catch(NumberFormatException ex)
 			{
-				textFieldVitesseDepart.setText("" + corpsSelect.getVitesse().getNorme());
+				textFieldVitesseDepart.setText(""
+						+ corpsSelect.getVitesse().getNorme());
 			}
 	}
 	
@@ -418,13 +418,15 @@ public class ContEditeur implements Controleur
 		try
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
-			corpsSelect.getVitesse().setAngle((Double.valueOf(textFieldOrientation
-					.getText()))  / 360 * 2 * Math.PI);
+			corpsSelect.getVitesse().setAngle(
+					(Double.valueOf(textFieldOrientation.getText())) / 360 * 2
+							* Math.PI);
 			corpsSelect.setVitesse(corpsSelect.getVitesse(), true);
 		}
-		catch (NumberFormatException ex)
+		catch(NumberFormatException ex)
 		{
-			textFieldOrientation.setText("" + corpsSelect.getVitesse().getAngle() / 2 / Math.PI * 360);
+			textFieldOrientation.setText(""
+					+ corpsSelect.getVitesse().getAngle() / 2 / Math.PI * 360);
 		}
 	}
 	
@@ -448,12 +450,12 @@ public class ContEditeur implements Controleur
 		{
 			File file = (new FileChooser()).showSaveDialog(null);
 			
-			if (!file.exists())
+			if(!file.exists())
 			{
 				file.createNewFile();
 			}
 			
-			while (!file.canWrite())
+			while(!file.canWrite())
 			{
 				JOptionPane.showMessageDialog(null,
 						"L'emplacement choisi ne peut pas être modifié!",
@@ -463,7 +465,7 @@ public class ContEditeur implements Controleur
 			
 			niveau.sauvegarderNiveau(file);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 		}
 	}
@@ -478,7 +480,7 @@ public class ContEditeur implements Controleur
 		{
 			File file = (new FileChooser()).showOpenDialog(null);
 			
-			while (!file.canRead())
+			while(!file.canRead())
 			{
 				JOptionPane.showMessageDialog(null,
 						"L'emplacement choisi ne peut pas être lu!", "Erreur",
@@ -494,7 +496,7 @@ public class ContEditeur implements Controleur
 					vaisseauJoueur.getPositionY());
 			vue.getCamera().zoomer(1.0);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 		}
 	}
@@ -551,7 +553,7 @@ public class ContEditeur implements Controleur
 							{
 								super.updateItem(item, empty);
 								
-								if (item == null || empty)
+								if(item == null || empty)
 								{
 									setGraphic(null);
 								}
@@ -579,7 +581,7 @@ public class ContEditeur implements Controleur
 		Vecteur pos = cam
 				.localToGlobal(new Vecteur(point.getX(), point.getY()));
 		
-		switch (event.getButton())
+		switch(event.getButton())
 		{
 		case PRIMARY:
 			mouseClickedPrimary(event, pos);
@@ -601,9 +603,9 @@ public class ContEditeur implements Controleur
 		corpsSelect = null;
 		
 		// Vérifie si un corps est touché.
-		for (Corps c : ContPrincipal.getInstance().getCorps())
+		for(Corps c: ContPrincipal.getInstance().getCorps())
 		{
-			if (Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayon()
+			if(Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayon()
 					&& Math.abs(c.getPosition().getY() - pos.getY()) < c
 							.getRayon())
 			{
@@ -613,12 +615,12 @@ public class ContEditeur implements Controleur
 			}
 		}
 		
-		if (!toucheCorps)
+		if(!toucheCorps)
 		{
-			if (objectif instanceof ObjectifRayon)
+			if(objectif instanceof ObjectifRayon)
 			{
 				ObjectifRayon or = (ObjectifRayon) objectif;
-				if (Math.abs(or.getPosRayon().getX() - pos.getX()) < or
+				if(Math.abs(or.getPosRayon().getX() - pos.getX()) < or
 						.getRayon()
 						&& Math.abs(or.getPosRayon().getY() - pos.getY()) < (or
 								.getRayon()))
@@ -631,9 +633,9 @@ public class ContEditeur implements Controleur
 		}
 		
 		// Ajoute le corps voulu.
-		if (!toucheCorps && comboBoxCorps.getValue() != null)
+		if(!toucheCorps && comboBoxCorps.getValue() != null)
 		{
-			switch (comboBoxCorps.getValue())
+			switch(comboBoxCorps.getValue())
 			{
 			case "Planète":
 				creePlanete(pos);
@@ -687,12 +689,12 @@ public class ContEditeur implements Controleur
 	 */
 	private void afficherMenuParametre()
 	{
-		if (corpsSelect == null && objectifSelect == null)
+		if(corpsSelect == null && objectifSelect == null)
 		{
 			return;
 		}
 		vBoxMenu.setVisible(true);
-		if (corpsSelect instanceof Planete)
+		if(corpsSelect instanceof Planete)
 		{
 			Planete corpsSelect = (Planete) this.corpsSelect;
 			vBoxMenuCorps.setVisible(true);
@@ -712,7 +714,7 @@ public class ContEditeur implements Controleur
 			comboBoxCorps.setValue("Planète");
 		}
 		
-		else if (corpsSelect instanceof Vaisseau)
+		else if(corpsSelect instanceof Vaisseau)
 		{
 			Vaisseau corpsSelect = (Vaisseau) this.corpsSelect;
 			vBoxMenuCorps.setVisible(true);
@@ -722,7 +724,7 @@ public class ContEditeur implements Controleur
 			textFieldMasse.setText("" + corpsSelect.getMasse());
 			textFieldPositionX.setText("" + corpsSelect.getPositionX());
 			textFieldPositionY.setText("" + corpsSelect.getPositionY());
-			if (corpsSelect instanceof VaisseauJoueur)
+			if(corpsSelect instanceof VaisseauJoueur)
 			{
 				VaisseauJoueur vj = (VaisseauJoueur) corpsSelect;
 				vBoxMenuVaisseauJoueur.setVisible(true);
@@ -740,12 +742,13 @@ public class ContEditeur implements Controleur
 				textFieldVitesseDepart.setText(""
 						+ corpsSelect.getVitesse().getNorme());
 				textFieldOrientation.setText(""
-						+ corpsSelect.getVitesse().getAngle() / 2 / Math.PI * 360);
+						+ corpsSelect.getVitesse().getAngle() / 2 / Math.PI
+						* 360);
 				comboBoxCorps.setValue("Vaisseau");
 			}
 		}
 		
-		else if (objectifSelect instanceof ObjectifRayon)
+		else if(objectifSelect instanceof ObjectifRayon)
 		{
 			ObjectifRayon or = (ObjectifRayon) objectif;
 			vBoxMenuCorps.setVisible(false);
@@ -778,12 +781,11 @@ public class ContEditeur implements Controleur
 	/**
 	 * Modifie le niveau de l'éditeur
 	 * 
-	 * @param nouvNiveau
-	 *            Nouveau niveau de l'éditeur.
+	 * @param nouvNiveau Nouveau niveau de l'éditeur.
 	 */
 	public void setNiveau(Niveau nouvNiveau)
 	{
-		if (nouvNiveau != null)
+		if(nouvNiveau != null)
 		{
 			niveau = nouvNiveau;
 		}
@@ -798,17 +800,17 @@ public class ContEditeur implements Controleur
 		ContPrincipal.getInstance().viderCorps();
 		
 		// Ajoute les corps un à un.
-		for (Corps c : niveau.getCorps())
+		for(Corps c: niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
-			if (c instanceof VaisseauJoueur)
+			if(c instanceof VaisseauJoueur)
 			{
 				vaisseauJoueur = (VaisseauJoueur) c;
 			}
 		}
 		
 		// Si aucun vaisseau joueur n'est défini, on en ajoute un.
-		if (vaisseauJoueur == null)
+		if(vaisseauJoueur == null)
 		{
 			vaisseauJoueur = new VaisseauJoueur(
 					VaisseauJoueur.PUISSANCE_DEFAUT,
@@ -821,7 +823,7 @@ public class ContEditeur implements Controleur
 		vaisseauJoueur.setPosition(niveau.getPointDepart());
 		
 		// S'il n'y a pas d'objectif, on en ajoute un.
-		if (niveau.getObjectif() == null)
+		if(niveau.getObjectif() == null)
 		{
 			niveau.setObjectif(new ObjectifRayon(new Vecteur(0, 10),
 					ObjectifRayon.RAYON_DEFAUT));
@@ -832,7 +834,7 @@ public class ContEditeur implements Controleur
 		
 		// On ajoute l'objectif.
 		objectif = niveau.getObjectif();
-		if (niveau.getObjectif() != null
+		if(niveau.getObjectif() != null
 				&& niveau.getObjectif() instanceof Dessinable)
 		{
 			vue.ajouterDessinable((Dessinable) niveau.getObjectif());
@@ -849,7 +851,7 @@ public class ContEditeur implements Controleur
 		
 		double delta = e.getDeltaY();
 		
-		if (delta > 0)
+		if(delta > 0)
 		{
 			cam.zoomer(cam.getFacteur() + delta * VITESSE_ZOOM);
 		}

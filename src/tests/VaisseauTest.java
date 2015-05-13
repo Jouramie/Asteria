@@ -24,13 +24,11 @@ public class VaisseauTest
 		assertTrue(v1.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v1.getPositionX() == 0 && v1.getPositionY() == 0);
 		assertTrue(v1.getVitesse().getX() == 0 && v1.getVitesse().getY() == 0);
-		v2 = new Vaisseau(-10, new Vecteur(),
-				new Vecteur());
+		v2 = new Vaisseau(-10, new Vecteur(), new Vecteur());
 		assertTrue(v2.getMasse() == Vaisseau.MASSE_DEFAUT);
 		assertTrue(v2.getPositionX() == 0 && v2.getPositionY() == 0);
 		assertTrue(v2.getVitesse().getX() == 0 && v2.getVitesse().getY() == 0);
-		v3 = new Vaisseau(100, new Vecteur(150,
-				125), new Vecteur(10, 10));
+		v3 = new Vaisseau(100, new Vecteur(150, 125), new Vecteur(10, 10));
 		assertTrue(v3.getMasse() == 100);
 		assertTrue(v3.getPositionX() == 150 && v3.getPositionY() == 125);
 		assertEquals(10, v3.getVitesse().getX(), d);
@@ -82,11 +80,10 @@ public class VaisseauTest
 	{
 		// Nécessite un contexte JavaFX.
 		/*
-		Node noeud = v1.getNoeud();
-		assertTrue(noeud instanceof Group);
-		assertTrue(((Group)(noeud)).getChildren().size() != 0);
-		assertEquals(noeud, v1.getNoeud());
-		*/
+		 * Node noeud = v1.getNoeud(); assertTrue(noeud instanceof Group);
+		 * assertTrue(((Group)(noeud)).getChildren().size() != 0);
+		 * assertEquals(noeud, v1.getNoeud());
+		 */
 	}
 	
 	@Test

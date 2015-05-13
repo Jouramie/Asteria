@@ -1,16 +1,12 @@
 package tests;
 
 import static org.junit.Assert.*;
-
 import java.util.List;
-
 import javafx.scene.paint.Color;
 import modele.Corps;
 import objets.Planete;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import controleur.ContPrincipal;
 import utils.Vecteur;
 
@@ -81,13 +77,9 @@ public class ContPrincipalTest
 	// de FXML.
 	/*
 	 * @Test public void testInitialiser() { fail("Not yet implemented"); }
-	 * 
 	 * @Test public void testSelectionnerControleur() {
-	 * 
 	 * ContPrincipal.getInstance().selectionnerControleur(c1); }
-	 * 
 	 * @Test public void testAfficherVue() { fail("Not yet implemented"); }
-	 * 
 	 * @Test public void testUpdate() { fail("Not yet implemented"); }
 	 */
 }

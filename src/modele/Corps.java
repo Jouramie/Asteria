@@ -35,16 +35,14 @@ public interface Corps
 	/**
 	 * Modifie la position en X.
 	 * 
-	 * @param pPositionX
-	 *            Position X (en m)
+	 * @param pPositionX Position X (en m)
 	 */
 	void setPositionX(double pPositionX);
 	
 	/**
 	 * Modifie la position en Y.
 	 * 
-	 * @param pPositionX
-	 *            Position Y (en m)
+	 * @param pPositionX Position Y (en m)
 	 */
 	void setPositionY(double pPositionX);
 	
@@ -72,8 +70,7 @@ public interface Corps
 	/**
 	 * Modifie la position d'un vaisseau à l'aide d'un vecteur.
 	 * 
-	 * @param pPosition
-	 *            Vecteur de la position.
+	 * @param pPosition Vecteur de la position.
 	 */
 	void setPosition(Vecteur pPosition);
 	
@@ -87,8 +84,7 @@ public interface Corps
 	/**
 	 * Modifie le fait qu'un corps est statique (toujours immobile).
 	 * 
-	 * @param pStatique
-	 *            Vrai si le corps est statique, faux sinon.
+	 * @param pStatique Vrai si le corps est statique, faux sinon.
 	 */
 	void setStatique(boolean pStatique);
 	
@@ -102,8 +98,7 @@ public interface Corps
 	/**
 	 * Modifie la vitesse du vaisseau.
 	 * 
-	 * @param pVitesse
-	 *            Vecteur représentant la vitesse du vaisseau.
+	 * @param pVitesse Vecteur représentant la vitesse du vaisseau.
 	 */
 	void setVitesse(Vecteur pVitesse);
 	
@@ -129,9 +124,10 @@ public interface Corps
 	
 	/**
 	 * Callback lorsqu'une collision a lieu.
+	 * 
 	 * @param c Autre corps en collision.
 	 */
 	void onCollision(Corps c);
-
+	
 	void setMasse(double pMasse);
 }

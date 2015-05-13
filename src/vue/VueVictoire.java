@@ -1,5 +1,7 @@
 package vue;
+
 import javafx.scene.layout.BorderPane;
+
 /**
  * Vue de la fenêtre de réussite du jeu.
  * 

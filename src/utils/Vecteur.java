@@ -23,10 +23,8 @@ public class Vecteur implements Cloneable
 	/**
 	 * Constructeur du vecteur.
 	 * 
-	 * @param x
-	 *            Composante en X.
-	 * @param y
-	 *            Composante en Y.
+	 * @param x Composante en X.
+	 * @param y Composante en Y.
 	 */
 	public Vecteur(double x, double y)
 	{
@@ -37,8 +35,7 @@ public class Vecteur implements Cloneable
 	/**
 	 * Modifie la valeur de la composante en X.
 	 * 
-	 * @param x
-	 *            Composante en X.
+	 * @param x Composante en X.
 	 */
 	public void setX(double x)
 	{
@@ -48,8 +45,7 @@ public class Vecteur implements Cloneable
 	/**
 	 * Modifie la valeur de la composante en Y.
 	 * 
-	 * @param y
-	 *            Composante en Y.
+	 * @param y Composante en Y.
 	 */
 	public void setY(double y)
 	{
@@ -85,17 +81,17 @@ public class Vecteur implements Cloneable
 	{
 		double resultat = 0.0;
 		
-		if (getX() != 0)
+		if(getX() != 0)
 		{
 			resultat = Math.atan(getY() / getX());
 		}
 		
-		else if (getY() == 0)
+		else if(getY() == 0)
 		{
 			resultat = 0;
 		}
 		
-		else if (getY() > 0)
+		else if(getY() > 0)
 		{
 			resultat = Math.PI / 2;
 		}
@@ -105,19 +101,19 @@ public class Vecteur implements Cloneable
 			resultat = 3 * Math.PI / 2;
 		}
 		
-		if (x < 0.0 && y < 0.0)
+		if(x < 0.0 && y < 0.0)
 		{
 			resultat += Math.PI;
 		}
-		else if (y < 0.0 && x > 0.0)
+		else if(y < 0.0 && x > 0.0)
 		{
 			resultat += Math.PI * 2;
 		}
-		else if (x < 0.0)
+		else if(x < 0.0)
 		{
 			resultat += Math.PI;
 		}
-		while (resultat > 2 * Math.PI)
+		while(resultat > 2 * Math.PI)
 		{
 			resultat -= Math.PI;
 		}
@@ -157,8 +153,7 @@ public class Vecteur implements Cloneable
 	 * Additionne deux vecteurs ensembles et retourne un nouveau vecteur
 	 * représentant le résultat de la somme.
 	 * 
-	 * @param v
-	 *            Vecteur à additionner
+	 * @param v Vecteur à additionner
 	 * @return Résultat de la somme.
 	 */
 	public Vecteur additionner(Vecteur v)
@@ -175,8 +170,7 @@ public class Vecteur implements Cloneable
 	 * Soustrait deux vecteurs ensembles et retourne un nouveau vecteur
 	 * représentant le résultat de la somme.
 	 * 
-	 * @param v
-	 *            Vecteur à soustraire.
+	 * @param v Vecteur à soustraire.
 	 * @return Résultat de la somme.
 	 */
 	public Vecteur soustraire(Vecteur v)
@@ -193,8 +187,7 @@ public class Vecteur implements Cloneable
 	 * Multiplie le vecteur par un scalaire. Retourne un nouveau vecteur
 	 * représentant le résultat.
 	 * 
-	 * @param s
-	 *            Scalaire à multiplier.
+	 * @param s Scalaire à multiplier.
 	 * @return Vecteur représentant le résultat.
 	 */
 	public Vecteur multiplication(double s)
@@ -210,8 +203,7 @@ public class Vecteur implements Cloneable
 	/**
 	 * Calcul le produit scalaire des deux vecteurs.
 	 * 
-	 * @param v
-	 *            Vecteur à multiplier
+	 * @param v Vecteur à multiplier
 	 * @return Produit scalaire du vecteur.
 	 */
 	public double multiplication(Vecteur v)
@@ -228,7 +220,7 @@ public class Vecteur implements Cloneable
 	{
 		Vecteur resultat = new Vecteur();
 		
-		if (this.getNorme() != 0)
+		if(this.getNorme() != 0)
 		{
 			resultat.setX(this.getX() / this.getNorme());
 			resultat.setY(this.getY() / this.getNorme());
@@ -237,7 +229,8 @@ public class Vecteur implements Cloneable
 		return resultat;
 	}
 	
-	public Vecteur clone(){
+	public Vecteur clone()
+	{
 		return new Vecteur(x, y);
 		
 	}

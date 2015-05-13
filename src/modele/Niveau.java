@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import javafx.scene.paint.Color;
 import objets.Planete;
 import objets.Planete.Texture;
@@ -45,18 +44,12 @@ public class Niveau
 	/**
 	 * Constructeur servant à initialiser le niveau.
 	 * 
-	 * @param nouveauxCorps
-	 *            Les corps à mettre dans le niveau.
-	 * @param nouvelleDescriptionNiveau
-	 *            La description du niveau.
-	 * @param nouvelObjectif
-	 *            L'objectif à mettre dans le niveau.
-	 * @param nouveauPointDepart
-	 *            Le point de départ du vaisseau.
-	 * @param nouveauTitreNiveau
-	 *            Le titre du niveau.
-	 * @param nouvelleVitesseDepart
-	 *            La vitesse du vaisseau au point de départ.
+	 * @param nouveauxCorps Les corps à mettre dans le niveau.
+	 * @param nouvelleDescriptionNiveau La description du niveau.
+	 * @param nouvelObjectif L'objectif à mettre dans le niveau.
+	 * @param nouveauPointDepart Le point de départ du vaisseau.
+	 * @param nouveauTitreNiveau Le titre du niveau.
+	 * @param nouvelleVitesseDepart La vitesse du vaisseau au point de départ.
 	 */
 	public Niveau(List<Corps> nouveauxCorps, String nouvelleDescriptionNiveau,
 			Objectif nouvelObjectif, Vecteur nouveauPointDepart,
@@ -64,9 +57,9 @@ public class Niveau
 	{
 		corps = new ArrayList<>();
 		
-		if (nouveauxCorps != null)
+		if(nouveauxCorps != null)
 		{
-			for (Corps c : nouveauxCorps)
+			for(Corps c: nouveauxCorps)
 			{
 				ajouterCorps(c);
 			}
@@ -86,12 +79,11 @@ public class Niveau
 	/**
 	 * Sert à ajouter un corps dans le niveau.
 	 * 
-	 * @param nouveauCorps
-	 *            Un nouveau corps.
+	 * @param nouveauCorps Un nouveau corps.
 	 */
 	public void ajouterCorps(Corps nouveauCorps)
 	{
-		if (nouveauCorps != null)
+		if(nouveauCorps != null)
 		{
 			corps.add(nouveauCorps);
 		}
@@ -99,6 +91,7 @@ public class Niveau
 	
 	/**
 	 * Enlève un corps du niveau.
+	 * 
 	 * @param c
 	 */
 	public void supprimerCorps(Corps c)
@@ -112,8 +105,7 @@ public class Niveau
 	/**
 	 * Charge le niveau passé en paramètre.
 	 * 
-	 * @param fichier
-	 *            Le niveau à charger.
+	 * @param fichier Le niveau à charger.
 	 * @return Le niveau chargé.
 	 */
 	public static Niveau chargerNiveau(InputStream fichier)
@@ -126,7 +118,7 @@ public class Niveau
 		double vitesseDepart = 0;
 		Niveau niveau = null;
 		
-		if (fichier != null)
+		if(fichier != null)
 		{
 			try
 			{
@@ -135,43 +127,44 @@ public class Niveau
 				String ligne;
 				StringTokenizer st;
 				
-				while ((ligne = bw.readLine()) != null)
+				while((ligne = bw.readLine()) != null)
 				{
 					st = new StringTokenizer(ligne, ";");
 					
 					if(st.hasMoreTokens())
 					{
-						switch (st.nextToken().trim().toLowerCase())
+						switch(st.nextToken().trim().toLowerCase())
 						{
 						case "planete":
 						{
-							double masse = Double
-									.parseDouble(st.nextToken().trim());
-							double positionX = Double.parseDouble(st.nextToken()
+							double masse = Double.parseDouble(st.nextToken()
 									.trim());
-							double positionY = Double.parseDouble(st.nextToken()
+							double positionX = Double.parseDouble(st
+									.nextToken().trim());
+							double positionY = Double.parseDouble(st
+									.nextToken().trim());
+							double rayon = Double.parseDouble(st.nextToken()
 									.trim());
-							double rayon = Double
-									.parseDouble(st.nextToken().trim());
 							String texture = st.nextToken().trim();
-							double rayonAtmosphere = Double
-									.parseDouble(st.nextToken().trim());
+							double rayonAtmosphere = Double.parseDouble(st
+									.nextToken().trim());
 							String couleurAtmosphere = st.nextToken().trim();
 							
-							Planete p = new Planete(masse, positionX, positionY,
-									rayon, rayonAtmosphere, Color.web(couleurAtmosphere));
+							Planete p = new Planete(masse, positionX,
+									positionY, rayon, rayonAtmosphere,
+									Color.web(couleurAtmosphere));
 							p.setTexture(Texture.getTexture(texture));
 							corps.add(p);
 							break;
 						}
 						case "vaisseau":
 						{
-							double masse = Double
-									.parseDouble(st.nextToken().trim());
-							double positionX = Double.parseDouble(st.nextToken()
+							double masse = Double.parseDouble(st.nextToken()
 									.trim());
-							double positionY = Double.parseDouble(st.nextToken()
-									.trim());
+							double positionX = Double.parseDouble(st
+									.nextToken().trim());
+							double positionY = Double.parseDouble(st
+									.nextToken().trim());
 							double vitesseX = Double.parseDouble(st.nextToken()
 									.trim());
 							double vitesseY = Double.parseDouble(st.nextToken()
@@ -184,17 +177,17 @@ public class Niveau
 						}
 						case "vaisseaujoueur":
 						{
-							double puissance = Double.parseDouble(st.nextToken()
+							double puissance = Double.parseDouble(st
+									.nextToken().trim());
+							double masse = Double.parseDouble(st.nextToken()
 									.trim());
-							double masse = Double
-									.parseDouble(st.nextToken().trim());
 							double capaciteCarburant = Double.parseDouble(st
 									.nextToken().trim());
 							double carburantDepart = Double.parseDouble(st
 									.nextToken().trim());
 							
-							corps.add(new VaisseauJoueur(puissance,
-									masse, capaciteCarburant, carburantDepart));
+							corps.add(new VaisseauJoueur(puissance, masse,
+									capaciteCarburant, carburantDepart));
 							break;
 						}
 						case "descriptionniveau":
@@ -204,12 +197,12 @@ public class Niveau
 						}
 						case "objectifrayon":
 						{
-							double posRayonX = Double.parseDouble(st.nextToken()
+							double posRayonX = Double.parseDouble(st
+									.nextToken().trim());
+							double posRayonY = Double.parseDouble(st
+									.nextToken().trim());
+							double rayon = Double.parseDouble(st.nextToken()
 									.trim());
-							double posRayonY = Double.parseDouble(st.nextToken()
-									.trim());
-							double rayon = Double
-									.parseDouble(st.nextToken().trim());
 							Vecteur posRayon = new Vecteur(posRayonX, posRayonY);
 							
 							objectif = new ObjectifRayon(posRayon, rayon);
@@ -217,12 +210,13 @@ public class Niveau
 						}
 						case "pointdepart":
 						{
-							double pointDepartX = Double.parseDouble(st.nextToken()
-									.trim());
-							double pointDepartY = Double.parseDouble(st.nextToken()
-									.trim());
+							double pointDepartX = Double.parseDouble(st
+									.nextToken().trim());
+							double pointDepartY = Double.parseDouble(st
+									.nextToken().trim());
 							
-							pointDepart = new Vecteur(pointDepartX, pointDepartY);
+							pointDepart = new Vecteur(pointDepartX,
+									pointDepartY);
 							break;
 						}
 						case "titreniveau":
@@ -232,20 +226,20 @@ public class Niveau
 						}
 						case "vitessedepart":
 						{
-							vitesseDepart = Double.parseDouble(st
-									.nextToken().trim());
+							vitesseDepart = Double.parseDouble(st.nextToken()
+									.trim());
 							break;
 						}
 						}
 					}
-					}
+				}
 				bw.close();
 				isr.close();
 				
 				niveau = new Niveau(corps, descriptionNiveau, objectif,
 						pointDepart, titreNiveau, vitesseDepart);
 			}
-			catch (Exception e)
+			catch(Exception e)
 			{
 			}
 		}
@@ -315,8 +309,7 @@ public class Niveau
 	/**
 	 * Sauvegarde le niveau dans le fichier passé en paramètre.
 	 * 
-	 * @param fichier
-	 *            Fichier dans lequel le niveau est à sauvegarder.
+	 * @param fichier Fichier dans lequel le niveau est à sauvegarder.
 	 */
 	public void sauvegarderNiveau(File fichier)
 	{
@@ -325,9 +318,9 @@ public class Niveau
 			FileWriter fw = new FileWriter(fichier);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			for (Corps c : corps)
+			for(Corps c: corps)
 			{
-				switch (c.getClass().getName().toLowerCase())
+				switch(c.getClass().getName().toLowerCase())
 				{
 				case "objets.planete":
 				{
@@ -336,25 +329,25 @@ public class Niveau
 							+ p.getPositionX() + " ; " + p.getPositionY()
 							+ " ; " + p.getRayon() + " ; "
 							+ p.getTexture().toString() + " ; "
-									+ p.getRayonAtmosphere() + " ; "
-											+ p.getCouleurAtmosphere().toString());
+							+ p.getRayonAtmosphere() + " ; "
+							+ p.getCouleurAtmosphere().toString());
 					break;
 				}
 				case "objets.vaisseau":
 				{
 					Vaisseau v = (Vaisseau) c;
-					bw.write("Vaisseau ; " + v.getMasse() + " ; " + v.getPositionX() + " ; "
-							+ v.getPositionY() + " ; " + v.getVitesse().getX()
-							+ " ; " + v.getVitesse().getY());
+					bw.write("Vaisseau ; " + v.getMasse() + " ; "
+							+ v.getPositionX() + " ; " + v.getPositionY()
+							+ " ; " + v.getVitesse().getX() + " ; "
+							+ v.getVitesse().getY());
 					break;
 				}
 				case "objets.vaisseaujoueur":
 				{
 					VaisseauJoueur vj = (VaisseauJoueur) c;
 					bw.write("VaisseauJoueur ; " + vj.getPuissance() + " ; "
-							+ vj.getMasse() + " ; " 
-							+ vj.getCarburantMax() + " ; "
-							+ vj.getCarburantDepart());
+							+ vj.getMasse() + " ; " + vj.getCarburantMax()
+							+ " ; " + vj.getCarburantDepart());
 					break;
 				}
 				}
@@ -364,9 +357,9 @@ public class Niveau
 			bw.write("DescriptionNiveau ; " + descriptionNiveau);
 			bw.newLine();
 			
-			if (objectif != null)
+			if(objectif != null)
 			{
-				switch (objectif.getClass().getName().toLowerCase())
+				switch(objectif.getClass().getName().toLowerCase())
 				{
 				case "modele.objectifrayon":
 				{
@@ -393,14 +386,14 @@ public class Niveau
 			bw.close();
 			fw.close();
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 		}
 	}
 	
 	public void setDescriptionNiveau(String nouvelleDescriptionNiveau)
 	{
-		if (nouvelleDescriptionNiveau != null)
+		if(nouvelleDescriptionNiveau != null)
 		{
 			descriptionNiveau = nouvelleDescriptionNiveau;
 		}
@@ -409,12 +402,11 @@ public class Niveau
 	/**
 	 * Sert à modifier l'objectif.
 	 * 
-	 * @param nouvelObjectif
-	 *            Le nouvel objectif.
+	 * @param nouvelObjectif Le nouvel objectif.
 	 */
 	public void setObjectif(Objectif nouvelObjectif)
 	{
-		if (nouvelObjectif != null)
+		if(nouvelObjectif != null)
 		{
 			objectif = nouvelObjectif;
 		}
@@ -423,12 +415,11 @@ public class Niveau
 	/**
 	 * Sert à modifier le point de départ du vaisseau.
 	 * 
-	 * @param nouveauPointDepart
-	 *            Le nouveau point de départ du vaisseau.
+	 * @param nouveauPointDepart Le nouveau point de départ du vaisseau.
 	 */
 	public void setPointDepart(Vecteur nouveauPointDepart)
 	{
-		if (nouveauPointDepart != null)
+		if(nouveauPointDepart != null)
 		{
 			pointDepart = nouveauPointDepart;
 		}
@@ -437,12 +428,11 @@ public class Niveau
 	/**
 	 * Sert à modifier le titre du niveau.
 	 * 
-	 * @param nouveauTitreNiveau
-	 *            Le nouveau titre du niveau.
+	 * @param nouveauTitreNiveau Le nouveau titre du niveau.
 	 */
 	public void setTitreNiveau(String nouveauTitreNiveau)
 	{
-		if (nouveauTitreNiveau != null)
+		if(nouveauTitreNiveau != null)
 		{
 			titreNiveau = nouveauTitreNiveau;
 		}
@@ -451,12 +441,11 @@ public class Niveau
 	/**
 	 * Sert à modifier la vitesse de départ du vaisseau.
 	 * 
-	 * @param nouvelleVitesseDepart
-	 *            La nouvelle vitesse de départ du vaisseau.
+	 * @param nouvelleVitesseDepart La nouvelle vitesse de départ du vaisseau.
 	 */
 	public void setVitesseDepart(double nouvelleVitesseDepart)
 	{
-		if (nouvelleVitesseDepart >= 0)
+		if(nouvelleVitesseDepart >= 0)
 		{
 			vitesseDepart = nouvelleVitesseDepart;
 		}

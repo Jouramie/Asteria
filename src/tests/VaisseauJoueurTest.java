@@ -1,12 +1,15 @@
 package tests;
+
 import static org.junit.Assert.*;
 import objets.Vaisseau;
 import objets.VaisseauJoueur;
 import org.junit.Before;
 import org.junit.Test;
 import utils.Vecteur;
+
 /**
  * Classe de test de VaisseauJoueur.
+ * 
  * @author EquBolduc
  */
 public class VaisseauJoueurTest

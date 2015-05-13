@@ -2,7 +2,6 @@ package vue;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import utils.Vecteur;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -58,7 +57,7 @@ public class VueJeu implements Vue
 	public void initialiser(BorderPane pane)
 	{
 		borderPane = pane;
-		Pane p = (Pane)borderPane.lookup("#pane");
+		Pane p = (Pane) borderPane.lookup("#pane");
 		Rectangle rect = new Rectangle(p.getWidth(), p.getHeight());
 		p.setClip(rect);
 		camera.setGrandeurs(p.getWidth(), p.getHeight());
@@ -77,24 +76,24 @@ public class VueJeu implements Vue
 		p.getChildren().add(noeud);
 		
 		List<Corps> listTemp = ContPrincipal.getInstance().getCorps();
-		if (listTemp.size() == 0)
+		if(listTemp.size() == 0)
 		{
 			return;
 		}
 		
-		for (Corps c : listTemp)
+		for(Corps c: listTemp)
 		{
-			if (c instanceof Dessinable)
+			if(c instanceof Dessinable)
 			{
 				liste.add((Dessinable) c);
 			}
 		}
 		
-		for (Dessinable c : liste)
+		for(Dessinable c: liste)
 		{
 			Node n = c.getNoeud();
 			
-			if (n != null)
+			if(n != null)
 			{
 				Corps corps = (Corps) c;
 				n.translateXProperty().bind(corps.getPositionXProperty());
@@ -134,7 +133,7 @@ public class VueJeu implements Vue
 		scale.setX(facteur);
 		scale.setY(facteur);
 		
-		for (Dessinable d : liste)
+		for(Dessinable d: liste)
 		{
 			d.maj(dt);
 		}

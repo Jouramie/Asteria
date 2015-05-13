@@ -1,7 +1,6 @@
 package modele;
 
 import java.util.List;
-
 import objets.Tete;
 import utils.Vecteur;
 
@@ -30,10 +29,8 @@ public class MoteurPhysique
 	/**
 	 * Calcule les forces exercées sur les objets à la suite de la collision.
 	 * 
-	 * @param corps1
-	 *            Premier corps en collision.
-	 * @param corps2
-	 *            Deuxième corps en collision.
+	 * @param corps1 Premier corps en collision.
+	 * @param corps2 Deuxième corps en collision.
 	 */
 	private void calculerCollision(Corps corps1, Corps corps2)
 	{
@@ -42,7 +39,7 @@ public class MoteurPhysique
 		double d = deltaS.getNorme();
 		
 		// Évite une division par zéro.
-		if (d == 0)
+		if(d == 0)
 		{
 			d = 0.00001;
 		}
@@ -54,12 +51,12 @@ public class MoteurPhysique
 		double im1 = 1.0 / corps1.getMasse();
 		double im2 = 1.0 / corps2.getMasse();
 		
-		if (!corps1.isStatique())
+		if(!corps1.isStatique())
 		{
 			corps1.setPosition(corps1.getPosition().additionner(
 					transMin.multiplication(im1 / (im1 + im2))));
 		}
-		if (!corps2.isStatique())
+		if(!corps2.isStatique())
 		{
 			corps2.setPosition(corps2.getPosition().soustraire(
 					transMin.multiplication(im2 / (im1 + im2))));
@@ -92,11 +89,11 @@ public class MoteurPhysique
 		Vecteur v1 = n1.additionner(t1);
 		Vecteur v2 = n2.additionner(t2);
 		
-		if (!corps1.isStatique())
+		if(!corps1.isStatique())
 		{
 			corps1.setVitesse(v1);
 		}
-		if (!corps2.isStatique())
+		if(!corps2.isStatique())
 		{
 			corps2.setVitesse(v2);
 		}
@@ -105,54 +102,71 @@ public class MoteurPhysique
 	/**
 	 * Détecte les collisions.
 	 * 
-	 * @param corps
-	 *            La liste des corps pouvant potentiellement entrer en
+	 * @param corps La liste des corps pouvant potentiellement entrer en
 	 *            collision.
 	 */
 	private void gererCollisions(List<Corps> corps)
 	{
-		if (corps != null)
+		if(corps != null)
 		{
-			for (int i = 0; i < corps.size(); i++)
+			for(int i = 0; i < corps.size(); i++)
 			{
-				if (corps.get(i) != null)
+				if(corps.get(i) != null)
 				{
 					if(corps.get(i) instanceof Tete)
 					{
 						if(corps.get(i).getPositionX() < 0)
 						{
 							corps.get(i).setPositionX(0);
-							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
+							corps.get(i).setVitesse(
+									new Vecteur(-corps.get(i).getVitesse()
+											.getX(), corps.get(i).getVitesse()
+											.getY()));
 						}
 						
-						if(corps.get(i).getPositionX() + 2 * corps.get(i).getRayon() > tailleEcranX)
+						if(corps.get(i).getPositionX() + 2
+								* corps.get(i).getRayon() > tailleEcranX)
 						{
-							corps.get(i).setPositionX(tailleEcranX - 2 * corps.get(i).getRayon());
-							corps.get(i).setVitesse(new Vecteur(-corps.get(i).getVitesse().getX(), corps.get(i).getVitesse().getY()));
+							corps.get(i).setPositionX(
+									tailleEcranX - 2 * corps.get(i).getRayon());
+							corps.get(i).setVitesse(
+									new Vecteur(-corps.get(i).getVitesse()
+											.getX(), corps.get(i).getVitesse()
+											.getY()));
 						}
 						
 						if(corps.get(i).getPositionY() < 0)
 						{
 							corps.get(i).setPositionY(0);
-							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
+							corps.get(i).setVitesse(
+									new Vecteur(corps.get(i).getVitesse()
+											.getX(), -corps.get(i).getVitesse()
+											.getY()));
 						}
 						
-						if(corps.get(i).getPositionY() + 2 * corps.get(i).getRayon() > tailleEcranY)
+						if(corps.get(i).getPositionY() + 2
+								* corps.get(i).getRayon() > tailleEcranY)
 						{
-							corps.get(i).setPositionY(tailleEcranY - 2 * corps.get(i).getRayon());
-							corps.get(i).setVitesse(new Vecteur(corps.get(i).getVitesse().getX(), -corps.get(i).getVitesse().getY()));
+							corps.get(i).setPositionY(
+									tailleEcranY - 2 * corps.get(i).getRayon());
+							corps.get(i).setVitesse(
+									new Vecteur(corps.get(i).getVitesse()
+											.getX(), -corps.get(i).getVitesse()
+											.getY()));
 						}
 					}
 					
-					for (int j = i + 1; j < corps.size(); j++)
+					for(int j = i + 1; j < corps.size(); j++)
 					{
-						if (corps.get(j) != null)
+						if(corps.get(j) != null)
 						{
-							Vecteur diff = corps.get(i).getPosition().soustraire(corps.get(j).getPosition());
+							Vecteur diff = corps.get(i).getPosition()
+									.soustraire(corps.get(j).getPosition());
 							double distance = diff.getNorme();
-							double sommeRayons = corps.get(i).getRayon() + corps.get(j).getRayon();
+							double sommeRayons = corps.get(i).getRayon()
+									+ corps.get(j).getRayon();
 							
-							if (distance < sommeRayons)
+							if(distance < sommeRayons)
 							{
 								calculerCollision(corps.get(i), corps.get(j));
 								corps.get(i).onCollision(corps.get(j));
@@ -167,6 +181,7 @@ public class MoteurPhysique
 	
 	/**
 	 * Retourne la largeur de l'écran.
+	 * 
 	 * @return Largeur de l'écran.
 	 */
 	public double getTailleEcranX()
@@ -176,6 +191,7 @@ public class MoteurPhysique
 	
 	/**
 	 * Modifie la largeur de l'écran.
+	 * 
 	 * @param nouvelleTailleEcran La nouvelle largeur de l'écran.
 	 */
 	public void setTailleEcranX(double nouvelleTailleEcran)
@@ -188,6 +204,7 @@ public class MoteurPhysique
 	
 	/**
 	 * Retourne la hauteur de l'écran.
+	 * 
 	 * @return Hauteur de l'écran.
 	 */
 	public double getTailleEcranY()
@@ -197,6 +214,7 @@ public class MoteurPhysique
 	
 	/**
 	 * Modifie la hauteur de l'écran.
+	 * 
 	 * @param nouvelleTailleEcran La nouvelle hauteur de l'écran.
 	 */
 	public void setTailleEcranY(double nouvelleTailleEcran)
@@ -211,27 +229,25 @@ public class MoteurPhysique
 	 * Cette méthode met à jour la position et la vitesse des différents corps
 	 * non-statiques.
 	 * 
-	 * @param corps
-	 *            Liste des corps qui interagissent ensembles.
-	 * @param dt
-	 *            Intervalle de temps depuis la dernière mise à jour.
+	 * @param corps Liste des corps qui interagissent ensembles.
+	 * @param dt Intervalle de temps depuis la dernière mise à jour.
 	 */
 	public void update(List<Corps> corps, double dt)
 	{
-		if (corps != null && dt > 0)
+		if(corps != null && dt > 0)
 		{
-			for (Corps c1 : corps)
+			for(Corps c1: corps)
 			{
-				if (c1 != null && !c1.isStatique())
+				if(c1 != null && !c1.isStatique())
 				{
 					c1.setPosition(c1.getPosition().additionner(
 							c1.getVitesse().multiplication(dt)));
 					
 					Vecteur force = new Vecteur();
 					
-					for (Corps c2 : corps)
+					for(Corps c2: corps)
 					{
-						if (c1 != c2 && c2 != null)
+						if(c1 != c2 && c2 != null)
 						{
 							double distance = c2.getPosition()
 									.soustraire(c1.getPosition()).getNorme();

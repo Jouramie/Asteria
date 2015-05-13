@@ -18,8 +18,7 @@ public interface Controleur
 	 * Met à jour le modèle. Cette méthode est appelée à chaque frame. C'est ici
 	 * que les modifications sur le vaisseau ou autres ont lieu.
 	 * 
-	 * @param dt
-	 *            Temps écoulé depuis le dernier frame (en secondes)
+	 * @param dt Temps écoulé depuis le dernier frame (en secondes)
 	 */
 	void update(double dt);
 }

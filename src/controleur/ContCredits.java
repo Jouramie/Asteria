@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import objets.Tete;
 import utils.Vecteur;
 import vue.VueCredits;
+
 /**
  * Contrôleur utilisé lors du lancement des crédits.
  * 
@@ -35,14 +36,15 @@ public class ContCredits implements Controleur
 			chargerCredits();
 		});
 	}
-
+	
 	/**
 	 * Charge les éléments visibles dans les crédits.
 	 */
 	private void chargerCredits()
 	{
 		ContPrincipal.getInstance().viderCorps();
-		Tete simon = new Tete(1, 100, new Vecteur(50, 50), new Vecteur(200, 175));
+		Tete simon = new Tete(1, 100, new Vecteur(50, 50),
+				new Vecteur(200, 175));
 		simon.setTexture(Tete.Texture.SIMONPIERRE);
 		ContPrincipal.getInstance().ajouterCorps(simon);
 		
@@ -54,7 +56,8 @@ public class ContCredits implements Controleur
 		jo.setTexture(Tete.Texture.JONATHAN);
 		ContPrincipal.getInstance().ajouterCorps(jo);
 		
-		Tete emile = new Tete(1, 100, new Vecteur(450, 450), new Vecteur(-175, -200));
+		Tete emile = new Tete(1, 100, new Vecteur(450, 450), new Vecteur(-175,
+				-200));
 		emile.setTexture(Tete.Texture.EMILE);
 		ContPrincipal.getInstance().ajouterCorps(emile);
 		
@@ -71,7 +74,7 @@ public class ContCredits implements Controleur
 			ContPrincipal.getInstance().selectionnerControleur(new ContMenu());
 		}
 	}
-
+	
 	public void update(double dt)
 	{
 		

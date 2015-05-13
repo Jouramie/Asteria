@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 
 /**
  * Démarrage de l'application
+ * 
  * @author EquBolduc
  * @version 1.0
  */
@@ -21,11 +22,12 @@ public class Main extends Application
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 		}
 	}
 	
-	/** Méthode main
+	/**
+	 * Méthode main
+	 * 
 	 * @param args Paramètres en ligne de commande.
 	 */
 	public static void main(String[] args)

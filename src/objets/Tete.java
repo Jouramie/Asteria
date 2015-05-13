@@ -1,8 +1,10 @@
 package objets;
+
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import utils.Vecteur;
+
 /**
  * Classe représentant une tête.
  * 
@@ -18,6 +20,7 @@ public class Tete extends ObjetSpatial
 	
 	/**
 	 * Constructeur de la classe Tete.
+	 * 
 	 * @param pMasse Masse de la tête.
 	 * @param pRayon Rayon de la tête.
 	 * @param pPosition Position initiale de la tête.
@@ -37,10 +40,8 @@ public class Tete extends ObjetSpatial
 	 */
 	public enum Texture
 	{
-		EMILE("/res/emile.png"),
-		JEREMIE("/res/jeremie.png"),
-		JONATHAN("/res/jonathan.png"),
-		SIMONPIERRE("/res/simon_pierre.png");
+		EMILE("/res/emile.png"), JEREMIE("/res/jeremie.png"), JONATHAN(
+				"/res/jonathan.png"), SIMONPIERRE("/res/simon_pierre.png");
 		
 		private final String texture;
 		
@@ -92,6 +93,7 @@ public class Tete extends ObjetSpatial
 	
 	/**
 	 * Initialise les attributs de la classe Tete.
+	 * 
 	 * @param pRayon Rayon de la tête.
 	 * @param textureDefaut Texture de la tête.
 	 */
@@ -110,12 +112,11 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Change le rayon de la tête.
-	 * Dois être plus grand que 0.
+	 * Change le rayon de la tête. Dois être plus grand que 0.
 	 */
 	public void setRayon(double nouvRayon)
 	{
-		if (nouvRayon < 0)
+		if(nouvRayon < 0)
 		{
 			rayon = RAYON_DEFAUT;
 		}
@@ -124,7 +125,7 @@ public class Tete extends ObjetSpatial
 			rayon = nouvRayon;
 		}
 	}
-
+	
 	/**
 	 * Retourne la force extérieure exercée sur cette tête.
 	 */
@@ -132,14 +133,14 @@ public class Tete extends ObjetSpatial
 	{
 		return new Vecteur();
 	}
-
+	
 	/**
 	 * Met à jour l'apparence de la tête.
 	 */
 	public void maj(double dt)
 	{
 	}
-
+	
 	/**
 	 * Change la texture de la tête.
 	 * 
@@ -147,7 +148,7 @@ public class Tete extends ObjetSpatial
 	 */
 	public void setTexture(Texture pTexture)
 	{
-		if (pTexture == null)
+		if(pTexture == null)
 			texture = TEXTURE_DEFAUT;
 		else
 			texture = pTexture;

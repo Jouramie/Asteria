@@ -1,8 +1,8 @@
 package controleur;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -59,8 +59,7 @@ public class ContPrincipal
 	/**
 	 * Initialise la vue avec le Stage de JavaFX.
 	 * 
-	 * @param stage
-	 *            Stage JavaFX.
+	 * @param stage Stage JavaFX.
 	 */
 	public void initialiser(Stage stage)
 	{
@@ -99,6 +98,7 @@ public class ContPrincipal
 	
 	/**
 	 * Retourne le moteur physique.
+	 * 
 	 * @return Le moteur physique.
 	 */
 	public MoteurPhysique getMoteurPhysique()
@@ -109,12 +109,11 @@ public class ContPrincipal
 	/**
 	 * Charge un contrôleur.
 	 * 
-	 * @param c
-	 *            Contrôleur à charger.
+	 * @param c Contrôleur à charger.
 	 */
 	public void selectionnerControleur(Controleur c)
 	{
-		if (c != null)
+		if(c != null)
 		{
 			cont = c;
 			cont.initialiser();
@@ -125,8 +124,7 @@ public class ContPrincipal
 	/**
 	 * Charge une vue FXML en mode fenêtré.
 	 * 
-	 * @param v
-	 *            Vue à charger.
+	 * @param v Vue à charger.
 	 */
 	public void afficherVue(Vue v)
 	{
@@ -136,33 +134,35 @@ public class ContPrincipal
 	/**
 	 * Charge une vue FXML et affiche la fenêtre.
 	 * 
-	 * @param v
-	 *            Vue à charger.
-	 * @param fullscreen
-	 *            Détermine si la vue doit être plein écran.
+	 * @param v Vue à charger.
+	 * @param fullscreen Détermine si la vue doit être plein écran.
 	 */
 	public void afficherVue(Vue v, boolean fullscreen)
 	{
-		if (v != null)
+		if(v != null)
 		{
 			try
 			{
 				vueChargee = false;
 				vue = v;
 				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource(v.getFXML()));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(
+						v.getFXML()));
 				loader.setController(cont);
 				root = (BorderPane) loader.load();
 				
 				Scene scene = null;
-				if (fullscreen)
+				if(fullscreen)
 				{
-					Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-					scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+					Rectangle2D screenBounds = Screen.getPrimary()
+							.getVisualBounds();
+					scene = new Scene(root, screenBounds.getWidth(),
+							screenBounds.getHeight());
 				}
 				else
 				{
-					scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+					scene = new Scene(root, root.getPrefWidth(),
+							root.getPrefHeight());
 				}
 				
 				stage.setScene(scene);
@@ -178,7 +178,7 @@ public class ContPrincipal
 					vueChargee = true;
 				});
 			}
-			catch (IOException e)
+			catch(IOException e)
 			{
 				e.printStackTrace();
 			}
@@ -188,22 +188,21 @@ public class ContPrincipal
 	/**
 	 * Méthode appelée à chaque frame par l'horloge interne.
 	 * 
-	 * @param time
-	 *            Temps écoulé depuis le dernier frame (secondes).
+	 * @param time Temps écoulé depuis le dernier frame (secondes).
 	 */
 	public void update(double time)
 	{
-		if (horlogeDemarree)
+		if(horlogeDemarree)
 		{
 			phys.update(corps, time);
 		}
 		
-		if (cont != null && contCharge)
+		if(cont != null && contCharge)
 		{
 			cont.update(time);
 		}
 		
-		if (vue != null && vueChargee)
+		if(vue != null && vueChargee)
 		{
 			vue.dessiner(time);
 		}
@@ -212,12 +211,11 @@ public class ContPrincipal
 	/**
 	 * Ajoute un corps physique au modèle.
 	 * 
-	 * @param c
-	 *            Corps à ajouter.
+	 * @param c Corps à ajouter.
 	 */
 	public void ajouterCorps(Corps c)
 	{
-		if (c != null)
+		if(c != null)
 		{
 			corps.add(c);
 		}
@@ -226,8 +224,7 @@ public class ContPrincipal
 	/**
 	 * Supprime un corps physique du modèle.
 	 * 
-	 * @param c
-	 *            Corps a supprimer.
+	 * @param c Corps a supprimer.
 	 */
 	public void enleverCorps(Corps c)
 	{
@@ -262,7 +259,7 @@ public class ContPrincipal
 	{
 		return instance;
 	}
-		
+	
 	/**
 	 * Classe responsable de l'horloge interne.
 	 * 
@@ -280,7 +277,7 @@ public class ContPrincipal
 			previousTime = 0;
 			currentTime = System.currentTimeMillis();
 			
-			while (true)
+			while(true)
 			{
 				previousTime = currentTime;
 				currentTime = System.currentTimeMillis();
