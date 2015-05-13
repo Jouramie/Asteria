@@ -138,7 +138,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	{
 		portal.getChildren().clear();
 		
-		ImageView image = new ImageView(new Image("/res/portal.png"));
+		ImageView image = new ImageView(new Image("/res/portail.png"));
 		image.setFitWidth(rayon * 2);
 		image.setFitHeight(rayon * 2);
 		image.setTranslateX(posRayon.getX() - rayon);

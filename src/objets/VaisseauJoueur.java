@@ -411,7 +411,7 @@ public class VaisseauJoueur extends Vaisseau
 	{
 		Group group = new Group();
 		
-		Image textureVaisseau = new Image("/res/spaceship.png");
+		Image textureVaisseau = new Image("/res/vaisseauJoueur.png");
 		
 		ImageView image = new ImageView(textureVaisseau);
 		image.setFitWidth(40);
@@ -420,7 +420,7 @@ public class VaisseauJoueur extends Vaisseau
 		image.setTranslateY(-20);
 		group.getChildren().add(image);
 		
-		Image textureFlamme = new Image("/res/flame.png");
+		Image textureFlamme = new Image("/res/flamme.png");
 		imageFlamme = new ImageView(textureFlamme);
 		imageFlamme.setFitWidth(15);
 		imageFlamme.setFitHeight(40);

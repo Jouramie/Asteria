@@ -72,7 +72,7 @@ public class ContPrincipal
 		th.setDaemon(true);
 		th.start();
 		stage.getIcons().clear();
-		stage.getIcons().add(new Image("/res/favicon.png"));
+		stage.getIcons().add(new Image("/res/icone.png"));
 	}
 	
 	/**

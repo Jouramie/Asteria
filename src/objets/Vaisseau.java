@@ -87,7 +87,7 @@ public class Vaisseau extends ObjetSpatial
 	{
 		Group group = new Group();
 		
-		Image textureVaisseau = new Image("/res/spaceship-ennemy.png");
+		Image textureVaisseau = new Image("/res/vaisseau.png");
 		;
 		
 		ImageView image = new ImageView(textureVaisseau);
