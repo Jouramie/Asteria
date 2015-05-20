@@ -666,6 +666,7 @@ public class ContEditeur implements Controleur
 				corpsSelect = null;
 				objectifSelect = niveau.getObjectif();
 				((ObjectifRayon) objectifSelect).setPosRayon(pos);
+				((Dessinable) objectifSelect).creeNoeud();
 				break;
 			case "Vaisseau Joueur":
 				corpsSelect = vaisseauJoueur;
