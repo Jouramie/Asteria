@@ -1,9 +1,9 @@
 package utils;
 
 /**
- * Classe utilitaire représentant un vecteur 2D.
+ * Classe utilitaire representant un vecteur 2D.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  * @version 1.0
  */
 public class Vecteur implements Cloneable
@@ -12,7 +12,7 @@ public class Vecteur implements Cloneable
 	private double y;
 	
 	/**
-	 * Constructeur par défaut. Crée un vecteur nul.
+	 * Constructeur par defaut. Cree un vecteur nul.
 	 */
 	public Vecteur()
 	{
@@ -73,7 +73,7 @@ public class Vecteur implements Cloneable
 	}
 	
 	/**
-	 * Retourne l'angle en radians du vecteur, par rapport à l'horizontale.
+	 * Retourne l'angle en radians du vecteur, par rapport a l'horizontale.
 	 * 
 	 * @return Angle en radian.
 	 */
@@ -151,10 +151,10 @@ public class Vecteur implements Cloneable
 	
 	/**
 	 * Additionne deux vecteurs ensembles et retourne un nouveau vecteur
-	 * représentant le résultat de la somme.
+	 * representant le resultat de la somme.
 	 * 
-	 * @param v Vecteur à additionner
-	 * @return Résultat de la somme.
+	 * @param v Vecteur a additionner
+	 * @return Resultat de la somme.
 	 */
 	public Vecteur additionner(Vecteur v)
 	{
@@ -168,10 +168,10 @@ public class Vecteur implements Cloneable
 	
 	/**
 	 * Soustrait deux vecteurs ensembles et retourne un nouveau vecteur
-	 * représentant le résultat de la somme.
+	 * representant le resultat de la somme.
 	 * 
-	 * @param v Vecteur à soustraire.
-	 * @return Résultat de la somme.
+	 * @param v Vecteur a soustraire.
+	 * @return Resultat de la somme.
 	 */
 	public Vecteur soustraire(Vecteur v)
 	{
@@ -185,10 +185,10 @@ public class Vecteur implements Cloneable
 	
 	/**
 	 * Multiplie le vecteur par un scalaire. Retourne un nouveau vecteur
-	 * représentant le résultat.
+	 * representant le resultat.
 	 * 
-	 * @param s Scalaire à multiplier.
-	 * @return Vecteur représentant le résultat.
+	 * @param s Scalaire a multiplier.
+	 * @return Vecteur representant le resultat.
 	 */
 	public Vecteur multiplication(double s)
 	{
@@ -203,7 +203,7 @@ public class Vecteur implements Cloneable
 	/**
 	 * Calcul le produit scalaire des deux vecteurs.
 	 * 
-	 * @param v Vecteur à multiplier
+	 * @param v Vecteur a multiplier
 	 * @return Produit scalaire du vecteur.
 	 */
 	public double multiplication(Vecteur v)
@@ -212,9 +212,9 @@ public class Vecteur implements Cloneable
 	}
 	
 	/**
-	 * Retourne un vecteur de même direction, mais dont la norme est de 1.
+	 * Retourne un vecteur de meme direction, mais dont la norme est de 1.
 	 * 
-	 * @return Vecteur normalisé.
+	 * @return Vecteur normalise.
 	 */
 	public Vecteur normaliser()
 	{

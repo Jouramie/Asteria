@@ -3,7 +3,7 @@ package vue;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Vue du menu. Classe très simpliste.
+ * Vue du menu. Classe tres simpliste.
  * 
  * @author EquBolduc
  * @version 1.0

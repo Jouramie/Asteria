@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * Classe permettant d'exécuter tous les tests.
+ * Classe permettant d'executer tous les tests.
  * 
  * @author EquBolduc
  * @version 1.0

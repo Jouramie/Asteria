@@ -14,7 +14,7 @@ import javafx.stage.FileChooser;
 import vue.VueSelectionNiveau;
 
 /**
- * Contrôleur pour le choix des niveaux.
+ * Controleur pour le choix des niveaux.
  * 
  * @author Jonathan Samson
  * @version 1.0
@@ -51,7 +51,7 @@ public class ContSelectionNiveau implements Controleur
 	private VueSelectionNiveau vue;
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 */
 	public ContSelectionNiveau()
 	{
@@ -82,7 +82,7 @@ public class ContSelectionNiveau implements Controleur
 				while(!file.canRead())
 				{
 					JOptionPane.showMessageDialog(null,
-							"L'emplacement choisi ne peut pas être lu!",
+							"L'emplacement choisi ne peut pas etre lu!",
 							"Erreur", JOptionPane.ERROR_MESSAGE);
 					file = (new FileChooser()).showOpenDialog(null);
 				}
@@ -108,7 +108,7 @@ public class ContSelectionNiveau implements Controleur
 	}
 	
 	/**
-	 * Retourne au controleur principal, et à sa vue.
+	 * Retourne au controleur principal, et a sa vue.
 	 * 
 	 */
 	@FXML
@@ -119,7 +119,7 @@ public class ContSelectionNiveau implements Controleur
 	}
 	
 	/**
-	 * Gère les différentes descriptions de niveaux.
+	 * Gere les differentes descriptions de niveaux.
 	 */
 	@FXML
 	public void levels(ActionEvent event) throws URISyntaxException

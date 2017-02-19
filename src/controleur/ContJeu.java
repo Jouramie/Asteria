@@ -21,7 +21,7 @@ import vue.Dessinable;
 import vue.VueJeu;
 
 /**
- * Contrôleur utilisé lors d'une session de jeu.
+ * Controleur utilise lors d'une session de jeu.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -61,7 +61,7 @@ public class ContJeu implements Controleur
 	private int numeroNiveau;
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 */
 	public ContJeu()
 	{
@@ -69,9 +69,9 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 * 
-	 * @param nouvNiveau Niveau à charger.
+	 * @param nouvNiveau Niveau a charger.
 	 */
 	public ContJeu(int nouvNumeroNiveau)
 	{
@@ -88,10 +88,10 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 * 
 	 * @param niv Le niveau dans lequel commence le jeu.
-	 * @param editeur Vrai si le jeu est lancé depuis l'éditeur.
+	 * @param editeur Vrai si le jeu est lance depuis l'editeur.
 	 */
 	public ContJeu(Niveau niv, boolean editeur)
 	{
@@ -102,8 +102,8 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Initialise les éléments du jeu et affiche la vue. Démarre l'horloge du
-	 * contrôleur principal.
+	 * Initialise les elements du jeu et affiche la vue. Demarre l'horloge du
+	 * controleur principal.
 	 */
 	public void initialiser()
 	{
@@ -253,7 +253,7 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Affiche l'écran de victoire.
+	 * Affiche l'ecran de victoire.
 	 */
 	public void afficherMenuVictoire()
 	{
@@ -296,7 +296,7 @@ public class ContJeu implements Controleur
 	/**
 	 * Charge un niveau de jeu.
 	 * 
-	 * @param niv Niveau à charger.
+	 * @param niv Niveau a charger.
 	 */
 	public void chargerNiveau(Niveau niv)
 	{
@@ -306,7 +306,7 @@ public class ContJeu implements Controleur
 			objectifAtteint = false;
 			mort = false;
 			
-			// Vide puis ajoute tous les corps du niveau dans le contrôleur
+			// Vide puis ajoute tous les corps du niveau dans le controleur
 			// principal.
 			ContPrincipal.getInstance().viderCorps();
 			
@@ -319,7 +319,7 @@ public class ContJeu implements Controleur
 				}
 			}
 			
-			// Initialise le vaisseau du joueur si le niveau n'en définit pas
+			// Initialise le vaisseau du joueur si le niveau n'en definit pas
 			// un.
 			if(vaisseauJoueur == null)
 			{
@@ -335,7 +335,7 @@ public class ContJeu implements Controleur
 			// Ajoute les corps dans le JavaFX.
 			vue.initialiserCorps();
 			
-			// Bind les barres de carburant et de santé.
+			// Bind les barres de carburant et de sante.
 			progressBarCarburant.progressProperty().unbind();
 			progressBarCarburant.progressProperty().bind(
 					vaisseauJoueur.carburantRestantProperty().divide(
@@ -356,7 +356,7 @@ public class ContJeu implements Controleur
 				}
 			}
 			
-			// Commence à écouter la souris pour la vitesse de départ.
+			// Commence a ecouter la souris pour la vitesse de depart.
 			ContPrincipal.getInstance().arreterHorloge();
 			listenMouse = true;
 		}
@@ -381,7 +381,7 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Écouteur lors de la sélection de la vitesse initiale.
+	 * ecouteur lors de la selection de la vitesse initiale.
 	 * 
 	 * @param e
 	 */
@@ -400,7 +400,7 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Écouteur lors de la sélection de la vitesse initiale.
+	 * ecouteur lors de la selection de la vitesse initiale.
 	 */
 	@FXML
 	public void mouseClicked(MouseEvent e)
@@ -474,7 +474,7 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Écouteur sur le mouse wheel pour contrôler le zoom de la caméra.
+	 * ecouteur sur le mouse wheel pour controler le zoom de la camera.
 	 */
 	@FXML
 	public void zoom(ScrollEvent e)
@@ -498,32 +498,32 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Met à jour la caméra et vérifie l'objectif.
+	 * Met a jour la camera et verifie l'objectif.
 	 */
 	public void update(double dt)
 	{
 		if(vaisseauJoueur != null)
 		{
-			// Met à jour le vaisseau et vérifie l'objectif.
+			// Met a jour le vaisseau et verifie l'objectif.
 			vaisseauJoueur.miseAJourPhysique(dt);
 			verifierObjectif();
 			
 			// =========================
-			// Mise à jour de la caméra.
+			// Mise a jour de la camera.
 			// =========================
 			
-			// Prend les données actuelles.
+			// Prend les donnees actuelles.
 			Camera camera = vue.getCamera();
 			double x = camera.getDeplacement().getX();
 			double y = camera.getDeplacement().getY();
 			
-			// Calcul les marges horizontales de l'écran.
+			// Calcul les marges horizontales de l'ecran.
 			double marginLeft = camera.localToGlobal(
 					new Vecteur(MARGE_ECRAN_HORIZ, 0)).getX();
 			double marginRight = camera.localToGlobal(
 					new Vecteur(pane.getWidth() - MARGE_ECRAN_HORIZ, 0)).getX();
 			
-			// Vérifie les marges à gauche et à droite et ajuste la caméra.
+			// Verifie les marges a gauche et a droite et ajuste la camera.
 			if(vaisseauJoueur.getPositionX() < marginLeft)
 			{
 				camera.deplacer(x
@@ -539,13 +539,13 @@ public class ContJeu implements Controleur
 			x = camera.getDeplacement().getX();
 			y = camera.getDeplacement().getY();
 			
-			// Calcul les marges verticales de l'écran.
+			// Calcul les marges verticales de l'ecran.
 			double marginTop = camera.localToGlobal(
 					new Vecteur(0, MARGE_ECRAN_VERT)).getY();
 			double marginBottom = camera.localToGlobal(
 					new Vecteur(0, pane.getHeight() - MARGE_ECRAN_VERT)).getY();
 			
-			// Vérifie les marges en haut et en bas et ajuste la caméra.
+			// Verifie les marges en haut et en bas et ajuste la camera.
 			if(vaisseauJoueur.getPositionY() < marginTop)
 			{
 				camera.deplacer(x,
@@ -561,7 +561,7 @@ public class ContJeu implements Controleur
 	}
 	
 	/**
-	 * Vérifie si l'objectif actuel est atteint et vérifie si le joueur est
+	 * Verifie si l'objectif actuel est atteint et verifie si le joueur est
 	 * mort.
 	 */
 	private void verifierObjectif()

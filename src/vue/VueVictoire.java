@@ -3,7 +3,7 @@ package vue;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Vue de la fenêtre de réussite du jeu.
+ * Vue de la fenetre de reussite du jeu.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -37,7 +37,7 @@ public class VueVictoire implements Vue
 	}
 	
 	/**
-	 * Met à jour la caméra.
+	 * Met a jour la camera.
 	 */
 	public void dessiner(double dt)
 	{

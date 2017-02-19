@@ -10,7 +10,7 @@ import utils.Vecteur;
 /**
  * Classe de tests pour Tete.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  */
 public class TeteTest
 {

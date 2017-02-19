@@ -19,7 +19,7 @@ import utils.Vecteur;
 /**
  * Classe de tests pour Niveau.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  */
 public class NiveauTest
 {
@@ -49,7 +49,7 @@ public class NiveauTest
 		corps.add(new Planete(1000, 100, 100, 15, 0, Color.WHITE));
 		corps.add(new Vaisseau(100, new Vecteur(250, 250), new Vecteur(10, 0)));
 		
-		descriptionNiveau = "Niveau très difficile";
+		descriptionNiveau = "Niveau tres difficile";
 		objectif = new ObjectifRayon(new Vecteur(1000, 1000), 20);
 		pointDepart = new Vecteur(10, 10);
 		titreNiveau = "Niveau 1";

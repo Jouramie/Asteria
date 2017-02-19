@@ -16,7 +16,7 @@ import utils.Vecteur;
 /**
  * Classe de tests pour MoteurPhysique.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  */
 public class MoteurPhysiqueTest
 {

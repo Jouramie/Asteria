@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import vue.VueVictoire;
 
 /**
- * Contrôleur pour l'écran de réussite du jeu !
+ * Controleur pour l'ecran de reussite du jeu !
  * 
  * @author Jonathan Samson
  * @version 1.0
@@ -20,7 +20,7 @@ public class ContVictoire implements Controleur
 	private VueVictoire vue;
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 */
 	public ContVictoire()
 	{

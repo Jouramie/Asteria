@@ -11,7 +11,7 @@ import modele.Corps;
 import utils.Vecteur;
 
 /**
- * Classe représentant un vaisseau contrôlable par l'utilisateur.
+ * Classe representant un vaisseau controlable par l'utilisateur.
  * 
  * @author EquBolduc
  */
@@ -45,8 +45,8 @@ public class VaisseauJoueur extends Vaisseau
 	 * 
 	 * @param pPuissance Puissance maximale du moteur (en Newton).
 	 * @param pMasse Masse du vaisseau (en kg).
-	 * @param pCarburantMax Quantité de carburant maximale (en kg).
-	 * @param pCarburantDepart Quantité de carburant de départ (en kg).
+	 * @param pCarburantMax Quantite de carburant maximale (en kg).
+	 * @param pCarburantDepart Quantite de carburant de depart (en kg).
 	 * @param pPositionX Position en X dans l'espace.
 	 * @param pPositionY Position en Y dans l'espace.
 	 * @param pVitesse Vitesse initiale du vaisseau.
@@ -59,7 +59,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Initialise le vaisseau avec des valeurs par défaut.
+	 * Initialise le vaisseau avec des valeurs par defaut.
 	 */
 	private void initDefaut(double pPuissanceMax, double pCarburantMax,
 			double pCarburantDepart)
@@ -92,7 +92,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Commence ou arrête de faire tourner le vaisseau vers la gauche.
+	 * Commence ou arrete de faire tourner le vaisseau vers la gauche.
 	 */
 	public void tournerGauche(boolean tourner)
 	{
@@ -100,7 +100,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Commence ou arrête de faire tourner le vaisseau vers la droite.
+	 * Commence ou arrete de faire tourner le vaisseau vers la droite.
 	 */
 	public void tournerDroite(boolean tourner)
 	{
@@ -108,7 +108,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Commence ou arrête de faire avancer le vaisseau vers la gauche.
+	 * Commence ou arrete de faire avancer le vaisseau vers la gauche.
 	 */
 	public void avancer(boolean avancer)
 	{
@@ -139,9 +139,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne la santé actuelle du vaisseau.
+	 * Retourne la sante actuelle du vaisseau.
 	 * 
-	 * @return Santé actuelle (entre 0.0 et 1.0).
+	 * @return Sante actuelle (entre 0.0 et 1.0).
 	 */
 	public double getSante()
 	{
@@ -149,10 +149,10 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Modifie la santé du vaisseau. Doit être située entre 0.0 et 1.0
+	 * Modifie la sante du vaisseau. Doit etre situee entre 0.0 et 1.0
 	 * inclusivement.
 	 * 
-	 * @param sante Nouvelle santé.
+	 * @param sante Nouvelle sante.
 	 */
 	public void setSante(double pSante)
 	{
@@ -163,9 +163,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne une propriété observable de la santé du vaisseau.
+	 * Retourne une propriete observable de la sante du vaisseau.
 	 * 
-	 * @return Propriété observable (en %).
+	 * @return Propriete observable (en %).
 	 */
 	public DoubleProperty santeProperty()
 	{
@@ -173,9 +173,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Modifie la quantité maximale de carburant du vaisseau.
+	 * Modifie la quantite maximale de carburant du vaisseau.
 	 * 
-	 * @param pCarburantMax Quantité maximale de carburant (en kg).
+	 * @param pCarburantMax Quantite maximale de carburant (en kg).
 	 */
 	public void setCarburantMax(double pCarburantMax)
 	{
@@ -193,9 +193,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne la quantité maximale de carburant.
+	 * Retourne la quantite maximale de carburant.
 	 * 
-	 * @return Quantité maximale de carburant (en kg).
+	 * @return Quantite maximale de carburant (en kg).
 	 */
 	public double getCarburantMax()
 	{
@@ -203,9 +203,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne la quantité restante de carburant dans le vaisseau.
+	 * Retourne la quantite restante de carburant dans le vaisseau.
 	 * 
-	 * @return Quantité de carburant restante (en kg).
+	 * @return Quantite de carburant restante (en kg).
 	 */
 	public double getCarburantRestant()
 	{
@@ -213,9 +213,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Modifie la quantité de carburant restante.
+	 * Modifie la quantite de carburant restante.
 	 * 
-	 * @param pCarburantRestant Quantité de carburant (en kg).
+	 * @param pCarburantRestant Quantite de carburant (en kg).
 	 */
 	public void setCarburantRestant(double pCarburantRestant)
 	{
@@ -230,9 +230,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Modifie la quantité de carburant que le vaisseau a au départ.
+	 * Modifie la quantite de carburant que le vaisseau a au depart.
 	 * 
-	 * @param pCarburantDepart Quantité de carburant au départ (en kg).
+	 * @param pCarburantDepart Quantite de carburant au depart (en kg).
 	 */
 	public void setCarburantDepart(double pCarburantDepart)
 	{
@@ -252,9 +252,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne la quantité de carburant que le vaisseau a au départ.
+	 * Retourne la quantite de carburant que le vaisseau a au depart.
 	 * 
-	 * @return Quantité de carburant de départ (en kg).
+	 * @return Quantite de carburant de depart (en kg).
 	 */
 	public double getCarburantDepart()
 	{
@@ -262,9 +262,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne une propriété observable de la quantité de carburant maximale.
+	 * Retourne une propriete observable de la quantite de carburant maximale.
 	 * 
-	 * @return Propriété observable (en kg).
+	 * @return Propriete observable (en kg).
 	 */
 	public DoubleProperty carburantMaxProperty()
 	{
@@ -272,9 +272,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne une propriété observable de la quantité de carburant restante.
+	 * Retourne une propriete observable de la quantite de carburant restante.
 	 * 
-	 * @return Propriété observable (en kg).
+	 * @return Propriete observable (en kg).
 	 */
 	public DoubleProperty carburantRestantProperty()
 	{
@@ -282,7 +282,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne la force appliquée par le moteur (en Newton).
+	 * Retourne la force appliquee par le moteur (en Newton).
 	 * 
 	 * @return Force du moteur.
 	 */
@@ -299,7 +299,7 @@ public class VaisseauJoueur extends Vaisseau
 	/**
 	 * Retourne la direction du vaisseau.
 	 * 
-	 * @return Vecteur normaliser représentant la direction du vaisseau.
+	 * @return Vecteur normaliser representant la direction du vaisseau.
 	 */
 	public Vecteur getDirection()
 	{
@@ -320,7 +320,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Démarre l'animation d'explosion,
+	 * Demarre l'animation d'explosion,
 	 */
 	public void jouerAnimationMort()
 	{
@@ -340,7 +340,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne l'état de l'animation d'explosion.
+	 * Retourne l'etat de l'animation d'explosion.
 	 * 
 	 * @return Vrai si l'ainmation d'explosion est en cours.
 	 */
@@ -350,7 +350,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Met à jour le noeud représentant le vaisseau
+	 * Met a jour le noeud representant le vaisseau
 	 */
 	public void miseAJourGraphique(double dt)
 	{
@@ -405,7 +405,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Crée le noeud JavaFX du vaisseau.
+	 * Cree le noeud JavaFX du vaisseau.
 	 */
 	public void creeNoeud()
 	{
@@ -435,8 +435,8 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Retourne le noeud JavaFX représentant le vaisseau. Le noeud ne change pas
-	 * entre chaque appel de la méthode.
+	 * Retourne le noeud JavaFX representant le vaisseau. Le noeud ne change pas
+	 * entre chaque appel de la methode.
 	 * 
 	 * @return Noeud JavaFX du vaisseau.
 	 */
@@ -451,9 +451,9 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Met à jour la quantité de carburant du vaisseau.
+	 * Met a jour la quantite de carburant du vaisseau.
 	 * 
-	 * @param dt Temps écoulé (en secondes).
+	 * @param dt Temps ecoule (en secondes).
 	 */
 	public void miseAJourPhysique(double dt)
 	{
@@ -464,7 +464,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Réagit à la collision avec un autre corps.
+	 * Reagit a la collision avec un autre corps.
 	 */
 	public void onCollision(Corps c)
 	{
@@ -490,7 +490,7 @@ public class VaisseauJoueur extends Vaisseau
 	}
 	
 	/**
-	 * Remet les corps à leur conditions de départ.
+	 * Remet les corps a leur conditions de depart.
 	 */
 	public void reset()
 	{

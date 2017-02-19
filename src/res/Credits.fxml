@@ -13,7 +13,7 @@
       <Pane fx:id="pane" focusTraversable="true" onKeyPressed="#keyPressed" prefHeight="200.0" prefWidth="200.0" styleClass="credit-pane" stylesheets="@style.css" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <Label styleClass="credits-label" text="Crédits" BorderPane.alignment="CENTER">
+      <Label styleClass="credits-label" text="Credits" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

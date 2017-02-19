@@ -9,17 +9,14 @@ import utils.Vecteur;
 import vue.VueCredits;
 
 /**
- * Contrôleur utilisé lors du lancement des crédits.
- * 
- * @author EquBolduc
- * @version 1.0
+ * Controller used when launching the credits
  */
 public class ContCredits implements Controleur
 {
 	private VueCredits vue;
 	
 	/**
-	 * Contrôleur de la classe ContCredits.
+	 * Controleur de la classe ContCredits.
 	 */
 	public ContCredits()
 	{
@@ -27,7 +24,7 @@ public class ContCredits implements Controleur
 	}
 	
 	/**
-	 * Affiche la vue des crédits.
+	 * Affiche la vue des credits.
 	 */
 	public void initialiser()
 	{
@@ -38,7 +35,7 @@ public class ContCredits implements Controleur
 	}
 	
 	/**
-	 * Charge les éléments visibles dans les crédits.
+	 * Charge les elements visibles dans les credits.
 	 */
 	private void chargerCredits()
 	{
@@ -48,9 +45,9 @@ public class ContCredits implements Controleur
 		simon.setTexture(Tete.Texture.SIMONPIERRE);
 		ContPrincipal.getInstance().ajouterCorps(simon);
 		
-		Tete jé = new Tete(1, 100, new Vecteur(450, 50), new Vecteur(-175, 200));
-		jé.setTexture(Tete.Texture.JEREMIE);
-		ContPrincipal.getInstance().ajouterCorps(jé);
+		Tete je = new Tete(1, 100, new Vecteur(450, 50), new Vecteur(-175, 200));
+		je.setTexture(Tete.Texture.JEREMIE);
+		ContPrincipal.getInstance().ajouterCorps(je);
 		
 		Tete jo = new Tete(1, 100, new Vecteur(50, 450), new Vecteur(175, -175));
 		jo.setTexture(Tete.Texture.JONATHAN);

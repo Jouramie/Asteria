@@ -45,7 +45,7 @@ Vaisseau ; 1000.0 ; 258.04826916046113 ; 272.93566930433394 ; 0.0 ; 0.0
 Vaisseau ; 1000.0 ; -607.9021725414709 ; 503.6903715343617 ; 0.0 ; 0.0
 Vaisseau ; 1000.0 ; 302.71046959207933 ; 722.0389069778289 ; 0.0 ; 0.0
 Vaisseau ; 1000.0 ; -285.3418360908945 ; -86.84316750592461 ; 0.0 ; 0.0
-DescriptionNiveau ; Ce niveau est très difficile, car le chaos y règne. Saurez-vous vous frayer un chemin pour rejoindre le dernier portail du jeu ?
+DescriptionNiveau ; Ce niveau est tres difficile, car le chaos y regne. Saurez-vous vous frayer un chemin pour rejoindre le dernier portail du jeu ?
 ObjectifRayon ; 521.0590050355463 ; -483.8405046758646 ; 50.0
 PointDepart ; -500.0 ; 550.0
 TitreNiveau ; Chaos

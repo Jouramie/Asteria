@@ -18,7 +18,7 @@ import utils.Vecteur;
  */
 public class ObjetSpatialTest
 {
-	// Incertitude toléré
+	// Incertitude tolere
 	private static final double d = 0.001;
 	ObjetSpatial oS1, oS2, oS3, oS4, oS5, oS6, oS7, oS8;
 	

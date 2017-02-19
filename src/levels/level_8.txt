@@ -11,7 +11,7 @@ Planete ; 6.0E15 ; 72.0 ; 271.0 ; 80.0 ; ORANGE ; 30.0 ; 0x80b3b3ff
 Planete ; 6.0E15 ; 438.0 ; 179.0 ; 120.0 ; ROUGE ; 30.0 ; 0xffa500ff
 Planete ; 6.0E15 ; 388.0 ; -309.0 ; 156.0 ; VERTE ; 90.0 ; 0xe6994dff
 Planete ; 6.0E16 ; -1415.8569384775872 ; -87.51433615314 ; 400.0 ; JAUNE ; 400.0 ; 0xe6b3ccff
-DescriptionNiveau ; Dans ce niveau, vous devrez faire attention à ne pas perdre tous vos points de vie. Il y aura quelques vaisseaux ennemis qui voudront vous bloquer le chemin.
+DescriptionNiveau ; Dans ce niveau, vous devrez faire attention a ne pas perdre tous vos points de vie. Il y aura quelques vaisseaux ennemis qui voudront vous bloquer le chemin.
 ObjectifRayon ; -1422.1079624885256 ; -553.2156249680638 ; 50.0
 PointDepart ; 0.0 ; 0.0
 TitreNiveau ; The Break

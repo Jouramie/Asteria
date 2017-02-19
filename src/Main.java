@@ -3,7 +3,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Démarrage de l'application
+ * Demarrage de l'application
  * 
  * @author EquBolduc
  * @version 1.0
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application
 {
 	/**
-	 * Démarre l'application.
+	 * Demarre l'application.
 	 */
 	public void start(Stage primaryStage)
 	{
@@ -26,9 +26,9 @@ public class Main extends Application
 	}
 	
 	/**
-	 * Méthode main
+	 * Methode main
 	 * 
-	 * @param args Paramètres en ligne de commande.
+	 * @param args Parametres en ligne de commande.
 	 */
 	public static void main(String[] args)
 	{

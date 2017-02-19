@@ -15,7 +15,7 @@ import vue.Dessinable;
 public abstract class ObjetSpatial implements Corps, Dessinable
 {
 	/**
-	 * Masse par défaut des corps.
+	 * Masse par defaut des corps.
 	 */
 	public final static double MASSE_DEFAUT = 1.0;
 	
@@ -32,9 +32,9 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Constructeur d'objet spatial, prend un vecteur pour la positon
 	 * 
-	 * @param pMasse la masse de l'objet (1 par défaut)
+	 * @param pMasse la masse de l'objet (1 par defaut)
 	 * @param pPosition le vecteur position de l'objet
-	 * @param pStatique la staticité de l'objet
+	 * @param pStatique la staticite de l'objet
 	 * @param pVitesse le vecteur vitesse de l'objet
 	 */
 	public ObjetSpatial(double pMasse, Vecteur pPosition, boolean pStatique,
@@ -54,10 +54,10 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	/**
 	 * Constructeur d'objet spatial, prend des doubles pour la position
 	 * 
-	 * @param pMasse la masse de l'objet (1 par défaut)
+	 * @param pMasse la masse de l'objet (1 par defaut)
 	 * @param pPositionX la position en X de l'objet
 	 * @param pPositionY la position en Y de l'objet
-	 * @param pStatique la staticité de l'objet
+	 * @param pStatique la staticite de l'objet
 	 * @param pVitesse le vecteur vitesse de l'objet
 	 */
 	public ObjetSpatial(double pMasse, double pPositionX, double pPositionY,
@@ -120,7 +120,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 * Si pDepart est vrai, modifie aussi la position de depart.
 	 */
 	public void setPositionX(double pPositionX, boolean pDepart)
 	{
@@ -137,7 +137,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 * Si pDepart est vrai, modifie aussi la position de depart.
 	 */
 	public void setPositionY(double pPositionY, boolean pDepart)
 	{
@@ -164,7 +164,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si le vecteur est null, met la position à 0.
+	 * Si le vecteur est null, met la position a 0.
 	 */
 	public void setPosition(Vecteur pPosition)
 	{
@@ -181,7 +181,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si pDepart est vrai, modifie aussi la position de départ.
+	 * Si pDepart est vrai, modifie aussi la position de depart.
 	 */
 	public void setPosition(Vecteur pPosition, boolean pDepart)
 	{
@@ -220,7 +220,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si le vecteur est null, met la vitesse à 0.
+	 * Si le vecteur est null, met la vitesse a 0.
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
@@ -233,7 +233,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	}
 	
 	/**
-	 * Si pDepart est vrai, modifie la vitesse de départ.
+	 * Si pDepart est vrai, modifie la vitesse de depart.
 	 */
 	public void setVitesse(Vecteur pVitesse, boolean pDepart)
 	{
@@ -249,7 +249,7 @@ public abstract class ObjetSpatial implements Corps, Dessinable
 	public abstract Vecteur getForceExt();
 	
 	/**
-	 * Remet les corps à leur position et leur vitesse de départ.
+	 * Remet les corps a leur position et leur vitesse de depart.
 	 */
 	public void reset()
 	{

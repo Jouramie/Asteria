@@ -8,7 +8,7 @@ Planete ; 4.0E15 ; -5551.501948721223 ; 29.927234224912354 ; 35.0 ; BLEUE ; 30.0
 Planete ; 5.0E15 ; -6516.655252474644 ; 44.89085133736853 ; 45.0 ; ORANGE ; 30.0 ; 0xffa500ff
 Planete ; 6.0E18 ; -12833.09088794177 ; -149.22198706908966 ; 4000.0 ; ROUGE ; 7000.0 ; 0xccffccff
 Planete ; 6.0E15 ; -7243.760894996696 ; 67.3574882034601 ; 40.0 ; MAGENTA ; 30.0 ; 0xff00eeff
-DescriptionNiveau ; Vous voici maintenant en direction vers la planète Terre. Ne ratez pas votre arrivée en orbite !
+DescriptionNiveau ; Vous voici maintenant en direction vers la planete Terre. Ne ratez pas votre arrivee en orbite !
 ObjectifRayon ; -5706.2878490872245 ; 0.0 ; 50.0
 PointDepart ; 0.0 ; 0.0
 TitreNiveau ; The Milky Way

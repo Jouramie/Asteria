@@ -3,7 +3,7 @@ package vue;
 import javafx.scene.Node;
 
 /**
- * Interface représentant tous les objets dessinables du jeu.
+ * Interface representant tous les objets dessinables du jeu.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -11,21 +11,21 @@ import javafx.scene.Node;
 public interface Dessinable
 {
 	/**
-	 * Retourne un noeud représentant l'objet.
+	 * Retourne un noeud representant l'objet.
 	 * 
-	 * @return Noeud JavaFX représentant l'objet.
+	 * @return Noeud JavaFX representant l'objet.
 	 */
 	Node getNoeud();
 	
 	/**
-	 * Crée un noeud représentant l'objet.
+	 * Cree un noeud representant l'objet.
 	 */	
 	void creeNoeud();
 	
 	/**
-	 * Met à jour le noeud représentant l'objet.
+	 * Met a jour le noeud representant l'objet.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	void miseAJourGraphique(double dt);
 }

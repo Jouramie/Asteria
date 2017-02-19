@@ -1,7 +1,7 @@
 package vue;
 
 /**
- * Vue de l'éditeur.
+ * Vue de l'editeur.
  * 
  * @author EquBolduc
  * @version 1.0

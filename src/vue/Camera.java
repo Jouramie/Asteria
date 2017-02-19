@@ -3,7 +3,7 @@ package vue;
 import utils.Vecteur;
 
 /**
- * Classe responsable de la caméra.
+ * Classe responsable de la camera.
  * 
  * @author EquBoldus
  * @version 1.0
@@ -11,7 +11,7 @@ import utils.Vecteur;
 public class Camera
 {
 	/**
-	 * Défini la vitesse du zoom.
+	 * Defini la vitesse du zoom.
 	 */
 	public static final double VITESSE_ZOOM = 10.0;
 	
@@ -25,9 +25,9 @@ public class Camera
 	private double targetFacteur;
 	
 	/**
-	 * Constructeur de la caméra. La largeur et la hauteur de la fenêtre sont de
-	 * 0 par défaut. Elles devraient être modifié afin de faire fonctionner la
-	 * caméra.
+	 * Constructeur de la camera. La largeur et la hauteur de la fenetre sont de
+	 * 0 par defaut. Elles devraient etre modifie afin de faire fonctionner la
+	 * camera.
 	 */
 	public Camera()
 	{
@@ -44,8 +44,8 @@ public class Camera
 	/**
 	 * Constructeur prenant
 	 * 
-	 * @param pLargeur Largeur de la fenêtre.
-	 * @param pHauteur Hauteur de la fenêtre.
+	 * @param pLargeur Largeur de la fenetre.
+	 * @param pHauteur Hauteur de la fenetre.
 	 */
 	public Camera(double pLargeur, double pHauteur)
 	{
@@ -54,10 +54,10 @@ public class Camera
 	}
 	
 	/**
-	 * Ajuste la grandeur de la fenêtre.
+	 * Ajuste la grandeur de la fenetre.
 	 * 
-	 * @param pLargeur Largeur de la fenêtre.
-	 * @param pHauteur Hauteur de la fenêtre.
+	 * @param pLargeur Largeur de la fenetre.
+	 * @param pHauteur Hauteur de la fenetre.
 	 */
 	public void setGrandeurs(double pLargeur, double pHauteur)
 	{
@@ -73,7 +73,7 @@ public class Camera
 	}
 	
 	/**
-	 * Déplace la caméra à l'endroit spécifier.
+	 * Deplace la camera a l'endroit specifier.
 	 * 
 	 * @param pX Position X.
 	 * @param pY Position Y.
@@ -85,9 +85,9 @@ public class Camera
 	}
 	
 	/**
-	 * Retourne le vecteur représentant la position actuelle de la caméra.
+	 * Retourne le vecteur representant la position actuelle de la camera.
 	 * 
-	 * @return Vecteur de la position de la caméra.
+	 * @return Vecteur de la position de la camera.
 	 */
 	public Vecteur getDeplacement()
 	{
@@ -95,7 +95,7 @@ public class Camera
 	}
 	
 	/**
-	 * Zoom la caméra selon la facteur choisi. 1.0 signifie 1px vaut 1m. 2.0
+	 * Zoom la camera selon la facteur choisi. 1.0 signifie 1px vaut 1m. 2.0
 	 * signifie 1px vaut 2m. 0.5 signifie 1px vaut 0.5m.
 	 * 
 	 * @param pFacteur Facteur de zoom.
@@ -109,10 +109,10 @@ public class Camera
 	}
 	
 	/**
-	 * Transforme un point de la fenêtre dans le système de référence des corps.
+	 * Transforme un point de la fenetre dans le systeme de reference des corps.
 	 * 
-	 * @param vec Point dans l'espace de la fenêtre.
-	 * @return Vecteur représentant le point de le système de référence des
+	 * @param vec Point dans l'espace de la fenetre.
+	 * @return Vecteur representant le point de le systeme de reference des
 	 *         corps.
 	 */
 	public Vecteur localToGlobal(Vecteur vec)
@@ -129,7 +129,7 @@ public class Camera
 	}
 	
 	/**
-	 * Retourne la translation qui doit être appliquée sur les corps.
+	 * Retourne la translation qui doit etre appliquee sur les corps.
 	 * 
 	 * @return Vecteur de transformation.
 	 */
@@ -157,9 +157,9 @@ public class Camera
 	}
 	
 	/**
-	 * Met à jour la caméra. Sert à créer des transitions fluides.
+	 * Met a jour la camera. Sert a creer des transitions fluides.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame.
+	 * @param dt Temps ecoule depuis le dernier frame.
 	 */
 	public void update(double dt)
 	{
@@ -169,12 +169,12 @@ public class Camera
 	}
 	
 	/**
-	 * Crée une courbe pseudo-bézier pour les transitions.
+	 * Cree une courbe pseudo-bezier pour les transitions.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame.
+	 * @param dt Temps ecoule depuis le dernier frame.
 	 * @param valeur Valeur actuelle.
 	 * @param cible Valeur cible.
-	 * @param vitesse Vitesse à laquelle il faut atteindre la valeur.
+	 * @param vitesse Vitesse a laquelle il faut atteindre la valeur.
 	 * @return Nouvelle valeur actuelle.
 	 */
 	private double bezier(double dt, double valeur, double cible, double vitesse)

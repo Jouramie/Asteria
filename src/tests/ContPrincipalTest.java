@@ -11,7 +11,7 @@ import controleur.ContPrincipal;
 import utils.Vecteur;
 
 /**
- * Classe de test pour le contrôleur principal.
+ * Classe de test pour le controleur principal.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -73,7 +73,7 @@ public class ContPrincipalTest
 		assertEquals(cp1, cp2);
 	}
 	
-	// Les méthodes suivantes ne sont pas testées, car elles dépendent
+	// Les methodes suivantes ne sont pas testees, car elles dependent
 	// de FXML.
 	/*
 	 * @Test public void testInitialiser() { fail("Not yet implemented"); }

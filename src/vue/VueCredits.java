@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 /**
- * Vue des crédits.
+ * Vue des credits.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -20,7 +20,7 @@ public class VueCredits implements Vue
 	private List<Dessinable> liste;
 	
 	/**
-	 * Constructeur de la vue des crédits.
+	 * Constructeur de la vue des credits.
 	 */
 	public VueCredits()
 	{
@@ -87,7 +87,7 @@ public class VueCredits implements Vue
 	}
 	
 	/**
-	 * Met à jour la caméra.
+	 * Met a jour la camera.
 	 */
 	public void dessiner(double dt)
 	{

@@ -8,7 +8,7 @@ import javafx.scene.transform.Rotate;
 import utils.Vecteur;
 
 /**
- * Classe représentant un vaisseau spatial.
+ * Classe representant un vaisseau spatial.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -38,8 +38,8 @@ public class Vaisseau extends ObjetSpatial
 	 * Constructeur de vaisseau, prend des doubles pour la position
 	 * 
 	 * @param pMasse la masse du vaisseau
-	 * @param pPositionX la positionX de la planète
-	 * @param pPositionY la positionY de la planète
+	 * @param pPositionX la positionX de la planete
+	 * @param pPositionY la positionY de la planete
 	 * @param pVitesse la vitesse du vaisseau
 	 */
 	public Vaisseau(double pMasse, double pPositionX, double pPositionY,
@@ -50,7 +50,7 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Initialise le vaisseau avec des valeurs par défaut.
+	 * Initialise le vaisseau avec des valeurs par defaut.
 	 */
 	private void init()
 	{
@@ -66,7 +66,7 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Si le vecteur est null, met la vitesse à 0.
+	 * Si le vecteur est null, met la vitesse a 0.
 	 */
 	public void setVitesse(Vecteur pVitesse)
 	{
@@ -81,7 +81,7 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Crée le noeud JavaFX du vaisseau.
+	 * Cree le noeud JavaFX du vaisseau.
 	 */
 	public void creeNoeud()
 	{
@@ -104,8 +104,8 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le noeud JavaFX représentant le vaisseau. Le noeud ne change pas
-	 * entre chaque appel de la méthode.
+	 * Retourne le noeud JavaFX representant le vaisseau. Le noeud ne change pas
+	 * entre chaque appel de la methode.
 	 * 
 	 * @return Noeud JavaFX du vaisseau.
 	 */
@@ -130,10 +130,10 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne la force extérieure appliquée sur le corps. Par exemple, la
-	 * force peut être créée par un réacteur.
+	 * Retourne la force exterieure appliquee sur le corps. Par exemple, la
+	 * force peut etre creee par un reacteur.
 	 * 
-	 * @return Vecteur représentant la force (en Newton)
+	 * @return Vecteur representant la force (en Newton)
 	 */
 	public Vecteur getForceExt()
 	{
@@ -141,9 +141,9 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Met à jour le noeud représentant l'objet.
+	 * Met a jour le noeud representant l'objet.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourGraphique(double dt)
 	{
@@ -160,9 +160,9 @@ public class Vaisseau extends ObjetSpatial
 	}
 	
 	/**
-	 * Met à jour les attributs
+	 * Met a jour les attributs
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourPhysique(double dt)
 	{

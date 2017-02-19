@@ -18,8 +18,8 @@ import modele.MoteurPhysique;
 import vue.Vue;
 
 /**
- * Contrôleur principal servant à charger les contrôleurs et les vues. Contient
- * aussi le modèle. Implémentez comme un singleton.
+ * Controleur principal servant a charger les controleurs et les vues. Contient
+ * aussi le modele. Implementez comme un singleton.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -41,7 +41,7 @@ public class ContPrincipal
 	private static List<Corps> corps;
 	
 	/**
-	 * Constructeur de la classe. Notez que cette méthode est privée pour éviter
+	 * Constructeur de la classe. Notez que cette methode est privee pour eviter
 	 * d'avoir plus d'une instance.
 	 */
 	private ContPrincipal()
@@ -76,7 +76,7 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Démarre l'horloge interne.
+	 * Demarre l'horloge interne.
 	 */
 	public void demarrerHorloge()
 	{
@@ -84,7 +84,7 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Arrête l'horloge interne.
+	 * Arrete l'horloge interne.
 	 */
 	public void arreterHorloge()
 	{
@@ -107,9 +107,9 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Charge un contrôleur.
+	 * Charge un controleur.
 	 * 
-	 * @param c Contrôleur à charger.
+	 * @param c Controleur a charger.
 	 */
 	public void selectionnerControleur(Controleur c)
 	{
@@ -122,9 +122,9 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Charge une vue FXML en mode fenêtré.
+	 * Charge une vue FXML en mode fenetre.
 	 * 
-	 * @param v Vue à charger.
+	 * @param v Vue a charger.
 	 */
 	public void afficherVue(Vue v)
 	{
@@ -132,10 +132,10 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Charge une vue FXML et affiche la fenêtre.
+	 * Charge une vue FXML et affiche la fenetre.
 	 * 
-	 * @param v Vue à charger.
-	 * @param fullscreen Détermine si la vue doit être plein écran.
+	 * @param v Vue a charger.
+	 * @param fullscreen Determine si la vue doit etre plein ecran.
 	 */
 	public void afficherVue(Vue v, boolean fullscreen)
 	{
@@ -167,7 +167,7 @@ public class ContPrincipal
 				
 				stage.setScene(scene);
 				stage.setResizable(false);
-				stage.setTitle("Opération : Astéria");
+				stage.setTitle("Operation : Asteria");
 				stage.setFullScreen(fullscreen);
 				stage.setFullScreenExitHint("");
 				stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -186,9 +186,9 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Méthode appelée à chaque frame par l'horloge interne.
+	 * Methode appelee a chaque frame par l'horloge interne.
 	 * 
-	 * @param time Temps écoulé depuis le dernier frame (secondes).
+	 * @param time Temps ecoule depuis le dernier frame (secondes).
 	 */
 	public void update(double time)
 	{
@@ -209,9 +209,9 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Ajoute un corps physique au modèle.
+	 * Ajoute un corps physique au modele.
 	 * 
-	 * @param c Corps à ajouter.
+	 * @param c Corps a ajouter.
 	 */
 	public void ajouterCorps(Corps c)
 	{
@@ -222,7 +222,7 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Supprime un corps physique du modèle.
+	 * Supprime un corps physique du modele.
 	 * 
 	 * @param c Corps a supprimer.
 	 */
@@ -242,7 +242,7 @@ public class ContPrincipal
 	/**
 	 * Retourne tous les corps du moteur physique.
 	 * 
-	 * @return Liste de corps gérés par le moteur physique.
+	 * @return Liste de corps geres par le moteur physique.
 	 */
 	public List<Corps> getCorps()
 	{
@@ -250,10 +250,10 @@ public class ContPrincipal
 	}
 	
 	/**
-	 * Méthode statique permettant d'accéder au contrôleur principal depuis
+	 * Methode statique permettant d'acceder au controleur principal depuis
 	 * n'importe quelle classe.
 	 * 
-	 * @return Contrôleur principal.
+	 * @return Controleur principal.
 	 */
 	public static ContPrincipal getInstance()
 	{

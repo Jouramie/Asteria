@@ -10,7 +10,7 @@ Planete ; 6.0E15 ; 3065.6255574863935 ; 281.73985164371334 ; 250.0 ; BLEUE ; 30.
 Vaisseau ; 6.0E15 ; 1916.6149085337302 ; -2250.8711204227848 ; 0.0 ; 0.0
 Vaisseau ; 6.0E15 ; 1696.387867484469 ; -1729.0287840234498 ; 0.0 ; 0.0
 Vaisseau ; 6.0E15 ; -2851.779284619828 ; -1915.743014478258 ; 0.0 ; 0.0
-DescriptionNiveau ; Enfin un long voyage ! Assurez-vous de ne pas manquer de carburant durant votre long périple vers le portail !
+DescriptionNiveau ; Enfin un long voyage ! Assurez-vous de ne pas manquer de carburant durant votre long periple vers le portail !
 ObjectifRayon ; -161.17934832233823 ; -2088.0946118211573 ; 50.0
 PointDepart ; -500.0 ; 500.0
 TitreNiveau ; L'excursion

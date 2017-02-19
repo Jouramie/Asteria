@@ -7,7 +7,7 @@ import utils.Vecteur;
 import vue.Camera;
 
 /**
- * Classe de test pour la caméra.
+ * Classe de test pour la camera.
  * 
  * @author EquBolduc
  * @version 1.0

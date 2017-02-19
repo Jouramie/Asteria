@@ -10,7 +10,7 @@ import utils.Vecteur;
 import vue.Dessinable;
 
 /**
- * Classe représentant un objectif qui est de placer le vaisseau dans un certain cercle.
+ * Classe representant un objectif qui est de placer le vaisseau dans un certain cercle.
  * @author EquBolduc
  * @version 1.0
  */
@@ -27,7 +27,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	
 	/**
 	 * Constructeur de l'objectif.
-	 * @param vaisseau Vaisseau sur lequel vérifier l'objectif.
+	 * @param vaisseau Vaisseau sur lequel verifier l'objectif.
 	 * @param posRayon Position du cercle.
 	 * @param rayon Rayon du cercle.
 	 */
@@ -44,7 +44,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	 */
 	public String getDescription()
 	{
-		return "Atteignez l'objectif indiqué.";
+		return "Atteignez l'objectif indique.";
 	}
 	
 	/**
@@ -64,8 +64,8 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 	
 	/**
-	 * Modifie le vaisseau sur lequel l'objectif est vérifié.
-	 * @param vaisseau Le nouveau vaisseau sur lequel l'objectif est vérifié.
+	 * Modifie le vaisseau sur lequel l'objectif est verifie.
+	 * @param vaisseau Le nouveau vaisseau sur lequel l'objectif est verifie.
 	 */
 	public void setVaisseau(Vaisseau vaisseau)
 	{
@@ -100,7 +100,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 	
 	/**
-	 * Retourne le vaisseau sur lequel l'objectif est vérifié.
+	 * Retourne le vaisseau sur lequel l'objectif est verifie.
 	 */
 	public Vaisseau getVaisseau()
 	{
@@ -108,7 +108,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 
 	/**
-	 * Vérifie si le vaisseau se retrouve dans le cercle prescrit.
+	 * Verifie si le vaisseau se retrouve dans le cercle prescrit.
 	 */
 	public boolean verifierObjectif()
 	{
@@ -123,7 +123,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 
 	/**
-	 * Retourne un noeud représentant le portail de fin.
+	 * Retourne un noeud representant le portail de fin.
 	 * @return Retourne le noeud.
 	 */
 	public Node getNoeud()
@@ -135,8 +135,8 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 
 	/**
-	 * Met à jour le portail (animation de rotation).
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * Met a jour le portail (animation de rotation).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourGraphique(double dt)
 	{
@@ -146,7 +146,7 @@ public class ObjectifRayon implements Objectif, Dessinable
 	}
 	
 	/**
-	 * Crée un noeud représentant l'objet.
+	 * Cree un noeud representant l'objet.
 	 */	
 	public void creeNoeud()
 	{

@@ -5,10 +5,10 @@ import objets.Tete;
 import utils.Vecteur;
 
 /**
- * Classe servant à faire en sorte que les entités respectent les lois de la
+ * Classe servant a faire en sorte que les entites respectent les lois de la
  * physique.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  * @version 1.0
  */
 public class MoteurPhysique
@@ -18,7 +18,7 @@ public class MoteurPhysique
 	private double tailleEcranY;
 	
 	/**
-	 * Sert à initialiser les variables du moteur physique.
+	 * Sert a initialiser les variables du moteur physique.
 	 */
 	public MoteurPhysique()
 	{
@@ -27,10 +27,10 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Calcule les forces exercées sur les objets à la suite de la collision.
+	 * Calcule les forces exercees sur les objets a la suite de la collision.
 	 * 
 	 * @param corps1 Premier corps en collision.
-	 * @param corps2 Deuxième corps en collision.
+	 * @param corps2 Deuxieme corps en collision.
 	 */
 	private void calculerCollision(Corps corps1, Corps corps2)
 	{
@@ -38,7 +38,7 @@ public class MoteurPhysique
 		Vecteur deltaS = corps1.getPosition().soustraire(corps2.getPosition());
 		double d = deltaS.getNorme();
 		
-		// Évite une division par zéro.
+		// evite une division par zero.
 		if(d == 0)
 		{
 			d = 0.00001;
@@ -63,7 +63,7 @@ public class MoteurPhysique
 		}
 		
 		// Calcule la nouvelle vitesse.
-		// Ces formules sont tirées de ce site web :
+		// Ces formules sont tirees de ce site web :
 		// http://www.vobarian.com/collisions/index.html
 		double m1 = corps1.getMasse();
 		double m2 = corps2.getMasse();
@@ -100,7 +100,7 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Détecte les collisions.
+	 * Detecte les collisions.
 	 * 
 	 * @param corps La liste des corps pouvant potentiellement entrer en
 	 *            collision.
@@ -180,9 +180,9 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Retourne la largeur de l'écran.
+	 * Retourne la largeur de l'ecran.
 	 * 
-	 * @return Largeur de l'écran.
+	 * @return Largeur de l'ecran.
 	 */
 	public double getTailleEcranX()
 	{
@@ -190,9 +190,9 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Modifie la largeur de l'écran.
+	 * Modifie la largeur de l'ecran.
 	 * 
-	 * @param nouvelleTailleEcran La nouvelle largeur de l'écran.
+	 * @param nouvelleTailleEcran La nouvelle largeur de l'ecran.
 	 */
 	public void setTailleEcranX(double nouvelleTailleEcran)
 	{
@@ -203,9 +203,9 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Retourne la hauteur de l'écran.
+	 * Retourne la hauteur de l'ecran.
 	 * 
-	 * @return Hauteur de l'écran.
+	 * @return Hauteur de l'ecran.
 	 */
 	public double getTailleEcranY()
 	{
@@ -213,9 +213,9 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Modifie la hauteur de l'écran.
+	 * Modifie la hauteur de l'ecran.
 	 * 
-	 * @param nouvelleTailleEcran La nouvelle hauteur de l'écran.
+	 * @param nouvelleTailleEcran La nouvelle hauteur de l'ecran.
 	 */
 	public void setTailleEcranY(double nouvelleTailleEcran)
 	{
@@ -226,11 +226,11 @@ public class MoteurPhysique
 	}
 	
 	/**
-	 * Cette méthode met à jour la position et la vitesse des différents corps
+	 * Cette methode met a jour la position et la vitesse des differents corps
 	 * non-statiques.
 	 * 
 	 * @param corps Liste des corps qui interagissent ensembles.
-	 * @param dt Intervalle de temps depuis la dernière mise à jour.
+	 * @param dt Intervalle de temps depuis la derniere mise a jour.
 	 */
 	public void update(List<Corps> corps, double dt)
 	{

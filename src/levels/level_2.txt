@@ -6,7 +6,7 @@ Planete ; 6.0E15 ; 110.0 ; -81.0 ; 60.0 ; BLEUE ; 30.0 ; 0xe64d4dff
 Planete ; 9.0E15 ; -76.0 ; -166.0 ; 76.0 ; JAUNE ; 80.0 ; 0x80b380ff
 Planete ; 6.0E15 ; -372.0 ; -240.0 ; 89.0 ; MAGENTA ; 40.0 ; 0x80b3b3ff
 Vaisseau ; 6.0E15 ; -731.0 ; -58.0 ; 0.0 ; 0.0
-DescriptionNiveau ; Vous devez démontrer vos aptitudes en conduite de vaisseau spatial. Éviter de vous écraser sur une planète et rejoignez le portail.
+DescriptionNiveau ; Vous devez demontrer vos aptitudes en conduite de vaisseau spatial. eviter de vous ecraser sur une planete et rejoignez le portail.
 ObjectifRayon ; 623.0 ; -407.0 ; 50.0
 PointDepart ; -500.0 ; 550.0
 TitreNiveau ; Narrow Passage

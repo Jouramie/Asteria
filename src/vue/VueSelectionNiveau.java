@@ -8,7 +8,7 @@ public class VueSelectionNiveau extends VueJeu
 	
 	/**
 	 * Retourne le chemin vers le fichier FXML de la vue. LE ROOT DU FICHIER
-	 * FXML DOIT ÊTRE UN BorderPane.
+	 * FXML DOIT eTRE UN BorderPane.
 	 * 
 	 * @return Chemin vers FXML.
 	 */
@@ -19,7 +19,7 @@ public class VueSelectionNiveau extends VueJeu
 	}
 	
 	/**
-	 * Initialise la vue. Cette méthode est appelée une seule fois.
+	 * Initialise la vue. Cette methode est appelee une seule fois.
 	 * 
 	 * @param pane BorderPane de la vue.
 	 */
@@ -29,10 +29,10 @@ public class VueSelectionNiveau extends VueJeu
 	}
 	
 	/**
-	 * Cette méthode est appelée à toutes les frames. Permet de mettre à jour la
+	 * Cette methode est appelee a toutes les frames. Permet de mettre a jour la
 	 * vue.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame.
+	 * @param dt Temps ecoule depuis le dernier frame.
 	 */
 	public void dessiner(double dt)
 	{

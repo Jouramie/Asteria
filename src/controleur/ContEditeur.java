@@ -38,10 +38,10 @@ import vue.Dessinable;
 import vue.VueEditeur;
 
 /**
- * Contrôleur pour le createur de niveaux
+ * Controleur pour le createur de niveaux
  * 
  * @author Jonathan Samson
- * @author Jérémie Bolduc
+ * @author Jeremie Bolduc
  * @version 1.0
  */
 public class ContEditeur implements Controleur
@@ -107,7 +107,7 @@ public class ContEditeur implements Controleur
 	private Niveau niveau;
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 */
 	public ContEditeur()
 	{
@@ -115,7 +115,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Constructeur du contrôleur avec un niveau en paramètre.
+	 * Constructeur du controleur avec un niveau en parametre.
 	 */
 	public ContEditeur(Niveau niv)
 	{
@@ -124,7 +124,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Initialise et affiche la vue de l'éditeur.
+	 * Initialise et affiche la vue de l'editeur.
 	 */
 	public void initialiser()
 	{
@@ -133,7 +133,7 @@ public class ContEditeur implements Controleur
 		ContPrincipal.getInstance().arreterHorloge();
 		
 		// Initialisation des combo box.
-		comboBoxCorps.getItems().addAll("Vaisseau", "Planète", "Portail",
+		comboBoxCorps.getItems().addAll("Vaisseau", "Planete", "Portail",
 				"Vaisseau Joueur");
 		initialiserComboBoxTexture();
 		vBoxMenu.setVisible(false);
@@ -154,7 +154,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	// ===============================================
-	// Écouteurs des différents text field et boutons.
+	// ecouteurs des differents text field et boutons.
 	// ===============================================
 	@FXML
 	public void onRayon(ActionEvent e)
@@ -473,7 +473,7 @@ public class ContEditeur implements Controleur
 			while(!file.canWrite())
 			{
 				JOptionPane.showMessageDialog(null,
-						"L'emplacement choisi ne peut pas être modifié!",
+						"L'emplacement choisi ne peut pas etre modifie!",
 						"Erreur", JOptionPane.ERROR_MESSAGE);
 				file = (new FileChooser()).showSaveDialog(null);
 			}
@@ -486,7 +486,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Méthode pour le bouton charger.
+	 * Methode pour le bouton charger.
 	 */
 	@FXML
 	public void charge()
@@ -498,7 +498,7 @@ public class ContEditeur implements Controleur
 			while(!file.canRead())
 			{
 				JOptionPane.showMessageDialog(null,
-						"L'emplacement choisi ne peut pas être lu!", "Erreur",
+						"L'emplacement choisi ne peut pas etre lu!", "Erreur",
 						JOptionPane.ERROR_MESSAGE);
 				file = (new FileChooser()).showOpenDialog(null);
 			}
@@ -517,7 +517,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Méthode pour le bouton effacer
+	 * Methode pour le bouton effacer
 	 */
 	@FXML
 	public void erase()
@@ -531,7 +531,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Met à jour le contrôleur. Inutile pour l'instant.
+	 * Met a jour le controleur. Inutile pour l'instant.
 	 */
 	public void update(double dt)
 	{
@@ -540,7 +540,7 @@ public class ContEditeur implements Controleur
 	
 	/**
 	 * Initialise le combo box de texture. Obligatoire, sinon les textures
-	 * disparaissent si on ne fait que les définir dans le FXML.
+	 * disparaissent si on ne fait que les definir dans le FXML.
 	 */
 	private void initialiserComboBoxTexture()
 	{
@@ -586,7 +586,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Gère les clicks de la souris.
+	 * Gere les clicks de la souris.
 	 */
 	@FXML
 	public void mouseClicked(MouseEvent event)
@@ -610,14 +610,14 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Gère le clique gauche.
+	 * Gere le clique gauche.
 	 */
 	private void mouseClickedPrimary(MouseEvent event, Vecteur pos)
 	{
 		boolean toucheCorps = false;
 		corpsSelect = null;
 		
-		// Vérifie si un corps est touché.
+		// Verifie si un corps est touche.
 		for(Corps c: ContPrincipal.getInstance().getCorps())
 		{
 			if(Math.abs(c.getPosition().getX() - pos.getX()) < c.getRayon()
@@ -652,7 +652,7 @@ public class ContEditeur implements Controleur
 		{
 			switch(comboBoxCorps.getValue())
 			{
-			case "Planète":
+			case "Planete":
 				creePlanete(pos);
 				niveau.ajouterCorps(corpsSelect);
 				objectifSelect = null;
@@ -680,7 +680,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Gère la création de planètes dans l'éditeur de niveaux.
+	 * Gere la creation de planetes dans l'editeur de niveaux.
 	 */
 	private void creePlanete(Vecteur pos)
 	{
@@ -692,7 +692,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Gère la création de vaisseau dans l'éditeur de niveaux.
+	 * Gere la creation de vaisseau dans l'editeur de niveaux.
 	 */
 	private void creeVaisseau(Vecteur pos)
 	{
@@ -701,7 +701,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Affiche le menu pour modifier les paramètres de l'objet sélectionné.
+	 * Affiche le menu pour modifier les parametres de l'objet selectionne.
 	 */
 	private void afficherMenuParametre()
 	{
@@ -727,7 +727,7 @@ public class ContEditeur implements Controleur
 					.getCouleurAtmosphere());
 			comboBoxTexture.getSelectionModel().select(
 					((Planete) corpsSelect).getTexture());
-			comboBoxCorps.setValue("Planète");
+			comboBoxCorps.setValue("Planete");
 		}
 		
 		else if(corpsSelect instanceof Vaisseau)
@@ -777,7 +777,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Gère le click droit de la souris.
+	 * Gere le click droit de la souris.
 	 */
 	private void mouseClickedSecondary(MouseEvent event, Vecteur pos)
 	{
@@ -785,9 +785,9 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Retourne le niveau de l'éditeur.
+	 * Retourne le niveau de l'editeur.
 	 * 
-	 * @return Niveau de l'éditeur.
+	 * @return Niveau de l'editeur.
 	 */
 	public Niveau getNiveau()
 	{
@@ -795,9 +795,9 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Modifie le niveau de l'éditeur
+	 * Modifie le niveau de l'editeur
 	 * 
-	 * @param nouvNiveau Nouveau niveau de l'éditeur.
+	 * @param nouvNiveau Nouveau niveau de l'editeur.
 	 */
 	public void setNiveau(Niveau nouvNiveau)
 	{
@@ -808,14 +808,14 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Ajoute tous les corps d'un niveau donné dans la vue.
+	 * Ajoute tous les corps d'un niveau donne dans la vue.
 	 */
 	private void chargerNiveau()
 	{
 		// Vide tous les corps.
 		ContPrincipal.getInstance().viderCorps();
 		
-		// Ajoute les corps un à un.
+		// Ajoute les corps un a un.
 		for(Corps c: niveau.getCorps())
 		{
 			ContPrincipal.getInstance().ajouterCorps(c);
@@ -825,7 +825,7 @@ public class ContEditeur implements Controleur
 			}
 		}
 		
-		// Si aucun vaisseau joueur n'est défini, on en ajoute un.
+		// Si aucun vaisseau joueur n'est defini, on en ajoute un.
 		if(vaisseauJoueur == null)
 		{
 			vaisseauJoueur = new VaisseauJoueur(
@@ -845,7 +845,7 @@ public class ContEditeur implements Controleur
 					ObjectifRayon.RAYON_DEFAUT));
 		}
 		
-		// On ajoute les corps dans la scène.
+		// On ajoute les corps dans la scene.
 		vue.initialiserCorps();
 		
 		// On ajoute l'objectif.
@@ -858,7 +858,7 @@ public class ContEditeur implements Controleur
 	}
 	
 	/**
-	 * Méthode pour le zoom.
+	 * Methode pour le zoom.
 	 */
 	@FXML
 	public void zoom(ScrollEvent e)

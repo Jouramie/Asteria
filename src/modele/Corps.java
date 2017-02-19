@@ -4,7 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import utils.Vecteur;
 
 /**
- * Interface utilisé pour tous les corps physiques.
+ * Interface utilise pour tous les corps physiques.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -19,14 +19,14 @@ public interface Corps
 	double getMasse();
 	
 	/**
-	 * Retourne la position par rapport à X.
+	 * Retourne la position par rapport a X.
 	 * 
 	 * @return Position X (en m)
 	 */
 	double getPositionX();
 	
 	/**
-	 * Retourne la position par rapport à Y.
+	 * Retourne la position par rapport a Y.
 	 * 
 	 * @return Position Y (en m)
 	 */
@@ -47,35 +47,35 @@ public interface Corps
 	void setPositionY(double pPositionX);
 	
 	/**
-	 * Retourne la propriété pour la position en X. Utile pour le binding.
+	 * Retourne la propriete pour la position en X. Utile pour le binding.
 	 * 
-	 * @return Propriété de la position en X.
+	 * @return Propriete de la position en X.
 	 */
 	DoubleProperty getPositionXProperty();
 	
 	/**
-	 * Retourne la propriété pour la position en Y. Utile pour le binding.
+	 * Retourne la propriete pour la position en Y. Utile pour le binding.
 	 * 
-	 * @return Propriété de la position en Y.
+	 * @return Propriete de la position en Y.
 	 */
 	DoubleProperty getPositionYProperty();
 	
 	/**
-	 * Retourne un vecteur représentant la position du corps.
+	 * Retourne un vecteur representant la position du corps.
 	 * 
 	 * @return Vecteur de position.
 	 */
 	Vecteur getPosition();
 	
 	/**
-	 * Modifie la position d'un vaisseau à l'aide d'un vecteur.
+	 * Modifie la position d'un vaisseau a l'aide d'un vecteur.
 	 * 
 	 * @param pPosition Vecteur de la position.
 	 */
 	void setPosition(Vecteur pPosition);
 	
 	/**
-	 * Détermine si un corps doit être statique (toujours immobile)
+	 * Determine si un corps doit etre statique (toujours immobile)
 	 * 
 	 * @return Vrai si le corps est statique, faux sinon.
 	 */
@@ -98,15 +98,15 @@ public interface Corps
 	/**
 	 * Modifie la vitesse du vaisseau.
 	 * 
-	 * @param pVitesse Vecteur représentant la vitesse du vaisseau.
+	 * @param pVitesse Vecteur representant la vitesse du vaisseau.
 	 */
 	void setVitesse(Vecteur pVitesse);
 	
 	/**
-	 * Retourne la force extérieure appliquée sur le corps. Par exemple, la
-	 * force peut être créée par un réacteur.
+	 * Retourne la force exterieure appliquee sur le corps. Par exemple, la
+	 * force peut etre creee par un reacteur.
 	 * 
-	 * @return Vecteur représentant la force (en Newton)
+	 * @return Vecteur representant la force (en Newton)
 	 */
 	Vecteur getForceExt();
 	
@@ -118,7 +118,7 @@ public interface Corps
 	double getRayon();
 	
 	/**
-	 * Remet les corps à leur position et leur vitesse de départ.
+	 * Remet les corps a leur position et leur vitesse de depart.
 	 */
 	void reset();
 	
@@ -130,9 +130,9 @@ public interface Corps
 	void onCollision(Corps c);
 	
 	/**
-	 * Met à jour les attributs
+	 * Met a jour les attributs
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	void miseAJourPhysique(double dt);
 

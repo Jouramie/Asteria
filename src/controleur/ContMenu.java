@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import vue.VueMenu;
 
 /**
- * Contrôleur pour le menu principal
+ * Controleur pour le menu principal
  * 
  * @author EquBolduc
  * @version 1.0
@@ -18,7 +18,7 @@ public class ContMenu implements Controleur
 	private Button quitter;
 	
 	/**
-	 * Constructeur du contrôleur.
+	 * Constructeur du controleur.
 	 */
 	public ContMenu()
 	{

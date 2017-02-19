@@ -119,7 +119,7 @@ public class VueJeu implements Vue
 	}
 	
 	/**
-	 * Met à jour la caméra.
+	 * Met a jour la camera.
 	 */
 	public void dessiner(double dt)
 	{

@@ -66,7 +66,7 @@
       												</VBox>
                               <VBox fx:id="vBoxMenuVaisseau" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Label styleClass="editeur-label" text="Vitesse départ" />
+                                    <Label styleClass="editeur-label" text="Vitesse depart" />
                                     <TextField fx:id="textFieldVitesseDepart" onAction="#onVitesseDepart" prefHeight="25.0" prefWidth="119.0" />
                                     <Pane prefHeight="200.0" prefWidth="200.0">
                                        <children>
@@ -81,7 +81,7 @@
                   													<children>
                   														<Label styleClass="editeur-label" text="Carburant maximum" />
                   														<TextField fx:id="textFieldCarburantMax" onAction="#onCarburantMax" prefHeight="25.0" prefWidth="119.0" />
-                  														<Label styleClass="editeur-label" text="Carburant de départ" />
+                  														<Label styleClass="editeur-label" text="Carburant de depart" />
                   														<TextField fx:id="textFieldCarburantDepart" onAction="#onCarburantDepart" prefHeight="25.0" prefWidth="119.0" />
                                                 <Label styleClass="editeur-label" text="Puissance">
                                                    <opaqueInsets>

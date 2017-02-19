@@ -14,7 +14,7 @@ Planete ; 6.0E15 ; 0.0 ; 202.3897120064737 ; 55.0 ; BLEUE ; 30.0 ; 0xffff66ff
 Planete ; 6.0E15 ; -109.94009047265217 ; 347.3107403567883 ; 67.0 ; ROUGE ; 30.0 ; 0x664db3ff
 Planete ; 6.0E15 ; -387.2889550741163 ; 412.27533927244644 ; 40.0 ; ORANGE ; 30.0 ; 0xccffffff
 Planete ; 6.0E15 ; -242.3679267238017 ; 487.2344918674369 ; 40.0 ; BLEUE ; 30.0 ; 0x808080ff
-DescriptionNiveau ; Ceci est le premier vrai défi que vous allez rencontrer. Vous recommencerez ce niveau à plusieurs reprises.
+DescriptionNiveau ; Ceci est le premier vrai defi que vous allez rencontrer. Vous recommencerez ce niveau a plusieurs reprises.
 ObjectifRayon ; -242.5456935723828 ; 656.9741621173198 ; 50.0
 PointDepart ; -300.0 ; 0.0
 TitreNiveau ; Le Retry

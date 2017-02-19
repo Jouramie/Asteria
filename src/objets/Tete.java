@@ -7,7 +7,7 @@ import modele.Corps;
 import utils.Vecteur;
 
 /**
- * Classe représentant une tête.
+ * Classe representant une tete.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -22,10 +22,10 @@ public class Tete extends ObjetSpatial
 	/**
 	 * Constructeur de la classe Tete.
 	 * 
-	 * @param pMasse Masse de la tête.
-	 * @param pRayon Rayon de la tête.
-	 * @param pPosition Position initiale de la tête.
-	 * @param pVitesse Vitesse initiale de la tête.
+	 * @param pMasse Masse de la tete.
+	 * @param pRayon Rayon de la tete.
+	 * @param pPosition Position initiale de la tete.
+	 * @param pVitesse Vitesse initiale de la tete.
 	 */
 	public Tete(double pMasse, double pRayon, Vecteur pPosition,
 			Vecteur pVitesse)
@@ -35,7 +35,7 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Enum des textures possible pour une tête.
+	 * Enum des textures possible pour une tete.
 	 * 
 	 * @author EquBolduc
 	 */
@@ -59,7 +59,7 @@ public class Tete extends ObjetSpatial
 		/**
 		 * Retourne la texture selon son nom.
 		 * 
-		 * @param tex le nom de la texture recherché.
+		 * @param tex le nom de la texture recherche.
 		 * @return la texture.
 		 */
 		public static Texture getTexture(String tex)
@@ -95,8 +95,8 @@ public class Tete extends ObjetSpatial
 	/**
 	 * Initialise les attributs de la classe Tete.
 	 * 
-	 * @param pRayon Rayon de la tête.
-	 * @param textureDefaut Texture de la tête.
+	 * @param pRayon Rayon de la tete.
+	 * @param textureDefaut Texture de la tete.
 	 */
 	private void init(double pRayon, Texture textureDefaut)
 	{
@@ -105,7 +105,7 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le rayon de la tête.
+	 * Retourne le rayon de la tete.
 	 */
 	public double getRayon()
 	{
@@ -113,7 +113,7 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Change le rayon de la tête. Dois être plus grand que 0.
+	 * Change le rayon de la tete. Dois etre plus grand que 0.
 	 */
 	public void setRayon(double nouvRayon)
 	{
@@ -128,7 +128,7 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne la force extérieure exercée sur cette tête.
+	 * Retourne la force exterieure exercee sur cette tete.
 	 */
 	public Vecteur getForceExt()
 	{
@@ -136,16 +136,16 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Met à jour l'apparence de la tête.
+	 * Met a jour l'apparence de la tete.
 	 */
 	public void miseAJourGraphique(double dt)
 	{
 	}
 	
 	/**
-	 * Change la texture de la tête.
+	 * Change la texture de la tete.
 	 * 
-	 * @param pTexture la nouvelle texture de la tête.
+	 * @param pTexture la nouvelle texture de la tete.
 	 */
 	public void setTexture(Texture pTexture)
 	{
@@ -156,7 +156,7 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * @return la texture de la tête.
+	 * @return la texture de la tete.
 	 */
 	public Texture getTexture()
 	{
@@ -185,16 +185,16 @@ public class Tete extends ObjetSpatial
 	}
 	
 	/**
-	 * Met à jour les attributs
+	 * Met a jour les attributs
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes).
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourPhysique(double dt)
 	{
 	}
 	
 	/**
-	 * Crée un noeud représentant l'objet.
+	 * Cree un noeud representant l'objet.
 	 */	
 	public void creeNoeud()
 	{

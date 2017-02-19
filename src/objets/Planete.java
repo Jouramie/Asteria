@@ -13,7 +13,7 @@ import javafx.scene.paint.Stop;
 import utils.Vecteur;
 
 /**
- * Classe représentant une planète.
+ * Classe representant une planete.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -30,7 +30,7 @@ public class Planete extends ObjetSpatial
 	public static final double PLANETE_MASSE_DEFAUT = 6e15;
 	
 	/**
-	 * Enum des textures possible pour une planète.
+	 * Enum des textures possible pour une planete.
 	 * 
 	 * @author EquBolduc
 	 */
@@ -55,7 +55,7 @@ public class Planete extends ObjetSpatial
 		/**
 		 * Retourne la texture selon son nom.
 		 * 
-		 * @param tex le nom de la texture recherché.
+		 * @param tex le nom de la texture recherche.
 		 * @return la texture.
 		 */
 		public static Texture getTexture(String tex)
@@ -103,10 +103,10 @@ public class Planete extends ObjetSpatial
 	protected Color couleurAtmosphere;
 	
 	/**
-	 * Constructeur de planète, prend un vecteur pour la position
+	 * Constructeur de planete, prend un vecteur pour la position
 	 * 
-	 * @param pMasse la masse de la planète
-	 * @param pPosition la position de la planète
+	 * @param pMasse la masse de la planete
+	 * @param pPosition la position de la planete
 	 */
 	public Planete(double pMasse, Vecteur pPosition, double pRayon,
 			double pRayonAtmosphere, Color pCouleurAtmosphere)
@@ -116,11 +116,11 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Constructeur de planète, prend des doubles pour la position
+	 * Constructeur de planete, prend des doubles pour la position
 	 * 
-	 * @param pMasse la masse de la planète
-	 * @param pPositionX la positionX de la planète
-	 * @param pPositionY la positionY de la planète
+	 * @param pMasse la masse de la planete
+	 * @param pPositionX la positionX de la planete
+	 * @param pPositionY la positionY de la planete
 	 */
 	public Planete(double pMasse, double pPositionX, double pPositionY,
 			double pRayon, double pRayonAtmosphere, Color pCouleurAtmosphere)
@@ -144,9 +144,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Change la texture de la planète.
+	 * Change la texture de la planete.
 	 * 
-	 * @param pTexture la nouvelle texture de la planète.
+	 * @param pTexture la nouvelle texture de la planete.
 	 */
 	public void setTexture(Texture pTexture)
 	{
@@ -158,7 +158,7 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * @return la texture de la planète.
+	 * @return la texture de la planete.
 	 */
 	public Texture getTexture()
 	{
@@ -166,9 +166,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Modifie le rayon de la planète.
+	 * Modifie le rayon de la planete.
 	 * 
-	 * @param pRayon le nouveau rayon de la planète.
+	 * @param pRayon le nouveau rayon de la planete.
 	 */
 	public void setRayon(double pRayon)
 	{
@@ -183,9 +183,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le rayon de la planète
+	 * Retourne le rayon de la planete
 	 * 
-	 * @return le rayon de la planète.
+	 * @return le rayon de la planete.
 	 */
 	public double getRayon()
 	{
@@ -193,9 +193,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Modifie le rayon de l'atmosphere de la planète.
+	 * Modifie le rayon de l'atmosphere de la planete.
 	 * 
-	 * @param pRayonAtmosphere le nouveau rayon de la planète.
+	 * @param pRayonAtmosphere le nouveau rayon de la planete.
 	 */
 	public void setRayonAtmosphere(double pRayonAtmosphere)
 	{
@@ -210,9 +210,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne le rayon de l'atmosphère de la planète.
+	 * Retourne le rayon de l'atmosphere de la planete.
 	 * 
-	 * @return le rayon de l'atmosphère de la planète. (en pixel)
+	 * @return le rayon de l'atmosphere de la planete. (en pixel)
 	 */
 	public double getRayonAtmosphere()
 	{
@@ -220,9 +220,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Modifie la cou leur de l'atmosphère de la planète.
+	 * Modifie la cou leur de l'atmosphere de la planete.
 	 * 
-	 * @param pCouleurAtmosphere la nouvelle couleur de la planète.
+	 * @param pCouleurAtmosphere la nouvelle couleur de la planete.
 	 */
 	public void setCouleurAtmosphere(Color pCouleurAtmosphere)
 	{
@@ -230,9 +230,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne la couleur de l'atmosphère de la planète.
+	 * Retourne la couleur de l'atmosphere de la planete.
 	 * 
-	 * @return la couleur de l'atmnosphère de la planète.
+	 * @return la couleur de l'atmnosphere de la planete.
 	 */
 	public Color getCouleurAtmosphere()
 	{
@@ -240,9 +240,9 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne un noeud correspondant à l'aspect graphique de la planète.
+	 * Retourne un noeud correspondant a l'aspect graphique de la planete.
 	 * 
-	 * @return un group contenant les composants graphique de la planète.
+	 * @return un group contenant les composants graphique de la planete.
 	 */
 	public Node getNoeud()
 	{
@@ -252,7 +252,7 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Crée un noeud représentant l'objet.
+	 * Cree un noeud representant l'objet.
 	 */	
 	public void creeNoeud()
 	{
@@ -277,7 +277,7 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Retourne une force extérieur appliqué sur la planète.
+	 * Retourne une force exterieur applique sur la planete.
 	 * 
 	 * @return toujours un vecteur null.
 	 */
@@ -287,20 +287,20 @@ public class Planete extends ObjetSpatial
 	}
 	
 	/**
-	 * Met à jour le noeud représentant l'objet.
+	 * Met a jour le noeud representant l'objet.
 	 * 
 	 * @param dt
-	 *            Temps écoulé depuis le dernier frame (en secondes).
+	 *            Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourGraphique(double dt)
 	{	
 	}
 	
 	/**
-	 * Met à jour les attributs
+	 * Met a jour les attributs
 	 * 
 	 * @param dt
-	 *            Temps écoulé depuis le dernier frame (en secondes).
+	 *            Temps ecoule depuis le dernier frame (en secondes).
 	 */
 	public void miseAJourPhysique(double dt)
 	{

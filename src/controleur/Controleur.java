@@ -1,7 +1,7 @@
 package controleur;
 
 /**
- * Interface utilisé par tous les contrôleurs.
+ * Interface utilise par tous les controleurs.
  * 
  * @author EquBolduc
  * @version 1.0
@@ -9,16 +9,16 @@ package controleur;
 public interface Controleur
 {
 	/**
-	 * Initialise le contrôleur. Cette méthode est appelée qu'une seule fois.
-	 * C'est généralement ici que l'on charge la vue.
+	 * Initialise le controleur. Cette methode est appelee qu'une seule fois.
+	 * C'est generalement ici que l'on charge la vue.
 	 */
 	void initialiser();
 	
 	/**
-	 * Met à jour le modèle. Cette méthode est appelée à chaque frame. C'est ici
+	 * Met a jour le modele. Cette methode est appelee a chaque frame. C'est ici
 	 * que les modifications sur le vaisseau ou autres ont lieu.
 	 * 
-	 * @param dt Temps écoulé depuis le dernier frame (en secondes)
+	 * @param dt Temps ecoule depuis le dernier frame (en secondes)
 	 */
 	void update(double dt);
 }

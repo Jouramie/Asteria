@@ -17,9 +17,9 @@ import objets.VaisseauJoueur;
 import utils.Vecteur;
 
 /**
- * Classe servant à contenir les éléments constituant un niveau.
+ * Classe servant a contenir les elements constituant un niveau.
  * 
- * @author Équipe Bolduc
+ * @author equipe Bolduc
  * @version 1.0
  */
 public class Niveau
@@ -42,14 +42,14 @@ public class Niveau
 	}
 	
 	/**
-	 * Constructeur servant à initialiser le niveau.
+	 * Constructeur servant a initialiser le niveau.
 	 * 
-	 * @param nouveauxCorps Les corps à mettre dans le niveau.
+	 * @param nouveauxCorps Les corps a mettre dans le niveau.
 	 * @param nouvelleDescriptionNiveau La description du niveau.
-	 * @param nouvelObjectif L'objectif à mettre dans le niveau.
-	 * @param nouveauPointDepart Le point de départ du vaisseau.
+	 * @param nouvelObjectif L'objectif a mettre dans le niveau.
+	 * @param nouveauPointDepart Le point de depart du vaisseau.
 	 * @param nouveauTitreNiveau Le titre du niveau.
-	 * @param nouvelleVitesseDepart La vitesse du vaisseau au point de départ.
+	 * @param nouvelleVitesseDepart La vitesse du vaisseau au point de depart.
 	 */
 	public Niveau(List<Corps> nouveauxCorps, String nouvelleDescriptionNiveau,
 			Objectif nouvelObjectif, Vecteur nouveauPointDepart,
@@ -77,7 +77,7 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à ajouter un corps dans le niveau.
+	 * Sert a ajouter un corps dans le niveau.
 	 * 
 	 * @param nouveauCorps Un nouveau corps.
 	 */
@@ -90,7 +90,7 @@ public class Niveau
 	}
 	
 	/**
-	 * Enlève un corps du niveau.
+	 * Enleve un corps du niveau.
 	 * 
 	 * @param c
 	 */
@@ -103,10 +103,10 @@ public class Niveau
 	}
 	
 	/**
-	 * Charge le niveau passé en paramètre.
+	 * Charge le niveau passe en parametre.
 	 * 
-	 * @param fichier Le niveau à charger.
-	 * @return Le niveau chargé.
+	 * @param fichier Le niveau a charger.
+	 * @return Le niveau charge.
 	 */
 	public static Niveau chargerNiveau(InputStream fichier)
 	{
@@ -277,9 +277,9 @@ public class Niveau
 	}
 	
 	/**
-	 * Retourne le point de départ du vaisseau.
+	 * Retourne le point de depart du vaisseau.
 	 * 
-	 * @return Le point de départ du vaisseau.
+	 * @return Le point de depart du vaisseau.
 	 */
 	public Vecteur getPointDepart()
 	{
@@ -297,9 +297,9 @@ public class Niveau
 	}
 	
 	/**
-	 * Retourne la vitesse de départ du vaisseau.
+	 * Retourne la vitesse de depart du vaisseau.
 	 * 
-	 * @return La vitesse de départ du vaisseau.
+	 * @return La vitesse de depart du vaisseau.
 	 */
 	public double getVitesseDepart()
 	{
@@ -307,9 +307,9 @@ public class Niveau
 	}
 	
 	/**
-	 * Sauvegarde le niveau dans le fichier passé en paramètre.
+	 * Sauvegarde le niveau dans le fichier passe en parametre.
 	 * 
-	 * @param fichier Fichier dans lequel le niveau est à sauvegarder.
+	 * @param fichier Fichier dans lequel le niveau est a sauvegarder.
 	 */
 	public void sauvegarderNiveau(File fichier)
 	{
@@ -400,7 +400,7 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à modifier l'objectif.
+	 * Sert a modifier l'objectif.
 	 * 
 	 * @param nouvelObjectif Le nouvel objectif.
 	 */
@@ -413,9 +413,9 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à modifier le point de départ du vaisseau.
+	 * Sert a modifier le point de depart du vaisseau.
 	 * 
-	 * @param nouveauPointDepart Le nouveau point de départ du vaisseau.
+	 * @param nouveauPointDepart Le nouveau point de depart du vaisseau.
 	 */
 	public void setPointDepart(Vecteur nouveauPointDepart)
 	{
@@ -426,7 +426,7 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à modifier le titre du niveau.
+	 * Sert a modifier le titre du niveau.
 	 * 
 	 * @param nouveauTitreNiveau Le nouveau titre du niveau.
 	 */
@@ -439,9 +439,9 @@ public class Niveau
 	}
 	
 	/**
-	 * Sert à modifier la vitesse de départ du vaisseau.
+	 * Sert a modifier la vitesse de depart du vaisseau.
 	 * 
-	 * @param nouvelleVitesseDepart La nouvelle vitesse de départ du vaisseau.
+	 * @param nouvelleVitesseDepart La nouvelle vitesse de depart du vaisseau.
 	 */
 	public void setVitesseDepart(double nouvelleVitesseDepart)
 	{
